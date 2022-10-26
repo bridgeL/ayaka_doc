@@ -4,7 +4,7 @@
 
 [仓库](https://github.com/bridgeL/nonebot-plugin-ayaka) 
 
-具体安装步骤请看 [这里](../index.md#_1)
+具体安装步骤请看 [这里](../install.md)
 
 ## 安装 ayaka_games
 

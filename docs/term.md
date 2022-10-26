@@ -30,7 +30,7 @@ ayaka内部已安装一份特殊的综合管理插件，它基于ayaka插件而�
 
 ## 有状态应用 
 
-例如，[hello-world](plugin.md#hello-world)应用
+例如，[hello-world](hello.md)应用
 
 用户发送hi指令时，应用需要根据自身的状态（earth/moon/sun）给出不同的响应，因此它是有状态应用
 

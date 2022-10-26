@@ -2,13 +2,11 @@
 2. `poetry add nonebot-plugin-ayaka` 
 3. `poetry run playwright install chromium`
 
-注意：
+## 注意
 
-如果没有用到无头浏览器截图的功能，可忽略最后一步
-
-不需要特意在`bot.py`中加载ayaka插件，只要正常加载ayaka衍生插件即可
-
-ayaka衍生插件中也只需正常导入ayaka就行 `from ayaka import AyakaApp`
+- 如果没有用到无头浏览器截图的功能，可忽略最后一步
+- 不需要特意在`bot.py`中加载ayaka插件，只要正常加载ayaka衍生插件即可
+- ayaka衍生插件中也只需正常导入ayaka就行 `from ayaka import AyakaApp`
 
 
 ## 配置

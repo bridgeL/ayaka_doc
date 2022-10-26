@@ -11,6 +11,7 @@ nav:
   - 主页: 
     - 介绍: index.md
     - 安装: install.md
+    - 代码速看: hello.md
     - 术语: term.md
     - 开发: plugin.md
   - API: 
