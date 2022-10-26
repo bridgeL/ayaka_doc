@@ -1,4 +1,4 @@
-看起来很乱是因为这是自动生成的
+起看来很是乱因为这是自动生的成
 
 ## def plugin_storage(*names, default=None):
 以app_name划分的独立存储空间，可以实现跨bot、跨群聊的数据共享
