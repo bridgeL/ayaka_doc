@@ -8,39 +8,18 @@ ayaka 通过二次封装nonebot2提供的api，提供专用api，便于其他文
 
 单独安装ayaka插件没有意义，ayaka插件的意义在于帮助ayaka衍生插件实现功能
 
-## 已有的ayaka衍生插件
+## 相关链接
 
-- [衍生插件示例库](https://github.com/bridgeL/ayaka_plugins)
-- [小游戏合集仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
+[插件仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)
 
-## 安装
+[文档仓库](https://github.com/bridgeL/ayaka_doc) 
 
-1. 修改nonebot工作目录下的`pyproject.toml`文件，将`python = "^3.7.3"`修改为`python = "^3.8.0"`
-2. `poetry add nonebot-plugin-ayaka` 
-3. `poetry run playwright install chromium`
-4. `bot.py`无需修改，只要在ayaka衍生插件里正常导入就行：`from ayaka import AyakaApp`
+### 衍生插件仓库
 
-**ayaka衍生插件需要nonebot来加载**
+[示例库](https://github.com/bridgeL/ayaka_plugins)
 
-如果没有用到无头浏览器截图的功能，可忽略`poetry run playwright install chromium`
+[小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
-## 配置
-
-推荐配置（非强制要求）
-```
-COMMAND_START=["#"]
-COMMAND_SEP=[" "]
-```
-
-## 未来计划
-
-1. 更新关于`app.plugin_storage`和`app.group_storage`的帮助
-2. 提供aiosqlite数据库支持（或许？
-3. 考虑拆散帮助的设置方式，针对每条命令回调、消息回调设置帮助，而不是像现在编写一个总体的帮助
-
-## 其他
-
-本文档的[仓库](https://github.com/bridgeL/ayaka_doc) 
 
 ## 下一步
 

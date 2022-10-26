@@ -10,6 +10,7 @@ theme:
 nav:
   - 主页: 
     - 介绍: index.md
+    - 安装: install.md
     - 术语: term.md
     - 开发: plugin.md
   - API: 
@@ -18,8 +19,10 @@ nav:
     - 类和方法: api/function.md
   - 小游戏合集: 
     - 介绍: games/index.md
+    - 安装: games/install.md
     - 帮助: games/help.md
   - 更新记录: 
+    - 未来计划: change-log/next.md
     - v3: change-log/v3.md
     - v2: change-log/v2.md
 markdown_extensions:
