@@ -102,13 +102,5 @@
   - 全部 查看所有人参与情况，以及boss的时间和能量
 ```
 
-## 特别感谢
 
-[@灯夜](https://github.com/lunexnocty/Meiri) 大佬的插件蛮好玩的~
-
-## 下一步
-
-<div align="right">
-    在这里~ ↘
-</div>
 

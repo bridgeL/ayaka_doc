@@ -1,3 +1,6 @@
+## 说明
+本页为 ayaka_games 帮助文档，托管在ayaka 帮助文档下
+
 ## 基础功能
 1. 背包
 2. 签到
@@ -15,13 +18,13 @@
 
 ### 安装 ayaka
 
-安装基础插件
+安装 [ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka) 插件
 
-https://github.com/bridgeL/nonebot-plugin-ayaka
+具体安装步骤请看 [这里](../index.md#_1)
 
-### 安装 本插件
+### 安装 ayaka_games
 
-安装本插件
+安装 [ayaka_games](https://github.com/bridgeL/nonebot-plugin-ayaka-games) 插件
 
 `poetry add nonebot-plugin-ayaka-games`
 
@@ -34,6 +37,17 @@ nonebot.load_plugin("ayaka_games")
 
 ### 导入数据
 
-将[仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-games)里的data文件夹，放到nonebot的工作目录下
+将[ayaka_games仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-games)里的data文件夹，放到nonebot的工作目录下
 
 之后运行nonebot即可
+
+## 特别感谢
+
+[@灯夜](https://github.com/lunexnocty/Meiri) 大佬的插件蛮好玩的~
+
+
+## 下一步
+
+<div align="right">
+    在这里~ ↘
+</div>
