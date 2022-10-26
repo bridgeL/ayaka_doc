@@ -277,7 +277,8 @@ async def every_hour():
 
 @app.on_everyday(h=23, m=59, s=59)
 async def every_day():
-    await app.t_send(bot_id=2317709898, group_id=666214666, message="呃呃呃一天要结束了")
+    await app.t_send(bot_id=2317709898, 
+    group_id=666214666, message="呃呃呃一天要结束了")
 
 ```
 
