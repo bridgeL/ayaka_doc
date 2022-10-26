@@ -17,6 +17,11 @@
 
 当前app是否被当前群组启用
 
+## app.state:
+*timer触发时不可用*
+
+应用|群组当前状态
+
 ## app.cache
 *timer触发时不可用*
 
