@@ -218,7 +218,7 @@ async def calc():
 
 仅展示部分代码以供读者理解group_storage的使用
 
-全部插件内容请查看[plus_time.py](https://github.com/bridgeL/ayaka_plugins/blob/master/plus_time.py)查看
+全部插件内容请前往仓库查看[plus_time.py](https://github.com/bridgeL/ayaka_plugins/blob/master/plus_time.py)查看
 
 ``` py
     ...

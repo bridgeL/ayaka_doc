@@ -10,8 +10,8 @@ ayaka 通过二次封装nonebot2提供的api，提供专用api，便于其他文
 
 ## 已有的ayaka衍生插件
 
-- [示例库](https://github.com/bridgeL/ayaka_plugins)
-- [小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
+- [衍生插件示例库](https://github.com/bridgeL/ayaka_plugins)
+- [小游戏合集仓库](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
 ## 安装
 
