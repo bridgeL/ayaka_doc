@@ -38,6 +38,9 @@ COMMAND_SEP=[" "]
 2. 提供aiosqlite数据库支持（或许？
 3. 考虑拆散帮助的设置方式，针对每条命令回调、消息回调设置帮助，而不是像现在编写一个总体的帮助
 
+## 其他
+
+本文档的[仓库](https://github.com/bridgeL/ayaka_doc) 
 
 ## 下一步
 
