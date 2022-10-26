@@ -1,3 +1,30 @@
-site_name: My Docs
+site_name: Ayaka - 文字游戏开发辅助插件
+repo_url: https://github.com/bridgeL/nonebot-plugin-ayaka
+repo_name: nonebot-plugin-ayaka
+
 theme:
   name: material
+  features:
+    - content.code.annotate
+    - navigation.tabs
+nav:
+  - 主页: 
+    - 介绍: index.md
+    - 术语: term.md
+    - 开发: create-plugin.md
+  - API: 
+    - 一览表: api/index.md
+    - 属性: api/property.md
+    - 类和方法: api/function.md
+  - 小游戏合集: 
+    - 介绍: games/index.md
+    - 帮助: games/help.md
+  - 更新记录: 
+    - v3: change-log/v3.md
+    - v2: change-log/v2.md
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
