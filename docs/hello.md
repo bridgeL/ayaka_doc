@@ -11,7 +11,7 @@
 '''
     hello world
     
-    ayaka可以帮助你实现命令隔离
+    ayaka可以帮助实现命令隔离
 '''
 from ayaka import AyakaApp
 
