@@ -36,3 +36,7 @@ markdown_extensions:
   - toc:
       title: 本页索引
       permalink: true
+extra_javascript:
+  - fake-qq/main.js
+extra_css:
+  - fake-qq/style.css
