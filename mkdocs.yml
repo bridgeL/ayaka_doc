@@ -13,7 +13,8 @@ nav:
     - 安装: install.md
     - 代码速看: hello.md
     - 术语: term.md
-    - 开发: plugin.md
+    - 开发衍生插件: plugin.md
+    - 编写插件帮助: help.md
   - API: 
     - 一览表: api/index.md
     - 属性: api/property.md
