@@ -1,12 +1,4 @@
-## 安装 ayaka
-
-[仓库地址](https://github.com/bridgeL/nonebot-plugin-ayaka) 
-
-安装 `ayaka` 插件 请看[这里](../install.md)
-
-## 安装 ayaka_games
-
-[仓库地址](https://github.com/bridgeL/nonebot-plugin-ayaka-games) 
+## 步骤
 
 1. 安装 `ayaka_games` 插件 `poetry add nonebot-plugin-ayaka-games`
 2. 修改nonebot2  `bot.py` 
