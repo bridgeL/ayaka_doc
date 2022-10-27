@@ -4,7 +4,9 @@
 
 <img src="https://img.shields.io/badge/python-3.8%2B-blue">
 
-ayaka 通过二次封装nonebot2提供的api，提供专用api，便于其他文字游戏插件（衍生插件）的编写
+ayaka 二次封装nonebot2提供的api，提供了专用api
+
+从而为其他文字游戏插件（衍生插件）的编写提供支持
 
 单独安装本插件没有意义，本插件的意义在于帮助衍生插件实现功能
 
