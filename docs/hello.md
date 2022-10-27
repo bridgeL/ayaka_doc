@@ -11,7 +11,7 @@
         <div class="screen">
             <div class="message">FAKE QQ</div>
             <div class="message">- 仅用于展示，并非真的使用js实现了python代码</div>
-            <div class="message">- 安装了hello world插件的bot，其效果应当与此一致</div>
+            <div class="message">- 安装了hello world插件的bot，其效果与此一致</div>
         </div>
         <input placeholder="#">
     </div>

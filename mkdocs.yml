@@ -4,29 +4,31 @@ repo_name: nonebot-plugin-ayaka
 
 theme:
   name: material
+  palette:
+    primary: brown
   features:
     - content.code.annotate
     - navigation.tabs
 nav:
-  - 主页: 
-    - 介绍: index.md
-    - 安装: install.md
-    - 代码速看: hello.md
-    - 术语: term.md
-    - 开发衍生插件: plugin.md
-    - 编写插件帮助: help.md
-  - API: 
-    - 一览表: api/index.md
-    - 属性: api/property.md
-    - 类和方法: api/function.md
-  - 小游戏合集: 
-    - 介绍: games/index.md
-    - 安装: games/install.md
-    - 帮助: games/help.md
-  - 更新记录: 
-    - 未来计划: change-log/next.md
-    - v3: change-log/v3.md
-    - v2: change-log/v2.md
+  - 主页:
+      - 介绍: index.md
+      - 安装: install.md
+      - 代码速看: hello.md
+      - 术语: term.md
+      - 开发衍生插件: plugin.md
+      - 编写插件帮助: help.md
+  - API:
+      - 一览表: api/index.md
+      - 属性: api/property.md
+      - 类和方法: api/function.md
+  - 小游戏合集:
+      - 介绍: games/index.md
+      - 安装: games/install.md
+      - 帮助: games/help.md
+  - 更新记录:
+      - 未来计划: change-log/next.md
+      - v3: change-log/v3.md
+      - v2: change-log/v2.md
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
