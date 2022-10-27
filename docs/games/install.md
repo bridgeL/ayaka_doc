@@ -1,7 +1,10 @@
-## 步骤
+## 安装插件
 
-1. 安装 `ayaka_games` 插件 `poetry add nonebot-plugin-ayaka-games`
-2. 修改nonebot2  `bot.py` 
+ `poetry add nonebot-plugin-ayaka-games`
+
+## 导入插件
+
+修改nonebot2  `bot.py` 
 
 ```python
 # 导入ayaka_games插件
