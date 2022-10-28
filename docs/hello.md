@@ -4,20 +4,6 @@
 
 在开始一切之前，您可以阅读本页，以决定该插件是否适合作为您的辅助开发插件，或留下对该插件的第一印象
 
-## 效果预览
-
-<div id="fake-qq">
-    <div>
-        <div class="screen">
-            <div class="message">FAKE QQ</div>
-            <div class="message">- 仅用于展示，并非真的使用js实现了python代码</div>
-            <div class="message">- 安装了hello world插件的bot，其效果与此一致</div>
-        </div>
-        <input placeholder="#">
-    </div>
-    <div class="command-list"></div>
-</div>
-
 ## Hello World
 
 ``` py
@@ -100,6 +86,20 @@ async def jump_to_somewhere():
         await app.send(f"跳转到 {next_state}")
 
 ```
+
+## 效果
+
+<div id="fake-qq">
+    <div>
+        <div class="screen">
+            <div class="message">FAKE QQ</div>
+            <div class="message">- 仅用于展示，并非真的使用js实现了python代码</div>
+            <div class="message">- 安装了hello world插件的bot，其效果与此一致</div>
+        </div>
+        <input placeholder="#">
+    </div>
+    <div class="command-list"></div>
+</div>
 
 ## 下一步
 
