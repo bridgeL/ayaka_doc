@@ -29,7 +29,7 @@ ayaka 二次封装nonebot2提供的api，提供了专用api
 
 ### 测试套件
 
-<img src="../5.gif">
+<img src="5.gif">
 
 
 ## 相关链接
