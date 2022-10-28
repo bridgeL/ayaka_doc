@@ -17,6 +17,7 @@ nav:
       - 术语: term.md
       - 开发衍生插件: plugin.md
       - 编写插件帮助: help.md
+      - 如何测试插件: test.md
   - API:
       - 一览表: api/index.md
       - 属性: api/property.md
