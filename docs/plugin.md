@@ -44,29 +44,19 @@ async def _():
 from ayaka import AyakaApp
 
 app = AyakaApp("echo")
-
-# 得益于ayaka内置插件 ayaka_master
-# 用户可通过#help命令展示插件帮助，只需编写app.help即可
-# 第一种写法，该帮助将默认写入app.intro中
-app.help = '''复读只因
-特殊命令一览：
-- reverse 开始说反话
-- back 停止说反话
-- exit 退出
-'''
-
-# 另一种写法
-# init的值，将变成app.intro的值
-# init、reverse表示不同的状态，在不同状态下，app.help将返回对应的值
 app.help = {
-    "init": "复读只因\n特殊命令一览：\n- reverse 开始说反话\n- exit 退出",
-    "reverse": "说反话模式\n- back 停止说反话"
+    "init": "复读只因",
+    "reverse": "说反话模式"
 }
+# init、reverse表示不同的状态
+# 当app在某状态下时，app.help = 该状态对应的帮助
+# app.intro = init对应的帮助
 
 
 # 打开app
 @app.on_command("echo")
 async def app_entrance():
+    '''开始复读 或 打开复读机'''
     # 输入参数则复读参数（无状态响应
     # > #echo hihi
     # < hihi
@@ -89,12 +79,14 @@ async def repeat():
 # 任意状态均可直接退出
 @app.on_state_command(["exit", "退出"], "*")
 async def app_exit():
+    '''退出复读机'''
     await app.close()
 
 
 # 通过命令，跳转到reverse状态
 @app.on_state_command(["rev", "reverse", "话反说", "反", "说反话"])
 async def start_rev():
+    '''开始说反话'''
     app.set_state("reverse")
     await app.send("开始说反话")
 
@@ -103,13 +95,14 @@ async def start_rev():
 @app.on_state_text("reverse")
 async def reverse_echo():
     msg = str(app.message)
-    msg = "".join(s for s in reversed(msg))
+    msg = "".join(reversed(msg))
     await app.send(msg)
 
 
 # 通过命令，跳转回初始状态
 @app.on_state_command("back", "reverse")
 async def back():
+    '''停止说反话'''
     app.set_state()
     await app.send("话反说止停")
 ```
