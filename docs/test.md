@@ -26,11 +26,11 @@
 
 测试插件为 [谁是卧底](https://github.com/bridgeL/nonebot-plugin-ayaka-who-is-suspect)
 
-<img src="5.gif">
+<img src="../5.gif">
 
 测试插件为 [kawaii_robot](https://github.com/KarisAya/nonebot_plugin_kawaii_robot) nonebot插件
 
-<img src="6.gif">
+<img src="../6.gif">
 
 退出时直接 CTRL+C
 
@@ -83,6 +83,8 @@ ayaka_test将从`/`和`data/scripts`两个路径寻找指定名称的自动化�
 
 - `fake_qq.on_terminal` 编写自定义的终端命令
 - `fake_qq.on_cqhttp` 编写自定义的cqhttp对nonebot的响应
+
+具体编写可分别参考`ayaka_test/terminal.py`和`ayaka_test/cqhttp.py`文件
 
 ### 如何编写cqhttp对nonebot的响应
 
