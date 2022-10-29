@@ -2,7 +2,7 @@
 
 开发结束后自然是测试啦
 
-[ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)衍生插件的测试套件
+## ayake_test - ayaka测试套件
 
 [仓库](https://github.com/bridgeL/ayaka_test) - 
 [文档](https://bridgel.github.io/ayaka_doc/test/)
