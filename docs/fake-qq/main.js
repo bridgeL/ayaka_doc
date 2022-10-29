@@ -129,12 +129,8 @@ ${help_6}`;
         ["exit", "退出"], ["*"],
         function () {
             //返回到world 或 退出hello world应用
-            if (app.state == "world") {
-                app.close();
-            } else {
-                app.set_state("world");
-                app.send("跳转到 world");
-            }
+            if (app.state == "world") app.close();
+            else app.set_state("world");
         }
     );
 

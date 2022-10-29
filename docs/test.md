@@ -2,7 +2,12 @@
 
 开发结束后自然是测试啦
 
-您可以尝试使用ayaka_test衍生套件，它不需要连接真实qq账号的cqhttp，它提供一个简单的假cqhttp来响应nonebot的请求
+[ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)衍生插件的测试套件
+
+[仓库](https://github.com/bridgeL/ayaka_test) - 
+[文档](https://bridgel.github.io/ayaka_doc/test/)
+
+不需要连接真实qq账号的假cqhttp
 
 目前的假cqhttp只提供了
 
@@ -16,6 +21,15 @@
 
 已给出两个钩子函数供拓展使用
 
+## 效果
+
+<img src="../5.gif">
+
+退出时直接 CTRL+C
+
+请无视报错（
+
+
 ## 使用方法
 
 下载本套件 `git clone https://github.com/bridgeL/ayaka_test`
@@ -26,33 +40,25 @@
 
 运行入口 `python bot.py`
 
-## 效果
-
-<img src="../5.gif">
-
-退出时直接 CTRL+C
-
-请无视报错（
-
 ## 命令
 
-| 命令                             | 功能                         |
-| -------------------------------- | ---------------------------- |
-| g \<group_id> \<user_id> \<text> | 发送群聊消息                 |
-| p \<user_id> \<text>             | 发送私聊消息                 |
-| d 1                              | 延时1秒                      |
-| n                                | 空一行（用来区分不同对话段） |
-| s test                           | 执行test.ini自动化脚本       |
+| 命令                            | 功能                         |
+| ------------------------------- | ---------------------------- |
+| g `<group_id> <user_id> <text>` | 发送群聊消息                 |
+| p `<user_id> <text> `           | 发送私聊消息                 |
+| d 1                             | 延时1秒                      |
+| n                               | 空一行（用来区分不同对话段） |
+| dn 3                            | 延时3秒后空一行              |
+| s test                          | 执行test.ini自动化脚本       |
 
-ayaka_test将从当前工作目录和`data/scripts`两个路径寻找指定名称的自动化脚本
+ayaka_test将从`/`和`data/scripts`两个路径寻找指定名称的自动化脚本
 
-## 自动化脚本可用的额外命令
-| 命令          | 功能                             |
-| ------------- | -------------------------------- |
-| hide cmd      | 关闭命令回显                     |
-| after \<cmd>  | 所有命令执行后需额外执行一次命令 |
-| before \<cmd> | 所有命令执行前需额外执行一次命令 |
-| ;             | 注释（必须放在每一行的开头）     |
+## 脚本的额外命令
+| hide                            | 关闭命令回显                    |
+| after `<cmd>`                   | 每一条命令执行后需额外执行一次命令 |
+| before `<cmd>`                  | 每一条命令执行前需额外执行一次命令 |
+| ;                               | 注释（必须放在每一行的开头）     |
+
 
 ## 如何增强ayaka_test
 
@@ -73,6 +79,8 @@ ayaka_test将从当前工作目录和`data/scripts`两个路径寻找指定名�
 虽然名义上是ayaka衍生插件的测试套件，然而其与ayaka没多少关系，可以直接拿去当nonebot插件的测试套件
 
 不过，由于只模仿了几条功能，因此更多的还是适用于文字游戏插件的测试
+
+
 
 
 ## 下一步
