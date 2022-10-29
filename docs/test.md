@@ -79,6 +79,15 @@ ayaka_test将从`/`和`data/scripts`两个路径寻找指定名称的自动化�
 
 不过，由于只模仿了几条功能，因此更多的还是适用于文字游戏插件的测试
 
+## 采样开关
+
+位于`ayaka_test/sample.py`中
+
+```py
+在模拟cqhttp时可以打开此开关，便捷取得cqhttp回传的数据
+SAMPLE = 0
+```
+
 
 
 
