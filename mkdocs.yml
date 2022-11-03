@@ -15,8 +15,10 @@ nav:
       - 安装: intro/install.md
       - 进一步了解: intro/why.md
       - 测试: intro/test.md
-  - API:
-      - 一览表: api/index.md
+      - 有状态与无状态: intro/state.md
+      - ayaka_master: intro/master.md
+  - 开发:
+      - API: api/index.md
       - 属性: api/property.md
       - 注册回调: api/on.md
       - 本地文件读写: api/storage.md
