@@ -1,5 +1,5 @@
 
-1. 更新关于`app.plugin_storage`和`app.group_storage`的帮助
+1. 更新关于`app.storage`和`app.on`的帮助
 2. 提供aiosqlite数据库支持（或许？
 
 ## 下一步
