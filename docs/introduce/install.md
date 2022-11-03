@@ -1,10 +1,10 @@
-## 步骤
+## 安装
 
-1. 修改nonebot工作目录下的`pyproject.toml`文件，将`python = "^3.7.3"`修改为`python = "^3.8.0"`
+1. 修改nonebot工作目录下的`pyproject.toml`文件，将`python = "^3.7.3"`修改为`python = "^3.8"`
 2. `poetry add nonebot-plugin-ayaka` 
 3. `poetry run playwright install chromium`
 
-至此安装完成，可以继续安装其他ayaka衍生插件了
+至此安装完成，可以开发ayaka衍生插件了
 
 ## 注意
 
