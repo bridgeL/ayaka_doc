@@ -224,7 +224,7 @@ async def handle():
 
 你可以下载整个[仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)获得测试套件
 
-令人遗憾的是，由于编者精力有限，我们不得不在下一页详细介绍它的使用方法
+下一页将详细介绍使用方法
 
 ## 下一步
 

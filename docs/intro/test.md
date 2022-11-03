@@ -43,7 +43,7 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 | g `<group_id> <user_id> <text>` | 伪造一条群聊消息                          |
 | p `<user_id> <text> `           | 伪造一条私聊消息                          |
 | d 1                             | 延时1秒                                   |
-| dn 0.1                          | 延时0.1秒后空一行（用来区分不同对话段）   |
+| dn 0.1                          | 延时0.1秒后空一行                         |
 | sa on/off                       | 打开/关闭 对nonebot收发消息的采样         |
 | s -n test                       | 执行script/test.ini自动化脚本             |
 | s -p yes -n test                | 执行plugins/yes/script/test.ini自动化脚本 |
@@ -51,7 +51,9 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 - `-p` plugin_name
 - `-n` name
 
-## 自动化脚本可使用的额外命令
+## 自动化脚本
+
+### 额外命令
 
 | 命令           | 功能                             |
 | -------------- | -------------------------------- |
@@ -61,6 +63,19 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 | ;              | 注释（必须放在每一行的开头）     |
 | #              | 注释（必须放在每一行的开头）     |
 
+### 脚本示例
+
+```
+hide 
+
+# 用于区分不同对话段
+after dn 0.1
+
+g 100 1 星际旅行
+g 100 1 hi
+g 100 1 goto 月球
+g 100 1 jump
+```
 
 ## 如何增强ayaka_test
 
@@ -71,7 +86,7 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 在ayaka_test中，分别给出了两个钩子函数
 
 - `fake_qq.on_terminal` 编写自定义的终端命令
-- `fake_qq.on_cqhttp` 编写自定义的cqhttp对nonebot的响应
+- `fake_qq.on_cqhttp` 编写自定义的假cqhttp的api
 
 具体编写可分别参考`ayaka_test/terminal.py`和`ayaka_test/cqhttp.py`文件
 
