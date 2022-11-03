@@ -18,7 +18,7 @@ nav:
       - 有状态与无状态: intro/state.md
       - ayaka_master: intro/master.md
   - 开发:
-      - API: api/index.md
+      - 速览: api/index.md
       - 属性: api/property.md
       - 注册回调: api/on.md
       - 本地文件读写: api/storage.md

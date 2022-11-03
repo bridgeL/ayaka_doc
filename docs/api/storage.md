@@ -2,19 +2,26 @@
 
 如果您的代码中使用了`app.plugin()`相关代码，那么建议您的插件为包插件形式
 
-单文件插件
+因为`app.plugin()`对应的是创建app对象的py文件所在的目录
+
+### 单文件插件
 ```
-bag.py
+plugins
+    bag.py
 ```
 
+此时`app.plugin()`对应`plugins`
 
-包插件
+### 包插件
 ```
-bag
-    - __init__.py
-    - utils.py
-    - data.json
+plugins
+    bag
+        __init__.py
+        utils.py
+        data.json
 ```
+
+此时`app.plugin()`对应`plugins/bag`
 
 ## 地址
 
