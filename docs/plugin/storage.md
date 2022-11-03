@@ -87,7 +87,7 @@ data["haha"]["ee"]["your name"]["wtf"] = 2
 例如
 
 ```py
-money_acs = app.plugin().jsonfile("bag").keys(10086, "money")
+money_acs = app.plugin().jsonfile("data").keys(10086, "money")
 
 money = money_acs.get(default=100)
 money += 10
@@ -97,7 +97,7 @@ money_acs.set(money)
 对应文件
 
 ```json
-// bag.json
+// data.json
 {
     "10086":{
         "money":110
