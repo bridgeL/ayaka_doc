@@ -14,14 +14,13 @@ nav:
       - 介绍: index.md
       - 安装: intro/install.md
       - 进一步了解: intro/why.md
-  # - 插件开发:
-  #     - 教学示例: plugin.md
-  #     - 编写帮助: help.md
-  #     - 如何测试: test.md
-  # - API:
-  #     - 一览表: api/index.md
-  #     - 属性: api/property.md
-  #     - 类和方法: api/function.md
+      - 测试: intro/test.md
+  - API:
+      - 一览表: api/index.md
+      - 属性: api/property.md
+      - 注册回调: api/on.md
+      - 本地文件读写: api/storage.md
+      - 浏览器截图: api/browser.md
   - 小游戏合集:
       - 介绍: games/index.md
       - 安装: games/install.md
