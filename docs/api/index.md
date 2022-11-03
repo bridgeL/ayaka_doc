@@ -1,31 +1,39 @@
-# API
 
 app = AyakaApp("helloooooo")
 
-## app属性一览表
+## app属性
+
+## 常用
+
 | 名称      | 类型                   | 功能                                           |
 | --------- | ---------------------- | ---------------------------------------------- |
-| intro     | `str`                  | 应用介绍（设置help后自动生成）                 |
 | help      | `str`                  | 当前应用在当前状态下的帮助                     |
-| all_help  | `str`                  | 当前应用的所有帮助                             |
 | state     | `bool`                 | 当前应用的状态                                 |
-| valid     | `bool`                 | 应用在当前设备 是否被启用                      |
 | bot       | `Bot`                  | 当前机器人                                     |
 | group     | `AyakaGroup`           | 当前群组                                       |
 | event     | `MessageEvent`         | 当前消息事件                                   |
 | message   | `Message`              | 当前消息                                       |
-| arg       | `Message`              | 删除了命令后剩下的消息部分                     |
 | args      | `List[MessageSegment]` | 删除命令后，依照分隔符分割，并移除空数据       |
-| cmd       | `str`                  | 本次响应是针对哪个命令                         |
-| bot_id    | `int`                  | 当前机器人的qq号                               |
 | group_id  | `int`                  | 当前群聊的群号                                 |
 | user_id   | `int`                  | 当前消息的发送者的qq号                         |
 | user_name | `str`                  | 当前消息的发送者的群名片或昵称（优先为群名片） |
 | cache     | `AyakaCache`           | 为当前群组当前应用提供的独立缓存数据空间       |
 
-## app方法一览表
+### 常不用（？
+
+| 名称     | 类型      | 功能                           |
+| -------- | --------- | ------------------------------ |
+| name     | `str`     | 应用名称                       |
+| intro    | `str`     | 应用介绍（设置help后自动生成） |
+| all_help | `str`     | 当前应用的所有帮助             |
+| arg      | `Message` | 删除了命令后剩下的消息部分     |
+| cmd      | `str`     | 本次响应是针对哪个命令         |
+| bot_id   | `int`     | 当前机器人的qq号               |
+
+## app方法
 
 ### 异步方法
+
 | 名称      | 功能             |
 | --------- | ---------------- |
 | start     | 运行应用         |
@@ -55,10 +63,10 @@ app = AyakaApp("helloooooo")
 
 读取本地文件数据
 
-| 名称           | 功能                                  |
-| -------------- | ------------------------------------- |
-| storage.group  | 路径`data/groups/<bot_id>/<group_id>` |
-| storage.plugin | 路径`plugins/<plugin_name>`           |
+| 名称           | 功能                                             |
+| -------------- | ------------------------------------------------ |
+| storage.group  | 路径`data/groups/<bot_id>/<group_id>/<app_name>` |
+| storage.plugin | 路径`<app_path>/../`               |
 
 添加对私聊的监听
 
