@@ -115,6 +115,7 @@ async def handle():
     await app.close()
 ```
 
+![图片](星际旅行_1.png)
 
 ## 多层次的状态
 
@@ -178,7 +179,7 @@ async def handle():
 
 现在，你只需发送命令`help` 
 
-![图片](星际旅行.png)
+![图片](星际旅行_2.png)
 
 ## 测试
 
