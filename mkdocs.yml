@@ -18,11 +18,12 @@ nav:
       - 有状态与无状态: intro/state.md
       - ayaka_master: intro/master.md
   - 开发:
-      - 速览: api/index.md
-      - 属性: api/property.md
-      - 注册回调: api/on.md
-      - 本地文件读写: api/storage.md
-      - 浏览器截图: api/browser.md
+      - 前置内容: plugin/index.md
+      - 速览: plugin/api.md
+      - 属性: plugin/property.md
+      - 注册回调: plugin/on.md
+      - 本地文件读写: plugin/storage.md
+      - 浏览器截图: plugin/browser.md
   - 小游戏合集:
       - 介绍: games/index.md
       - 安装: games/install.md
