@@ -27,7 +27,7 @@ ayaka的解决方式是，你需要先运行`应用A`和`应用B`中的一个，
 | 地球     | jump        | 一跳两米高               |
 | 地球     | hit         | 你全力一击，制造了大地震 |
 | 月球     | jump        | 你离开了月球...永远的... |
-| 太阳     | drink       | 你感觉肚子暖洋洋的       |
+| 太阳     | drink       | 嘿！像是一团火球进了胃   |
 | 任意地点 | goto <名字> | 去另一个星球             |
 | 任意地点 | hi          | 你好, <名字>!            |
 
@@ -62,6 +62,13 @@ jump = app.on.command("jump", "跳")
 drink = app.on.command("drink", "喝")
 
 
+@all
+@hi
+async def handle():
+    '''打个招呼'''
+    await app.send(f"你好, {app.state}!")
+
+
 @earth
 @jump
 async def handle():
@@ -87,14 +94,7 @@ async def handle():
 @drink
 async def handle():
     '''drink 1 drink'''
-    await app.send("你感觉肚子暖洋洋的")
-
-
-@all
-@hi
-async def handle():
-    '''打个招呼'''
-    await app.send(f"你好, {app.state}!")
+    await app.send("嘿！像是一团火球进了胃")
 
 
 @all
@@ -102,11 +102,13 @@ async def handle():
 async def handle():
     '''去其他地方转转'''
     name = str(app.arg)
-    print(f"[{name}]")
     app.state = name
     await app.send(f"你动身前往{name}")
+```
 
+这样就完成了
 
+```py
 # 关闭应用
 @all
 @app.on.command("exit", "quit", "退出")
@@ -115,59 +117,89 @@ async def handle():
     await app.close()
 ```
 
+哦，我差点忘了退出了，让一个应用霸占着设备可不好
+
 ![图片](星际旅行_1.png)
 
 ## 多层次的状态
 
-在刚才的旅游小游戏的基础上，我们希望能再加点功能，比如，可以在太阳上去饮品店喝奶茶，可以去售票处买耀斑表演的门票，然后去表演现场时需要门票才能去
+在刚才的旅游小游戏的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店
 
 ### 需求如下
 
-| 地点          | 动作  | 效果                         |
-| ------------- | ----- | ---------------------------- |
-| 太阳.奶茶店   | drink | 喝了一口3000度的奶茶         |
-| 太阳.售票处   | buy   | 耀斑表演门票+1               |
-| 太阳.任意地点 | go    | 去表演现场                   |
-| 太阳.表演现场 | drink | 你发现你的奶茶比表演项目还烫 |
+| 地点          | 动作  | 效果                   |
+| ------------- | ----- | ---------------------- |
+| 太阳.奶茶店   | drink | 喝了一口3000度的奶茶   |
+| 太阳.其他地点 | drink | 嘿！像是一团火球进了胃 |
 
 ### 编写代码
 
 ```py
-# 补充
+# 补充1
 @app.on.state("太阳.奶茶店")
 @drink
 async def handle():
     '''热乎的'''
     await app.send("喝了一口3000度的奶茶")
+```
 
+![图片](星际旅行_2.png)
 
+## 缓存
+
+宇宙旅游公司又开设了一个新景点：耀斑表演
+
+我们需要先去售票处买耀斑表演的门票，然后再去表演现场
+
+### 需求如下
+
+| 地点          | 动作  | 效果           |
+| ------------- | ----- | -------------- |
+| 太阳.售票处   | buy   | 耀斑表演门票+1 |
+| 太阳.任意地点 | watch | 去表演现场     |
+
+### 编写代码
+
+```py
+# 补充2
 @app.on.state("太阳.售票处")
 @app.on.command("buy")
 async def handle():
     '''买门票'''
-    await app.send("耀斑表演门票+1")
     app.cache.ticket = 1
+    await app.send("耀斑表演门票+1")
 
 
 @app.on.state("太阳")
-@app.on.command("go", "去现场")
+@app.on.command("watch", "去现场")
 async def handle():
     '''去现场'''
     if app.cache.ticket:
         app.cache.ticket -= 1
         await app.send("耀斑表演门票-1")
-        app.state = "太阳.表演现场"
-        await app.send("不一会，你到了")
+        app.state = "太阳.耀斑表演"
+        await app.send("10分甚至9分的好看")
     else:
         await app.send("你还没买票")
+```
 
+![图片](星际旅行_3.png)
 
-@app.on.state("太阳.表演现场")
-@app.on.command("drink")
+## 消息触发
+
+除了命令触发以外，消息触发也可以，比如，你在现场随便说了一句话
+
+```py
+# 补充3
+@app.on.state("太阳.耀斑表演")
+@app.on.text()
 async def handle():
     '''令人震惊的事实'''
     await app.send("你发现你的奶茶比表演项目还烫")
 ```
+
+![图片](星际旅行_4.png)
+
 
 ## 插件帮助
 
@@ -179,15 +211,20 @@ async def handle():
 
 现在，你只需发送命令`help` 
 
-![图片](星际旅行_2.png)
+![图片](星际旅行_5.png)
+
+`[*]` 代表它匹配任意状态，`*` 代表它匹配任意命令（=消息触发）
+
 
 ## 测试
 
-你可能注意到了，上图中的qq号(1, 123)和群聊号(100)是不可能出现的
+你可能注意到了，上图中的qq号(1, 123)和群聊号(100)并非真实qq号
 
-确实如此，因为这些消息，是由测试套件(`ayaka_test`)的假消息源捏造的，发送给nonebot用于测试
+确实如此，因为这些消息，是由测试套件(`ayaka_test`)所捏造的，发送给nonebot用于测试
 
 你可以下载整个[仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)获得测试套件
+
+令人遗憾的是，由于编者精力有限，我们不得不在下一页详细介绍它的使用方法
 
 ## 下一步
 
