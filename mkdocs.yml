@@ -12,8 +12,8 @@ theme:
 nav:
   - 主页:
       - 介绍: index.md
-      - 安装: install.md
-      - 进一步了解: why.md
+      - 安装: intro/install.md
+      - 进一步了解: intro/why.md
   # - 插件开发:
   #     - 教学示例: plugin.md
   #     - 编写帮助: help.md
