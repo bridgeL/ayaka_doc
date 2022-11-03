@@ -44,6 +44,7 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 | p `<user_id> <text> `           | 伪造一条私聊消息                          |
 | d 1                             | 延时1秒                                   |
 | dn 0.1                          | 延时0.1秒后空一行（用来区分不同对话段）   |
+| sa on/off                       | 打开/关闭 对nonebot收发消息的采样         |
 | s -n test                       | 执行script/test.ini自动化脚本             |
 | s -p yes -n test                | 执行plugins/yes/script/test.ini自动化脚本 |
 
