@@ -80,15 +80,15 @@ json文件可以设置多层key，但是读写此类数据时难免晕头转向�
 
 data["haha"]["ee"]["your name"]["wtf"] = 2
 
-因此，`AyakaJsonDataAccessor`为了解决该问题而生
+`AyakaJsonDataAccessor`为了解决该问题而生
 
 `AyakaJsonFile().keys()`可以返回对应的`AyakaJsonDataAccessor`对象
 
 例如
 
 ```py
-file = app.plugin().jsonfile("bag")
-money_acs = file.keys(10086,"money")
+money_acs = app.plugin().jsonfile("bag").keys(10086, "money")
+
 money = money_acs.get(default=100)
 money += 10
 money_acs.set(money)
