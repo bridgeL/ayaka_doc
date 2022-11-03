@@ -186,6 +186,8 @@ async def handle():
 
 确实如此，因为这些消息，是由测试套件(`ayaka_test`)的假消息源捏造的，发送给nonebot用于测试
 
+你可以下载整个[仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)获得测试套件
+
 TO BE CONTINUE
 
 
