@@ -53,3 +53,9 @@ markdown_extensions:
 extra:
   version:
     provider: mike
+plugins:
+    - search:
+        lang:
+            - en
+            - ja
+        separator: '[\s\-\.]+'
