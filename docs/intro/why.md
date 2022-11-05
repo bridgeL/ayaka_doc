@@ -1,6 +1,6 @@
-# 为什么使用ayaka
+# 快速开始
 
-*本帮助适用于0.4.2b0及以上版本的ayaka*
+*本帮助适用于0.4.2b1及以上版本的ayaka*
 
 `ayaka`希望帮助开发者更轻松地控制应用状态，并避免不同插件间的命令重名导致的冲突问题
 
@@ -18,7 +18,7 @@ ayaka的解决方式是，你需要先运行`应用A`和`应用B`中的一个，
 
 ## 状态机
 
-假设我们现在需要做一个旅游小游戏插件，你在不同的星球（状态）可以干不同的事，产生不同的后果，那么应该怎么做呢？
+假设我们现在需要做一个`星际旅行`的小游戏插件：你在不同的星球（状态）可以干不同的事，产生不同的后果
 
 ### 需求如下
 
@@ -117,13 +117,13 @@ async def handle():
     await app.close()
 ```
 
-哦，我差点忘了退出了，让一个应用霸占着设备可不好
+哦，不要忘记编写退出命令！
 
 ![图片](星际旅行_1.png)
 
 ## 多层次的状态
 
-在刚才的旅游小游戏的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店
+在刚才的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店
 
 ### 需求如下
 
@@ -166,7 +166,8 @@ async def handle():
 @app.on.command("buy")
 async def handle():
     '''买门票'''
-    app.cache.ticket = 1
+    ctrl = app.cache.chain("ticket")
+    ctrl.set(ctrl.get(0) + 1)
     await app.send("耀斑表演门票+1")
 
 
@@ -174,8 +175,10 @@ async def handle():
 @app.on.command("watch", "去现场")
 async def handle():
     '''去现场'''
-    if app.cache.ticket:
-        app.cache.ticket -= 1
+    ctrl = app.cache.chain("ticket")
+    ticket = ctrl.get(0)
+    if ticket > 0:
+        ctrl.set(ticket - 1)
         await app.send("耀斑表演门票-1")
         app.state = "太阳.耀斑表演"
         await app.send("10分甚至9分的好看")
