@@ -30,7 +30,7 @@ print(ctrl.get(0)) # 0
 # 设置数据
 print(ctrl.set(3)) # 3
 # 再次读取
-print(ctrl.set(0)) # 3
+print(ctrl.get(0)) # 3
 # 查看整体
 print(data) # {"haha":{"ee":{"your name":{"wtf":3}}}}
 ```
