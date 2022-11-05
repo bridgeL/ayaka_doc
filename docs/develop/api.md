@@ -1,5 +1,9 @@
 
+```py
+from ayaka import AyakaApp
+
 app = AyakaApp("helloooooo")
+```
 
 ## app属性
 
@@ -63,10 +67,10 @@ app = AyakaApp("helloooooo")
 
 读取本地文件数据
 
-| 名称           | 功能                                             |
-| -------------- | ------------------------------------------------ |
-| storage.group  | 路径`data/groups/<bot_id>/<group_id>/<app_name>` |
-| storage.plugin | 路径`<app_path>/../`               |
+| 名称                | 功能                                             |
+| ------------------- | ------------------------------------------------ |
+| storage.group_path  | 路径`data/groups/<bot_id>/<group_id>/<app_name>` |
+| storage.plugin_path | 路径`<create_app_file>/../`                      |
 
 添加对私聊的监听
 

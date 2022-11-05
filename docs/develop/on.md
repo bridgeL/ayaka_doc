@@ -13,9 +13,23 @@
 - 获取用户名 app.user_name
 - ...
 
+```py
+@app.on.idle()
+@app.on.command("喝水")
+async def no_args():
+    print(app.user_id)
+    print(app.user_name)
+```
+
+## 何时运行回调
+
+当存在激励源驱动时，将会触发相应的回调运行
+
+激励源通常来说有两类，消息驱动、时间驱动
+
 ## 消息驱动
 
-在收到消息后触发的回调
+在收到消息后触发回调
 
 ### app.on.idle(super=False)
 注册设备闲置时的回调
@@ -52,7 +66,7 @@ async def handle():
 
 ## 时间驱动
 
-定时触发回调
+定时器定时触发回调
 
 触发时，回调无法通过分析消息得到各类信息（bot/group/message/event/sender等）
 

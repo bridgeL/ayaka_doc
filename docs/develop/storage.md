@@ -1,6 +1,6 @@
 ## 缓存
 
-### 多层keys赋值困难
+### 背景：多层keys赋值困难
 
 json文件可以设置多层key，但是读写时往往遇到困难，例如
 
@@ -18,7 +18,7 @@ data["haha"]["ee"]["your name"]["wtf"] = 2
 
 `AyakaCacheCtrl`被用于解决这一困难
 
-### chain
+### AyakaCacheCtrl.chain
 
 ```py
 from ayaka.cache import AyakaCacheCtrl
@@ -35,7 +35,9 @@ print(ctrl.set(0)) # 3
 print(data) # {"haha":{"ee":{"your name":{"wtf":3}}}}
 ```
 
-`AyakaCacheCtrl.chain() -> AyakaCacheCtrl`
+### 返回同一类型
+
+注意：`AyakaCacheCtrl.chain() -> AyakaCacheCtrl`
 
 chain的返回值，仍然是一个AyakaCacheCtrl对象，因此你可以
 
@@ -47,11 +49,14 @@ ctrl = data.chain("haha", "ee").chain("your name").chain("wtf")
 
 无需您自行创建`AyakaCacheCtrl对象`，直接访问`app.cache`即可获取
 
-`app.cache`获得的`AyakaCacheCtrl对象`将与当前消息所在的群聊id、机器人id、应用名进行**唯一绑定**，也就是说，当您在其他插件或其他群聊或其他机器人中获取的`AyakaCacheCtrl对象`是相互独立的
+通过`app.cache`获得的`AyakaCacheCtrl对象`将与当前消息所在的群聊id、机器人id、应用名进行**唯一绑定**，也就是说，当您在其他插件或其他群聊或其他机器人中获取的`AyakaCacheCtrl对象`是相互独立的
 
-`app.cache`获得的`AyakaCacheCtrl对象`不会因为当前消息处理结束而销毁，因此可以在同一机器人、同一群聊、同一插件的情况下，通过`app.cache`来保存一些临时性的信息
+通过`app.cache`获得的`AyakaCacheCtrl对象`不会因为当前消息处理结束而销毁，因此可以在同一机器人、同一群聊、同一插件的情况下，通过`app.cache`来保存一些临时性的信息，例如：
 
-bot重启后，`app.cache`数据会丢失
+- 当用户发送指令A时，通过缓存保存该用户的名称
+- 再等到用户发送指令B时，通过缓存获取之前保存的名称
+
+注意：bot重启后，`app.cache`数据会丢失
 
 ## 固存
 
@@ -59,11 +64,13 @@ bot重启后，`app.cache`数据会丢失
 
 `app.storage`中提供了一些有益的api
 
-快速上手：
+### 快速上手
+
+插件结构
 
 ```
 plugins
-    ababa
+    bag
         __init__.py
         test
             ok.txt
@@ -72,21 +79,23 @@ plugins
 若想获取ok.txt的数据，只需
 
 ```py
-# plugins/ababa/__init__.py
+# plugins/bag/__init__.py
 
 @app.on.idle(...)
 @app.on.command(...)
 async def _():
     ...
-    dirpath = app.storage.plugin_path("test") # 对应文件夹 plugins/ababa/test
-    file = dirpath.file("ok.txt") # 对应文件 plugins/ababa/test/ok.txt
+    dirpath = app.storage.plugin_path("test") # 对应文件夹 plugins/bag/test
+    file = dirpath.file("ok.txt") # 对应文件 plugins/bag/test/ok.txt
     data = file.load()
     ...
 ```
 
+### 包插件
+
 如果您的代码中使用了`app.storage.plugin_path()`相关代码，那么建议您的插件为包插件形式
 
-### 单文件插件
+**单文件**
 
 ```
 plugins
@@ -100,11 +109,13 @@ plugins
 @app.on.command(...)
 async def _():
     ...
-    dirpath = app.storage.plugin_path() # 对应 plugins，造成混乱
+    dirpath = app.storage.plugin_path() # 对应 plugins
+    file = dirpath.file("test.txt") # 数据和bag.py都位于plugins下，在多插件时造成混乱
     ...
 ```
 
-### 包插件
+**包插件**
+
 ```
 plugins
     bag
@@ -120,7 +131,8 @@ plugins
 @app.on.command(...)
 async def _():
     ...
-    dirpath = app.storage.plugin_path() # 对应 plugins/bag，清晰明了
+    dirpath = app.storage.plugin_path() # 对应 plugins/bag
+    file = dirpath.json("data") # 数据和__init__.py都位于plugins/bag下，在多插件时依旧清晰明了
     ...
 ```
 
@@ -140,8 +152,8 @@ AyakaPath，文件夹地址
 
 ### AyakaFile/AyakaJsonFile 文件
 
-`AyakaPath对象.file()`返回`AyakaFile对象`
-`AyakaPath对象.json()`返回`AyakaJsonFile对象`
+- `AyakaPath对象.file()`返回`AyakaFile对象`
+- `AyakaPath对象.json()`返回`AyakaJsonFile对象`
 
 如果 `dirpath = app.plugin_path()`，那么
 
@@ -182,11 +194,11 @@ def save(self, data):
         json.dump(data, f, ensure_ascii=False)
 ```
 
-### 多层keys赋值困难
+### 背景：多层keys赋值困难
 
 json文件可以设置多层key，因此固存在读写数据时会遇到与缓存同样的问题
 
-`AyakaJsonFileCtrl`被用于解决这一困难，其对外保留的API与`AyakaCacheCtrl`几乎完全一致，你可以
+`AyakaJsonFileCtrl`被用于解决这一困难，其对外开放的API与`AyakaCacheCtrl`几乎完全一致，你可以
 
 
 ```py

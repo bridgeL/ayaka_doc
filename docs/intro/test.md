@@ -16,7 +16,7 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 
 其他功能可以自行编写代码对ayaka_test进行增强！
 
-已给出两个钩子函数供拓展使用
+已给出两个[钩子函数](#ayaka_test)供拓展使用
 
 ## 效果
 
@@ -28,13 +28,13 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 
 ## 使用方法
 
-下载本套件 `git clone https://github.com/bridgeL/nonebot-plugin-ayaka`
-
-将待测试的ayaka衍生插件放入plugins目录下
+下载本套件 `git clone https://github.com/bridgeL/nonebot-plugin-ayaka`（套件中自带最新版本的ayaka）
 
 安装依赖 `pip install -r requirements.txt`
 
-运行入口 `python bot.py`
+将待测试的ayaka衍生插件放入plugins目录下
+
+启动 `python bot.py`
 
 ## 通用命令
 
