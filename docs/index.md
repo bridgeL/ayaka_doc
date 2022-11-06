@@ -1,5 +1,7 @@
 # Ayaka - 文字游戏开发辅助插件
 
+仓库地址：[https://github.com/bridgeL/nonebot-plugin-ayaka](https://github.com/bridgeL/nonebot-plugin-ayaka)
+
 适用于[nonebot2机器人](https://github.com/nonebot/nonebot2)的文字游戏开发辅助插件 
 
 <img src="https://img.shields.io/badge/python-3.8%2B-blue">
@@ -24,11 +26,9 @@ ayaka 二次封装nonebot2提供的api，提供了专用api
 
 ## 相关链接
 
-[插件仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)
+[ayaka文档仓库](https://github.com/bridgeL/ayaka_doc) 
 
-[文档仓库](https://github.com/bridgeL/ayaka_doc) 
-
-[小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
+[基于ayaka的小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
 ## 下一步
 

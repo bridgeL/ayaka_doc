@@ -9,8 +9,8 @@
 使用示例：
 ```
 await with get_new_page(width=200, high_quality=True) as p:
-await p.goto(...)
-await p.screenshot(...)
+    await p.goto(...)
+    await p.screenshot(...)
 ```
 
 ## 下一步
