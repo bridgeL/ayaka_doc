@@ -60,3 +60,5 @@ plugins:
             - en
             - ja
         separator: '[\s\-\.]+'
+extra_javascript:
+  - javascripts/version-mike.js
