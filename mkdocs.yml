@@ -20,6 +20,7 @@ nav:
   - 更多示例:
     - 介绍: more/index.md
     - 多级菜单: more/menu.md
+    - 多次输入: more/mult_input.md
     - 整点报时: more/clock.md
     - 分割参数: more/split.md
     - 浏览器截图: more/baidu.md
