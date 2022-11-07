@@ -1,48 +1,69 @@
+# Project information
 site_name: Ayaka - 文字游戏开发辅助插件
-repo_url: https://github.com/bridgeL/nonebot-plugin-ayaka
-repo_name: nonebot-plugin-ayaka
+site_url: https://bridgel.github.io/ayaka_doc/
 
+# Repository
+repo_name: nonebot-plugin-ayaka
+repo_url: https://github.com/bridgeL/nonebot-plugin-ayaka/
+
+# Copyright
+copyright: Copyright &copy; 2022 - 2022 bridgeL
+
+# Configuration
 theme:
   name: material
+  custom_dir: overrides
   palette:
     primary: brown
   features:
     - content.code.annotate
+    - navigation.indexes
+    - navigation.sections
     - navigation.tabs
-  custom_dir: overrides
+    - navigation.tabs.sticky
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+
 nav:
   - 主页:
-    - 介绍: index.md
-    - 安装: intro/install.md
-    - 快速开始: intro/quick_start.md
-    - 测试: intro/test.md
-    - 内置插件: intro/master.md
-    - 其他用语: intro/term.md
+      - 介绍: index.md
+      - 安装: intro/install.md
+      - 开发:
+          - 快速开始: intro/quick_start.md
+          - 测试: intro/test.md
+          - 内置插件: intro/master.md
+          - 其他用语: intro/term.md
   - 更多示例:
-    - 介绍: more/index.md
-    - 多级菜单: more/menu.md
-    - 多次输入: more/mult_input.md
-    - 整点报时: more/clock.md
-    - 分割参数: more/split.md
-    - 浏览器截图: more/baidu.md
+      - 介绍: more/index.md
+      - 状态机:
+          - 多级菜单: more/menu.md
+          - 多次输入: more/mult_input.md
+      - 其他功能:
+          - 整点报时: more/clock.md
+          - 分割参数: more/split.md
+          - 浏览器截图: more/baidu.md
   - 开发衍生插件:
-    - 前置内容: develop/index.md
-    - 速览: develop/api.md
-    - 注册回调: develop/on.md
-    - 数据读写: develop/storage.md
-    - 浏览器截图: develop/browser.md
-    - 属性: develop/property.md
-    - 方法: develop/function.md
+      - 前置内容: develop/index.md
+      - 速览: develop/api.md
+      - 注册回调: develop/on.md
+      - 数据读写: develop/storage.md
+      - 浏览器截图: develop/browser.md
+      - API:
+          - 属性: develop/property.md
+          - 方法: develop/function.md
   - 小游戏合集:
-    - 介绍: games/index.md
-    - 安装: games/install.md
-    - 谁是卧底: games/who-is-suspect.md
-    - 更多帮助: games/help.md
-  - 更新记录:
-    - 未来计划: change-log/next.md
-    - v4: change-log/v4.md
-    - v3: change-log/v3.md
-    - v2: change-log/v2.md
+      - 介绍: games/index.md
+      - 安装: games/install.md
+      - 游戏帮助:
+          - 谁是卧底: games/who-is-suspect.md
+          - 更多帮助: games/help.md
+  - 更新日志:
+      - 未来计划: change-log/next.md
+      - v4: change-log/v4.md
+      - v3: change-log/v3.md
+      - v2: change-log/v2.md
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -52,14 +73,25 @@ markdown_extensions:
   - toc:
       title: 本页索引
       permalink: true
+
+plugins:
+  - search:
+      lang:
+        - en
+        - ja
+      separator: '[\s\-\.]+'
+  - mike:
+      alias_type: symlink
+      redirect_template: null
+      deploy_prefix: ""
+      canonical_version: null
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
+      
 extra:
   version:
     provider: mike
-plugins:
-    - search:
-        lang:
-            - en
-            - ja
-        separator: '[\s\-\.]+'
+
 extra_javascript:
   - javascripts/version-mike.js
