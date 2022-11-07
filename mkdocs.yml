@@ -9,6 +9,7 @@ theme:
   features:
     - content.code.annotate
     - navigation.tabs
+  custom_dir: overrides
 nav:
   - 主页:
     - 介绍: index.md
