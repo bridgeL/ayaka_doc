@@ -2,7 +2,7 @@
 
 开发结束后自然是测试啦
 
-ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
+ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 
 目前的假cqhttp只提供了
 
@@ -48,8 +48,8 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 | s -n test                       | 执行script/test.ini自动化脚本             |
 | s -p yes -n test                | 执行plugins/yes/script/test.ini自动化脚本 |
 
-- `-p` plugin_name
-- `-n` name
+- `-p` 意为 plugin_name
+- `-n` 意为 script_name
 
 ## 自动化脚本
 
@@ -57,7 +57,6 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 
 | 命令           | 功能                             |
 | -------------- | -------------------------------- |
-| hide           | 关闭命令回显                     |
 | before `<cmd>` | 每一条命令执行前需额外执行的命令 |
 | after `<cmd>`  | 每一条命令执行后需额外执行的命令 |
 | ;              | 注释（必须放在每一行的开头）     |
@@ -66,11 +65,13 @@ ayaka_test模拟了一个不需要连接真实qq账号的假cqhttp
 ### 脚本示例
 
 ```
-hide 
+# 用于区分不同对话段(所有自动化脚本默认具有此条效果，无需专门书写)
+# after dn 0.1 
 
-# 用于区分不同对话段
-after dn 0.1
+# 你可以使用如下语句关闭默认效果
+# after 
 
+# 开始测试
 g 100 1 星际旅行
 g 100 1 hi
 g 100 1 goto 月球
@@ -89,6 +90,8 @@ g 100 1 jump
 - `fake_qq.on_cqhttp` 编写自定义的假cqhttp的api
 
 具体编写可分别参考`ayaka_test/terminal.py`和`ayaka_test/cqhttp.py`文件
+
+通过它们为假cqhttp拓展更多功能吧
 
 ## win10 fastapi reload卡死问题
 
