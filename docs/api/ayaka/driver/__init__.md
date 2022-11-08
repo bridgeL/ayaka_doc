@@ -1,5 +1,5 @@
-1. 引入 tortoise-orm
-
+## global vars
+- BOT_TYPE = "nonebot"
 ## 下一步
 
 <div align="right">

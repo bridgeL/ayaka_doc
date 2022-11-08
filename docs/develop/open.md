@@ -6,8 +6,13 @@
 ## async def app.close
 关闭app
 
-## def app.set_state
-可设置参数，令app处于指定状态
+## 设置状态
+
+`app.state = "状态1"`
+
+或
+
+`app.set_state("状态1")`
 
 不设置参数时，令app处于INIT_STATE状态
 

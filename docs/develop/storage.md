@@ -1,6 +1,6 @@
 ## 缓存
 
-### 背景：多层keys赋值困难
+### AyakaCacheCtrl.chain
 
 json文件可以设置多层key，但是读写时往往遇到困难，例如
 
@@ -17,8 +17,6 @@ data["haha"]["ee"]["your name"]["wtf"] = 2
 ```
 
 `AyakaCacheCtrl`被用于解决这一困难
-
-### AyakaCacheCtrl.chain
 
 ```py
 from ayaka.cache import AyakaCacheCtrl
@@ -58,7 +56,7 @@ ctrl = data.chain("haha", "ee").chain("your name").chain("wtf")
 
 注意：bot重启后，`app.cache`数据会丢失
 
-## 固存
+## 持久化
 
 如果需要bot重启后数据不丢失，则需要将数据保存到本地
 
@@ -194,11 +192,11 @@ def save(self, data):
         json.dump(data, f, ensure_ascii=False)
 ```
 
-### 背景：多层keys赋值困难
+### AyakaJsonFileCtrl.chain
 
-json文件可以设置多层key，因此固存在读写数据时会遇到与缓存同样的问题
+json文件可以设置多层key，因此`AyakaJsonFile`在读写数据时会遇到与缓存同样的问题
 
-`AyakaJsonFileCtrl`被用于解决这一困难，其对外开放的API与`AyakaCacheCtrl`几乎完全一致，你可以
+`AyakaJsonFileCtrl`被用于解决这一困难，其API与`AyakaCacheCtrl`几乎完全一致，你可以
 
 
 ```py
@@ -223,9 +221,9 @@ ctrl.set(money + 10)
 }
 ```
 
-## 不推荐使用的API
+## 其他用法（不推荐）
 
-（已过时，但仍可用）
+只有AyakaCacheCtrl可用
 
 ```py
 print(app.cache.name) # None

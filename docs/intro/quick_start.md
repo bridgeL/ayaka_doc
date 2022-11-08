@@ -165,7 +165,8 @@ async def handle():
 async def handle():
     '''买门票'''
     ctrl = app.cache.chain("ticket")
-    ctrl.set(ctrl.get(0) + 1)
+    ticket = ctrl.get(0)
+    ctrl.set(ticket + 1)
     await app.send("耀斑表演门票+1")
 
 
