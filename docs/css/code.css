@@ -3,6 +3,6 @@ code {
     white-space: break-spaces;
 }
 
-code span {
+/* code span {
     word-break: break-all;
-}
+} */
