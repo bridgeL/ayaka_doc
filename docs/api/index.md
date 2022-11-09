@@ -1,7 +1,4 @@
-## global vars
-```py
-BOT_TYPE = "nonebot"
-```
+API归档
 
 ## 下一步
 

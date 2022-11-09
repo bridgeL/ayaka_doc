@@ -1,4 +1,4 @@
-1. 引入 tortoise-orm
+1. 引入 sql orm
 
 ## 下一步
 
