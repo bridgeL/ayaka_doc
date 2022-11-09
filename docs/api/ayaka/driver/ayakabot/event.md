@@ -9,6 +9,8 @@ https://github.com/botuniverse/onebot-11/blob/master/README.md
 ### def \_\_str\_\_
 
 
+无参数
+
 ```py
     def __str__(self) -> str:
         return f"[{self.get_event_name()}]: {self.get_event_description()}"
@@ -22,6 +24,8 @@ https://github.com/botuniverse/onebot-11/blob/master/README.md
 异常:
 NoLogException
 """
+
+无参数
 
 ```py
     def get_log_string(self) -> str:
@@ -41,6 +45,8 @@ NoLogException
 通常不需要修改，默认通过 `get_message().extract_plain_text` 获取。
 """
 
+无参数
+
 ```py
     def get_plaintext(self) -> str:
         """获取消息纯文本的方法。
@@ -53,6 +59,8 @@ NoLogException
 ### def get_type
 
 
+无参数
+
 ```py
     def get_type(self) -> str:
         return self.post_type
@@ -60,6 +68,8 @@ NoLogException
 
 ### def get_event_name
 
+
+无参数
 
 ```py
     def get_event_name(self) -> str:
@@ -69,6 +79,8 @@ NoLogException
 ### def get_event_description
 
 
+无参数
+
 ```py
     def get_event_description(self) -> str:
         return str(self.dict())
@@ -76,6 +88,8 @@ NoLogException
 
 ### def get_message
 
+
+无参数
 
 ```py
     def get_message(self) -> Message:
@@ -85,6 +99,8 @@ NoLogException
 ### def get_plaintext
 
 
+无参数
+
 ```py
     def get_plaintext(self) -> str:
         raise ValueError("Event has no message!")
@@ -92,6 +108,8 @@ NoLogException
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -101,6 +119,8 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         raise ValueError("Event has no context!")
@@ -109,71 +129,87 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return False
 ```
 
 ### static vars
--     __event__ = ""
--     time: int
--     self_id: int
--     post_type: str
+```py
+    __event__ = ""
+    time: int
+    self_id: int
+    post_type: str
+```
 
 ## class Sender
 
 
 ### static vars
--     user_id: Optional[int] = None
--     nickname: Optional[str] = None
--     sex: Optional[str] = None
--     age: Optional[int] = None
--     card: Optional[str] = None
--     area: Optional[str] = None
--     level: Optional[str] = None
--     role: Optional[str] = None
--     title: Optional[str] = None
+```py
+    user_id: Optional[int] = None
+    nickname: Optional[str] = None
+    sex: Optional[str] = None
+    age: Optional[int] = None
+    card: Optional[str] = None
+    area: Optional[str] = None
+    level: Optional[str] = None
+    role: Optional[str] = None
+    title: Optional[str] = None
+```
 
 ## class Reply
 
 
 ### static vars
--     time: int
--     message_type: str
--     message_id: int
--     real_id: int
--     sender: Sender
--     message: Message
+```py
+    time: int
+    message_type: str
+    message_id: int
+    real_id: int
+    sender: Sender
+    message: Message
+```
 
 ## class Anonymous
 
 
 ### static vars
--     id: int
--     name: str
--     flag: str
+```py
+    id: int
+    name: str
+    flag: str
+```
 
 ## class File
 
 
 ### static vars
--     id: str
--     name: str
--     size: int
--     busid: int
+```py
+    id: str
+    name: str
+    size: int
+    busid: int
+```
 
 ## class Status
 
 
 ### static vars
--     online: bool
--     good: bool
+```py
+    online: bool
+    good: bool
+```
 
 ## class MessageEvent
 """消息事件"""
 
 ### def get_event_name
 
+
+无参数
 
 ```py
     def get_event_name(self) -> str:
@@ -186,6 +222,8 @@ NoLogException
 ### def get_message
 
 
+无参数
+
 ```py
     def get_message(self) -> Message:
         return self.message
@@ -193,6 +231,8 @@ NoLogException
 
 ### def get_plaintext
 
+
+无参数
 
 ```py
     def get_plaintext(self) -> str:
@@ -202,6 +242,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -210,29 +252,35 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return str(self.user_id)
 ```
 
 ### static vars
--     __event__ = "message"
--     post_type: Literal["message"]
--     sub_type: str
--     user_id: int
--     message_type: str
--     message_id: int
--     message: Message
--     raw_message: str
--     font: int
--     sender: Sender
--     reply: Optional[Reply] = None
+```py
+    __event__ = "message"
+    post_type: Literal["message"]
+    sub_type: str
+    user_id: int
+    message_type: str
+    message_id: int
+    message: Message
+    raw_message: str
+    font: int
+    sender: Sender
+    reply: Optional[Reply] = None
+```
 
 ## class PrivateMessageEvent
 """私聊消息"""
 
 ### def get_event_description
 
+
+无参数
 
 ```py
     def get_event_description(self) -> str:
@@ -248,14 +296,18 @@ NoLogException
 ```
 
 ### static vars
--     __event__ = "message.private"
--     message_type: Literal["private"]
+```py
+    __event__ = "message.private"
+    message_type: Literal["private"]
+```
 
 ## class GroupMessageEvent
 """群消息"""
 
 ### def get_event_description
 
+
+无参数
 
 ```py
     def get_event_description(self) -> str:
@@ -273,22 +325,28 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "message.group"
--     message_type: Literal["group"]
--     group_id: int
--     anonymous: Optional[Anonymous] = None
+```py
+    __event__ = "message.group"
+    message_type: Literal["group"]
+    group_id: int
+    anonymous: Optional[Anonymous] = None
+```
 
 ## class NoticeEvent
 """通知事件"""
 
 ### def get_event_name
 
+
+无参数
 
 ```py
     def get_event_name(self) -> str:
@@ -298,9 +356,11 @@ NoLogException
 ```
 
 ### static vars
--     __event__ = "notice"
--     post_type: Literal["notice"]
--     notice_type: str
+```py
+    __event__ = "notice"
+    post_type: Literal["notice"]
+    notice_type: str
+```
 
 ## class GroupUploadNoticeEvent
 """群文件上传事件"""
@@ -308,6 +368,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -316,17 +378,21 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_upload"
--     notice_type: Literal["group_upload"]
--     user_id: int
--     group_id: int
--     file: File
+```py
+    __event__ = "notice.group_upload"
+    notice_type: Literal["group_upload"]
+    user_id: int
+    group_id: int
+    file: File
+```
 
 ## class GroupAdminNoticeEvent
 """群管理员变动"""
@@ -334,6 +400,8 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return self.user_id == self.self_id
@@ -341,6 +409,8 @@ NoLogException
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -350,17 +420,21 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_admin"
--     notice_type: Literal["group_admin"]
--     sub_type: str
--     user_id: int
--     group_id: int
+```py
+    __event__ = "notice.group_admin"
+    notice_type: Literal["group_admin"]
+    sub_type: str
+    user_id: int
+    group_id: int
+```
 
 ## class GroupDecreaseNoticeEvent
 """群成员减少事件"""
@@ -368,6 +442,8 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return self.user_id == self.self_id
@@ -375,6 +451,8 @@ NoLogException
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -384,18 +462,22 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_decrease"
--     notice_type: Literal["group_decrease"]
--     sub_type: str
--     user_id: int
--     group_id: int
--     operator_id: int
+```py
+    __event__ = "notice.group_decrease"
+    notice_type: Literal["group_decrease"]
+    sub_type: str
+    user_id: int
+    group_id: int
+    operator_id: int
+```
 
 ## class GroupIncreaseNoticeEvent
 """群成员增加事件"""
@@ -403,6 +485,8 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return self.user_id == self.self_id
@@ -410,6 +494,8 @@ NoLogException
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -419,18 +505,22 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_increase"
--     notice_type: Literal["group_increase"]
--     sub_type: str
--     user_id: int
--     group_id: int
--     operator_id: int
+```py
+    __event__ = "notice.group_increase"
+    notice_type: Literal["group_increase"]
+    sub_type: str
+    user_id: int
+    group_id: int
+    operator_id: int
+```
 
 ## class GroupBanNoticeEvent
 """群禁言事件"""
@@ -438,6 +528,8 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return self.user_id == self.self_id
@@ -445,6 +537,8 @@ NoLogException
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -454,19 +548,23 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_ban"
--     notice_type: Literal["group_ban"]
--     sub_type: str
--     user_id: int
--     group_id: int
--     operator_id: int
--     duration: int
+```py
+    __event__ = "notice.group_ban"
+    notice_type: Literal["group_ban"]
+    sub_type: str
+    user_id: int
+    group_id: int
+    operator_id: int
+    duration: int
+```
 
 ## class FriendAddNoticeEvent
 """好友添加事件"""
@@ -474,6 +572,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -482,21 +582,27 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return str(self.user_id)
 ```
 
 ### static vars
--     __event__ = "notice.friend_add"
--     notice_type: Literal["friend_add"]
--     user_id: int
+```py
+    __event__ = "notice.friend_add"
+    notice_type: Literal["friend_add"]
+    user_id: int
+```
 
 ## class GroupRecallNoticeEvent
 """群消息撤回事件"""
 
 ### def is_tome
 
+
+无参数
 
 ```py
     def is_tome(self) -> bool:
@@ -506,6 +612,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -514,18 +622,22 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.group_recall"
--     notice_type: Literal["group_recall"]
--     user_id: int
--     group_id: int
--     operator_id: int
--     message_id: int
+```py
+    __event__ = "notice.group_recall"
+    notice_type: Literal["group_recall"]
+    user_id: int
+    group_id: int
+    operator_id: int
+    message_id: int
+```
 
 ## class FriendRecallNoticeEvent
 """好友消息撤回事件"""
@@ -533,6 +645,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -541,16 +655,20 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return str(self.user_id)
 ```
 
 ### static vars
--     __event__ = "notice.friend_recall"
--     notice_type: Literal["friend_recall"]
--     user_id: int
--     message_id: int
+```py
+    __event__ = "notice.friend_recall"
+    notice_type: Literal["friend_recall"]
+    user_id: int
+    message_id: int
+```
 
 ## class NotifyEvent
 """提醒事件"""
@@ -558,6 +676,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.user_id)
@@ -566,23 +686,29 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
 ```
 
 ### static vars
--     __event__ = "notice.notify"
--     notice_type: Literal["notify"]
--     sub_type: str
--     user_id: int
--     group_id: int
+```py
+    __event__ = "notice.notify"
+    notice_type: Literal["notify"]
+    sub_type: str
+    user_id: int
+    group_id: int
+```
 
 ## class PokeNotifyEvent
 """戳一戳提醒事件"""
 
 ### def is_tome
 
+
+无参数
 
 ```py
     def is_tome(self) -> bool:
@@ -591,6 +717,8 @@ NoLogException
 
 ### def get_session_id
 
+
+无参数
 
 ```py
     def get_session_id(self) -> str:
@@ -600,16 +728,20 @@ NoLogException
 ```
 
 ### static vars
--     __event__ = "notice.notify.poke"
--     sub_type: Literal["poke"]
--     target_id: int
--     group_id: Optional[int] = None
+```py
+    __event__ = "notice.notify.poke"
+    sub_type: Literal["poke"]
+    target_id: int
+    group_id: Optional[int] = None
+```
 
 ## class LuckyKingNotifyEvent
 """群红包运气王提醒事件"""
 
 ### def is_tome
 
+
+无参数
 
 ```py
     def is_tome(self) -> bool:
@@ -619,6 +751,8 @@ NoLogException
 ### def get_user_id
 
 
+无参数
+
 ```py
     def get_user_id(self) -> str:
         return str(self.target_id)
@@ -627,15 +761,19 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.target_id}"
 ```
 
 ### static vars
--     __event__ = "notice.notify.lucky_king"
--     sub_type: Literal["lucky_king"]
--     target_id: int
+```py
+    __event__ = "notice.notify.lucky_king"
+    sub_type: Literal["lucky_king"]
+    target_id: int
+```
 
 ## class HonorNotifyEvent
 """群荣誉变更提醒事件"""
@@ -643,21 +781,27 @@ NoLogException
 ### def is_tome
 
 
+无参数
+
 ```py
     def is_tome(self) -> bool:
         return self.user_id == self.self_id
 ```
 
 ### static vars
--     __event__ = "notice.notify.honor"
--     sub_type: Literal["honor"]
--     honor_type: str
+```py
+    __event__ = "notice.notify.honor"
+    sub_type: Literal["honor"]
+    honor_type: str
+```
 
 ## class RequestEvent
 """请求事件"""
 
 ### def get_event_name
 
+
+无参数
 
 ```py
     def get_event_name(self) -> str:
@@ -667,15 +811,19 @@ NoLogException
 ```
 
 ### static vars
--     __event__ = "request"
--     post_type: Literal["request"]
--     request_type: str
+```py
+    __event__ = "request"
+    post_type: Literal["request"]
+    request_type: str
+```
 
 ## class FriendRequestEvent
 """加好友请求事件"""
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -685,6 +833,8 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return str(self.user_id)
@@ -693,8 +843,11 @@ NoLogException
 ### async def approve
 
 
+参数表：
+
 - bot: "Bot"
 - remark: str
+
 ```py
     async def approve(self, bot: "Bot", remark: str = ""):
         return await bot.set_friend_add_request(
@@ -705,24 +858,31 @@ NoLogException
 ### async def reject
 
 
+参数表：
+
 - bot: "Bot"
+
 ```py
     async def reject(self, bot: "Bot"):
         return await bot.set_friend_add_request(flag=self.flag, approve=False)
 ```
 
 ### static vars
--     __event__ = "request.friend"
--     request_type: Literal["friend"]
--     user_id: int
--     comment: str
--     flag: str
+```py
+    __event__ = "request.friend"
+    request_type: Literal["friend"]
+    user_id: int
+    comment: str
+    flag: str
+```
 
 ## class GroupRequestEvent
 """加群请求/邀请事件"""
 
 ### def get_user_id
 
+
+无参数
 
 ```py
     def get_user_id(self) -> str:
@@ -732,6 +892,8 @@ NoLogException
 ### def get_session_id
 
 
+无参数
+
 ```py
     def get_session_id(self) -> str:
         return f"group_{self.group_id}_{self.user_id}"
@@ -740,7 +902,10 @@ NoLogException
 ### async def approve
 
 
+参数表：
+
 - bot: "Bot"
+
 ```py
     async def approve(self, bot: "Bot"):
         return await bot.set_group_add_request(
@@ -751,8 +916,11 @@ NoLogException
 ### async def reject
 
 
+参数表：
+
 - bot: "Bot"
 - reason: str
+
 ```py
     async def reject(self, bot: "Bot", reason: str = ""):
         return await bot.set_group_add_request(
@@ -761,19 +929,23 @@ NoLogException
 ```
 
 ### static vars
--     __event__ = "request.group"
--     request_type: Literal["group"]
--     sub_type: str
--     group_id: int
--     user_id: int
--     comment: str
--     flag: str
+```py
+    __event__ = "request.group"
+    request_type: Literal["group"]
+    sub_type: str
+    group_id: int
+    user_id: int
+    comment: str
+    flag: str
+```
 
 ## class MetaEvent
 """元事件"""
 
 ### def get_event_name
 
+
+无参数
 
 ```py
     def get_event_name(self) -> str:
@@ -786,32 +958,40 @@ NoLogException
 ### def get_log_string
 
 
+无参数
+
 ```py
     def get_log_string(self) -> str:
         return ""
 ```
 
 ### static vars
--     __event__ = "meta_event"
--     post_type: Literal["meta_event"]
--     meta_event_type: str
+```py
+    __event__ = "meta_event"
+    post_type: Literal["meta_event"]
+    meta_event_type: str
+```
 
 ## class LifecycleMetaEvent
 """生命周期元事件"""
 
 ### static vars
--     __event__ = "meta_event.lifecycle"
--     meta_event_type: Literal["lifecycle"]
--     sub_type: str
+```py
+    __event__ = "meta_event.lifecycle"
+    meta_event_type: Literal["lifecycle"]
+    sub_type: str
+```
 
 ## class HeartbeatMetaEvent
 """心跳元事件"""
 
 ### static vars
--     __event__ = "meta_event.heartbeat"
--     meta_event_type: Literal["heartbeat"]
--     status: Status
--     interval: int
+```py
+    __event__ = "meta_event.heartbeat"
+    meta_event_type: Literal["heartbeat"]
+    status: Status
+    interval: int
+```
 
 ## def get_event_model
 """
@@ -824,7 +1004,10 @@ NoLogException
 - ``List[Type[Event]]``
 """
 
+参数表：
+
 - event_name
+
 ```py
 def get_event_model(event_name) -> List[Type[Event]]:
     """
@@ -842,7 +1025,10 @@ def get_event_model(event_name) -> List[Type[Event]]:
 ## def json_to_event
 
 
+参数表：
+
 - json_data
+
 ```py
 def json_to_event(json_data) -> Optional[Event]:
     if not isinstance(json_data, dict):
@@ -876,9 +1062,10 @@ def json_to_event(json_data) -> Optional[Event]:
 ```
 
 ## global vars
-- _t = StringTrie(separator=".")
-- model = None
-- __all__ = [
+```py
+_t = StringTrie(separator=".")
+model = None
+__all__ = [
     "Event",
     "MessageEvent",
     "PrivateMessageEvent",
@@ -904,6 +1091,8 @@ def json_to_event(json_data) -> Optional[Event]:
     "HeartbeatMetaEvent",
     "get_event_model",
 ]
+```
+
 ## 下一步
 
 <div align="right">

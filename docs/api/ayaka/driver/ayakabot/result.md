@@ -4,7 +4,10 @@
 ### def get_seq
 
 
+参数表：
+
 - cls
+
 ```py
     @classmethod
     def get_seq(cls) -> int:
@@ -16,8 +19,11 @@
 ### def add_result
 
 
+参数表：
+
 - cls
 - result: Dict[str, Any]
+
 ```py
     @classmethod
     def add_result(cls, result: Dict[str, Any]):
@@ -39,9 +45,12 @@
 ### async def fetch
 
 
+参数表：
+
 - cls
 - seq: int
 - timeout: Optional[float]
+
 ```py
     @classmethod
     async def fetch(
@@ -58,8 +67,11 @@
 ```
 
 ### static vars
--     _seq = 1
--     _futures: Dict[int, asyncio.Future] = {}
+```py
+    _seq = 1
+    _futures: Dict[int, asyncio.Future] = {}
+```
+
 ## 下一步
 
 <div align="right">

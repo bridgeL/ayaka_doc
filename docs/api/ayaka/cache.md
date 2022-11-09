@@ -4,6 +4,8 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         return f"AyakaCacheCtrl({self.get()})"
@@ -12,7 +14,10 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def \_\_init\_\_
 
 
+参数表：
+
 - data
+
 ```py
     def __init__(self, data=None, *keys) -> None:
         self._data = {} if data is None else data
@@ -22,6 +27,8 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def _load
 
 
+无参数
+
 ```py
     def _load(self):
         return self._data
@@ -30,7 +37,10 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def _save
 
 
+参数表：
+
 - data
+
 ```py
     def _save(self, data):
         self._data = data
@@ -38,6 +48,8 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 
 ### def chain
 
+
+无参数
 
 ```py
     def chain(self, *keys):
@@ -47,7 +59,10 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def \_\_getattr\_\_
 
 
+参数表：
+
 - k
+
 ```py
     def __getattr__(self, k):
         return self.chain(k).get()
@@ -56,8 +71,11 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
 ### def \_\_setattr\_\_
 
 
+参数表：
+
 - k
 - v
+
 ```py
     def __setattr__(self, k, v):
         if k in ["_data", "_keys"]:
@@ -65,6 +83,7 @@ ayaka缓存控制器，其数据空间在各群组、各插件间相互独立
         else:
             self.chain(k).set(v)
 ```
+
 ## 下一步
 
 <div align="right">

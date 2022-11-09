@@ -2,10 +2,12 @@
 
 
 ### static vars
--     ayaka_prefix = "#"
--     ayaka_separate = " "
--     ayaka_exclude_old = True
--     fastapi_reload = True
+```py
+    ayaka_prefix = "#"
+    ayaka_separate = " "
+    ayaka_exclude_old = True
+    fastapi_reload = True
+```
 
 ## class Driver
 
@@ -13,8 +15,11 @@
 ### def deal
 
 
+参数表：
+
 - bot
 - event
+
 ```py
     def deal(self, bot, event):
         if self.deal_event:
@@ -26,7 +31,10 @@
 ### async def bot_connect
 
 
+参数表：
+
 - bot: Bot
+
 ```py
     async def bot_connect(self, bot: Bot):
         ts = []
@@ -38,7 +46,10 @@
 ### async def bot_disconnect
 
 
+参数表：
+
 - bot: Bot
+
 ```py
     async def bot_disconnect(self, bot: Bot):
         ts = []
@@ -50,7 +61,10 @@
 ### def on_bot_connect
 
 
+参数表：
+
 - func
+
 ```py
     def on_bot_connect(self, func):
         self.connect_calls.append(func)
@@ -59,7 +73,10 @@
 ### def on_bot_disconnect
 
 
+参数表：
+
 - func
+
 ```py
     def on_bot_disconnect(self, func):
         self.disconnect_calls.append(func)
@@ -68,7 +85,10 @@
 ### def on_startup
 
 
+参数表：
+
 - func
+
 ```py
     def on_startup(self, func):
         app.on_event("startup")(func)
@@ -77,24 +97,32 @@
 ### def on_shutdown
 
 
+参数表：
+
 - func
+
 ```py
     def on_shutdown(self, func):
         app.on_event("shutdown")(func)
 ```
 
 ### static vars
--     connect_calls = []
--     disconnect_calls = []
--     deal_event = None
--     config = Config()
+```py
+    connect_calls = []
+    disconnect_calls = []
+    deal_event = None
+    config = Config()
+```
 
 ## def run
 
 
+参数表：
+
 - host
 - port
 - reload
+
 ```py
 def run(host="127.0.0.1", port=19900, reload=True):
     uvicorn.run(
@@ -108,7 +136,10 @@ def run(host="127.0.0.1", port=19900, reload=True):
 ## def load_plugins
 
 
+参数表：
+
 - path
+
 ```py
 def load_plugins(path):
     path = Path(path)
@@ -124,7 +155,10 @@ def load_plugins(path):
 ## async def endpoint
 
 
+参数表：
+
 - websocket: WebSocket
+
 ```py
 @app.websocket("/ayakabot")
 async def endpoint(websocket: WebSocket):
@@ -160,6 +194,8 @@ async def endpoint(websocket: WebSocket):
 ## def get_driver
 
 
+无参数
+
 ```py
 def get_driver():
     return driver
@@ -168,17 +204,23 @@ def get_driver():
 ## def on_message
 
 
+参数表：
+
 - priority
 - block
 - handlers
+
 ```py
 def on_message(priority, block, handlers):
     driver.deal_event = handlers[0]
 ```
 
 ## global vars
-- app = FastAPI()
-- driver = Driver()
+```py
+app = FastAPI()
+driver = Driver()
+```
+
 ## 下一步
 
 <div align="right">

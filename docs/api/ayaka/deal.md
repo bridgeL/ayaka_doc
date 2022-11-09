@@ -1,7 +1,10 @@
 ## def get_bot
 获取已连接的bot
 
+参数表：
+
 - bot_id: int
+
 ```py
 def get_bot(bot_id: int):
     '''获取已连接的bot'''
@@ -14,8 +17,11 @@ def get_bot(bot_id: int):
 ## def get_group
 获取对应的AyakaGroup对象，自动增加
 
+参数表：
+
 - bot_id: int
 - group_id: int
+
 ```py
 def get_group(bot_id: int, group_id: int):
     '''获取对应的AyakaGroup对象，自动增加'''
@@ -30,8 +36,11 @@ def get_group(bot_id: int, group_id: int):
 ## async def deal_event
 
 
+参数表：
+
 - bot: Bot
 - event: MessageEvent
+
 ```py
 async def deal_event(bot: Bot, event: MessageEvent):
     if exclude_old:
@@ -59,8 +68,11 @@ async def deal_event(bot: Bot, event: MessageEvent):
 ## async def deal_group
 
 
+参数表：
+
 - bot_id: int
 - group_id: int
+
 ```py
 async def deal_group(bot_id: int, group_id: int):
     # 群组
@@ -115,7 +127,10 @@ async def deal_group(bot_id: int, group_id: int):
 ## async def deal_triggers
 
 
+参数表：
+
 - triggers: List[AyakaTrigger]
+
 ```py
 async def deal_triggers(triggers: List[AyakaTrigger]):
     triggers.sort(key=lambda t:str(t.state), reverse=True)
@@ -146,7 +161,10 @@ async def deal_triggers(triggers: List[AyakaTrigger]):
 ## def get_cmd
 返回命令
 
+参数表：
+
 - message: Message
+
 ```py
 def get_cmd(message: Message):
     '''返回命令'''
@@ -165,7 +183,10 @@ def get_cmd(message: Message):
 ## def divide_message
 
 
+参数表：
+
 - message: Message
+
 ```py
 def divide_message(message: Message):
     args: List[MessageSegment] = []
@@ -183,8 +204,11 @@ def divide_message(message: Message):
 ## def remove_cmd
 
 
+参数表：
+
 - cmd: str
 - message: Message
+
 ```py
 def remove_cmd(cmd: str, message: Message):
     m = message[0]
@@ -197,6 +221,7 @@ def remove_cmd(cmd: str, message: Message):
             message[0] = MessageSegment.text(m_str)
     return message
 ```
+
 ## 下一步
 
 <div align="right">

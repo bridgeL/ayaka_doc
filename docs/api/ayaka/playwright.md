@@ -9,8 +9,11 @@ await p.screenshot(...)
 ```
 
 
+参数表：
+
 - width
 - high_quality
+
 ```py
 @asynccontextmanager
 async def get_new_page(width=None, high_quality=False, **kwargs) -> AsyncIterator[Page]:
@@ -35,6 +38,8 @@ async def get_new_page(width=None, high_quality=False, **kwargs) -> AsyncIterato
 ## async def init_chrome
 
 
+无参数
+
 ```py
 async def init_chrome():
     if running_on_windows and fastapi_reload:
@@ -49,6 +54,8 @@ async def init_chrome():
 ## async def close_chrome
 
 
+无参数
+
 ```py
 async def close_chrome():
     if _browser:
@@ -58,8 +65,11 @@ async def close_chrome():
 ```
 
 ## global vars
-- _browser: Browser = None
-- _playwright: Playwright = None
+```py
+_browser: Browser = None
+_playwright: Playwright = None
+```
+
 ## 下一步
 
 <div align="right">

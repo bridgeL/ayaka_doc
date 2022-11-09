@@ -1,5 +1,8 @@
 ## global vars
-- BOT_TYPE = "nonebot"
+```py
+BOT_TYPE = "nonebot"
+```
+
 ## 下一步
 
 <div align="right">

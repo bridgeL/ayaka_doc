@@ -6,6 +6,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_len\_\_
 
 
+无参数
+
 ```py
     def __len__(self) -> int:
         return len(str(self))
@@ -14,7 +16,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_ne\_\_
 
 
+参数表：
+
 - other: "MessageSegment"
+
 ```py
     def __ne__(self, other: "MessageSegment") -> bool:
         return not self == other
@@ -23,7 +28,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_add\_\_
 
 
+参数表：
+
 - other: Union[str, "MessageSegment", Iterable["MessageSegment"]]
+
 ```py
     def __add__(self, other: Union[str, "MessageSegment", Iterable["MessageSegment"]]) -> "Message":
         return self.get_message_class()(self) + other
@@ -32,7 +40,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_radd\_\_
 
 
+参数表：
+
 - other: Union[str, "MessageSegment", Iterable["MessageSegment"]]
+
 ```py
     def __radd__(self, other: Union[str, "MessageSegment", Iterable["MessageSegment"]]) -> "Message":
         return self.get_message_class()(other) + self
@@ -41,7 +52,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_get_validators\_\_
 
 
+参数表：
+
 - cls
+
 ```py
     @classmethod
     def __get_validators__(cls):
@@ -51,8 +65,11 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def _validate
 
 
+参数表：
+
 - cls
 - value
+
 ```py
     @classmethod
     def _validate(cls, value):
@@ -67,8 +84,11 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def get
 
 
+参数表：
+
 - key: str
 - default: Any
+
 ```py
     def get(self, key: str, default: Any = None):
         return asdict(self).get(key, default)
@@ -76,6 +96,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 
 ### def keys
 
+
+无参数
 
 ```py
     def keys(self):
@@ -85,6 +107,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def values
 
 
+无参数
+
 ```py
     def values(self):
         return asdict(self).values()
@@ -92,6 +116,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 
 ### def items
 
+
+无参数
 
 ```py
     def items(self):
@@ -101,6 +127,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def copy
 
 
+无参数
+
 ```py
     def copy(self) -> "MessageSegment":
         return deepcopy(self)
@@ -109,7 +137,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def get_message_class
 
 
+参数表：
+
 - cls
+
 ```py
     @classmethod
     def get_message_class(cls) -> Type["Message"]:
@@ -118,6 +149,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 
 ### def \_\_str\_\_
 
+
+无参数
 
 ```py
     def __str__(self) -> str:
@@ -138,7 +171,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_add\_\_
 
 
+参数表：
+
 - other
+
 ```py
     def __add__(self, other) -> "Message":
         return Message(self) + (
@@ -149,7 +185,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def \_\_radd\_\_
 
 
+参数表：
+
 - other
+
 ```py
     def __radd__(self, other) -> "Message":
         return (
@@ -161,6 +200,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def is_text
 
 
+无参数
+
 ```py
     def is_text(self) -> bool:
         return self.type == "text"
@@ -169,7 +210,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def anonymous
 
 
+参数表：
+
 - ignore_failure: Optional[bool]
+
 ```py
     @staticmethod
     def anonymous(ignore_failure: Optional[bool] = None) -> "MessageSegment":
@@ -179,7 +223,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def at
 
 
+参数表：
+
 - user_id: Union[int, str]
+
 ```py
     @staticmethod
     def at(user_id: Union[int, str]) -> "MessageSegment":
@@ -189,8 +236,11 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def contact
 
 
+参数表：
+
 - type_: str
 - id: int
+
 ```py
     @staticmethod
     def contact(type_: str, id: int) -> "MessageSegment":
@@ -200,7 +250,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def contact_group
 
 
+参数表：
+
 - group_id: int
+
 ```py
     @staticmethod
     def contact_group(group_id: int) -> "MessageSegment":
@@ -210,7 +263,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def contact_user
 
 
+参数表：
+
 - user_id: int
+
 ```py
     @staticmethod
     def contact_user(user_id: int) -> "MessageSegment":
@@ -219,6 +275,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 
 ### def dice
 
+
+无参数
 
 ```py
     @staticmethod
@@ -229,7 +287,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def face
 
 
+参数表：
+
 - id_: int
+
 ```py
     @staticmethod
     def face(id_: int) -> "MessageSegment":
@@ -239,7 +300,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def forward
 
 
+参数表：
+
 - id_: str
+
 ```py
     @staticmethod
     def forward(id_: str) -> "MessageSegment":
@@ -250,11 +314,14 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def image
 
 
+参数表：
+
 - file: Union[str, bytes, BytesIO, Path]
 - type_: Optional[str]
 - cache: bool
 - proxy: bool
 - timeout: Optional[int]
+
 ```py
     @staticmethod
     def image(
@@ -285,7 +352,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def json
 
 
+参数表：
+
 - data: str
+
 ```py
     @staticmethod
     def json(data: str) -> "MessageSegment":
@@ -295,10 +365,13 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def location
 
 
+参数表：
+
 - latitude: float
 - longitude: float
 - title: Optional[str]
 - content: Optional[str]
+
 ```py
     @staticmethod
     def location(
@@ -321,8 +394,11 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def music
 
 
+参数表：
+
 - type_: str
 - id_: int
+
 ```py
     @staticmethod
     def music(type_: str, id_: int) -> "MessageSegment":
@@ -332,11 +408,14 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def music_custom
 
 
+参数表：
+
 - url: str
 - audio: str
 - title: str
 - content: Optional[str]
 - img_url: Optional[str]
+
 ```py
     @staticmethod
     def music_custom(
@@ -362,7 +441,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def node
 
 
+参数表：
+
 - id_: int
+
 ```py
     @staticmethod
     def node(id_: int) -> "MessageSegment":
@@ -372,9 +454,12 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def node_custom
 
 
+参数表：
+
 - user_id: int
 - nickname: str
 - content: Union[str, "Message"]
+
 ```py
     @staticmethod
     def node_custom(
@@ -389,8 +474,11 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def poke
 
 
+参数表：
+
 - type_: str
 - id_: str
+
 ```py
     @staticmethod
     def poke(type_: str, id_: str) -> "MessageSegment":
@@ -400,11 +488,14 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def record
 
 
+参数表：
+
 - file: Union[str, bytes, BytesIO, Path]
 - magic: Optional[bool]
 - cache: Optional[bool]
 - proxy: Optional[bool]
 - timeout: Optional[int]
+
 ```py
     @staticmethod
     def record(
@@ -435,7 +526,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def reply
 
 
+参数表：
+
 - id_: int
+
 ```py
     @staticmethod
     def reply(id_: int) -> "MessageSegment":
@@ -444,6 +538,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 
 ### def rps
 
+
+无参数
 
 ```py
     @staticmethod
@@ -454,6 +550,8 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def shake
 
 
+无参数
+
 ```py
     @staticmethod
     def shake() -> "MessageSegment":
@@ -463,10 +561,13 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def share
 
 
+参数表：
+
 - url: str
 - title: str
 - content: Optional[str]
 - image: Optional[str]
+
 ```py
     @staticmethod
     def share(
@@ -484,7 +585,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def text
 
 
+参数表：
+
 - text: str
+
 ```py
     @staticmethod
     def text(text: str) -> "MessageSegment":
@@ -494,10 +598,13 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def video
 
 
+参数表：
+
 - file: Union[str, bytes, BytesIO, Path]
 - cache: Optional[bool]
 - proxy: Optional[bool]
 - timeout: Optional[int]
+
 ```py
     @staticmethod
     def video(
@@ -526,7 +633,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ### def xml
 
 
+参数表：
+
 - data: str
+
 ```py
     @staticmethod
     def xml(data: str) -> "MessageSegment":
@@ -534,8 +644,10 @@ OneBot v11 协议 MessageSegment 适配。具体方法参考协议消息段类�
 ```
 
 ### static vars
--     type: str
--     data: Dict[str, Any] = field(default_factory=dict)
+```py
+    type: str
+    data: Dict[str, Any] = field(default_factory=dict)
+```
 
 ## class Message
 """
@@ -545,7 +657,10 @@ OneBot v11 协议 Message 适配。
 ### def \_\_init\_\_
 
 
+参数表：
+
 - message: Union[str, None, Iter
+
 ```py
     def __init__(
         self,
@@ -579,8 +694,11 @@ format_string: 格式化模板
 消息格式化器
 """
 
+参数表：
+
 - cls: Type["Message"]
 - format_string: Union[str, "Message"]
+
 ```py
     @classmethod
     def template(cls: Type["Message"], format_string: Union[str, "Message"]) -> MessageTemplate["Message"]:
@@ -602,6 +720,8 @@ format_string: 格式化模板
 ### def \_\_str\_\_
 
 
+无参数
+
 ```py
     def __str__(self) -> str:
         return "".join(str(seg) for seg in self)
@@ -610,7 +730,10 @@ format_string: 格式化模板
 ### def \_\_get_validators\_\_
 
 
+参数表：
+
 - cls
+
 ```py
     @classmethod
     def __get_validators__(cls):
@@ -620,8 +743,11 @@ format_string: 格式化模板
 ### def _validate
 
 
+参数表：
+
 - cls
 - value
+
 ```py
     @classmethod
     def _validate(cls, value):
@@ -646,7 +772,10 @@ format_string: 格式化模板
 ### def \_\_add\_\_
 
 
+参数表：
+
 - other: Union[str, MessageSegment, Iterable[MessageSegment]]
+
 ```py
     def __add__(self, other: Union[str, MessageSegment, Iterable[MessageSegment]]) -> "Message":
         result = self.copy()
@@ -657,7 +786,10 @@ format_string: 格式化模板
 ### def \_\_radd\_\_
 
 
+参数表：
+
 - other: Union[str, MessageSegment, Iterable[MessageSegment]]
+
 ```py
     def __radd__(self, other: Union[str, MessageSegment, Iterable[MessageSegment]]) -> "Message":
         result = self.__class__(other)
@@ -667,7 +799,10 @@ format_string: 格式化模板
 ### def \_\_iadd\_\_
 
 
+参数表：
+
 - other: Union[str, MessageSegment, Iterable[MessageSegment]]
+
 ```py
     def __iadd__(self, other: Union[str, MessageSegment, Iterable[MessageSegment]]) -> "Message":
         if isinstance(other, str):
@@ -691,7 +826,10 @@ __args: 消息段类型
 所有类型为 `__args` 的消息段
 """
 
+参数表：
+
 - __args: str
+
 ```py
     @overload
     def __getitem__(self, __args: str) -> "Message":
@@ -713,7 +851,10 @@ __args: 消息段类型和索引
 类型为 `__args[0]` 的消息段第 `__args[1]` 个
 """
 
+参数表：
+
 - __args: Tuple[str, int]
+
 ```py
     @overload
     def __getitem__(self, __args: Tuple[str, int]) -> MessageSegment:
@@ -735,7 +876,10 @@ __args: 消息段类型和切片
 类型为 `__args[0]` 的消息段切片 `__args[1]`
 """
 
+参数表：
+
 - __args: Tuple[str, slice]
+
 ```py
     @overload
     def __getitem__(self, __args: Tuple[str, slice]) -> "Message":
@@ -757,7 +901,10 @@ __args: 索引
 第 `__args` 个消息段
 """
 
+参数表：
+
 - __args: int
+
 ```py
     @overload
     def __getitem__(self, __args: int) -> MessageSegment:
@@ -779,7 +926,10 @@ __args: 切片
 消息切片 `__args`
 """
 
+参数表：
+
 - __args: slice
+
 ```py
     @overload
     def __getitem__(self, __args: slice) -> "Message":
@@ -795,7 +945,10 @@ __args: 切片
 ### def \_\_getitem\_\_
 
 
+参数表：
+
 - a
+
 ```py
     def __getitem__(
         self,
@@ -826,7 +979,10 @@ __args: 切片
 ### def index
 
 
+参数表：
+
 - value: Union[MessageSegment, str]
+
 ```py
     def index(self, value: Union[MessageSegment, str], *args) -> int:
         if isinstance(value, str):
@@ -842,8 +998,11 @@ __args: 切片
 ### def get
 
 
+参数表：
+
 - type_: str
 - count: Optional[int]
+
 ```py
     def get(self, type_: str, count: Optional[int] = None) -> "Message":
         if count is None:
@@ -863,7 +1022,10 @@ __args: 切片
 ### def count
 
 
+参数表：
+
 - value: Union[MessageSegment, str]
+
 ```py
     def count(self, value: Union[MessageSegment, str]) -> int:
         return len(self[value]) if isinstance(value, str) else super().count(value)
@@ -876,7 +1038,10 @@ __args: 切片
 obj: 要添加的消息段
 """
 
+参数表：
+
 - obj: Union[str, MessageSegment]
+
 ```py
     def append(self, obj: Union[str, MessageSegment]) -> "Message":
         """添加一个消息段到消息数组末尾。
@@ -901,7 +1066,10 @@ obj: 要添加的消息段
 obj: 要添加的消息数组
 """
 
+参数表：
+
 - obj: Union["Message", Iterable[MessageSegment]]
+
 ```py
     def extend(self, obj: Union["Message", Iterable[MessageSegment]]) -> "Message":
         """拼接一个消息数组或多个消息段到消息数组末尾。
@@ -917,6 +1085,8 @@ obj: 要添加的消息数组
 ### def copy
 
 
+无参数
+
 ```py
     def copy(self) -> "Message":
         return deepcopy(self)
@@ -924,6 +1094,8 @@ obj: 要添加的消息数组
 
 ### def extract_plain_text
 """提取消息内纯文本消息"""
+
+无参数
 
 ```py
     def extract_plain_text(self) -> str:
@@ -935,7 +1107,10 @@ obj: 要添加的消息数组
 ### def get_segment_class
 
 
+参数表：
+
 - cls
+
 ```py
     @classmethod
     def get_segment_class(cls) -> Type[MessageSegment]:
@@ -945,7 +1120,10 @@ obj: 要添加的消息数组
 ### def \_\_add\_\_
 
 
+参数表：
+
 - other: Union[str, Mapping, Iterable[Mapping]]
+
 ```py
     def __add__(self, other: Union[str, Mapping, Iterable[Mapping]]) -> "Message":
         return super(Message, self).__add__(
@@ -956,7 +1134,10 @@ obj: 要添加的消息数组
 ### def \_\_radd\_\_
 
 
+参数表：
+
 - other: Union[str, Mapping, Iterable[Mapping]]
+
 ```py
     def __radd__(self, other: Union[str, Mapping, Iterable[Mapping]]) -> "Message":
         return super(Message, self).__radd__(
@@ -967,7 +1148,10 @@ obj: 要添加的消息数组
 ### def _construct
 
 
+参数表：
+
 - msg: Union[str, Mapping, Iterable[Mapping]]
+
 ```py
     @staticmethod
     def _construct(
@@ -1017,10 +1201,13 @@ obj: 要添加的消息数组
 ### def extract_plain_text
 
 
+无参数
+
 ```py
     def extract_plain_text(self) -> str:
         return "".join(seg.data["text"] for seg in self if seg.is_text())
 ```
+
 ## 下一步
 
 <div align="right">

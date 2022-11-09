@@ -4,6 +4,8 @@
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         return f"AyakaGroup({self.bot_id}, {self.group_id}, {self.apps})"
@@ -11,6 +13,8 @@
 
 ### def forbid_init
 
+
+无参数
 
 ```py
     def forbid_init(self):
@@ -27,6 +31,8 @@
 ### def forbid_load
 
 
+无参数
+
 ```py
     def forbid_load(self):
         return self.store_forbid.load()
@@ -35,7 +41,10 @@
 ### def forbid_save
 
 
+参数表：
+
 - data
+
 ```py
     def forbid_save(self, data):
         return self.store_forbid.save(data)
@@ -44,8 +53,11 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - bot_id: int
 - group_id: int
+
 ```py
     def __init__(self, bot_id: int, group_id: int) -> None:
         self.bot_id = bot_id
@@ -73,6 +85,8 @@
 ### def running_app_name
 
 
+无参数
+
 ```py
     @property
     def running_app_name(self):
@@ -84,7 +98,10 @@
 ### def get_app
 根据app名获取该group所启用的app，不存在则返回None
 
+参数表：
+
 - name: str
+
 ```py
     def get_app(self, name: str):
         '''根据app名获取该group所启用的app，不存在则返回None'''
@@ -96,7 +113,10 @@
 ### def permit_app
 启用指定app
 
+参数表：
+
 - name: str
+
 ```py
     def permit_app(self, name: str):
         '''启用指定app'''
@@ -117,7 +137,10 @@
 ### def forbid_app
 禁用指定app
 
+参数表：
+
 - name: str
+
 ```py
     def forbid_app(self, name: str):
         '''禁用指定app'''
@@ -142,6 +165,7 @@
             self.forbid_save(app_names)
         return True
 ```
+
 ## 下一步
 
 <div align="right">

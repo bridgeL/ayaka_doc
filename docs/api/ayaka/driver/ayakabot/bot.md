@@ -4,7 +4,10 @@
 ### async def call_api
 async def call_api(self, api: str, **data) -> Any: ...
 
+参数表：
+
 - api: str
+
 ```py
     async def call_api(self, api: str, **data) -> Any: ...
 ```
@@ -12,7 +15,10 @@ async def call_api(self, api: str, **data) -> Any: ...
 ### def on_call
 def on_call(self, func) -> None: ...
 
+参数表：
+
 - func
+
 ```py
     @classmethod
     def on_call(self, func) -> None: ...
@@ -21,8 +27,11 @@ def on_call(self, func) -> None: ...
 ### def \_\_init\_\_
 def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
+参数表：
+
 - ws: FastAPIWebSocket
 - self_id: str
+
 ```py
     def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 ```
@@ -30,8 +39,11 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 ### async def send
 ) -> Any: ...
 
+参数表：
+
 - event: Event
 - message: Union[str, Message, MessageSegment]
+
 ```py
     async def send(
         self, event: Event, message: Union[str, Message, MessageSegment], **kwargs
@@ -51,6 +63,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``auto_escape``: 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 ``message`` 字段是字符串时有效
 
 """
+
+无参数
 
 ```py
     async def send_private_msg(
@@ -88,6 +102,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``auto_escape``: 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 ``message`` 字段是字符串时有效
 
 """
+
+无参数
 
 ```py
     async def send_group_msg(
@@ -128,6 +144,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def send_msg(
         self,
@@ -167,6 +185,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def delete_msg(
         self,
@@ -197,6 +217,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``message_id``: 消息 ID
 
 """
+
+无参数
 
 ```py
     async def get_msg(
@@ -229,6 +251,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_forward_msg(
         self,
@@ -260,6 +284,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``times``: 赞的次数，每个好友每天最多 10 次
 
 """
+
+无参数
 
 ```py
     async def send_like(
@@ -295,6 +321,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``reject_add_request``: 拒绝此人的加群请求
 
 """
+
+无参数
 
 ```py
     async def set_group_kick(
@@ -332,6 +360,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``duration``: 禁言时长，单位秒，``0`` 表示取消禁言
 
 """
+
+无参数
 
 ```py
     async def set_group_ban(
@@ -371,6 +401,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_group_anonymous_ban(
         self,
@@ -409,6 +441,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_group_whole_ban(
         self,
@@ -443,6 +477,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``enable``: ``True`` 为设置，``False`` 为取消
 
 """
+
+无参数
 
 ```py
     async def set_group_admin(
@@ -480,6 +516,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_group_anonymous(
         self,
@@ -514,6 +552,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``card``: 群名片内容，不填或空字符串表示删除群名片
 
 """
+
+无参数
 
 ```py
     async def set_group_card(
@@ -551,6 +591,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_group_name(
         self,
@@ -584,6 +626,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``is_dismiss``: 是否解散，如果登录号是群主，则仅在此项为 True 时能够解散
 
 """
+
+无参数
 
 ```py
     async def set_group_leave(
@@ -620,6 +664,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``duration``: 专属头衔有效期，单位秒，-1 表示永久，不过此项似乎没有效果，可能是只有某些特殊的时间长度有效，有待测试
 
 """
+
+无参数
 
 ```py
     async def set_group_special_title(
@@ -660,6 +706,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_friend_add_request(
         self,
@@ -698,6 +746,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def set_group_add_request(
         self,
@@ -731,6 +781,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_login_info(self) -> Dict[str, Any]:
         """
@@ -754,6 +806,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``no_cache``: 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
 
 """
+
+无参数
 
 ```py
     async def get_stranger_info(
@@ -784,6 +838,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_friend_list(self) -> List[Dict[str, Any]]:
         """
@@ -807,6 +863,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``no_cache``: 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
 
 """
+
+无参数
 
 ```py
     async def get_group_info(
@@ -837,6 +895,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_group_list(self) -> List[Dict[str, Any]]:
         """
@@ -861,6 +921,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``no_cache``: 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
 
 """
+
+无参数
 
 ```py
     async def get_group_member_info(
@@ -897,6 +959,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_group_member_list(
         self,
@@ -928,6 +992,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``type``: 要获取的群荣誉类型，可传入 ``talkative`` ``performer`` ``legend`` ``strong_newbie`` ``emotion`` 以分别获取单个类型的群荣誉数据，或传入 ``all`` 获取所有数据
 
 """
+
+无参数
 
 ```py
     async def get_group_honor_info(
@@ -962,6 +1028,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_cookies(
         self,
@@ -989,6 +1057,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_csrf_token(self) -> Dict[str, Any]:
         """
@@ -1011,6 +1081,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``domain``: 需要获取 cookies 的域名
 
 """
+
+无参数
 
 ```py
     async def get_credentials(
@@ -1043,6 +1115,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``out_format``: 要转换到的格式，目前支持 ``mp3``、``amr``、``wma``、``m4a``、``spx``、``ogg``、``wav``、``flac``
 
 """
+
+无参数
 
 ```py
     async def get_record(
@@ -1077,6 +1151,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_image(
         self,
@@ -1104,6 +1180,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def can_send_image(self) -> Dict[str, Any]:
         """
@@ -1122,6 +1200,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 检查是否可以发送语音。
 
 """
+
+无参数
 
 ```py
     async def can_send_record(self) -> Dict[str, Any]:
@@ -1142,6 +1222,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def get_status(self) -> Dict[str, Any]:
         """
@@ -1160,6 +1242,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 获取版本信息。
 
 """
+
+无参数
 
 ```py
     async def get_version_info(self) -> Dict[str, Any]:
@@ -1183,6 +1267,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 * ``delay``: 要延迟的毫秒数，如果默认情况下无法重启，可以尝试设置延迟为 2000 左右
 
 """
+
+无参数
 
 ```py
     async def set_restart(
@@ -1211,6 +1297,8 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 
 """
 
+无参数
+
 ```py
     async def clean_cache(self) -> None:
         """
@@ -1223,7 +1311,10 @@ def __init__(self, ws: FastAPIWebSocket, self_id: str) -> None: ...
 ```
 
 ### static vars
--     self_id: str
+```py
+    self_id: str
+```
+
 ## 下一步
 
 <div align="right">

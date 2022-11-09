@@ -1,7 +1,10 @@
 ## def bool_to_str
 """转换布尔值为字符串。"""
 
+参数表：
+
 - b: Optional[bool]
+
 ```py
 def bool_to_str(b: Optional[bool]) -> Optional[str]:
     """转换布尔值为字符串。"""
@@ -20,7 +23,10 @@ def bool_to_str(b: Optional[bool]) -> Optional[str]:
 * ``escape_comma: bool``: 是否转义逗号（``,``）。
 """
 
+参数表：
+
 - s: str
+
 ```py
 def escape(s: str, *, escape_comma: bool = True) -> str:
     """
@@ -50,7 +56,10 @@ def escape(s: str, *, escape_comma: bool = True) -> str:
 * ``s: str``: 需要转义的字符串
 """
 
+参数表：
+
 - s: str
+
 ```py
 def unescape(s: str) -> str:
     """
@@ -64,6 +73,7 @@ def unescape(s: str) -> str:
     """
     return s.replace("&#44;", ",").replace("&#91;", "[").replace("&#93;", "]").replace("&amp;", "&")
 ```
+
 ## 下一步
 
 <div align="right">

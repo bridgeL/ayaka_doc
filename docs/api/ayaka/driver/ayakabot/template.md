@@ -9,9 +9,12 @@ factory: 消息类型工厂，默认为 `str`
 ### def \_\_init\_\_
 ...
 
+参数表：
+
 - self: "MessageTemplate[str]"
 - template: str
 - factory: Type[str]
+
 ```py
     @overload
     def __init__(
@@ -23,9 +26,12 @@ factory: 消息类型工厂，默认为 `str`
 ### def \_\_init\_\_
 ...
 
+参数表：
+
 - self: "MessageTemplate[TM]"
 - template: Union[str, TM]
 - factory: Type[TM]
+
 ```py
     @overload
     def __init__(
@@ -37,8 +43,11 @@ factory: 消息类型工厂，默认为 `str`
 ### def \_\_init\_\_
 
 
+参数表：
+
 - template
 - factory
+
 ```py
     def __init__(self, template, factory=str) -> None:
         self.template: TF = template
@@ -49,8 +58,11 @@ factory: 消息类型工厂，默认为 `str`
 ### def add_format_spec
 
 
+参数表：
+
 - spec: FormatSpecFunc_T
 - name: Optional[str]
+
 ```py
     def add_format_spec(
         self, spec: FormatSpecFunc_T, name: Optional[str] = None
@@ -65,6 +77,8 @@ factory: 消息类型工厂，默认为 `str`
 ### def format
 """根据传入参数和模板生成消息对象"""
 
+无参数
+
 ```py
     def format(self, *args, **kwargs):
         """根据传入参数和模板生成消息对象"""
@@ -74,7 +88,10 @@ factory: 消息类型工厂，默认为 `str`
 ### def format_map
 """根据传入字典和模板生成消息对象, 在传入字段名不是有效标识符时有用"""
 
+参数表：
+
 - mapping: Mapping[str, Any]
+
 ```py
     def format_map(self, mapping: Mapping[str, Any]) -> TF:
         """根据传入字典和模板生成消息对象, 在传入字段名不是有效标识符时有用"""
@@ -84,8 +101,11 @@ factory: 消息类型工厂，默认为 `str`
 ### def _format
 
 
+参数表：
+
 - args: Sequence[Any]
 - kwargs: Mapping[str, Any]
+
 ```py
     def _format(self, args: Sequence[Any], kwargs: Mapping[str, Any]) -> TF:
         msg = self.factory()
@@ -104,9 +124,12 @@ factory: 消息类型工厂，默认为 `str`
 ### def vformat
 
 
+参数表：
+
 - format_string: str
 - args: Sequence[Any]
 - kwargs: Mapping[str, Any]
+
 ```py
     def vformat(
         self, format_string: str, args: Sequence[Any], kwargs: Mapping[str, Any]
@@ -120,12 +143,15 @@ factory: 消息类型工厂，默认为 `str`
 ### def _vformat
 
 
+参数表：
+
 - format_string: str
 - args: Sequence[Any]
 - kwargs: Mapping[str, Any]
 - used_args: Set[Union[int, str]]
 - recursion_depth: int
 - auto_arg_index: int
+
 ```py
     def _vformat(
         self,
@@ -203,8 +229,11 @@ factory: 消息类型工厂，默认为 `str`
 ### def format_field
 
 
+参数表：
+
 - value: Any
 - format_spec: str
+
 ```py
     def format_field(self, value: Any, format_spec: str) -> Any:
         formatter: Optional[FormatSpecFunc] = self.format_specs.get(format_spec)
@@ -223,8 +252,11 @@ factory: 消息类型工厂，默认为 `str`
 ### def _add
 
 
+参数表：
+
 - a: Any
 - b: Any
+
 ```py
     def _add(self, a: Any, b: Any) -> Any:
         try:
@@ -235,10 +267,13 @@ factory: 消息类型工厂，默认为 `str`
 
 
 ## global vars
-- TM = TypeVar("TM", bound="Message")
-- TF = TypeVar("TF", str, "Message")
-- FormatSpecFunc = Callable[[Any], str]
-- FormatSpecFunc_T = TypeVar("FormatSpecFunc_T", bound=FormatSpecFunc)
+```py
+TM = TypeVar("TM", bound="Message")
+TF = TypeVar("TF", str, "Message")
+FormatSpecFunc = Callable[[Any], str]
+FormatSpecFunc_T = TypeVar("FormatSpecFunc_T", bound=FormatSpecFunc)
+```
+
 ## 下一步
 
 <div align="right">

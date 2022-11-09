@@ -4,6 +4,8 @@ JSON控制器
 ### def \_\_init\_\_
 
 
+无参数
+
 ```py
     def __init__(self, *keys) -> None:
         self._keys = keys
@@ -11,6 +13,8 @@ JSON控制器
 
 ### def _load
 
+
+无参数
 
 ```py
     def _load(self):
@@ -20,7 +24,10 @@ JSON控制器
 ### def _save
 
 
+参数表：
+
 - data
+
 ```py
     def _save(self, data):
         raise NotImplementedError
@@ -28,6 +35,8 @@ JSON控制器
 
 ### def chain
 
+
+无参数
 
 ```py
     def chain(self, *keys) -> "AbstractJsonCtrl":
@@ -37,7 +46,10 @@ JSON控制器
 ### def get
 
 
+参数表：
+
 - default
+
 ```py
     def get(self, default=None):
         data = self._load()
@@ -53,7 +65,10 @@ JSON控制器
 ### def set
 
 
+参数表：
+
 - value
+
 ```py
     def set(self, value):
         if not self._keys:
@@ -72,6 +87,7 @@ JSON控制器
         self._save(origin)
         return value
 ```
+
 ## 下一步
 
 <div align="right">

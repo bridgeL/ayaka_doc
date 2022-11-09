@@ -4,7 +4,10 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - app: "AyakaApp"
+
 ```py
     def __init__(self, app: "AyakaApp") -> None:
         self.app = app
@@ -13,9 +16,12 @@
 ### def everyday
 每日定时触发
 
+参数表：
+
 - h: int
 - m: int
 - s: int
+
 ```py
     def everyday(self, h: int, m: int, s: int):
         '''每日定时触发'''
@@ -25,10 +31,13 @@
 ### def interval
 在指定的时间点后循环触发
 
+参数表：
+
 - gap: int
 - h
 - m
 - s
+
 ```py
     def interval(self, gap: int, h=-1, m=-1, s=-1):
         '''在指定的时间点后循环触发'''
@@ -37,6 +46,8 @@
 
 ### def state
 注册有状态回调
+
+无参数
 
 ```py
     def state(self, *states: str):
@@ -53,7 +64,10 @@
 ### def idle
 注册无状态回调
 
+参数表：
+
 - super
+
 ```py
     def idle(self, super=False):
         '''注册无状态回调'''
@@ -66,6 +80,8 @@
 ### def command
 
 
+无参数
+
 ```py
     def command(self, *cmds: str):
         def decorator(func):
@@ -76,6 +92,8 @@
 
 ### def text
 
+
+无参数
 
 ```py
     def text(self):
@@ -88,9 +106,12 @@
 ### def on_handle
 注册
 
+参数表：
+
 - cmds: Union[List[str], str]
 - states: Union[List[str], str]
 - super: bool
+
 ```py
     def on_handle(self, cmds: Union[List[str], str], states: Union[List[str], str], super: bool):
         '''注册'''
@@ -122,10 +143,13 @@
 ### def on_timer
 在指定的时间点后循环触发
 
+参数表：
+
 - gap: int
 - h: int
 - m: int
 - s: int
+
 ```py
     def on_timer(self, gap: int, h: int, m: int, s: int):
         '''在指定的时间点后循环触发'''
@@ -143,6 +167,8 @@
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         return f"AyakaTrigger({self.app_name}, {self.cmd}, {self.state}, {self.super}, {self.func.__name__})"
@@ -151,11 +177,14 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - app_name
 - cmd
 - state
 - super
 - func
+
 ```py
     def __init__(self, app_name, cmd, state, super, func) -> None:
         self.app_name = app_name
@@ -169,6 +198,8 @@
 
 ### async def run
 
+
+无参数
 
 ```py
     async def run(self):
@@ -203,6 +234,8 @@
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         return f"AyakaTimer({self.name}, {self.gap}, {self.func.__name__})"
@@ -211,12 +244,15 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - name: str
 - gap: int
 - h: int
 - m: int
 - s: int
 - func
+
 ```py
     def __init__(self, name: str, gap: int, h: int, m: int, s: int, func) -> None:
         self.name = name
@@ -232,6 +268,8 @@
 ### def start
 
 
+无参数
+
 ```py
     def start(self):
         asyncio.create_task(self.run_forever())
@@ -239,6 +277,8 @@
 
 ### async def run_forever
 
+
+无参数
 
 ```py
     async def run_forever(self):
@@ -269,7 +309,10 @@
 ## def ensure_list
 
 
+参数表：
+
 - items
+
 ```py
 def ensure_list(items):
     if isinstance(items, tuple):
@@ -278,6 +321,7 @@ def ensure_list(items):
         return [items]
     return items
 ```
+
 ## 下一步
 
 <div align="right">

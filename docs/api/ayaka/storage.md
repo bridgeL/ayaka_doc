@@ -4,7 +4,10 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - app: "AyakaApp"
+
 ```py
     def __init__(self, app: "AyakaApp") -> None:
         self.app = app
@@ -12,6 +15,8 @@
 
 ### def plugin_path
 获取路径 <create_app_file>/../*names
+
+无参数
 
 ```py
     def plugin_path(self, *names):
@@ -23,6 +28,8 @@
 
 ### def group_path
 获取路径 data/groups/<bod_id>/<group_id>/<app.name>/*names
+
+无参数
 
 ```py
     def group_path(self, *names):
@@ -46,7 +53,10 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - path
+
 ```py
     def __init__(self, path=Path("test")) -> None:
         self.path = path
@@ -57,6 +67,8 @@
 ### def iterdir
 
 
+无参数
+
 ```py
     def iterdir(self):
         return self.path.iterdir()
@@ -65,8 +77,11 @@
 ### def file
 
 
+参数表：
+
 - name
 - default
+
 ```py
     def file(self, name, default=None):
         path = self.path / str(name)
@@ -79,8 +94,11 @@
 ### def json
 
 
+参数表：
+
 - name
 - default
+
 ```py
     def json(self, name, default={}):
         path = self.path / str(name)
@@ -98,7 +116,10 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - path: Path
+
 ```py
     def __init__(self, path: Path):
         self.path = path
@@ -106,6 +127,8 @@
 
 ### def load
 
+
+无参数
 
 ```py
     def load(self):
@@ -117,7 +140,10 @@
 ### def save
 
 
+参数表：
+
 - data
+
 ```py
     def save(self, data):
         with self.path.open("w+", encoding="utf8") as f:
@@ -131,7 +157,10 @@ JSON文件
 ### def \_\_init\_\_
 
 
+参数表：
+
 - path: Path
+
 ```py
     def __init__(self, path: Path) -> None:
         self.path = path
@@ -140,6 +169,8 @@ JSON文件
 ### def chain
 
 
+无参数
+
 ```py
     def chain(self, *keys):
         return AyakaJsonFileCtrl(self.path, *keys)
@@ -147,6 +178,8 @@ JSON文件
 
 ### def load
 
+
+无参数
 
 ```py
     def load(self):
@@ -158,7 +191,10 @@ JSON文件
 ### def save
 
 
+参数表：
+
 - data
+
 ```py
     def save(self, data):
         with self.path.open("w+", encoding="utf8") as f:
@@ -172,7 +208,10 @@ AyakaJsonFileCtrl实际上可兼容替代AyakaJsonFile，但是为了避免语�
 ### def \_\_init\_\_
 
 
+参数表：
+
 - path: Path
+
 ```py
     def __init__(self, path: Path, *keys) -> None:
         self._path = path
@@ -181,6 +220,8 @@ AyakaJsonFileCtrl实际上可兼容替代AyakaJsonFile，但是为了避免语�
 
 ### def _load
 
+
+无参数
 
 ```py
     def _load(self):
@@ -192,7 +233,10 @@ AyakaJsonFileCtrl实际上可兼容替代AyakaJsonFile，但是为了避免语�
 ### def _save
 
 
+参数表：
+
 - data
+
 ```py
     def _save(self, data):
         with self._path.open("w+", encoding="utf8") as f:
@@ -202,10 +246,13 @@ AyakaJsonFileCtrl实际上可兼容替代AyakaJsonFile，但是为了避免语�
 ### def chain
 
 
+无参数
+
 ```py
     def chain(self, *keys):
         return AyakaJsonFileCtrl(self._path, *self._keys, *keys)
 ```
+
 ## 下一步
 
 <div align="right">

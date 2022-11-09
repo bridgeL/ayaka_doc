@@ -1,6 +1,8 @@
 ## async def permit
 
 
+无参数
+
 ```py
 @app.on.idle(super=True)
 @app.on.command("启用", "permit")
@@ -21,6 +23,8 @@ async def permit():
 ## async def forbid
 
 
+无参数
+
 ```py
 @app.on.idle(super=True)
 @app.on.command("禁用", "forbid")
@@ -40,6 +44,8 @@ async def forbid():
 
 ## async def show_plugins
 
+
+无参数
 
 ```py
 @app.on.idle(super=True)
@@ -74,6 +80,8 @@ async def show_plugins():
 ## async def show_state
 
 
+无参数
+
 ```py
 @app.on.idle(super=True)
 @app.on.command("状态", "state")
@@ -89,6 +97,8 @@ async def show_state():
 
 ## async def show_help
 
+
+无参数
 
 ```py
 @app.on.idle(super=True)
@@ -126,6 +136,8 @@ async def show_help():
 ## async def force_exit
 
 
+无参数
+
 ```py
 @app.on.idle(super=True)
 @app.on.command("强制退出", "force_exit")
@@ -137,8 +149,11 @@ async def force_exit():
 ```
 
 ## global vars
-- app = AyakaApp("ayaka_master")
-- app.help = '''ayaka综合管理模块'''
+```py
+app = AyakaApp("ayaka_master")
+app.help = '''ayaka综合管理模块'''
+```
+
 ## 下一步
 
 <div align="right">

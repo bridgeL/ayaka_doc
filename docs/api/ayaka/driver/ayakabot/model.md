@@ -2,9 +2,11 @@
 
 
 ### static vars
--     H10 = "1.0"
--     H11 = "1.1"
--     H2 = "2"
+```py
+    H10 = "1.0"
+    H11 = "1.1"
+    H2 = "2"
+```
 
 ## class Request
 
@@ -12,8 +14,11 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - method: Union[str, bytes]
 - url: Union["URL", str, RawURL]
+
 ```py
     def __init__(
         self,
@@ -90,6 +95,8 @@
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         class_name = self.__class__.__name__
@@ -104,7 +111,10 @@
 ### def \_\_init\_\_
 
 
+参数表：
+
 - cookies: CookieTypes
+
 ```py
     def __init__(self, cookies: CookieTypes = None) -> None:
         self.jar: CookieJar = cookies if isinstance(cookies, CookieJar) else CookieJar()
@@ -125,10 +135,13 @@
 ### def set
 
 
+参数表：
+
 - name: str
 - value: str
 - domain: str
 - path: str
+
 ```py
     def set(self, name: str, value: str, domain: str = "", path: str = "/") -> None:
         cookie = Cookie(
@@ -156,10 +169,13 @@
 ### def get
 
 
+参数表：
+
 - name: str
 - default: Optional[str]
 - domain: str
 - path: str
+
 ```py
     def get(
         self,
@@ -186,9 +202,12 @@
 ### def delete
 
 
+参数表：
+
 - name: str
 - domain: Optional[str]
 - path: Optional[str]
+
 ```py
     def delete(
         self, name: str, domain: Optional[str] = None, path: Optional[str] = None
@@ -211,8 +230,11 @@
 ### def clear
 
 
+参数表：
+
 - domain: Optional[str]
 - path: Optional[str]
+
 ```py
     def clear(self, domain: Optional[str] = None, path: Optional[str] = None) -> None:
         self.jar.clear(domain, path)
@@ -221,7 +243,10 @@
 ### def update
 
 
+参数表：
+
 - cookies: CookieTypes
+
 ```py
     def update(self, cookies: CookieTypes = None) -> None:
         cookies = Cookies(cookies)
@@ -232,8 +257,11 @@
 ### def \_\_setitem\_\_
 
 
+参数表：
+
 - name: str
 - value: str
+
 ```py
     def __setitem__(self, name: str, value: str) -> None:
         return self.set(name, value)
@@ -242,7 +270,10 @@
 ### def \_\_getitem\_\_
 
 
+参数表：
+
 - name: str
+
 ```py
     def __getitem__(self, name: str) -> str:
         value = self.get(name)
@@ -254,7 +285,10 @@
 ### def \_\_delitem\_\_
 
 
+参数表：
+
 - name: str
+
 ```py
     def __delitem__(self, name: str) -> None:
         return self.delete(name)
@@ -262,6 +296,8 @@
 
 ### def \_\_len\_\_
 
+
+无参数
 
 ```py
     def __len__(self) -> int:
@@ -271,6 +307,8 @@
 ### def \_\_iter\_\_
 
 
+无参数
+
 ```py
     def __iter__(self) -> Iterator[Cookie]:
         return (cookie for cookie in self.jar)
@@ -278,6 +316,8 @@
 
 ### def \_\_repr\_\_
 
+
+无参数
 
 ```py
     def __repr__(self) -> str:
@@ -296,9 +336,11 @@
 """WebSocket 服务器路由配置。"""
 
 ### static vars
--     path: URL  # path should not be absolute, check it by URL.is_absolute() == False
--     name: str
--     handle_func: Callable
+```py
+    path: URL  # path should not be absolute, check it by URL.is_absolute() == False
+    name: str
+    handle_func: Callable
+```
 
 ## class DataclassEncoder
 """在JSON序列化 `Message` (List[Dataclass]) 时使用的 `JSONEncoder`"""
@@ -306,7 +348,10 @@
 ### def default
 
 
+参数表：
+
 - o
+
 ```py
     def default(self, o):
         if dataclasses.is_dataclass(o):
@@ -316,24 +361,25 @@
 
 
 ## global vars
-- RawURL = Tuple[bytes, bytes, Optional[int], bytes]
-- SimpleQuery = Union[str, int, float]
-- QueryVariable = Union[SimpleQuery, List[SimpleQuery]]
-- QueryTypes = Union[
+```py
+RawURL = Tuple[bytes, bytes, Optional[int], bytes]
+SimpleQuery = Union[str, int, float]
+QueryVariable = Union[SimpleQuery, List[SimpleQuery]]
+QueryTypes = Union[
     None, str, Mapping[str, QueryVariable], List[Tuple[str, QueryVariable]]
 ]
-- HeaderTypes = Union[
+HeaderTypes = Union[
     None,
     CIMultiDict[str],
     Dict[str, str],
     List[Tuple[str, str]],
 ]
-- CookieTypes = Union[None, "Cookies", CookieJar, Dict[str, str], List[Tuple[str, str]]]
-- ContentTypes = Union[str, bytes, None]
-- DataTypes = Union[dict, None]
-- FileContent = Union[IO[bytes], bytes]
-- FileType = Tuple[Optional[str], FileContent, Optional[str]]
-- FileTypes = Union[
+CookieTypes = Union[None, "Cookies", CookieJar, Dict[str, str], List[Tuple[str, str]]]
+ContentTypes = Union[str, bytes, None]
+DataTypes = Union[dict, None]
+FileContent = Union[IO[bytes], bytes]
+FileType = Tuple[Optional[str], FileContent, Optional[str]]
+FileTypes = Union[
     # file (or bytes)
     FileContent,
     # (filename, file (or bytes))
@@ -341,7 +387,9 @@
     # (filename, file (or bytes), content_type)
     FileType,
 ]
-- FilesTypes = Union[Dict[str, FileTypes], List[Tuple[str, FileTypes]], None]
+FilesTypes = Union[Dict[str, FileTypes], List[Tuple[str, FileTypes]], None]
+```
+
 ## 下一步
 
 <div align="right">

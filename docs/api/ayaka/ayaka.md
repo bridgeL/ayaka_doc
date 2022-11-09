@@ -6,6 +6,8 @@ ayaka插件的核心
 ### def \_\_repr\_\_
 
 
+无参数
+
 ```py
     def __repr__(self) -> str:
         return f"AyakaApp({self.name}, {self.state})"
@@ -14,7 +16,10 @@ ayaka插件的核心
 ### def \_\_init\_\_
 
 
+参数表：
+
 - name: str
+
 ```py
     def __init__(self, name: str) -> None:
         self.name = name
@@ -41,6 +46,8 @@ ayaka插件的核心
 ### def super_triggers
 
 
+无参数
+
 ```py
     @property
     def super_triggers(self):
@@ -49,6 +56,8 @@ ayaka插件的核心
 
 ### def state_triggers
 
+
+无参数
 
 ```py
     @property
@@ -59,6 +68,8 @@ ayaka插件的核心
 ### def no_state_triggers
 
 
+无参数
+
 ```py
     @property
     def no_state_triggers(self):
@@ -67,6 +78,8 @@ ayaka插件的核心
 
 ### def intro
 获取介绍，也就是init状态下的帮助
+
+无参数
 
 ```py
     @property
@@ -79,7 +92,10 @@ ayaka插件的核心
 ### def get_helps
 
 
+参数表：
+
 - state: str
+
 ```py
     def get_helps(self, state: str):
         helps = self._help.get(state)
@@ -90,6 +106,8 @@ ayaka插件的核心
 
 ### def help
 获取当前状态下的帮助，没有找到则返回介绍
+
+无参数
 
 ```py
     @property
@@ -115,6 +133,8 @@ ayaka插件的核心
 ### def all_help
 获取介绍以及全部状态下的帮助
 
+无参数
+
 ```py
     @property
     def all_help(self):
@@ -130,7 +150,10 @@ ayaka插件的核心
 ### def help
 设置帮助，若help为str，则设置为介绍，若help为dict，则设置为对应状态的帮助
 
+参数表：
+
 - help: Union[str, Dict[str, str]]
+
 ```py
     @help.setter
     def help(self, help: Union[str, Dict[str, str]]):
@@ -148,6 +171,8 @@ ayaka插件的核心
 当前app是否被当前群组启用
 
 
+无参数
+
 ```py
     @property
     def valid(self):
@@ -164,6 +189,8 @@ ayaka插件的核心
 当前群组、当前app的独立数据空间
 
 
+无参数
+
 ```py
     @property
     def cache(self):
@@ -179,6 +206,8 @@ ayaka插件的核心
 
 当前消息的发送人的群名片或昵称
 
+
+无参数
 
 ```py
     @property
@@ -198,6 +227,8 @@ ayaka插件的核心
 当前消息的发送人的uid
 
 
+无参数
+
 ```py
     @property
     def user_id(self):
@@ -214,6 +245,8 @@ ayaka插件的核心
 当前bot
 
 
+无参数
+
 ```py
     @property
     def bot(self):
@@ -229,6 +262,8 @@ ayaka插件的核心
 
 当前消息
 
+
+无参数
 
 ```py
     @property
@@ -248,6 +283,8 @@ ayaka插件的核心
 注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A的id
 
 
+无参数
+
 ```py
     @property
     def group_id(self):
@@ -265,6 +302,8 @@ ayaka插件的核心
 
 当前bot的id
 
+
+无参数
 
 ```py
     @property
@@ -284,6 +323,8 @@ ayaka插件的核心
 注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A
 
 
+无参数
+
 ```py
     @property
     def group(self):
@@ -301,6 +342,8 @@ ayaka插件的核心
 
 当前消息在移除了命令后的剩余部分
 
+
+无参数
 
 ```py
     @property
@@ -320,6 +363,8 @@ ayaka插件的核心
 注：除了文字消息外，其他消息类型将自动分割，例如一串qq表情会被分割为多个元素
 
 
+无参数
+
 ```py
     @property
     def args(self):
@@ -338,6 +383,8 @@ ayaka插件的核心
 当前消息的命令头
 
 
+无参数
+
 ```py
     @property
     def cmd(self):
@@ -354,6 +401,8 @@ ayaka插件的核心
 当前消息
 
 
+无参数
+
 ```py
     @property
     def message(self):
@@ -369,7 +418,10 @@ ayaka插件的核心
 
 启动应用，并发送提示
 
+参数表：
+
 - state
+
 ```py
     async def start(self, state=INIT_STATE):
         '''*timer触发时不可用*
@@ -390,6 +442,8 @@ ayaka插件的核心
 
 关闭应用，并发送提示
 
+无参数
+
 ```py
     async def close(self):
         '''*timer触发时不可用*
@@ -406,7 +460,10 @@ ayaka插件的核心
 ### def set_state
 
 
+参数表：
+
 - state
+
 ```py
     def set_state(self, state=INIT_STATE):
         self.state = state
@@ -415,7 +472,10 @@ ayaka插件的核心
 ### def add_listener
 为该群组添加对指定私聊的监听
 
+参数表：
+
 - user_id: int
+
 ```py
     def add_listener(self, user_id: int):
         '''为该群组添加对指定私聊的监听'''
@@ -425,7 +485,10 @@ ayaka插件的核心
 ### def remove_listener
 默认移除该群组对其他私聊的所有监听
 
+参数表：
+
 - user_id: int
+
 ```py
     def remove_listener(self, user_id: int = 0):
         '''默认移除该群组对其他私聊的所有监听'''
@@ -444,7 +507,10 @@ ayaka插件的核心
 ### async def send
 发送消息，消息的类型可以是 Message | MessageSegment | str
 
+参数表：
+
 - message
+
 ```py
     async def send(self, message):
         '''发送消息，消息的类型可以是 Message | MessageSegment | str'''
@@ -455,8 +521,11 @@ ayaka插件的核心
 ### def pack_messages
 转换为cqhttp node格式
 
+参数表：
+
 - bot_id
 - messages
+
 ```py
     def pack_messages(self, bot_id, messages):
         '''转换为cqhttp node格式'''
@@ -477,7 +546,10 @@ ayaka插件的核心
 ### async def send_many
 发送合并转发消息，消息的类型可以是 List[Message | MessageSegment | str]
 
+参数表：
+
 - messages
+
 ```py
     async def send_many(self, messages):
         '''发送合并转发消息，消息的类型可以是 List[Message | MessageSegment | str]'''
@@ -495,8 +567,11 @@ ayaka插件的核心
 ### def t_check
 
 
+参数表：
+
 - bot_id: int
 - group_id: int
+
 ```py
     def t_check(self, bot_id: int, group_id: int):
         # 未连接
@@ -518,9 +593,12 @@ ayaka插件的核心
 ### async def t_send
 timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用
 
+参数表：
+
 - bot_id: int
 - group_id: int
 - message
+
 ```py
     async def t_send(self, bot_id: int, group_id: int, message):
         '''timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用'''
@@ -534,9 +612,12 @@ timer触发回调时，想要发送消息必须使用该方法，一些上下文
 ### async def t_send_many
 timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用
 
+参数表：
+
 - bot_id: int
 - group_id: int
 - messages
+
 ```py
     async def t_send_many(self, bot_id: int, group_id: int, messages):
         '''timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用'''
@@ -559,6 +640,8 @@ timer触发回调时，想要发送消息必须使用该方法，一些上下文
 ## async def startup
 
 
+无参数
+
 ```py
 @driver.on_startup
 async def startup():
@@ -569,6 +652,8 @@ async def startup():
 ## async def shutdown
 
 
+无参数
+
 ```py
 @driver.on_shutdown
 async def shutdown():
@@ -578,7 +663,10 @@ async def shutdown():
 ## async def bot_connect
 
 
+参数表：
+
 - bot: Bot
+
 ```py
 @driver.on_bot_connect
 async def bot_connect(bot: Bot):
@@ -596,7 +684,10 @@ async def bot_connect(bot: Bot):
 ## async def bot_disconnect
 
 
+参数表：
+
 - bot: Bot
+
 ```py
 @driver.on_bot_disconnect
 async def bot_disconnect(bot: Bot):
@@ -604,8 +695,11 @@ async def bot_disconnect(bot: Bot):
 ```
 
 ## global vars
-- driver = get_driver()
-- first_bot_connect = True
+```py
+driver = get_driver()
+first_bot_connect = True
+```
+
 ## 下一步
 
 <div align="right">

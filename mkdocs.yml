@@ -64,19 +64,19 @@ nav:
     - parser: api/ayaka/parser.md
     - playwright: api/ayaka/playwright.md
     - storage: api/ayaka/storage.md
-    - ayakabot:
-      - bot: api/ayaka/driver/ayakabot/bot.md
-      - driver: api/ayaka/driver/ayakabot/driver.md
-      - event: api/ayaka/driver/ayakabot/event.md
-      - message: api/ayaka/driver/ayakabot/message.md
-      - model: api/ayaka/driver/ayakabot/model.md
-      - result: api/ayaka/driver/ayakabot/result.md
-      - template: api/ayaka/driver/ayakabot/template.md
-      - utils: api/ayaka/driver/ayakabot/utils.md
-      - websocket: api/ayaka/driver/ayakabot/websocket.md
     - driver:
       - __init__: api/ayaka/driver/__init__.md
       - ayakabot_driver: api/ayaka/driver/ayakabot_driver.md
+      - ayakabot:
+        - bot: api/ayaka/driver/ayakabot/bot.md
+        - driver: api/ayaka/driver/ayakabot/driver.md
+        - event: api/ayaka/driver/ayakabot/event.md
+        - message: api/ayaka/driver/ayakabot/message.md
+        - model: api/ayaka/driver/ayakabot/model.md
+        - result: api/ayaka/driver/ayakabot/result.md
+        - template: api/ayaka/driver/ayakabot/template.md
+        - utils: api/ayaka/driver/ayakabot/utils.md
+        - websocket: api/ayaka/driver/ayakabot/websocket.md
   - 小游戏合集:
       - 介绍: games/index.md
       - 安装: games/install.md
@@ -91,7 +91,7 @@ nav:
 
 markdown_extensions:
   - pymdownx.highlight:
-      anchor_linenums: true
+      linenums_style: pymdownx-inline
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
@@ -111,4 +111,6 @@ extra:
     provider: mike
 
 extra_javascript:
-  - javascripts/version-mike.js
+  - javascript/version-mike.js
+extra_css:
+  - css/code.css
