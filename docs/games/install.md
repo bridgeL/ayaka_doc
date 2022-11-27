@@ -1,6 +1,13 @@
 `nb plugin install nonebot-plugin-ayaka-games`
 
-之后运行nonebot即可 `python bot.py`
+修改配置`.env.dev`
+
+```
+ayaka_prefix="#"
+ayaka_separate=" "
+```
+
+运行nonebot `python bot.py`
 
 ## 下一步
 
