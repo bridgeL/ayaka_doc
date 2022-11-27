@@ -14,12 +14,11 @@ playwright install chromium
 - ayaka衍生插件中也只需正常导入ayaka就行 `from ayaka import AyakaApp`
 
 
-## 配置
+## 推荐配置
 
-推荐配置（非强制要求）
 ```
-COMMAND_START=["#"]
-COMMAND_SEP=[" "]
+ayaka_prefix="#"
+ayaka_separate=" "
 ```
 
 ## 下一步
