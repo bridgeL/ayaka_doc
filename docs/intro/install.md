@@ -1,7 +1,7 @@
 ## 安装
 
 ```
-nb plugin install nonebot-plugin-ayaka
+pip install nonebot-plugin-ayaka
 playwright install chromium
 ``` 
 

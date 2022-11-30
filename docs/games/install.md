@@ -1,18 +1,12 @@
 ## 安装
 
-**通过nb-cli安装（推荐）**
-
 `nb plugin install nonebot-plugin-ayaka-games`
 
-**通过pip安装**
-
-`pip install nonebot-plugin-ayaka-games`
+如果缺失nb则请先安装nb-cli `pip install nb-cli`
 
 ## 配置
 
-`ayaka_setting.json`首次运行bot后生成
-
-修改`__root__/use_playwright`为false
+首次运行bot后生成 `ayaka_setting.json`文件，修改其`__root__/use_playwright`为false
 
 ```json
 {
