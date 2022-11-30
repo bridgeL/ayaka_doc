@@ -102,6 +102,6 @@ extra:
     provider: mike
 
 extra_javascript:
-  - javascript/version-mike.js
+  - js/version.js
 extra_css:
   - css/code.css
