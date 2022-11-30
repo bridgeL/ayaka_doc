@@ -1,23 +1,30 @@
-**通过nb-cli安装**
+## 安装
+
+**通过nb-cli安装（推荐）**
 
 `nb plugin install nonebot-plugin-ayaka-games`
 
-**修改配置文件**
+**通过pip安装**
 
-`.env.dev`或`.env.prod`（看你`.env`当前正在使用哪个）
+`pip install nonebot-plugin-ayaka-games`
 
-推荐设置为#和空格
+## 配置
 
+`ayaka_setting.json`首次运行bot后生成
+
+修改`__root__/use_playwright`为false
+
+```json
+{
+    "__root__": {
+        "use_playwright": false,
+        ...
+    },
+    ...
+}
 ```
-ayaka_prefix="#"
-ayaka_separate=" "
-```
 
-注意：若分割符为空`""`，ayaka将无法分割参数。如果你需要使用`app.args`，请不要设置为空
-
-**运行nonebot**
-
-`python bot.py`
+配置修改后需重启bot
 
 ## 下一步
 
