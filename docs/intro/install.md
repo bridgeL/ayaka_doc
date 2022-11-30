@@ -9,17 +9,9 @@ playwright install chromium
 
 ## 注意
 
-- 如果没有用到无头浏览器截图的功能，可忽略`playwright install`
 - 不需要特意在`bot.py`中加载ayaka插件，只要正常加载ayaka衍生插件即可
 - ayaka衍生插件中也只需正常导入ayaka就行 `from ayaka import AyakaApp`
 
-
-## 推荐配置
-
-```
-ayaka_prefix="#"
-ayaka_separate=" "
-```
 
 ## 下一步
 
