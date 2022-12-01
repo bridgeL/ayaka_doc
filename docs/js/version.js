@@ -5,19 +5,12 @@ function update() {
   var items = document.querySelectorAll('.md-version__link:not(.changed)');
   if (!items.length) return;
 
-  var item = document.querySelector(".md-version__current");
-  if (!item) return;
-
-  var version_now = item.innerHTML;
-  console.log("version_now", version_now);
-
-  var i = window.location.pathname.indexOf(version_now) + version_now.length + 1;
-  var pathname = window.location.pathname.slice(i);
+  var paths = window.location.pathname.split("/").filter(_ => _).slice(2);
+  var route = paths.join("/");
 
   for (var item of items) {
-    item.href += pathname;
+    item.href += route;
     item.className += " changed";
-    console.log(item.innerHTML, "change successfully");
   }
 }
 
