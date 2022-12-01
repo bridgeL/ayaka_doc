@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>页面不存在，3s后自动跳转首页</h2>
+{{ super() }}
+<h2 id="tip"></h2>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
 <script>
-    console.log("页面不存在，3s后自动跳转首页");
-    setTimeout(
-        function () {
-            var paths = window.location.pathname.split("/").filter(_ => _).slice(0, 2);
-            var route = paths.join("/");
-            window.location.replace(route);
-        }, 3000
-    )
+    let cnt = 3;
+    document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
+    let timer = setInterval(function () {
+        cnt -= 1;
+        if (!cnt) {
+            clearInterval(timer);
+            let paths = window.location.pathname.split("/").filter(_ => _).slice(0, 2);
+            let route = paths.join("/");
+            window.location.replace(window.location.origin + "/" + route);
+        }
+        else document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
+    }, 1000)
+
 </script>
 {% endblock %}
