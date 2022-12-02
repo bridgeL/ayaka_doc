@@ -91,4 +91,4 @@ extra_javascript:
 - js/version.js
 extra_css:
 - css/code.css
-- css/tab-link.css
+- css/tab-right.css
