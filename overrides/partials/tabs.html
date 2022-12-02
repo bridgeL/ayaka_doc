@@ -1,0 +1,14 @@
+{% set class = "" %}
+<nav class="md-tabs" aria-label="{{ lang.t('tabs.title') }}" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      {% for nav_item in nav %}
+        {% if nav_item.title != "API" %}
+        {% include "partials/tabs-item.html" %}
+        {% else %}
+        {% include "partials/tab-link.html" %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

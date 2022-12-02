@@ -22,9 +22,12 @@ theme:
   - navigation.tabs
   - navigation.tabs.sticky
   - navigation.tracking
+  - navigation.top
+  - toc.integrate
   - search.highlight
   - search.suggest
-
+  hide:
+    - toc
 nav:
 - 主页: 
   - 介绍: index.md
@@ -50,7 +53,6 @@ nav:
   - 持久化: develop/storage.md
   - 解析: develop/parser.md
   - 配置: develop/config.md
-- API: https://bridgel.github.io/nonebot-plugin-ayaka/
 - 小游戏合集:
   - 介绍: games/index.md
   - 安装: games/install.md
@@ -61,6 +63,7 @@ nav:
   - v4: change-log/v4.md
   - v3: change-log/v3.md
   - v2: change-log/v2.md
+- API: https://bridgel.github.io/nonebot-plugin-ayaka/
 
 markdown_extensions:
 - pymdownx.highlight:
@@ -87,3 +90,4 @@ extra_javascript:
 - js/version.js
 extra_css:
 - css/code.css
+- css/tab-link.css
