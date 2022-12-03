@@ -1,3 +1,5 @@
+详细api：[https://bridgel.github.io/nonebot-plugin-ayaka/](https://bridgel.github.io/nonebot-plugin-ayaka/)
+
 
 ```py
 from ayaka import AyakaApp

@@ -92,3 +92,4 @@ extra_javascript:
 extra_css:
 - css/code.css
 - css/tab-right.css
+- css/big-font.css

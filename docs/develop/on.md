@@ -48,13 +48,32 @@ async def no_args():
 必须是如下的先后顺序
 
 ```py
-@app.on.state(...) / @app.on.idle(...)
-@app.on.command(...) / @app.on.text()
+@app.on.state(...) 
+@app.on.command(...) 
 async def handle():
     ...
 ```
 
-4种组合皆可
+```py
+@app.on.state(...) 
+@app.on.text()
+async def handle():
+    ...
+```
+
+```py
+@app.on.idle(...)
+@app.on.command(...) 
+async def handle():
+    ...
+```
+
+```py
+@app.on.idle(...)
+@app.on.text()
+async def handle():
+    ...
+```
 
 ## 闲置
 
