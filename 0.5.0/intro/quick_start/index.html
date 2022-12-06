@@ -1,0 +1,842 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.0/intro/quick_start/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>快速开始 - Ayaka - 文字游戏开发辅助插件</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#795649">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/code.css">
+    
+      <link rel="stylesheet" href="../../css/tab-right.css">
+    
+      <link rel="stylesheet" href="../../css/big-font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="brown" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ayaka - 文字游戏开发辅助插件" class="md-header__button md-logo" aria-label="Ayaka - 文字游戏开发辅助插件" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ayaka - 文字游戏开发辅助插件
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              快速开始
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nonebot-plugin-ayaka
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+        
+      
+        
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../change-log/next/" class="md-tabs__link">
+        更新日志
+      </a>
+    </li>
+  
+
+        
+      
+        
+        
+  
+  
+
+<li class="md-tabs__item tab-right">
+  <a href="https://bridgel.github.io/nonebot-plugin-ayaka/" class="md-tabs__link">
+    API
+  </a>
+</li>
+        
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ayaka - 文字游戏开发辅助插件" class="md-nav__button md-logo" aria-label="Ayaka - 文字游戏开发辅助插件" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ayaka - 文字游戏开发辅助插件
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nonebot-plugin-ayaka
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qa/" class="md-nav__link">
+        常见问题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          更新日志
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="更新日志" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          更新日志
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../change-log/next/" class="md-nav__link">
+        未来计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../change-log/v5/" class="md-nav__link">
+        v5
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../change-log/v4/" class="md-nav__link">
+        v4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../change-log/v3/" class="md-nav__link">
+        v3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../change-log/v2/" class="md-nav__link">
+        v2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://bridgel.github.io/nonebot-plugin-ayaka/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/intro/quick_start.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><code>ayaka</code>希望帮助开发者更轻松地控制应用状态，并避免不同插件间的命令重名导致的冲突问题</p>
+<h2 id="_2">命令隔离<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>ayaka将每一个<code>插件</code>都视为一个<code>应用</code>，每一个<code>群聊</code>视为一个<code>设备</code></p>
+<p>设备平时处于<code>闲置状态</code>，你可以通过命令打开一个应用，令其运行</p>
+<p>随后，该设备将 <strong>只响应</strong> 该应用相关的命令</p>
+<p>例如：插件A（应用A）和插件B（应用B）都使用了一个<code>查询</code>的命令，那么设备将响应哪一个呢？</p>
+<p>ayaka的解决方式是，你需要先运行<code>应用A</code>和<code>应用B</code>中的一个，之后才可以使用<code>查询</code>命令，正在运行的应用进行响应</p>
+<h2 id="_3">状态机<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>假设我们现在需要做一个 <strong>星际旅行</strong> 的小游戏插件：你在不同的星球（状态）可以干不同的事，产生不同的后果</p>
+<h3 id="_4">需求如下<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地球</td>
+<td>jump</td>
+<td>一跳两米高</td>
+</tr>
+<tr>
+<td>地球</td>
+<td>hit</td>
+<td>你全力一击，制造了大地震</td>
+</tr>
+<tr>
+<td>月球</td>
+<td>jump</td>
+<td>你离开了月球...永远的...</td>
+</tr>
+<tr>
+<td>太阳</td>
+<td>drink</td>
+<td>嘿！像是一团火球进了胃</td>
+</tr>
+<tr>
+<td>任意地点</td>
+<td>goto &lt;名字&gt;</td>
+<td>去另一个星球</td>
+</tr>
+<tr>
+<td>任意地点</td>
+<td>hi</td>
+<td>你好, &lt;名字&gt;!</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">编写代码<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+
+
+<span class="c1"># 启动应用</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">app_start</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;打开应用&#39;&#39;&#39;</span>
+    <span class="c1"># 设置初始状态为地球</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># 星球</span>
+<span class="n">earth</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+<span class="n">moon</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;月亮&quot;</span><span class="p">)</span>
+<span class="n">sun</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="nb">all</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+
+<span class="c1"># 动作</span>
+<span class="n">hi</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="s2">&quot;你好&quot;</span><span class="p">)</span>
+<span class="n">hit</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;hit&quot;</span><span class="p">,</span> <span class="s2">&quot;打&quot;</span><span class="p">)</span>
+<span class="n">jump</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="s2">&quot;跳&quot;</span><span class="p">)</span>
+<span class="n">drink</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">,</span> <span class="s2">&quot;喝&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@all</span>
+<span class="nd">@hi</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;打个招呼&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好, </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@earth</span>
+<span class="nd">@jump</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;跳一跳&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;一跳两米高&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@earth</span>
+<span class="nd">@hit</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;打一打&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你全力一击，制造了大地震&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@moon</span>
+<span class="nd">@jump</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;跳一跳&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你离开了月球...永远的...&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@sun</span>
+<span class="nd">@drink</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;drink 1 drink&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;嘿！像是一团火球进了胃&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@all</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;goto&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;去其他地方转转&#39;&#39;&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你动身前往</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>这样就完成了</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 关闭应用</span>
+<span class="nd">@all</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;quit&quot;</span><span class="p">,</span> <span class="s2">&quot;退出&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;退出&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p>哦，不要忘记编写退出命令！</p>
+<p><img alt="图片" src="../%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C_1.png" /></p>
+<h2 id="_6">多层次的状态<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>在刚才的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店</p>
+<h3 id="_7">需求如下<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>太阳.奶茶店</td>
+<td>drink</td>
+<td>喝了一口3000度的奶茶</td>
+</tr>
+<tr>
+<td>太阳.其他地点</td>
+<td>drink</td>
+<td>嘿！像是一团火球进了胃</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">编写代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 补充1</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.奶茶店&quot;</span><span class="p">)</span>
+<span class="nd">@drink</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;热乎的&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>注意到，目前定义了两个drink</p>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>太阳</td>
+<td>drink</td>
+<td>嘿！像是一团火球进了胃</td>
+</tr>
+<tr>
+<td>太阳.奶茶店</td>
+<td>drink</td>
+<td>喝了一口3000度的奶茶</td>
+</tr>
+</tbody>
+</table>
+<p>优先触发最匹配的回调</p>
+<ul>
+<li>当状态为<code>太阳.奶茶店</code>时，触发后者</li>
+<li>当状态为<code>太阳.森林公园</code>时，触发前者</li>
+</ul>
+<p><img alt="图片" src="../%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C_2.png" /></p>
+<h2 id="_9">缓存<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>宇宙旅游公司又开设了一个新景点：耀斑表演</p>
+<p>我们需要先去售票处买耀斑表演的门票，然后再去表演现场</p>
+<h3 id="_10">需求如下<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>太阳.售票处</td>
+<td>buy</td>
+<td>耀斑表演门票+1</td>
+</tr>
+<tr>
+<td>太阳.任意地点</td>
+<td>watch</td>
+<td>去表演现场</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">编写代码<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 补充2</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.售票处&quot;</span><span class="p">)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;buy&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
+    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;去现场&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;去现场&#39;&#39;&#39;</span>
+    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
+    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ticket</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票-1&quot;</span><span class="p">)</span>
+        <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;太阳.耀斑表演&quot;</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你还没买票&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="图片" src="../%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C_3.png" /></p>
+<h2 id="vs">命令触发 vs 消息触发<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
+<p>刚才的所有回调都是由具体的、指定的命令来触发运行的</p>
+<p>然而，你也可以使用消息触发</p>
+<p>比如，你在现场随便说了一句话，触发回调运行</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 补充3</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.耀斑表演&quot;</span><span class="p">)</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你发现你的奶茶比表演项目还烫&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="图片" src="../%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C_4.png" /></p>
+<p>消息触发的优先级低于命令触发</p>
+<h2 id="_12">插件帮助<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>现在，我们写完了一个小插件了，那么该为它编写帮助了</p>
+<p>不幸的是，你已经在上述代码中完成了它</p>
+<p>通过分析 注册回调的注释(<code>__doc__</code>)，ayaka内置插件<a href="../master/">ayaka_master</a>会自动生成对应的帮助</p>
+<p>现在，你只需发送命令<code>help</code> </p>
+<p><img alt="图片" src="../%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C_5.png" /></p>
+<p><code>[*]</code> 代表它匹配任意状态，<code>*</code> 代表它匹配任意命令（=消息触发）</p>
+<h2 id="_13">测试<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>你可能注意到了，上图中的qq号(1, 123)和群聊号(100)并非真实qq号</p>
+<p>确实如此，因为这些消息，是由测试套件(<code>ayaka_test</code>)所捏造的，发送给nonebot用于测试</p>
+<p>你可以下载整个<a href="https://github.com/bridgeL/nonebot-plugin-ayaka">仓库</a>获得测试套件</p>
+<p>下一页将详细介绍使用方法</p>
+<h2 id="_14">下一步<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2022 bridgeL
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "toc.integrate", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../js/version.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2647 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.4.3/api/ayaka/ayaka/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
+    
+    
+      
+        <title>ayaka - Ayaka - 文字游戏开发辅助插件</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#795649">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/code.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="brown" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-ayakaapp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Ayaka - 文字游戏开发辅助插件" class="md-header__button md-logo" aria-label="Ayaka - 文字游戏开发辅助插件" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ayaka - 文字游戏开发辅助插件
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ayaka
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nonebot-plugin-ayaka
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../more/" class="md-tabs__link">
+        更多示例
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../develop/" class="md-tabs__link">
+        开发衍生插件
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        API
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../games/" class="md-tabs__link">
+        小游戏合集
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../change-log/next/" class="md-tabs__link">
+        更新日志
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Ayaka - 文字游戏开发辅助插件" class="md-nav__button md-logo" aria-label="Ayaka - 文字游戏开发辅助插件" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Ayaka - 文字游戏开发辅助插件
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    nonebot-plugin-ayaka
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../intro/install/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          开发
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="开发" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          开发
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../intro/quick_start/" class="md-nav__link">
+        快速开始
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../intro/test/" class="md-nav__link">
+        测试
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../intro/master/" class="md-nav__link">
+        内置插件
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../intro/term/" class="md-nav__link">
+        其他用语
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../more/">更多示例</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="更多示例" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          更多示例
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          状态机
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="状态机" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          状态机
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../more/menu/" class="md-nav__link">
+        多级菜单
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../more/mult_input/" class="md-nav__link">
+        多次输入
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          其他功能
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="其他功能" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          其他功能
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../more/clock/" class="md-nav__link">
+        整点报时
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../more/split/" class="md-nav__link">
+        分割参数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../more/baidu/" class="md-nav__link">
+        浏览器截图
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../develop/">开发衍生插件</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="开发衍生插件" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          开发衍生插件
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/api/" class="md-nav__link">
+        速览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/open/" class="md-nav__link">
+        开启应用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/on/" class="md-nav__link">
+        注册回调
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/browser/" class="md-nav__link">
+        浏览器截图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_6" type="checkbox" id="__nav_3_6" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_6">
+          数据读写
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="数据读写" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          数据读写
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/cache/" class="md-nav__link">
+        缓存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/storage/" class="md-nav__link">
+        持久化
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/parser/" class="md-nav__link">
+        解析
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../">API</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ayaka
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        ayaka
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-ayakaapp" class="md-nav__link">
+    class AyakaApp
+  </a>
+  
+    <nav class="md-nav" aria-label="class AyakaApp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#def-__repr__" class="md-nav__link">
+    def __repr__
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-__init__" class="md-nav__link">
+    def __init__
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-super_triggers" class="md-nav__link">
+    def super_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-state_triggers" class="md-nav__link">
+    def state_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-no_state_triggers" class="md-nav__link">
+    def no_state_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-intro" class="md-nav__link">
+    def intro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-get_helps" class="md-nav__link">
+    def get_helps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-help" class="md-nav__link">
+    def help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-all_help" class="md-nav__link">
+    def all_help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-help_1" class="md-nav__link">
+    def help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-valid" class="md-nav__link">
+    def valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-cache" class="md-nav__link">
+    def cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-user_name" class="md-nav__link">
+    def user_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-user_id" class="md-nav__link">
+    def user_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-bot" class="md-nav__link">
+    def bot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-event" class="md-nav__link">
+    def event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-group_id" class="md-nav__link">
+    def group_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-bot_id" class="md-nav__link">
+    def bot_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-group" class="md-nav__link">
+    def group
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-arg" class="md-nav__link">
+    def arg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-args" class="md-nav__link">
+    def args
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-cmd" class="md-nav__link">
+    def cmd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-message" class="md-nav__link">
+    def message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-start" class="md-nav__link">
+    async def start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-close" class="md-nav__link">
+    async def close
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-set_state" class="md-nav__link">
+    def set_state
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-add_listener" class="md-nav__link">
+    def add_listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-remove_listener" class="md-nav__link">
+    def remove_listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-send" class="md-nav__link">
+    async def send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-pack_messages" class="md-nav__link">
+    def pack_messages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-send_many" class="md-nav__link">
+    async def send_many
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-t_check" class="md-nav__link">
+    def t_check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-t_send" class="md-nav__link">
+    async def t_send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-t_send_many" class="md-nav__link">
+    async def t_send_many
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-startup" class="md-nav__link">
+    async def startup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-shutdown" class="md-nav__link">
+    async def shutdown
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-bot_connect" class="md-nav__link">
+    async def bot_connect
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-bot_disconnect" class="md-nav__link">
+    async def bot_disconnect
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-vars" class="md-nav__link">
+    global vars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ayaka_master/" class="md-nav__link">
+        ayaka_master
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constant/" class="md-nav__link">
+        constant
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deal/" class="md-nav__link">
+        deal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../group/" class="md-nav__link">
+        group
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json_ctrl/" class="md-nav__link">
+        json_ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on/" class="md-nav__link">
+        on
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parser/" class="md-nav__link">
+        parser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../playwright/" class="md-nav__link">
+        playwright
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage/" class="md-nav__link">
+        storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../games/">小游戏合集</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="小游戏合集" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          小游戏合集
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../games/install/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          游戏帮助
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="游戏帮助" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          游戏帮助
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../games/who-is-suspect/" class="md-nav__link">
+        谁是卧底
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../games/help/" class="md-nav__link">
+        更多帮助
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          更新日志
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="更新日志" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          更新日志
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-log/next/" class="md-nav__link">
+        未来计划
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-log/v4/" class="md-nav__link">
+        v4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-log/v3/" class="md-nav__link">
+        v3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../change-log/v2/" class="md-nav__link">
+        v2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#class-ayakaapp" class="md-nav__link">
+    class AyakaApp
+  </a>
+  
+    <nav class="md-nav" aria-label="class AyakaApp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#def-__repr__" class="md-nav__link">
+    def __repr__
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-__init__" class="md-nav__link">
+    def __init__
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-super_triggers" class="md-nav__link">
+    def super_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-state_triggers" class="md-nav__link">
+    def state_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-no_state_triggers" class="md-nav__link">
+    def no_state_triggers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-intro" class="md-nav__link">
+    def intro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-get_helps" class="md-nav__link">
+    def get_helps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-help" class="md-nav__link">
+    def help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-all_help" class="md-nav__link">
+    def all_help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-help_1" class="md-nav__link">
+    def help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-valid" class="md-nav__link">
+    def valid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-cache" class="md-nav__link">
+    def cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-user_name" class="md-nav__link">
+    def user_name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-user_id" class="md-nav__link">
+    def user_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-bot" class="md-nav__link">
+    def bot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-event" class="md-nav__link">
+    def event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-group_id" class="md-nav__link">
+    def group_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-bot_id" class="md-nav__link">
+    def bot_id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-group" class="md-nav__link">
+    def group
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-arg" class="md-nav__link">
+    def arg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-args" class="md-nav__link">
+    def args
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-cmd" class="md-nav__link">
+    def cmd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-message" class="md-nav__link">
+    def message
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-start" class="md-nav__link">
+    async def start
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-close" class="md-nav__link">
+    async def close
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-set_state" class="md-nav__link">
+    def set_state
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-add_listener" class="md-nav__link">
+    def add_listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-remove_listener" class="md-nav__link">
+    def remove_listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-send" class="md-nav__link">
+    async def send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-pack_messages" class="md-nav__link">
+    def pack_messages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-send_many" class="md-nav__link">
+    async def send_many
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#def-t_check" class="md-nav__link">
+    def t_check
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-t_send" class="md-nav__link">
+    async def t_send
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async-def-t_send_many" class="md-nav__link">
+    async def t_send_many
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-startup" class="md-nav__link">
+    async def startup
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-shutdown" class="md-nav__link">
+    async def shutdown
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-bot_connect" class="md-nav__link">
+    async def bot_connect
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#async-def-bot_disconnect" class="md-nav__link">
+    async def bot_disconnect
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-vars" class="md-nav__link">
+    global vars
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/api/ayaka/ayaka.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+  <h1>ayaka</h1>
+
+<h2 id="class-ayakaapp">class AyakaApp<a class="headerlink" href="#class-ayakaapp" title="Permanent link">&para;</a></h2>
+<p>Ayaka 应用</p>
+<p>ayaka插件的核心</p>
+<h3 id="def-__repr__">def __repr__<a class="headerlink" href="#def-__repr__" title="Permanent link">&para;</a></h3>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;AyakaApp(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">)&quot;</span>
+</code></pre></div>
+<h3 id="def-__init__">def __init__<a class="headerlink" href="#def-__init__" title="Permanent link">&para;</a></h3>
+<p>参数表：</p>
+<ul>
+<li>name: str</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">INIT_STATE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">triggers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AyakaTrigger</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AyakaTimer</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="n">AyakaOn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">AyakaStorage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">AyakaParser</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">app</span> <span class="ow">in</span> <span class="n">app_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;应用</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> 重复注册，已忽略后注册的应用！</span><span class="se">\n</span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">(被忽略)&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">app_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">AYAKA_DEBUG</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-super_triggers">def super_triggers<a class="headerlink" href="#def-super_triggers" title="Permanent link">&para;</a></h3>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">super_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">triggers</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">super</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="def-state_triggers">def state_triggers<a class="headerlink" href="#def-state_triggers" title="Permanent link">&para;</a></h3>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">state_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">triggers</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">super</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="def-no_state_triggers">def no_state_triggers<a class="headerlink" href="#def-no_state_triggers" title="Permanent link">&para;</a></h3>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">no_state_triggers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">triggers</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">t</span><span class="o">.</span><span class="n">super</span> <span class="ow">and</span> <span class="n">t</span><span class="o">.</span><span class="n">state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">]</span>
+</code></pre></div>
+<h3 id="def-intro">def intro<a class="headerlink" href="#def-intro" title="Permanent link">&para;</a></h3>
+<p>获取介绍，也就是init状态下的帮助</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">intro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;获取介绍，也就是init状态下的帮助&#39;&#39;&#39;</span>
+        <span class="n">helps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">INIT_STATE</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;没有找到帮助&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">helps</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-get_helps">def get_helps<a class="headerlink" href="#def-get_helps" title="Permanent link">&para;</a></h3>
+<p>参数表：</p>
+<ul>
+<li>state: str</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">get_helps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">helps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">helps</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">helps</span>
+</code></pre></div>
+<h3 id="def-help">def help<a class="headerlink" href="#def-help" title="Permanent link">&para;</a></h3>
+<p>获取当前状态下的帮助，没有找到则返回介绍</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;获取当前状态下的帮助，没有找到则返回介绍&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">running_app_name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="n">helps</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+            <span class="n">helps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_helps</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+
+            <span class="k">while</span> <span class="s2">&quot;.&quot;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">helps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_helps</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+
+            <span class="n">helps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_helps</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">helps</span><span class="p">:</span>
+                <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">helps</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intro</span>
+</code></pre></div>
+<h3 id="def-all_help">def all_help<a class="headerlink" href="#def-all_help" title="Permanent link">&para;</a></h3>
+<p>获取介绍以及全部状态下的帮助</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">all_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;获取介绍以及全部状态下的帮助&#39;&#39;&#39;</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intro</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">INIT_STATE</span><span class="p">:</span>
+                <span class="n">info</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">[</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">info</span>
+</code></pre></div>
+<h3 id="def-help_1">def help<a class="headerlink" href="#def-help_1" title="Permanent link">&para;</a></h3>
+<p>设置帮助，若help为str，则设置为介绍，若help为dict，则设置为对应状态的帮助</p>
+<p>参数表：</p>
+<ul>
+<li>help: Union[str, Dict[str, str]]</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@help</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">help</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">help</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]):</span>
+        <span class="sd">&#39;&#39;&#39;设置帮助，若help为str，则设置为介绍，若help为dict，则设置为对应状态的帮助&#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">help</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">help</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">help</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">help</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_help</span><span class="p">[</span><span class="n">INIT_STATE</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">help</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+</code></pre></div>
+<h3 id="def-valid">def valid<a class="headerlink" href="#def-valid" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前app是否被当前群组启用</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前app是否被当前群组启用</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-cache">def cache<a class="headerlink" href="#def-cache" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前群组、当前app的独立数据空间</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前群组、当前app的独立数据空间</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">cache_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-user_name">def user_name<a class="headerlink" href="#def-user_name" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息的发送人的群名片或昵称</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">user_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息的发送人的群名片或昵称</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">sender</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">card</span> <span class="ow">or</span> <span class="n">s</span><span class="o">.</span><span class="n">nickname</span>
+        <span class="k">return</span> <span class="n">name</span>
+</code></pre></div>
+<h3 id="def-user_id">def user_id<a class="headerlink" href="#def-user_id" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息的发送人的uid</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">user_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息的发送人的uid</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">user_id</span>
+</code></pre></div>
+<h3 id="def-bot">def bot<a class="headerlink" href="#def-bot" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前bot</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前bot</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_bot</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-event">def event<a class="headerlink" href="#def-event" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">event</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_event</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-group_id">def group_id<a class="headerlink" href="#def-group_id" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前群组的id</p>
+<p>注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A的id</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">group_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前群组的id</span>
+
+<span class="sd">        注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A的id</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">group_id</span>
+</code></pre></div>
+<h3 id="def-bot_id">def bot_id<a class="headerlink" href="#def-bot_id" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前bot的id</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bot_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前bot的id</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">bot_id</span>
+</code></pre></div>
+<h3 id="def-group">def group<a class="headerlink" href="#def-group" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前群组</p>
+<p>注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前群组</span>
+
+<span class="sd">        注：若群聊A正监听私聊B，当私聊B发送消息触发插件回调时，该属性仍可正确返回群聊A</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_group</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-arg">def arg<a class="headerlink" href="#def-arg" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息在移除了命令后的剩余部分</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">arg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息在移除了命令后的剩余部分</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_arg</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-args">def args<a class="headerlink" href="#def-args" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息在移除了命令后，剩余部分按照空格分割后的数组</p>
+<p>注：除了文字消息外，其他消息类型将自动分割，例如一串qq表情会被分割为多个元素</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">args</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息在移除了命令后，剩余部分按照空格分割后的数组</span>
+
+<span class="sd">        注：除了文字消息外，其他消息类型将自动分割，例如一串qq表情会被分割为多个元素</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_args</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-cmd">def cmd<a class="headerlink" href="#def-cmd" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息的命令头</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">cmd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息的命令头</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_cmd</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="def-message">def message<a class="headerlink" href="#def-message" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>当前消息</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        当前消息</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">_message</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="async-def-start">async def start<a class="headerlink" href="#async-def-start" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>启动应用，并发送提示</p>
+<p>参数表：</p>
+<ul>
+<li>state</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">INIT_STATE</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        启动应用，并发送提示&#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">running_app_name</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;打开应用失败&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">running_app</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已打开应用 [</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="async-def-close">async def close<a class="headerlink" href="#async-def-close" title="Permanent link">&para;</a></h3>
+<p><em>timer触发时不可用</em></p>
+<p>关闭应用，并发送提示</p>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;*timer触发时不可用*</span>
+
+<span class="sd">        关闭应用，并发送提示&#39;&#39;&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">running_app_name</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">running_app</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已关闭应用 [</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;没有应用在运行&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-set_state">def set_state<a class="headerlink" href="#def-set_state" title="Permanent link">&para;</a></h3>
+<p>参数表：</p>
+<ul>
+<li>state</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">INIT_STATE</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+</code></pre></div>
+<h3 id="def-add_listener">def add_listener<a class="headerlink" href="#def-add_listener" title="Permanent link">&para;</a></h3>
+<p>为该群组添加对指定私聊的监听</p>
+<p>参数表：</p>
+<ul>
+<li>user_id: int</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
+        <span class="n">private_listener_dict</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-remove_listener">def remove_listener<a class="headerlink" href="#def-remove_listener" title="Permanent link">&para;</a></h3>
+<p>默认移除该群组对其他私聊的所有监听</p>
+<p>参数表：</p>
+<ul>
+<li>user_id: int</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
+        <span class="nb">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span>
+
+        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ids</span> <span class="ow">in</span> <span class="n">private_listener_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">:</span>
+                    <span class="n">ids</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">private_listener_dict</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
+            <span class="n">private_listener_dict</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="async-def-send">async def send<a class="headerlink" href="#async-def-send" title="Permanent link">&para;</a></h3>
+<p>发送消息，消息的类型可以是 Message | MessageSegment | str</p>
+<p>参数表：</p>
+<ul>
+<li>message</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;发送消息，消息的类型可以是 Message | MessageSegment | str&#39;&#39;&#39;</span>
+        <span class="c1"># 这里不使用event，因为一些event可能来自其他设备的监听传递</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-pack_messages">def pack_messages<a class="headerlink" href="#def-pack_messages" title="Permanent link">&para;</a></h3>
+<p>转换为cqhttp node格式</p>
+<p>参数表：</p>
+<ul>
+<li>bot_id</li>
+<li>messages</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">pack_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">,</span> <span class="n">messages</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;转换为cqhttp node格式&#39;&#39;&#39;</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MessageSegment</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">MessageSegment</span><span class="p">):</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">m</span> <span class="o">=</span> <span class="n">MessageSegment</span><span class="o">.</span><span class="n">node_custom</span><span class="p">(</span>
+                    <span class="n">user_id</span><span class="o">=</span><span class="n">bot_id</span><span class="p">,</span>
+                    <span class="n">nickname</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
+                    <span class="n">content</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+</code></pre></div>
+<h3 id="async-def-send_many">async def send_many<a class="headerlink" href="#async-def-send_many" title="Permanent link">&para;</a></h3>
+<p>发送合并转发消息，消息的类型可以是 List[Message | MessageSegment | str]</p>
+<p>参数表：</p>
+<ul>
+<li>messages</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;发送合并转发消息，消息的类型可以是 List[Message | MessageSegment | str]&#39;&#39;&#39;</span>
+        <span class="c1"># 分割长消息组（不可超过100条）谨慎起见，使用80作为单元长度</span>
+        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
+            <span class="n">msgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pack_messages</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
+                <span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span><span class="s2">&quot;send_group_forward_msg&quot;</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="def-t_check">def t_check<a class="headerlink" href="#def-t_check" title="Permanent link">&para;</a></h3>
+<p>参数表：</p>
+<ul>
+<li>bot_id: int</li>
+<li>group_id: int</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">def</span> <span class="nf">t_check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="c1"># 未连接</span>
+        <span class="n">bot</span> <span class="o">=</span> <span class="n">get_bot</span><span class="p">(</span><span class="n">bot_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BOT(</span><span class="si">{</span><span class="n">bot_id</span><span class="si">}</span><span class="s2">) 未连接&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># 已禁用</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">bot_id</span><span class="p">,</span> <span class="n">group_id</span><span class="p">)</span>
+        <span class="n">app</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">app</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;群聊(</span><span class="si">{</span><span class="n">group_id</span><span class="si">}</span><span class="s2">) 已禁用 </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="n">bot</span>
+</code></pre></div>
+<h3 id="async-def-t_send">async def t_send<a class="headerlink" href="#async-def-t_send" title="Permanent link">&para;</a></h3>
+<p>timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用</p>
+<p>参数表：</p>
+<ul>
+<li>bot_id: int</li>
+<li>group_id: int</li>
+<li>message</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">t_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用&#39;&#39;&#39;</span>
+        <span class="n">bot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_check</span><span class="p">(</span><span class="n">bot_id</span><span class="p">,</span> <span class="n">group_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">send_group_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="async-def-t_send_many">async def t_send_many<a class="headerlink" href="#async-def-t_send_many" title="Permanent link">&para;</a></h3>
+<p>timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用</p>
+<p>参数表：</p>
+<ul>
+<li>bot_id: int</li>
+<li>group_id: int</li>
+<li>messages</li>
+</ul>
+<div class="highlight"><pre><span></span><code>    <span class="k">async</span> <span class="k">def</span> <span class="nf">t_send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bot_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">messages</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;timer触发回调时，想要发送消息必须使用该方法，一些上下文亦无法使用&#39;&#39;&#39;</span>
+        <span class="n">bot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_check</span><span class="p">(</span><span class="n">bot_id</span><span class="p">,</span> <span class="n">group_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">bot</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="c1"># 分割长消息组（不可超过100条）谨慎起见，使用80作为单元长度</span>
+        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">80</span>
+        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
+            <span class="n">msgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pack_messages</span><span class="p">(</span>
+                <span class="n">bot_id</span><span class="p">,</span>
+                <span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">call_api</span><span class="p">(</span><span class="s2">&quot;send_group_forward_msg&quot;</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="async-def-startup">async def startup<a class="headerlink" href="#async-def-startup" title="Permanent link">&para;</a></h2>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@driver</span><span class="o">.</span><span class="n">on_startup</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
+    <span class="n">app_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">init_chrome</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="async-def-shutdown">async def shutdown<a class="headerlink" href="#async-def-shutdown" title="Permanent link">&para;</a></h2>
+<p>无参数</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@driver</span><span class="o">.</span><span class="n">on_shutdown</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">close_chrome</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="async-def-bot_connect">async def bot_connect<a class="headerlink" href="#async-def-bot_connect" title="Permanent link">&para;</a></h2>
+<p>参数表：</p>
+<ul>
+<li>bot: Bot</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@driver</span><span class="o">.</span><span class="n">on_bot_connect</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">bot_connect</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">):</span>
+    <span class="n">bot_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bot</span><span class="p">)</span>
+
+    <span class="c1"># 在一切准备就绪后，开启插件中的定时模块</span>
+    <span class="k">global</span> <span class="n">first_bot_connect</span>
+    <span class="k">if</span> <span class="n">first_bot_connect</span><span class="p">:</span>
+        <span class="n">first_bot_connect</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">app</span> <span class="ow">in</span> <span class="n">app_list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">timers</span><span class="p">:</span>
+                <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="async-def-bot_disconnect">async def bot_disconnect<a class="headerlink" href="#async-def-bot_disconnect" title="Permanent link">&para;</a></h2>
+<p>参数表：</p>
+<ul>
+<li>bot: Bot</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@driver</span><span class="o">.</span><span class="n">on_bot_disconnect</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">bot_disconnect</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">):</span>
+    <span class="n">bot_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">bot</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="global-vars">global vars<a class="headerlink" href="#global-vars" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">driver</span> <span class="o">=</span> <span class="n">get_driver</span><span class="p">()</span>
+<span class="n">first_bot_connect</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="Previous: API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ayaka_master/" class="md-footer__link md-footer__link--next" aria-label="Next: ayaka_master" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              ayaka_master
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2022 bridgeL
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.8492ddcf.min.js"></script>
+      
+        <script src="../../../javascript/version-mike.js"></script>
+      
+    
+  </body>
+</html>

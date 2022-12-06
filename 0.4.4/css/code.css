@@ -1,0 +1,8 @@
+code {
+    /* 代码自动换行 */
+    white-space: break-spaces;
+}
+
+/* code span {
+    word-break: break-all;
+} */
