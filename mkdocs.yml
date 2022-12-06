@@ -67,6 +67,7 @@ nav:
   - v2: change-log/v2.md
 - API: https://bridgel.github.io/nonebot-plugin-ayaka/
 
+
 markdown_extensions:
 - pymdownx.highlight:
     linenums_style: pymdownx-inline
