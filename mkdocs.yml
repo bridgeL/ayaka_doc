@@ -33,32 +33,32 @@ nav:
   - 介绍: index.md
   - 安装: intro/install.md
   - 常见问题: intro/qa.md
-  - 快速开始: intro/quick_start.md
-  - 测试: intro/test.md
-  - 内置插件: intro/master.md
-  - 其他用语: intro/term.md
-- 更多示例: 
-  - 更多示例: more/index.md
-  - 多级菜单: more/menu.md
-  - 多次输入: more/mult_input.md
-  - 整点报时: more/clock.md
-  - 分割参数: more/split.md
-  - 浏览器截图: more/baidu.md
-- 开发衍生插件:
-  - 前置内容: develop/index.md
-  - 速览: develop/api.md
-  - 开启应用: develop/open.md
-  - 注册回调: develop/on.md
-  - 浏览器截图: develop/browser.md
-  - 缓存: develop/cache.md
-  - 持久化: develop/storage.md
-  - 解析: develop/parser.md
-  - 配置: develop/config.md
-- 小游戏合集:
-  - 介绍: games/index.md
-  - 安装: games/install.md
-  - 谁是卧底: games/who-is-suspect.md
-  - 更多帮助: games/help.md
+#   - 快速开始: intro/quick_start.md
+#   - 测试: intro/test.md
+#   - 内置插件: intro/master.md
+#   - 其他用语: intro/term.md
+# - 更多示例: 
+#   - 更多示例: more/index.md
+#   - 多级菜单: more/menu.md
+#   - 多次输入: more/mult_input.md
+#   - 整点报时: more/clock.md
+#   - 分割参数: more/split.md
+#   - 浏览器截图: more/baidu.md
+# - 开发衍生插件:
+#   - 前置内容: develop/index.md
+#   - 速览: develop/api.md
+#   - 开启应用: develop/open.md
+#   - 注册回调: develop/on.md
+#   - 浏览器截图: develop/browser.md
+#   - 缓存: develop/cache.md
+#   - 持久化: develop/storage.md
+#   - 解析: develop/parser.md
+#   - 配置: develop/config.md
+# - 小游戏合集:
+#   - 介绍: games/index.md
+#   - 安装: games/install.md
+#   - 谁是卧底: games/who-is-suspect.md
+#   - 更多帮助: games/help.md
 - 更新日志:
   - 未来计划: change-log/next.md
   - v5: change-log/v5.md
