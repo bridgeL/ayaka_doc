@@ -33,13 +33,13 @@ async def func_1(userinput:UserInput):
 | `name:str`      | 正确 |
 | `name`          | 错误 |
 
-用户输入 #f1 张三丰 100
+用户输入 `#f1 张三丰 100`
 
 ```
 name='张三丰' age=100
 ```
 
-用户输入 #f1 张三丰
+用户输入 `#f1 张三丰`
 
 ```
 1 validation error for UserInput
@@ -47,7 +47,7 @@ age
   field required (type=value_error.missing)
 ```
 
-用户输入 #f1 张三丰 测试
+用户输入 `#f1 张三丰 测试`
 
 ```
 1 validation error for UserInput
@@ -55,7 +55,7 @@ age
   value is not a valid integer (type=type_error.integer)
 ```
 
-## 进阶: msg_type
+## 进阶：msg_type
 
 使用`msg_type`获取指定类型的`MessageSegment`（除了`type=text`类型）
 
@@ -72,7 +72,7 @@ async def func_1(userinput:UserInput):
     print(userinput)
 ```
 
-用户输入 #f1 123
+用户输入 `#f1 123`
 
 ```
 1 validation error for UserInput
@@ -80,13 +80,13 @@ at
   MessageSegment required (type=type_error)
 ```
 
-用户输入 #f1 [CQ:at,qq=12]
+用户输入 `#f1 [CQ:at,qq=12]`
 
 ```
 at=MessageSegment(type='at', data={'qq': '12'})
 ```
 
-## 进阶: 约束
+## 进阶：约束
 
 使用`pydantic`进行约束，约束条件参考[pydantic.Field](https://docs.pydantic.dev/usage/types/#constrained-types)
 
@@ -104,7 +104,7 @@ async def func_1(userinput:UserInput):
     print(userinput)
 ```
 
-用户输入 #f1 -1 
+用户输入 `#f1 -1` 
 
 ```
 1 validation error for UserInput
@@ -112,12 +112,12 @@ age
   ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
 ```
 
-用户输入 #f1 100 
+用户输入 `#f1 100 `
 ```
 age=100
 ```
 
-## 进阶: 帮助
+## 进阶：帮助
 
 使用`Field`，编写`description`，以便`ayaka_master`为该属性提供帮助
 
@@ -138,7 +138,7 @@ async def func_1(userinput: UserInput):
     pass
 ```
 
-用户输入 #help test   
+用户输入 `#help test`   
 
 ```
 [test]
