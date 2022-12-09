@@ -533,8 +533,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#state" class="md-nav__link">
-    state
+  <a href="#startcloseset_start_cmds" class="md-nav__link">
+    start、close、set_start_cmds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stateget_state" class="md-nav__link">
+    state、get_state
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set_stategotoback" class="md-nav__link">
+    set_state、goto、back
   </a>
   
 </li>
@@ -542,6 +556,13 @@
         <li class="md-nav__item">
   <a href="#on_xxx" class="md-nav__link">
     on_xxx 注册回调
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add_listenerremove_listener" class="md-nav__link">
+    add_listener、remove_listener
   </a>
   
 </li>
@@ -555,6 +576,13 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
+    其他
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
     下一步
   </a>
   
@@ -901,18 +929,127 @@
 </code></pre></div>
 <h2 id="boteventmessage">bot、event、message<a class="headerlink" href="#boteventmessage" title="Permanent link">&para;</a></h2>
 <p>御 三 家</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.bot</td>
+<td><code>Bot</code></td>
+<td>当前机器人</td>
+</tr>
+<tr>
+<td>app.event</td>
+<td><code>MessageEvent</code></td>
+<td>当前消息事件</td>
+</tr>
+<tr>
+<td>app.message</td>
+<td><code>Message</code></td>
+<td>当前消息</td>
+</tr>
+</tbody>
+</table>
 <h2 id="cmdargargs">cmd、arg、args<a class="headerlink" href="#cmdargargs" title="Permanent link">&para;</a></h2>
 <p>二 代 御 三 家</p>
+<p><em>在有了AyakaInput后，args已经没落了（悲（我装的</em></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.cmd</td>
+<td><code>str</code></td>
+<td>本次响应是针对哪个命令</td>
+</tr>
+<tr>
+<td>app.arg</td>
+<td><code>Message</code></td>
+<td>删除了命令后剩下的消息部分</td>
+</tr>
+<tr>
+<td>app.args</td>
+<td><code>List[MessageSegment]</code></td>
+<td>删除命令后，依照分隔符分割，并移除空数据</td>
+</tr>
+</tbody>
+</table>
 <h2 id="user_nameuser_idgroup_id">user_name、user_id、group_id<a class="headerlink" href="#user_nameuser_idgroup_id" title="Permanent link">&para;</a></h2>
 <p>懒 人 三 件 套</p>
-<ul>
-<li>获取群组id app.group_id</li>
-<li>获取用户id app.user_id</li>
-<li>获取用户名 app.user_name</li>
-</ul>
-<h2 id="state">state<a class="headerlink" href="#state" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.group_id</td>
+<td><code>int</code></td>
+<td>当前群聊的群号</td>
+</tr>
+<tr>
+<td>app.user_id</td>
+<td><code>int</code></td>
+<td>当前消息的发送者的qq号</td>
+</tr>
+<tr>
+<td>app.user_name</td>
+<td><code>str</code></td>
+<td>当前消息的发送者的群名片或昵称（优先为群名片）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="startcloseset_start_cmds">start、close、set_start_cmds<a class="headerlink" href="#startcloseset_start_cmds" title="Permanent link">&para;</a></h2>
+<h2 id="stateget_state">state、get_state<a class="headerlink" href="#stateget_state" title="Permanent link">&para;</a></h2>
+<h2 id="set_stategotoback">set_state、goto、back<a class="headerlink" href="#set_stategotoback" title="Permanent link">&para;</a></h2>
 <h2 id="on_xxx">on_xxx 注册回调<a class="headerlink" href="#on_xxx" title="Permanent link">&para;</a></h2>
+<h2 id="add_listenerremove_listener">add_listener、remove_listener<a class="headerlink" href="#add_listenerremove_listener" title="Permanent link">&para;</a></h2>
 <h2 id="sendsend_many">send、send_many<a class="headerlink" href="#sendsend_many" title="Permanent link">&para;</a></h2>
+<h2 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>str</code></td>
+<td>应用名称</td>
+</tr>
+<tr>
+<td>bot_id</td>
+<td><code>int</code></td>
+<td>当前机器人的qq号</td>
+</tr>
+<tr>
+<td>group</td>
+<td><code>AyakaGroup</code></td>
+<td>当前群组</td>
+</tr>
+<tr>
+<td>cache</td>
+<td><code>Dict[str,AyakaCache]</code></td>
+<td>为当前群组当前应用提供的独立缓存数据空间</td>
+</tr>
+</tbody>
+</table>
 <!--
 ## t_send、t_send_many
 
@@ -941,7 +1078,7 @@
 ### app.on.everyday(h: int, m: int, s: int)
 每日定时触发 -->
 
-<h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">下一步<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
