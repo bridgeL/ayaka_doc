@@ -4,11 +4,15 @@
     background: black;
     overflow: hidden;
     color: white;
-    padding: 20px;
+    padding: 20px 0;
+}
+
+.demo-line {
+    padding: 0 20px;
 }
 
 .demo-line:nth-child(odd) {
-    background: #222;
+    background: #333;
 }
 
 .demo-user,
@@ -19,7 +23,7 @@
 }
 
 .demo-user {
-    color: lightgreen;
+    color: #00ff00;
 }
 
 .demo-bot {
