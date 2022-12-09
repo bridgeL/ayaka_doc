@@ -4,9 +4,10 @@
     background: black;
     overflow: hidden;
     color: white;
+    padding: 20px;
 }
 
-.demo:nth-child(odd) {
+.demo-line:nth-child(odd) {
     background: #222;
 }
 
