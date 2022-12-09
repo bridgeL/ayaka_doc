@@ -1,4 +1,8 @@
+## 配置
 
+打开`data/ayaka/ayaka_setting.json`，修改其中的`__root__/use_playwright`的值为`True`
+
+如果你在windows下使用插件，请关闭`fastapi_reload`
 
 ## get_new_page(width,  **kwargs)
 获取playwright Page对象
