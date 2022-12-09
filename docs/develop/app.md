@@ -1,3 +1,5 @@
+# AyakaApp
+
 首先，你需要导入并初始化一个`AyakaApp`对象
 
 ```py
@@ -5,6 +7,9 @@ from ayaka import AyakaApp
 
 app = AyakaApp("测试一下")
 ```
+
+详细api：[https://bridgel.github.io/nonebot-plugin-ayaka/](https://bridgel.github.io/nonebot-plugin-ayaka/)
+
 
 ## bot、event、message
 
@@ -40,7 +45,24 @@ _在有了AyakaInput后，args已经没落了（悲（我装的_
 | app.user_id   | `int` | 当前消息的发送者的qq号                         |
 | app.user_name | `str` | 当前消息的发送者的群名片或昵称（优先为群名片） |
 
-## start、close、set_start_cmds
+## start、close、send、send_many
+
+四 大 天 王
+
+都是异步方法
+
+| 名称      | 功能             |
+| --------- | ---------------- |
+| start     | 运行应用         |
+| close     | 关闭应用         |
+| send      | 发送消息         |
+| send_many | 发送合并转发消息 |
+
+特别的，start可以设置参数，令app运行后进入指定状态
+
+## set_start_cmds
+
+设置启动应用的命令
 
 ## state、get_state
 
@@ -50,7 +72,10 @@ _在有了AyakaInput后，args已经没落了（悲（我装的_
 
 ## add_listener、remove_listener
 
-## send、send_many
+| 名称            | 功能                     |
+| --------------- | ------------------------ |
+| add_listener    | 为该群组添加对私聊的监听 |
+| remove_listener | 移除该群组对私聊的监听   |
 
 ## 其他
 

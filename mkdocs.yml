@@ -37,9 +37,10 @@ nav:
 - 开发衍生插件:
   - 工作原理: develop/how-does-it-work.md
   - 应用: develop/app.md
-  - 输入: develop/input.md
   - 缓存: develop/cache.md
   - 配置: develop/config.md
+  - 输入: develop/input.md
+  - 数据库: develop/db.md
   - 状态: develop/state.md
   - 浏览器截图: develop/browser.md
 - 小游戏合集:

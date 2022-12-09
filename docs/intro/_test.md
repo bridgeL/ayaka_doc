@@ -38,18 +38,14 @@ ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 
 ## 通用命令
 
-| 命令                            | 功能                                      |
-| ------------------------------- | ----------------------------------------- |
-| g `<group_id> <user_id> <text>` | 伪造一条群聊消息                          |
-| p `<user_id> <text> `           | 伪造一条私聊消息                          |
-| d 1                             | 延时1秒                                   |
-| dn 0.1                          | 延时0.1秒后空一行                         |
-| sa on/off                       | 打开/关闭 对nonebot收发消息的采样         |
-| s -n test                       | 执行script/test.ini自动化脚本             |
-| s -p yes -n test                | 执行plugins/yes/script/test.ini自动化脚本 |
-
-- `-p` 意为 plugin_name
-- `-n` 意为 script_name
+| 命令                            | 功能                              |
+| ------------------------------- | --------------------------------- |
+| g `<group_id> <user_id> <text>` | 伪造一条群聊消息                  |
+| p `<user_id> <text> `           | 伪造一条私聊消息                  |
+| d 1                             | 延时1秒                           |
+| dn 0.1                          | 延时0.1秒后空一行                 |
+| sa on/off                       | 打开/关闭 对nonebot收发消息的采样 |
+| s test                          | 执行script/test.ini自动化脚本     |
 
 ## 自动化脚本
 
