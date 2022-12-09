@@ -602,52 +602,52 @@
 <p>如果需要临时保存一些数据，以供应用在不同时刻/函数中使用，那么需要使用缓存</p>
 <p><code>app.cache</code>中提供了一些有益的api</p>
 <h2 id="_1">快速上手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
-    <span class="n">money</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
-    <span class="o">...</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
-    <span class="c1"># 如果已经设置了值，则返回10，否则返回缺省值0</span>
-    <span class="n">money</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">money</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="c1"># 如果已经设置了值，则返回10，否则返回缺省值0</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">money</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="linenos" data-linenos="17 "></span>    <span class="o">...</span>
 </code></pre></div>
 <h2 id="ayakacachectrlchain">AyakaCacheCtrl.chain<a class="headerlink" href="#ayakacachectrlchain" title="Permanent link">&para;</a></h2>
 <p>json文件可以设置多层key，但是读写时往往遇到困难，例如</p>
 <p><code>data["haha"]["ee"]["your name"]["wtf"] = 2</code></p>
 <p>你需要先层层设置，最终才可赋值</p>
-<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">][</span><span class="s2">&quot;wtf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">][</span><span class="s2">&quot;wtf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
 </code></pre></div>
 <p><code>AyakaCacheCtrl</code>被用于解决这一困难</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka.cache</span> <span class="kn">import</span> <span class="n">AyakaCacheCtrl</span>
-
-<span class="n">data</span> <span class="o">=</span> <span class="n">AyakaCacheCtrl</span><span class="p">()</span>
-<span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">,</span> <span class="s2">&quot;your name&quot;</span><span class="p">,</span> <span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
-<span class="c1"># 读取数据, 缺省值0</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 0</span>
-<span class="c1"># 设置数据</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># 3</span>
-<span class="c1"># 再次读取</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 3</span>
-<span class="c1"># 查看整体</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># {&quot;haha&quot;:{&quot;ee&quot;:{&quot;your name&quot;:{&quot;wtf&quot;:3}}}}</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka.cache</span> <span class="kn">import</span> <span class="n">AyakaCacheCtrl</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">data</span> <span class="o">=</span> <span class="n">AyakaCacheCtrl</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">,</span> <span class="s2">&quot;your name&quot;</span><span class="p">,</span> <span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1"># 读取数据, 缺省值0</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 0</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1"># 设置数据</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># 3</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 再次读取</span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 3</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 查看整体</span>
+<span class="linenos" data-linenos="12 "></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># {&quot;haha&quot;:{&quot;ee&quot;:{&quot;your name&quot;:{&quot;wtf&quot;:3}}}}</span>
 </code></pre></div>
 <h3 id="_2">链式写法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>注意：<code>AyakaCacheCtrl.chain() -&gt; AyakaCacheCtrl</code></p>
 <p>chain的返回值，仍然是一个AyakaCacheCtrl对象，因此你可以</p>
-<div class="highlight"><pre><span></span><code><span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;your name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;your name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="ayakacachectrl">如何获取AyakaCacheCtrl<a class="headerlink" href="#ayakacachectrl" title="Permanent link">&para;</a></h3>
 <p>无需您自行创建<code>AyakaCacheCtrl对象</code>，直接访问<code>app.cache</code>即可获取</p>
@@ -659,9 +659,9 @@
 </ul>
 <p>注意：bot重启后，<code>app.cache</code>数据会丢失</p>
 <h2 id="_3">其他用法（不推荐）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># None</span>
-<span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># None</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<span class="linenos" data-linenos="3 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>
 </code></pre></div>
 <h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">

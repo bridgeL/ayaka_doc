@@ -725,10 +725,10 @@
 <h2 id="051">0.5.1<a class="headerlink" href="#051" title="Permanent link">&para;</a></h2>
 <h3 id="ayaka">彻底从底层改写了ayaka的状态机<a class="headerlink" href="#ayaka" title="Permanent link">&para;</a></h3>
 <p>现在，ayaka拥有一棵唯一的状态机树</p>
-<div class="highlight"><pre><span></span><code>0层 - root
-1层 - 插件1 插件2 插件3 ...
-2层 - 插件1.一级菜单项 ...
-3层 - 插件1.一级菜单项.二级菜单项 ...
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>0层 - root
+<span class="linenos" data-linenos="2 "></span>1层 - 插件1 插件2 插件3 ...
+<span class="linenos" data-linenos="3 "></span>2层 - 插件1.一级菜单项 ...
+<span class="linenos" data-linenos="4 "></span>3层 - 插件1.一级菜单项.二级菜单项 ...
 </code></pre></div>
 <p>所有状态都是树中的一个结点</p>
 <p>group.state指向树中的一个结点</p>
@@ -764,8 +764,8 @@
 <li>app.on.state</li>
 </ul>
 <p>特殊：@app.on.state("*")兼容性一般，可能会出现错误。建议更换为</p>
-<div class="highlight"><pre><span></span><code>@app.on_state()
-@app.on_deep_all()
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>@app.on_state()
+<span class="linenos" data-linenos="2 "></span>@app.on_deep_all()
 </code></pre></div>
 <h3 id="_1">暂时移除了插件的启用、禁用功能<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>考虑使用更加精细的控制，精确到群、插件、人、时间段</p>

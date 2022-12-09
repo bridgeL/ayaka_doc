@@ -603,62 +603,62 @@
 <p><code>app.storage</code>中提供了一些有益的api</p>
 <h2 id="_1">快速上手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>插件结构</p>
-<div class="highlight"><pre><span></span><code>plugins
-    bag
-        __init__.py
-        test
-            ok.txt
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
+<span class="linenos" data-linenos="2 "></span>    bag
+<span class="linenos" data-linenos="3 "></span>        __init__.py
+<span class="linenos" data-linenos="4 "></span>        test
+<span class="linenos" data-linenos="5 "></span>            ok.txt
 </code></pre></div>
 <p>若想获取ok.txt的数据，只需</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># plugins/bag/__init__.py</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span> <span class="c1"># 对应文件夹 plugins/bag/test</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;ok.txt&quot;</span><span class="p">)</span> <span class="c1"># 对应文件 plugins/bag/test/ok.txt</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag/__init__.py</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span> <span class="c1"># 对应文件夹 plugins/bag/test</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;ok.txt&quot;</span><span class="p">)</span> <span class="c1"># 对应文件 plugins/bag/test/ok.txt</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
 </code></pre></div>
 <h2 id="_2">包插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>如果您的代码中使用了<code>app.storage.plugin_path()</code>相关代码，那么建议您的插件为包插件形式</p>
 <p><strong>单文件插件</strong></p>
-<div class="highlight"><pre><span></span><code>plugins
-    bag.py
-    data.json
-    checkin.py
-    ...
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
+<span class="linenos" data-linenos="2 "></span>    bag.py
+<span class="linenos" data-linenos="3 "></span>    data.json
+<span class="linenos" data-linenos="4 "></span>    checkin.py
+<span class="linenos" data-linenos="5 "></span>    ...
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># plugins/bag.py</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和bag.py都位于plugins下，在多插件时造成混乱</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag.py</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和bag.py都位于plugins下，在多插件时造成混乱</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
 </code></pre></div>
 <p><strong>包插件</strong></p>
-<div class="highlight"><pre><span></span><code>plugins
-    bag
-        __init__.py
-        data.json
-    checkin
-    ...
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
+<span class="linenos" data-linenos="2 "></span>    bag
+<span class="linenos" data-linenos="3 "></span>        __init__.py
+<span class="linenos" data-linenos="4 "></span>        data.json
+<span class="linenos" data-linenos="5 "></span>    checkin
+<span class="linenos" data-linenos="6 "></span>    ...
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># plugins/bag/__init__.py</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins/bag</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和__init__.py都位于plugins/bag下，在多插件时依旧清晰明了</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag/__init__.py</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins/bag</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和__init__.py都位于plugins/bag下，在多插件时依旧清晰明了</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
 </code></pre></div>
 <h2 id="ayakapath">AyakaPath<a class="headerlink" href="#ayakapath" title="Permanent link">&para;</a></h2>
 <p>AyakaPath，文件夹地址</p>
@@ -678,14 +678,14 @@
 <li><code>app.plugin_path().file("error.log")</code> 对应文件 <code>&lt;create_app_file&gt;/../error.log</code></li>
 </ul>
 <p>内置load、save方法，按照txt文件格式对数据进行处理</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">data</span>
-
-<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos" data-linenos="3 "></span>        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="k">return</span> <span class="n">data</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos" data-linenos="8 "></span>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 </code></pre></div>
 <h2 id="ayakajsonfile">AyakaJsonFile<a class="headerlink" href="#ayakajsonfile" title="Permanent link">&para;</a></h2>
 <p><code>AyakaPath对象.json()</code>返回<code>AyakaJsonFile对象</code></p>
@@ -695,34 +695,34 @@
 </ul>
 <p><code>.json()</code>会强制修改文件后缀名为json</p>
 <p>内置load、save方法，按照json文件格式对数据进行处理</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span>
-
-<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos" data-linenos="3 "></span>        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="k">return</span> <span class="n">data</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos" data-linenos="8 "></span>        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="ayakajsonfilectrlchain">AyakaJsonFileCtrl.chain<a class="headerlink" href="#ayakajsonfilectrlchain" title="Permanent link">&para;</a></h2>
 <p>json文件可以设置多层key，因此<code>AyakaJsonFile</code>在读写数据时会遇到与<a href="../cache/#ayakacachectrlchain">缓存</a>同样的问题</p>
 <p><code>AyakaJsonFileCtrl</code>被用于解决这一困难，其API与<code>AyakaCacheCtrl</code>几乎完全一致，你可以</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># plugins/bag/__init__.py</span>
-
-<span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="mi">10086</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span>
-
-<span class="c1"># 缺省值100</span>
-<span class="n">money</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="c1"># +10</span>
-<span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># plugins/bag/__init__.py</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="mi">10086</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="c1"># 缺省值100</span>
+<span class="linenos" data-linenos="6 "></span><span class="n">money</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="c1"># +10</span>
+<span class="linenos" data-linenos="8 "></span><span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
 <p>对应文件</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// plugins/bag/data.json</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;10086&quot;</span><span class="p">:{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;money&quot;</span><span class="p">:</span><span class="mi">110</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// plugins/bag/data.json</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nt">&quot;10086&quot;</span><span class="p">:{</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nt">&quot;money&quot;</span><span class="p">:</span><span class="mi">110</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_3">下一步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div align="right">

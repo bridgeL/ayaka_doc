@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/more/split/">
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/input/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
-        <title>Split - Ayaka - 文字游戏开发辅助插件</title>
+        <title>AyakaInput - Ayaka - 文字游戏开发辅助插件</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#ayakainput" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Split
+              AyakaInput
             
           </span>
         </div>
@@ -208,7 +208,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../develop/how-does-it-work/" class="md-tabs__link">
+      <a href="../how-does-it-work/" class="md-tabs__link">
         开发衍生插件
       </a>
     </li>
@@ -432,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/how-does-it-work/" class="md-nav__link">
+      <a href="../how-does-it-work/" class="md-nav__link">
         工作原理
       </a>
     </li>
@@ -591,31 +591,13 @@
                 
                   
 
-  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/more/split.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/input.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Split</h1>
-
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;分割参数&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;split&quot;</span><span class="p">,</span> <span class="s2">&quot;分割&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cmd</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-</code></pre></div>
-<p><img alt="图片" src="split.png" /></p>
-<h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div align="right">
-    在这里~ ↘
-</div>
+<h1 id="ayakainput">AyakaInput<a class="headerlink" href="#ayakainput" title="Permanent link">&para;</a></h1>
 
 
 

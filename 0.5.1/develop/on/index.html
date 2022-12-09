@@ -611,11 +611,11 @@
 <li>获取用户名 app.user_name</li>
 <li>...</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">no_args</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_name</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">no_args</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_name</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="_2">何时运行回调<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>当存在激励源驱动时，将会触发相应的回调运行</p>
@@ -632,25 +632,25 @@
 <p>注册消息回调</p>
 <h2 id="_4">使用顺序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>必须是如下的先后顺序</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="o">...</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
 <h2 id="_5">闲置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>在没有任何应用运行时，群聊处于闲置状态，此时注册的所有<code>on.idle</code>回调都可以响应，而<code>on.state</code>则无法响应，因为它们都依赖于相关应用的状态，而闲置时没有应用运行</p>

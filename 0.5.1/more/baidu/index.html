@@ -600,20 +600,20 @@
   <h1>Baidu</h1>
 
 <p>注意，win平台使用playwright时需要关闭fastapi的reload功能</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">get_new_page</span><span class="p">,</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">MessageSegment</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;baidu截图&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;baidu&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">get_new_page</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">p</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">,</span> <span class="n">wait_until</span><span class="o">=</span><span class="s2">&quot;networkidle&quot;</span><span class="p">)</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test.png&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">p</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
-    <span class="n">image</span> <span class="o">=</span> <span class="n">MessageSegment</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">get_new_page</span><span class="p">,</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">MessageSegment</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;baidu截图&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;baidu&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">async</span> <span class="k">with</span> <span class="n">get_new_page</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="k">await</span> <span class="n">p</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="s2">&quot;http://www.baidu.com&quot;</span><span class="p">,</span> <span class="n">wait_until</span><span class="o">=</span><span class="s2">&quot;networkidle&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;test.png&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="k">await</span> <span class="n">p</span><span class="o">.</span><span class="n">screenshot</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="n">image</span> <span class="o">=</span> <span class="n">MessageSegment</span><span class="o">.</span><span class="n">image</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="图片" src="baidu.png" /></p>
 <h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>

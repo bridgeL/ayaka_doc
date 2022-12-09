@@ -599,74 +599,74 @@
 
   <h1>Menu</h1>
 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;多级菜单&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;多级菜单&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;quit&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;返回&quot;</span><span class="p">,</span> <span class="s2">&quot;back&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;menu&quot;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;zh&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;去中国&#39;&#39;&#39;</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;中国&quot;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;jp&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;去日本&#39;&#39;&#39;</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;日本&quot;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;kr&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;去偷国&#39;&#39;&#39;</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;偷国&quot;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;中国&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;hc&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;喝茶&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝茶&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;中国&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;xq&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;下棋&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;下棋&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;日本&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;ly&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;旅游&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;旅游&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;多级菜单&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;多级菜单&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;quit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="20 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;返回&quot;</span><span class="p">,</span> <span class="s2">&quot;back&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;menu&quot;</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="27 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;zh&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="29 "></span>    <span class="sd">&#39;&#39;&#39;去中国&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="30 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;中国&quot;</span>
+<span class="linenos" data-linenos="31 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+<span class="linenos" data-linenos="32 "></span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="35 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;jp&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="36 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="37 "></span>    <span class="sd">&#39;&#39;&#39;去日本&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="38 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;日本&quot;</span>
+<span class="linenos" data-linenos="39 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+<span class="linenos" data-linenos="40 "></span>
+<span class="linenos" data-linenos="41 "></span>
+<span class="linenos" data-linenos="42 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;menu&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="43 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;kr&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="44 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="45 "></span>    <span class="sd">&#39;&#39;&#39;去偷国&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="46 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;偷国&quot;</span>
+<span class="linenos" data-linenos="47 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+<span class="linenos" data-linenos="48 "></span>
+<span class="linenos" data-linenos="49 "></span>
+<span class="linenos" data-linenos="50 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;中国&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="51 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;hc&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="52 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="53 "></span>    <span class="sd">&#39;&#39;&#39;喝茶&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="54 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝茶&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="55 "></span>
+<span class="linenos" data-linenos="56 "></span>
+<span class="linenos" data-linenos="57 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;中国&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="58 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;xq&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="59 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="60 "></span>    <span class="sd">&#39;&#39;&#39;下棋&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="61 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;下棋&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="62 "></span>
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;日本&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="65 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;ly&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="66 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="67 "></span>    <span class="sd">&#39;&#39;&#39;旅游&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="68 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;旅游&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="图片" src="menu_1.png" />
 <img alt="图片" src="menu_2.png" /></p>

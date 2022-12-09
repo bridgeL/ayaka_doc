@@ -595,51 +595,51 @@
   <h1>Config</h1>
 
 <p>所有ayaka衍生插件均可申请读写<code>ayaka_setting.json</code>中的配置，使用示例如下</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;示例插件&quot;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">BaseConfig</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;测试&quot;</span>
-
-<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
-<span class="c1"># 读取配置 </span>
-<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="c1"># 修改并写入配置 </span>
-<span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;示例插件&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">BaseConfig</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;测试&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 读取配置 </span>
+<span class="linenos" data-linenos=" 9 "></span><span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="c1"># 修改并写入配置 </span>
+<span class="linenos" data-linenos="11 "></span><span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
 </code></pre></div>
 <p>对应配置文件<code>ayaka_setting.json</code></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="err">...</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;示例插件&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;新名字&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="err">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nt">&quot;示例插件&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;新名字&quot;</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <p>特殊情况：修改数组、字典等<strong>可变对象</strong>的值</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;示例插件&quot;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">BaseConfig</span><span class="p">):</span>
-    <span class="n">uids</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
-<span class="c1"># 读取配置 </span>
-<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">uids</span><span class="p">)</span>
-<span class="c1"># 修改配置 </span>
-<span class="n">config</span><span class="o">.</span><span class="n">uids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1"># 写入配置</span>
-<span class="n">config</span><span class="o">.</span><span class="n">force_update</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;示例插件&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">BaseConfig</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">uids</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 读取配置 </span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">uids</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 修改配置 </span>
+<span class="linenos" data-linenos="12 "></span><span class="n">config</span><span class="o">.</span><span class="n">uids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="c1"># 写入配置</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">config</span><span class="o">.</span><span class="n">force_update</span><span class="p">()</span>
 </code></pre></div>
 <p>对应配置文件<code>ayaka_setting.json</code></p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="err">...</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;示例插件&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="nt">&quot;uids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="err">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nt">&quot;示例插件&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nt">&quot;uids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<span class="linenos" data-linenos="7 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 

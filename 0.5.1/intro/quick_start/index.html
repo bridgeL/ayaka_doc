@@ -421,14 +421,14 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    旅行
+    基本使用
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    太阳奶茶店
+    多层次的回调
   </a>
   
 </li>
@@ -708,7 +708,7 @@
 
 <h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>编写一个星际旅行插件</p>
-<h2 id="_2">旅行<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">基本使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -746,80 +746,81 @@
 </tbody>
 </table>
 <p>代码</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
-<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
-<span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
-
-
-<span class="o">|</span> <span class="s1">&#39;&#39;&#39;      | 地点        | 动作          | 效果 |</span>
-<span class="s1">| -------- | ----------- | ------------- |</span>
-<span class="s1">| 地球     | drink       | 喝水          |</span>
-<span class="s1">| 月球     | drink       | 喝土          |</span>
-<span class="s1">| 太阳     | drink       | 喝太阳风      |</span>
-<span class="s1">| 任意地点 | move &lt;地名&gt; | 去指定地点    |</span>
-<span class="s1">| 任意地点 | hi          | 你好, &lt;地名&gt;! | &#39;&#39;&#39;</span>  <span class="o">|</span>
-
-<span class="c1"># 启动应用</span>
-<span class="n">app</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">)</span>
-
-<span class="c1"># 装饰器的顺序没有强制要求，随便写</span>
-
-
-<span class="c1"># 关闭应用</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-
-<span class="c1"># 注册各种行动</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
-
-
-<span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
-    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="o">|</span> <span class="s1">&#39;&#39;&#39;      | 地点        | 动作          | 效果 |</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="s1">| -------- | ----------- | ------------- |</span>
+<span class="linenos" data-linenos="10 "></span><span class="s1">| 地球     | drink       | 喝水          |</span>
+<span class="linenos" data-linenos="11 "></span><span class="s1">| 月球     | drink       | 喝土          |</span>
+<span class="linenos" data-linenos="12 "></span><span class="s1">| 太阳     | drink       | 喝太阳风      |</span>
+<span class="linenos" data-linenos="13 "></span><span class="s1">| 任意地点 | move &lt;地名&gt; | 去指定地点    |</span>
+<span class="linenos" data-linenos="14 "></span><span class="s1">| 任意地点 | hi          | 你好, &lt;地名&gt;! | &#39;&#39;&#39;</span>  <span class="o">|</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="c1"># 启动应用</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">app</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="c1"># 装饰器的顺序没有强制要求，随便写</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="c1"># 关闭应用</span>
+<span class="linenos" data-linenos="23 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="24 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="25 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="26 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
+<span class="linenos" data-linenos="27 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="c1"># 注册各种行动</span>
+<span class="linenos" data-linenos="31 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="32 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="33 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="34 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="35 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="36 "></span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="39 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="40 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="41 "></span>    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="46 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="47 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="48 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="49 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="50 "></span>
+<span class="linenos" data-linenos="51 "></span>
+<span class="linenos" data-linenos="52 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="53 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="54 "></span>
+<span class="linenos" data-linenos="55 "></span>
+<span class="linenos" data-linenos="56 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="57 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="58 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="59 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="60 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="61 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
+<span class="linenos" data-linenos="62 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span>
+<span class="linenos" data-linenos="65 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="66 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="67 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="68 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="69 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="70 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <div id="demo1" class="demo"></div>
 
-<h2 id="_3">太阳奶茶店<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><code>AyakaInput</code>的使用原理：<a href="../../develop/input/">AyakaInput</a></p>
+<h2 id="_3">多层次的回调<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>在刚才的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店</p>
 <table>
 <thead>
@@ -843,12 +844,76 @@
 </tbody>
 </table>
 <p>代码</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 补充1</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.奶茶店&quot;</span><span class="p">)</span>
-<span class="nd">@drink</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;热乎的&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 3 "></span>
+</span><span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 启动应用</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">app</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 装饰器的顺序没有强制要求，随便写</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="c1"># 关闭应用</span>
+<span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="16 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="17 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="c1"># 注册各种行动</span>
+<span class="linenos" data-linenos="23 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="24 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="26 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="27 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span>
+<span class="linenos" data-linenos="30 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="31 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="32 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="33 "></span>    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="34 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="35 "></span>
+<span class="linenos" data-linenos="36 "></span>
+<span class="linenos" data-linenos="37 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="38 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="39 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="40 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="41 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="46 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">([</span><span class="s2">&quot;太阳&quot;</span><span class="p">,</span> <span class="s2">&quot;奶茶店&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos="47 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="48 "></span>    <span class="sd">&#39;&#39;&#39;喝奶茶&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="49 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="50 "></span>
+<span class="linenos" data-linenos="51 "></span>
+<span class="linenos" data-linenos="52 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="53 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="54 "></span>
+<span class="linenos" data-linenos="55 "></span>
+<span class="linenos" data-linenos="56 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="57 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="58 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="59 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="60 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="61 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
+<span class="linenos" data-linenos="62 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="63 "></span>
+<span class="linenos" data-linenos="64 "></span>
+<span class="linenos" data-linenos="65 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="66 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="67 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="68 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="69 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="70 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>注意到，目前定义了两个drink</p>
 <table>
@@ -863,7 +928,7 @@
 <tr>
 <td>太阳</td>
 <td>drink</td>
-<td>嘿！像是一团火球进了胃</td>
+<td>喝太阳风</td>
 </tr>
 <tr>
 <td>太阳.奶茶店</td>
@@ -875,9 +940,10 @@
 <p>优先触发最匹配的回调</p>
 <ul>
 <li>当状态为<code>太阳.奶茶店</code>时，触发后者</li>
-<li>当状态为<code>太阳.森林公园</code>时，触发前者</li>
+<li>当状态为<code>太阳.森林公园</code>、<code>太阳.巴拉巴拉</code>、<code>太阳.我就是来凑个数</code>、<code>太阳</code>时，触发前者</li>
 </ul>
-<p><img alt="图片" src="星际旅行_2.png" /></p>
+<div id="demo2" class="demo"></div>
+
 <h2 id="_4">缓存<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>宇宙旅游公司又开设了一个新景点：耀斑表演</p>
 <p>我们需要先去售票处买耀斑表演的门票，然后再去表演现场</p>
@@ -904,42 +970,42 @@
 </tbody>
 </table>
 <h3 id="_6">编写代码<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 补充2</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.售票处&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;buy&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
-    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
-    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;去现场&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;去现场&#39;&#39;&#39;</span>
-    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
-    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">ticket</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票-1&quot;</span><span class="p">)</span>
-        <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;太阳.耀斑表演&quot;</span>
-        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你还没买票&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 补充2</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.售票处&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;buy&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;去现场&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="sd">&#39;&#39;&#39;去现场&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="n">ticket</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="k">if</span> <span class="n">ticket</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ticket</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票-1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="21 "></span>        <span class="n">app</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;太阳.耀斑表演&quot;</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="24 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你还没买票&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="图片" src="星际旅行_3.png" /></p>
 <h2 id="vs">命令触发 vs 消息触发<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
 <p>刚才的所有回调都是由具体的、指定的命令来触发运行的</p>
 <p>然而，你也可以使用消息触发</p>
 <p>比如，你在现场随便说了一句话，触发回调运行</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 补充3</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.耀斑表演&quot;</span><span class="p">)</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-    <span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你发现你的奶茶比表演项目还烫&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 补充3</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="s2">&quot;太阳.耀斑表演&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你发现你的奶茶比表演项目还烫&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="图片" src="星际旅行_4.png" /></p>
 <p>消息触发的优先级低于命令触发</p>
