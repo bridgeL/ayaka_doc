@@ -875,19 +875,20 @@
       
     
 <script>
-    let cnt = 3;
-    document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
-    let timer = setInterval(function () {
-        cnt -= 1;
-        if (!cnt) {
-            clearInterval(timer);
-            let paths = window.location.pathname.split("/").filter(_ => _).slice(0, 2);
-            let route = paths.join("/");
-            window.location.replace(window.location.origin + "/" + route);
-        }
-        else document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
-    }, 1000)
-
+    (function () {
+        let cnt = 3;
+        document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
+        let timer = setInterval(function () {
+            cnt -= 1;
+            if (!cnt) {
+                clearInterval(timer);
+                let paths = window.location.pathname.split("/").filter(_ => _).slice(0, 2);
+                let route = paths.join("/");
+                window.location.replace(window.location.origin + "/" + route);
+            }
+            else document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
+        }, 1000);
+    })()
 </script>
 
   </body>
