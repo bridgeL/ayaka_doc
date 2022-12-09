@@ -71,38 +71,13 @@ const total_lines = {
     "demo3": div_lines(demo3),
 };
 
-const add_demo = (e, id) => {
-    e.preventDefault();
-    let lines = total_lines[id];
-    let div = document.querySelector(`#${id}`);
-    let i = div.i;
-    div.i = Math.min(i + 1, lines.length);
-    if (i < lines.length && i >= 0) {
-        div.innerHTML += `<div class="demo-line line-${i}">${lines[i]}</div>`;
-        div.scrollTo(0, 10000);
-    }
-};
-
-const sub_demo = (e, id) => {
-    e.preventDefault();
-    let div = document.querySelector(`#${id}`);
-    let i = div.i - 1;
-    div.i = Math.max(0, i);
-    let d = div.querySelector(`.line-${i}`);
-    if (d) {
-        div.removeChild(d);
-        div.scrollTo(0, 10000);
-    }
-};
 
 let timer = setInterval(() => {
     let divs = document.querySelectorAll(".demo");
     if (divs) {
         for (let div of divs) {
-            div.onclick = (e) => add_demo(e, div.id);
-            div.oncontextmenu = (e) => sub_demo(e, div.id);
-            div.innerHTML = `<div class="demo-line">点击查看示例</div>`;
-            div.i = 0;
+            let lines = total_lines[div.id];
+            for (let line of lines) div.innerHTML += `<div class="demo-line">${line}</div>`;
         }
         clearInterval(timer);
     }
