@@ -845,9 +845,9 @@
 </table>
 <p>代码</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
-<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 3 "></span>
-</span><span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 5 "></span><span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
 <span class="linenos" data-linenos=" 6 "></span>
 <span class="linenos" data-linenos=" 7 "></span>
@@ -880,20 +880,20 @@
 <span class="linenos" data-linenos="34 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="35 "></span>
 <span class="linenos" data-linenos="36 "></span>
-<span class="linenos" data-linenos="37 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="linenos" data-linenos="38 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="hll"><span class="linenos" data-linenos="37 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="38 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="39 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="40 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
 <span class="linenos" data-linenos="41 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="42 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="43 "></span>
 <span class="linenos" data-linenos="44 "></span>
-<span class="linenos" data-linenos="45 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="46 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">([</span><span class="s2">&quot;太阳&quot;</span><span class="p">,</span> <span class="s2">&quot;奶茶店&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos="47 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-<span class="linenos" data-linenos="48 "></span>    <span class="sd">&#39;&#39;&#39;喝奶茶&#39;&#39;&#39;</span>
-<span class="linenos" data-linenos="49 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="50 "></span>
+<span class="hll"><span class="linenos" data-linenos="45 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos" data-linenos="46 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">([</span><span class="s2">&quot;太阳&quot;</span><span class="p">,</span> <span class="s2">&quot;奶茶店&quot;</span><span class="p">])</span>
+</span><span class="hll"><span class="linenos" data-linenos="47 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+</span><span class="hll"><span class="linenos" data-linenos="48 "></span>    <span class="sd">&#39;&#39;&#39;喝奶茶&#39;&#39;&#39;</span>
+</span><span class="hll"><span class="linenos" data-linenos="49 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
+</span><span class="linenos" data-linenos="50 "></span>
 <span class="linenos" data-linenos="51 "></span>
 <span class="linenos" data-linenos="52 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="53 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>

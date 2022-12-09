@@ -55,9 +55,9 @@ const total_lines = {
 
 const show_demo = (id) => {
     let div = document.querySelector(`#${id}`);
-    div.innerHTML = "";
-    let i = 0;
+    let i = 1;
     let lines = total_lines[id];
+    div.innerHTML = lines[0];
     let timer = setInterval(() => {
         if (i >= lines.length) clearInterval(timer);
         else {
@@ -73,7 +73,7 @@ let timer = setInterval(() => {
     if (divs) {
         for (let div of divs) {
             div.onclick = () => show_demo(div.id);
-            div.innerHTML = "点击查看示例";
+            div.innerHTML = `<div class="demo-line">点击查看示例</div>`;
         }
         clearInterval(timer);
     }
