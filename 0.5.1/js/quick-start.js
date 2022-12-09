@@ -42,6 +42,7 @@ const show_demo = (id) => {
         if (i >= lines.length) clearInterval(timer);
         else {
             div.innerHTML += `<div class="demo-line">${lines[i]}</div>`;
+            div.scrollBottom = 0;
             i += 1;
         }
     }, 1000);

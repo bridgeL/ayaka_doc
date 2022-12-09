@@ -7,6 +7,10 @@
     padding: 20px 0;
 }
 
+.demo:hover {
+    cursor: pointer;
+}
+
 .demo-line {
     padding: 0 20px;
 }
