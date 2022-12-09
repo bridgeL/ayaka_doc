@@ -1,8 +1,8 @@
 .demo {
     width: 600px;
-    height: 200px;
+    height: 400px;
     background: black;
-    overflow: hidden;
+    overflow: auto;
     color: white;
     padding: 20px 0;
 }
