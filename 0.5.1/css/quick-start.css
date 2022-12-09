@@ -15,7 +15,7 @@
     padding: 0 20px;
 }
 
-.demo-line:nth-child(odd) {
+.demo-line:has(.demo-user) {
     background: #333;
 }
 

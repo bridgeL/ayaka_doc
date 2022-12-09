@@ -57,7 +57,7 @@ const show_demo = (id) => {
     let div = document.querySelector(`#${id}`);
     let i = 1;
     let lines = total_lines[id];
-    div.innerHTML = lines[0];
+    div.innerHTML = `<div class="demo-line">${lines[0]}</div>`;
     let timer = setInterval(() => {
         if (i >= lines.length) clearInterval(timer);
         else {
