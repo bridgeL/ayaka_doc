@@ -53,22 +53,27 @@ const total_lines = {
     "demo2": div_lines(demo2),
 };
 
-const show_demo = (e, id) => {
-    console.log(e);
+const add_demo = (e, id) => {
+    e.preventDefault();
     let div = document.querySelector(`#${id}`);
-    let i = 1;
+    let i = 0;
     let lines = total_lines[id];
-    div.innerHTML = `<div class="demo-line">${lines[0]}</div>`;
     div.innerHTML += `<div class="demo-line">${lines[i]}</div>`;
     div.scrollTo(0, 10000);
     i += 1;
+};
+
+const sub_demo = (e, id) => {
+    e.preventDefault();
+    console.log("reoght");
 };
 
 let timer = setInterval(() => {
     let divs = document.querySelectorAll(".demo");
     if (divs) {
         for (let div of divs) {
-            div.onclick = (e) => show_demo(e, div.id);
+            div.onclick = (e) => add_demo(e, div.id);
+            div.oncontextmenu = (e) => sub_demo(e, div.id);
             div.innerHTML = `<div class="demo-line">点击查看示例</div>`;
             div.i = 0;
         }
