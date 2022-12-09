@@ -438,6 +438,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -508,8 +518,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ayakastate" class="md-nav__link">
-    AyakaState和唯一状态树
+  <a href="#ayakaappayakastate" class="md-nav__link">
+    AyakaApp、AyakaState和唯一状态树
   </a>
   
 </li>
@@ -536,8 +546,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    这些状态到底有什么用呢？
+  <a href="#ayakastate" class="md-nav__link">
+    这些AyakaState到底有什么用呢？
   </a>
   
 </li>
@@ -557,7 +567,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     下一步
   </a>
   
@@ -578,8 +588,78 @@
   
   
     <li class="md-nav__item">
-      <a href="../create-ayaka-app/" class="md-nav__link">
-        新建插件
+      <a href="../app/" class="md-nav__link">
+        应用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../on_xxx/" class="md-nav__link">
+        注册回调
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/" class="md-nav__link">
+        输入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        缓存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state/" class="md-nav__link">
+        状态
       </a>
     </li>
   
@@ -861,7 +941,7 @@
 <h2 id="ayakagroup">AyakaGroup<a class="headerlink" href="#ayakagroup" title="Permanent link">&para;</a></h2>
 <p>当<code>ayaka</code>收到一个新的群组的消息时，就会自动新建一个<code>AyakaGroup</code>对象（后简称为<code>group</code>），该对象内部保存有一个状态指针和一个字典（用来保存该群组内的临时数据，bot重启后丢失）</p>
 <p><img alt="图片" src="../%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C2.png" /></p>
-<h2 id="ayakastate">AyakaState和唯一状态树<a class="headerlink" href="#ayakastate" title="Permanent link">&para;</a></h2>
+<h2 id="ayakaappayakastate">AyakaApp、AyakaState和唯一状态树<a class="headerlink" href="#ayakaappayakastate" title="Permanent link">&para;</a></h2>
 <p>每个<code>ayaka衍生插件</code>里都有一个或若干个<code>AyakaApp</code>对象（后简称为<code>app</code>）。在插件代码加载阶段，生成这些<code>app</code>的时候，<code>ayaka</code>会根据它们身上注册的回调函数的情况，生成唯一一棵状态树，所有的状态结点都位于这棵状态树上</p>
 <p><img alt="图片" src="../%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C3.png" /></p>
 <p>而<code>group</code>内部的<code>状态指针</code>则指向该树上的某个结点，表示该群组当前所处的状态。默认指向<code>root</code>状态</p>
@@ -953,7 +1033,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_4">这些状态到底有什么用呢？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="ayakastate">这些AyakaState到底有什么用呢？<a class="headerlink" href="#ayakastate" title="Permanent link">&para;</a></h2>
 <p>提供独立的命令空间</p>
 <p>通过这些状态，把各种各样的回调隔离开，不再会有 <em>一人高呼万人响应</em> 的尴尬</p>
 <p>不同状态下，可以保存有相同命令的不同回调。这些回调仅在对应状态下才会响应指令，执行任务。这样保证了命令空间的纯净，各个插件的指令不会相互污染</p>
@@ -965,7 +1045,7 @@
 <h2 id="ayakaapp">这些AyakaApp有什么用呢？<a class="headerlink" href="#ayakaapp" title="Permanent link">&para;</a></h2>
 <p>通过<code>AyakaApp</code>，把上述概念都打包到一个<code>app</code>身上，只需调用相应装饰器注册回调即可实现上述效果</p>
 <p>同时，<code>app</code>也提供了一些有益的属性，在下一章详细介绍这些属性</p>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
@@ -1010,13 +1090,13 @@
       
       
         
-        <a href="../create-ayaka-app/" class="md-footer__link md-footer__link--next" aria-label="Next: 新建插件" rel="next">
+        <a href="../app/" class="md-footer__link md-footer__link--next" aria-label="Next: 应用" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              新建插件
+              应用
             </div>
           </div>
           <div class="md-footer__button md-icon">

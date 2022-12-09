@@ -46,12 +46,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/_on/</loc>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/_open/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/_open/</loc>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/app/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -61,7 +61,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/create-ayaka-app/</loc>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/cache/</loc>
+         <lastmod>2022-12-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/config/</loc>
+         <lastmod>2022-12-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/help/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -72,6 +82,16 @@
     </url>
     <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/input/</loc>
+         <lastmod>2022-12-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/on_xxx/</loc>
+         <lastmod>2022-12-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/state/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
     </url>

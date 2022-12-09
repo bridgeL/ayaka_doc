@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/intro/master/">
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/on_xxx/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
-        <title>Master - Ayaka - 文字游戏开发辅助插件</title>
+        <title>注册回调 - Ayaka - 文字游戏开发辅助插件</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ayaka_master" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Master
+              注册回调
             
           </span>
         </div>
@@ -202,13 +202,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../develop/how-does-it-work/" class="md-tabs__link">
+      <a href="../how-does-it-work/" class="md-tabs__link md-tabs__link--active">
         开发衍生插件
       </a>
     </li>
@@ -370,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../intro/install/" class="md-nav__link">
         安装
       </a>
     </li>
@@ -384,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qa/" class="md-nav__link">
+      <a href="../../intro/qa/" class="md-nav__link">
         常见问题
       </a>
     </li>
@@ -398,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quick_start/" class="md-nav__link">
+      <a href="../../intro/quick_start/" class="md-nav__link">
         快速开始
       </a>
     </li>
@@ -418,12 +420,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -464,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/how-does-it-work/" class="md-nav__link">
+      <a href="../how-does-it-work/" class="md-nav__link">
         工作原理
       </a>
     </li>
@@ -478,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/app/" class="md-nav__link">
+      <a href="../app/" class="md-nav__link">
         应用
       </a>
     </li>
@@ -490,11 +494,146 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../develop/on_xxx/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          注册回调
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         注册回调
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    无参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    何时运行回调
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    消息驱动
+  </a>
+  
+    <nav class="md-nav" aria-label="消息驱动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apponidlesuperfalse" class="md-nav__link">
+    app.on.idle(super=False)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apponstatestatesstr" class="md-nav__link">
+    app.on.state(*states:str)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apponcommandcmds-str" class="md-nav__link">
+    app.on.command(*cmds: str)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appontext" class="md-nav__link">
+    app.on.text()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    使用顺序
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    闲置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    时间驱动
+  </a>
+  
+    <nav class="md-nav" aria-label="时间驱动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apponintervalgap-int-h-int-1-m-int-1-s-int-1" class="md-nav__link">
+    app.on.interval(gap: int, h: int = -1, m: int = -1, s: int = -1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apponeverydayh-int-m-int-s-int" class="md-nav__link">
+    app.on.everyday(h: int, m: int, s: int)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -506,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/input/" class="md-nav__link">
+      <a href="../input/" class="md-nav__link">
         输入
       </a>
     </li>
@@ -520,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/cache/" class="md-nav__link">
+      <a href="../cache/" class="md-nav__link">
         缓存
       </a>
     </li>
@@ -534,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/config/" class="md-nav__link">
+      <a href="../config/" class="md-nav__link">
         配置
       </a>
     </li>
@@ -548,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/state/" class="md-nav__link">
+      <a href="../state/" class="md-nav__link">
         状态
       </a>
     </li>
@@ -562,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../develop/browser/" class="md-nav__link">
+      <a href="../browser/" class="md-nav__link">
         浏览器截图
       </a>
     </li>
@@ -817,31 +956,81 @@
                 
                   
 
-  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/intro/master.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/on_xxx.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Master</h1>
+  <h1>注册回调</h1>
 
-<h2 id="ayaka_master">ayaka_master<a class="headerlink" href="#ayaka_master" title="Permanent link">&para;</a></h2>
-<p>ayaka内部已安装一份特殊的综合管理插件，它基于ayaka插件而实现</p>
-<p>命令一览：</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>[ayaka_master]
-<span class="linenos" data-linenos=" 2 "></span>ayaka综合管理模块
-<span class="linenos" data-linenos=" 3 "></span>- 插件/plugin/plugins | 展示所有应用
-<span class="linenos" data-linenos=" 4 "></span>- 状态/state 
-<span class="linenos" data-linenos=" 5 "></span>- 帮助/help &lt;name&gt; 
-<span class="linenos" data-linenos=" 6 "></span>    &lt;name&gt; 应用名
-<span class="linenos" data-linenos=" 7 "></span>- 强制退出/force_exit 
-<span class="linenos" data-linenos=" 8 "></span>- 查看缓存 | 查看当前群组的所有缓存
-<span class="linenos" data-linenos=" 9 "></span>- add_admin &lt;uid&gt; | 增加ayaka管理者
-<span class="linenos" data-linenos="10 "></span>    &lt;uid&gt; QQ号
-<span class="linenos" data-linenos="11 "></span>- remove_admin &lt;uid&gt; | 移除ayaka管理者
-<span class="linenos" data-linenos="12 "></span>    &lt;uid&gt; QQ号
+<h2 id="_1">无参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>注册的回调函数必须是没有参数的异步函数</p>
+<p>若需要获取参数，请直接访问对应app属性</p>
+<p>例如：</p>
+<ul>
+<li>获取事件 app.event</li>
+<li>获取消息 app.message</li>
+<li>获取分割后的消息 app.args</li>
+<li>获取用户id app.user_id</li>
+<li>获取用户名 app.user_name</li>
+<li>...</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">no_args</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_name</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">何时运行回调<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>当存在激励源驱动时，将会触发相应的回调运行</p>
+<p>激励源通常来说有两类，消息驱动、时间驱动</p>
+<h2 id="_3">消息驱动<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在收到消息后触发回调</p>
+<h3 id="apponidlesuperfalse">app.on.idle(super=False)<a class="headerlink" href="#apponidlesuperfalse" title="Permanent link">&para;</a></h3>
+<p>注册设备闲置时的回调</p>
+<h3 id="apponstatestatesstr">app.on.state(*states:str)<a class="headerlink" href="#apponstatestatesstr" title="Permanent link">&para;</a></h3>
+<p>注册应用运行在不同状态时的回调</p>
+<h3 id="apponcommandcmds-str">app.on.command(*cmds: str)<a class="headerlink" href="#apponcommandcmds-str" title="Permanent link">&para;</a></h3>
+<p>注册命令回调</p>
+<h3 id="appontext">app.on.text()<a class="headerlink" href="#appontext" title="Permanent link">&para;</a></h3>
+<p>注册消息回调</p>
+<h2 id="_4">使用顺序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>必须是如下的先后顺序</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
+</code></pre></div>
+<h2 id="_5">闲置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在没有任何应用运行时，群聊处于闲置状态，此时注册的所有<code>on.idle</code>回调都可以响应，而<code>on.state</code>则无法响应，因为它们都依赖于相关应用的状态，而闲置时没有应用运行</p>
+<p>运行应用后，注册在对应应用下的<code>on.state</code>回调可以响应，而普通的<code>on.idle</code>无法响应，但对于设置了<code>super=True</code>的特殊的<code>on.idle</code>仍可以响应</p>
+<p>这种设计可以帮助一些有特殊需要的<code>无状态应用</code>在<code>有状态应用</code>运行时仍可响应用户的指令</p>
+<h2 id="_6">时间驱动<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>定时器定时触发回调</p>
+<p>触发时，回调无法通过分析消息得到各类信息（bot/group/message/event/sender等）</p>
+<p>因此有很多方法和属性都无法访问</p>
+<p>发送消息请使用专用的<code>app.t_send</code>/<code>app.t_send_many</code>，并且需要提供目标bot和群组的id</p>
+<h3 id="apponintervalgap-int-h-int-1-m-int-1-s-int-1">app.on.interval(gap: int, h: int = -1, m: int = -1, s: int = -1)<a class="headerlink" href="#apponintervalgap-int-h-int-1-m-int-1-s-int-1" title="Permanent link">&para;</a></h3>
+<p>在指定的时间点后循环触发</p>
+<h3 id="apponeverydayh-int-m-int-s-int">app.on.everyday(h: int, m: int, s: int)<a class="headerlink" href="#apponeverydayh-int-m-int-s-int" title="Permanent link">&para;</a></h3>
+<p>每日定时触发</p>
+<h2 id="_7">下一步<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
@@ -865,6 +1054,42 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../app/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 应用" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              应用
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../input/" class="md-footer__link md-footer__link--next" aria-label="Next: 输入" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              输入
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
