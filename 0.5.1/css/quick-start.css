@@ -1,5 +1,10 @@
 .demo {
-    width: 200px;
+    width: 600px;
     height: 200px;
     background: black;
+    overflow: hidden;
+}
+
+.demo .demo-line {
+    color: white;
 }
