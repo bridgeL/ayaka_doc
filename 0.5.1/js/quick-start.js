@@ -53,27 +53,24 @@ const total_lines = {
     "demo2": div_lines(demo2),
 };
 
-const show_demo = (id) => {
+const show_demo = (e, id) => {
+    console.log(e);
     let div = document.querySelector(`#${id}`);
     let i = 1;
     let lines = total_lines[id];
     div.innerHTML = `<div class="demo-line">${lines[0]}</div>`;
-    let timer = setInterval(() => {
-        if (i >= lines.length) clearInterval(timer);
-        else {
-            div.innerHTML += `<div class="demo-line">${lines[i]}</div>`;
-            div.scrollTo(0, 10000);
-            i += 1;
-        }
-    }, 1000);
+    div.innerHTML += `<div class="demo-line">${lines[i]}</div>`;
+    div.scrollTo(0, 10000);
+    i += 1;
 };
 
 let timer = setInterval(() => {
     let divs = document.querySelectorAll(".demo");
     if (divs) {
         for (let div of divs) {
-            div.onclick = () => show_demo(div.id);
+            div.onclick = (e) => show_demo(e, div.id);
             div.innerHTML = `<div class="demo-line">点击查看示例</div>`;
+            div.i = 0;
         }
         clearInterval(timer);
     }
