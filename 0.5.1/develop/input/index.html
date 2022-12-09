@@ -446,6 +446,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -492,30 +494,6 @@
               
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        输入
-      </a>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
   
     <li class="md-nav__item">
       <a href="../cache/" class="md-nav__link">
@@ -534,6 +512,105 @@
     <li class="md-nav__item">
       <a href="../config/" class="md-nav__link">
         配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          输入
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        输入
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    基本用法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#msg_type" class="md-nav__link">
+    进阶: msg_type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    进阶: 约束
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    进阶: 帮助
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        数据库
       </a>
     </li>
   
@@ -822,6 +899,132 @@
 
 
 <h1 id="ayakainput">AyakaInput<a class="headerlink" href="#ayakainput" title="Permanent link">&para;</a></h1>
+<p>将<code>Message</code>转换为我们所需要的一系列参数</p>
+<h2 id="_1">基本用法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>将需要的参数打包到一个类中，该类继承自<code>AyakaInput</code>，编写方法参考<a href="https://docs.pydantic.dev/usage/models/">pydantic.BaseModel</a></p>
+<p>使用时放入回调的参数表中即可</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> 
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> 
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span><span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
+</code></pre></div>
+<p>注意，一定要编写类型提示，默认值可以不写</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name:str = ""</code></td>
+<td>正确</td>
+</tr>
+<tr>
+<td><code>name = ""</code></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><code>name:str</code></td>
+<td>正确</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>错误</td>
+</tr>
+</tbody>
+</table>
+<p>用户输入 #f1 张三丰 100</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>name=&#39;张三丰&#39; age=100
+</code></pre></div>
+<p>用户输入 #f1 张三丰</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
+<span class="linenos" data-linenos="2 "></span>age
+<span class="linenos" data-linenos="3 "></span>  field required (type=value_error.missing)
+</code></pre></div>
+<p>用户输入 #f1 张三丰 测试</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
+<span class="linenos" data-linenos="2 "></span>age
+<span class="linenos" data-linenos="3 "></span>  value is not a valid integer (type=type_error.integer)
+</code></pre></div>
+<h2 id="msg_type">进阶: msg_type<a class="headerlink" href="#msg_type" title="Permanent link">&para;</a></h2>
+<p>使用<code>msg_type</code>获取指定类型的<code>MessageSegment</code>（除了<code>type=text</code>类型）</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">at</span><span class="p">:</span><span class="n">msg_type</span><span class="o">.</span><span class="n">T_At</span> 
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span><span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
+</code></pre></div>
+<p>用户输入 #f1 123</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
+<span class="linenos" data-linenos="2 "></span>at
+<span class="linenos" data-linenos="3 "></span>  MessageSegment required (type=type_error)
+</code></pre></div>
+<p>用户输入 #f1 [CQ:at,qq=12]</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>at=MessageSegment(type=&#39;at&#39;, data={&#39;qq&#39;: &#39;12&#39;})
+</code></pre></div>
+<h2 id="_2">进阶: 约束<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>使用<code>pydantic</code>进行约束，约束条件参考<a href="https://docs.pydantic.dev/usage/types/#constrained-types">pydantic.Field</a></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span><span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
+</code></pre></div>
+<p>用户输入 #f1 -1 </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
+<span class="linenos" data-linenos="2 "></span>age
+<span class="linenos" data-linenos="3 "></span>  ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
+</code></pre></div>
+<p>用户输入 #f1 100 
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>age=100
+</code></pre></div></p>
+<h2 id="_3">进阶: 帮助<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>使用<code>Field</code>，编写<code>description</code>，以便<code>ayaka_master</code>为该属性提供帮助</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;名字&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;年龄&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">pass</span>
+</code></pre></div>
+<p>用户输入 #help test   </p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>[test]
+<span class="linenos" data-linenos="2 "></span>- f1 &lt;name&gt; &lt;age&gt;
+<span class="linenos" data-linenos="3 "></span>    &lt;name&gt; 名字
+<span class="linenos" data-linenos="4 "></span>    &lt;age&gt; 年龄
+</code></pre></div>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
 
 
 
@@ -847,7 +1050,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../app/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 应用" rel="prev">
+        <a href="../config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 配置" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -856,20 +1059,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              应用
+              配置
             </div>
           </div>
         </a>
       
       
         
-        <a href="../cache/" class="md-footer__link md-footer__link--next" aria-label="Next: 缓存" rel="next">
+        <a href="../db/" class="md-footer__link md-footer__link--next" aria-label="Next: 数据库" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              缓存
+              数据库
             </div>
           </div>
           <div class="md-footer__button md-icon">

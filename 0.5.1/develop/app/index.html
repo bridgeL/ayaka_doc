@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#boteventmessage" class="md-skip">
+        <a href="#ayakaapp" class="md-skip">
           Skip to content
         </a>
       
@@ -446,6 +446,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -486,6 +488,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           应用
@@ -503,6 +507,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="本页索引">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -533,8 +539,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#startcloseset_start_cmds" class="md-nav__link">
-    start、close、set_start_cmds
+  <a href="#startclosesendsend_many" class="md-nav__link">
+    start、close、send、send_many
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set_start_cmds" class="md-nav__link">
+    set_start_cmds
   </a>
   
 </li>
@@ -568,13 +581,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sendsend_many" class="md-nav__link">
-    send、send_many
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     其他
   </a>
@@ -603,20 +609,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../input/" class="md-nav__link">
-        输入
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../cache/" class="md-nav__link">
         缓存
       </a>
@@ -633,6 +625,34 @@
     <li class="md-nav__item">
       <a href="../config/" class="md-nav__link">
         配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/" class="md-nav__link">
+        输入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        数据库
       </a>
     </li>
   
@@ -920,13 +940,13 @@
   </a>
 
 
-  <h1>应用</h1>
-
+<h1 id="ayakaapp">AyakaApp<a class="headerlink" href="#ayakaapp" title="Permanent link">&para;</a></h1>
 <p>首先，你需要导入并初始化一个<code>AyakaApp</code>对象</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
 <span class="linenos" data-linenos="2 "></span>
 <span class="linenos" data-linenos="3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;测试一下&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p>详细api：<a href="https://bridgel.github.io/nonebot-plugin-ayaka/">https://bridgel.github.io/nonebot-plugin-ayaka/</a></p>
 <h2 id="boteventmessage">bot、event、message<a class="headerlink" href="#boteventmessage" title="Permanent link">&para;</a></h2>
 <p>御 三 家</p>
 <table>
@@ -1012,12 +1032,60 @@
 </tr>
 </tbody>
 </table>
-<h2 id="startcloseset_start_cmds">start、close、set_start_cmds<a class="headerlink" href="#startcloseset_start_cmds" title="Permanent link">&para;</a></h2>
+<h2 id="startclosesendsend_many">start、close、send、send_many<a class="headerlink" href="#startclosesendsend_many" title="Permanent link">&para;</a></h2>
+<p>四 大 天 王</p>
+<p>都是异步方法</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>运行应用</td>
+</tr>
+<tr>
+<td>close</td>
+<td>关闭应用</td>
+</tr>
+<tr>
+<td>send</td>
+<td>发送消息</td>
+</tr>
+<tr>
+<td>send_many</td>
+<td>发送合并转发消息</td>
+</tr>
+</tbody>
+</table>
+<p>特别的，start可以设置参数，令app运行后进入指定状态</p>
+<h2 id="set_start_cmds">set_start_cmds<a class="headerlink" href="#set_start_cmds" title="Permanent link">&para;</a></h2>
+<p>设置启动应用的命令</p>
 <h2 id="stateget_state">state、get_state<a class="headerlink" href="#stateget_state" title="Permanent link">&para;</a></h2>
 <h2 id="set_stategotoback">set_state、goto、back<a class="headerlink" href="#set_stategotoback" title="Permanent link">&para;</a></h2>
 <h2 id="on_xxx">on_xxx 注册回调<a class="headerlink" href="#on_xxx" title="Permanent link">&para;</a></h2>
 <h2 id="add_listenerremove_listener">add_listener、remove_listener<a class="headerlink" href="#add_listenerremove_listener" title="Permanent link">&para;</a></h2>
-<h2 id="sendsend_many">send、send_many<a class="headerlink" href="#sendsend_many" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>add_listener</td>
+<td>为该群组添加对私聊的监听</td>
+</tr>
+<tr>
+<td>remove_listener</td>
+<td>移除该群组对私聊的监听</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1123,13 +1191,13 @@
       
       
         
-        <a href="../input/" class="md-footer__link md-footer__link--next" aria-label="Next: 输入" rel="next">
+        <a href="../cache/" class="md-footer__link md-footer__link--next" aria-label="Next: 缓存" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              输入
+              缓存
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ayakainput" class="md-skip">
+        <a href="#ayakaconfig" class="md-skip">
           Skip to content
         </a>
       
@@ -446,6 +446,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -494,20 +496,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../input/" class="md-nav__link">
-        输入
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../cache/" class="md-nav__link">
         缓存
       </a>
@@ -531,10 +519,99 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          配置
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         配置
       </a>
       
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    读取
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    修改
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ayakalargeconfig" class="md-nav__link">
+    AyakaLargeConfig
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input/" class="md-nav__link">
+        输入
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        数据库
+      </a>
     </li>
   
 
@@ -821,7 +898,89 @@
   </a>
 
 
-<h1 id="ayakainput">AyakaInput<a class="headerlink" href="#ayakainput" title="Permanent link">&para;</a></h1>
+<h1 id="ayakaconfig">AyakaConfig<a class="headerlink" href="#ayakaconfig" title="Permanent link">&para;</a></h1>
+<p>所有ayaka衍生插件均可申请读写<code>data/ayaka/ayaka_setting.json</code>中的配置</p>
+<h2 id="_1">定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>将配置数据打包到一个类中，该类继承自<code>AyakaConfig</code>，编写方法参考<a href="https://docs.pydantic.dev/usage/models/">pydantic.BaseModel</a></p>
+<p>注意，继承时必须编写__app_name__属性的值</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span>
+<span class="linenos" data-linenos="2 "></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">AyakaConfig</span><span class="p">):</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="n">__app_name__</span> <span class="o">=</span> <span class="s2">&quot;一个名字&quot;</span>
+<span class="linenos" data-linenos="6 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="n">numbers</span><span class="p">:</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+</code></pre></div>
+<p>注意，一定要编写类型提示和默认值。</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name:str = ""</code></td>
+<td>正确</td>
+</tr>
+<tr>
+<td><code>name = ""</code></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><code>name:str</code></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>错误</td>
+</tr>
+</tbody>
+</table>
+<p>如果配置文件不存在，或存在但并没有该插件的配置数据，那么此时默认值便会写入配置文件中，因此，一定要编写默认值</p>
+<h2 id="_2">读取<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>直接实例化即可</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 加载配置</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1"># 使用配置</span>
+<span class="linenos" data-linenos="5 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">age</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">numbers</span><span class="p">)</span>
+</code></pre></div>
+<p>对应配置文件<code>data/ayaka/ayaka_setting.json</code></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nt">&quot;一个名字&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="linenos" data-linenos="5 "></span><span class="w">        </span><span class="nt">&quot;numbers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="linenos" data-linenos="6 "></span><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="linenos" data-linenos="7 "></span><span class="w">    </span><span class="err">...</span><span class="w"></span>
+<span class="linenos" data-linenos="8 "></span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="_3">修改<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>如果是修改不可变对象，那么<code>ayaka</code>会自动将新配置写入文件；</p>
+<p>如果是修改数组、字典等<strong>可变对象</strong>的值，则需要调用<code>AyakaConfig().save()</code>方法来提醒<code>ayaka</code>将数据写入文件</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 修改不可变对象</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;测试1&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1"># 修改可变对象</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_2</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">numbers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="ayakalargeconfig">AyakaLargeConfig<a class="headerlink" href="#ayakalargeconfig" title="Permanent link">&para;</a></h2>
+<p>当配置型较多时，建议使用<code>AyakaLargeConfig</code>，它读写的是独立配置文件，<code>data/ayaka/separate/&lt;__app_name__&gt;.json</code></p>
+<p>其定义、读取和修改与<code>AyakaConfig</code>一致，仅存储位置不同而已</p>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
 
 
 
@@ -863,13 +1022,13 @@
       
       
         
-        <a href="../state/" class="md-footer__link md-footer__link--next" aria-label="Next: 状态" rel="next">
+        <a href="../input/" class="md-footer__link md-footer__link--next" aria-label="Next: 输入" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              状态
+              输入
             </div>
           </div>
           <div class="md-footer__button md-icon">
