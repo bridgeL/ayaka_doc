@@ -1,5 +1,6 @@
 .demo {
     width: 600px;
+    max-width: 90vw;
     height: 400px;
     background: black;
     overflow: auto;
