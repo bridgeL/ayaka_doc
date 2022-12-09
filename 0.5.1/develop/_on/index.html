@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/storage/">
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/_on/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
-        <title>Storage - Ayaka - 文字游戏开发辅助插件</title>
+        <title>on - Ayaka - 文字游戏开发辅助插件</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Storage
+               on
             
           </span>
         </div>
@@ -210,6 +210,24 @@
     <li class="md-tabs__item">
       <a href="../how-does-it-work/" class="md-tabs__link">
         开发衍生插件
+      </a>
+    </li>
+  
+
+        
+      
+        
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../games/" class="md-tabs__link">
+        小游戏合集
       </a>
     </li>
   
@@ -412,6 +430,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -434,6 +456,34 @@
     <li class="md-nav__item">
       <a href="../how-does-it-work/" class="md-nav__link">
         工作原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create-ayaka-app/" class="md-nav__link">
+        新建插件
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser/" class="md-nav__link">
+        浏览器截图
       </a>
     </li>
   
@@ -463,6 +513,102 @@
       
         
           
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../games/">小游戏合集</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="小游戏合集" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          小游戏合集
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/install/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/who-is-suspect/" class="md-nav__link">
+        谁是卧底
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/help/" class="md-nav__link">
+        更多帮助
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
         
           
         
@@ -474,13 +620,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_4">
           更新日志
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="更新日志" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           更新日志
         </label>
@@ -591,140 +737,81 @@
                 
                   
 
-  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/storage.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/_on.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Storage</h1>
+  <h1> on</h1>
 
-<p>如果需要bot重启后数据不丢失，则需要将数据保存到本地</p>
-<p><code>app.storage</code>中提供了一些有益的api</p>
-<h2 id="_1">快速上手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>插件结构</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
-<span class="linenos" data-linenos="2 "></span>    bag
-<span class="linenos" data-linenos="3 "></span>        __init__.py
-<span class="linenos" data-linenos="4 "></span>        test
-<span class="linenos" data-linenos="5 "></span>            ok.txt
-</code></pre></div>
-<p>若想获取ok.txt的数据，只需</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag/__init__.py</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
-<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span> <span class="c1"># 对应文件夹 plugins/bag/test</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;ok.txt&quot;</span><span class="p">)</span> <span class="c1"># 对应文件 plugins/bag/test/ok.txt</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
-</code></pre></div>
-<h2 id="_2">包插件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>如果您的代码中使用了<code>app.storage.plugin_path()</code>相关代码，那么建议您的插件为包插件形式</p>
-<p><strong>单文件插件</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
-<span class="linenos" data-linenos="2 "></span>    bag.py
-<span class="linenos" data-linenos="3 "></span>    data.json
-<span class="linenos" data-linenos="4 "></span>    checkin.py
-<span class="linenos" data-linenos="5 "></span>    ...
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag.py</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
-<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和bag.py都位于plugins下，在多插件时造成混乱</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
-</code></pre></div>
-<p><strong>包插件</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>plugins
-<span class="linenos" data-linenos="2 "></span>    bag
-<span class="linenos" data-linenos="3 "></span>        __init__.py
-<span class="linenos" data-linenos="4 "></span>        data.json
-<span class="linenos" data-linenos="5 "></span>    checkin
-<span class="linenos" data-linenos="6 "></span>    ...
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># plugins/bag/__init__.py</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 6 "></span>    <span class="o">...</span>
-<span class="linenos" data-linenos=" 7 "></span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">storage</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span> <span class="c1"># 对应 plugins/bag</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">file</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span> <span class="c1"># 数据和__init__.py都位于plugins/bag下，在多插件时依旧清晰明了</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="o">...</span>
-</code></pre></div>
-<h2 id="ayakapath">AyakaPath<a class="headerlink" href="#ayakapath" title="Permanent link">&para;</a></h2>
-<p>AyakaPath，文件夹地址</p>
-<p><code>app.plugin_path()</code>和<code>app.group_path()</code>返回<code>AyakaPath对象</code></p>
+<h2 id="_1">无参数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>注册的回调函数必须是没有参数的异步函数</p>
+<p>若需要获取参数，请直接访问对应app属性</p>
+<p>例如：</p>
 <ul>
-<li><code>app.plugin_path()</code> 对应地址 <code>&lt;create_app_file&gt;/../</code></li>
-<li><code>app.plugin_path(1, "a")</code> 对应地址 <code>&lt;create_app_file&gt;/../1/a</code></li>
-<li><code>app.plugin_path("1", "a")</code> 对应地址 <code>&lt;create_app_file&gt;/../1/a</code></li>
-<li><code>app.group_path()</code> 对应地址 <code>data/groups/&lt;bot_id&gt;/&lt;group_id&gt;/&lt;app_name&gt;</code></li>
-<li><code>app.group_path(1, "a")</code> 对应地址 <code>data/groups/&lt;bot_id&gt;/&lt;group_id&gt;/&lt;app_name&gt;/1/a</code></li>
-<li><code>app.group_path("1", "a")</code> 对应地址 <code>data/groups/&lt;bot_id&gt;/&lt;group_id&gt;/&lt;app_name&gt;/1/a</code></li>
+<li>获取事件 app.event</li>
+<li>获取消息 app.message</li>
+<li>获取分割后的消息 app.args</li>
+<li>获取用户id app.user_id</li>
+<li>获取用户名 app.user_name</li>
+<li>...</li>
 </ul>
-<h2 id="ayakafile">AyakaFile<a class="headerlink" href="#ayakafile" title="Permanent link">&para;</a></h2>
-<p><code>AyakaPath对象.file()</code>返回<code>AyakaFile对象</code></p>
-<ul>
-<li><code>app.plugin_path().file("test.txt")</code> 对应文件 <code>&lt;create_app_file&gt;/../test.txt</code></li>
-<li><code>app.plugin_path().file("error.log")</code> 对应文件 <code>&lt;create_app_file&gt;/../error.log</code></li>
-</ul>
-<p>内置load、save方法，按照txt文件格式对数据进行处理</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos" data-linenos="2 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos" data-linenos="3 "></span>        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="linenos" data-linenos="4 "></span>    <span class="k">return</span> <span class="n">data</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="linenos" data-linenos="7 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos" data-linenos="8 "></span>        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">()</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">no_args</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">user_name</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="ayakajsonfile">AyakaJsonFile<a class="headerlink" href="#ayakajsonfile" title="Permanent link">&para;</a></h2>
-<p><code>AyakaPath对象.json()</code>返回<code>AyakaJsonFile对象</code></p>
-<ul>
-<li><code>app.plugin_path().json("hi")</code> 对应文件 <code>&lt;create_app_file&gt;/../hi.json</code></li>
-<li><code>app.plugin_path().json("hi.log")</code> 对应文件 <code>&lt;create_app_file&gt;/../hi.json</code></li>
-</ul>
-<p><code>.json()</code>会强制修改文件后缀名为json</p>
-<p>内置load、save方法，按照json文件格式对数据进行处理</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="linenos" data-linenos="2 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos" data-linenos="3 "></span>        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span>    <span class="k">return</span> <span class="n">data</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-<span class="linenos" data-linenos="7 "></span>    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;w+&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="linenos" data-linenos="8 "></span>        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<h2 id="_2">何时运行回调<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>当存在激励源驱动时，将会触发相应的回调运行</p>
+<p>激励源通常来说有两类，消息驱动、时间驱动</p>
+<h2 id="_3">消息驱动<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在收到消息后触发回调</p>
+<h3 id="apponidlesuperfalse">app.on.idle(super=False)<a class="headerlink" href="#apponidlesuperfalse" title="Permanent link">&para;</a></h3>
+<p>注册设备闲置时的回调</p>
+<h3 id="apponstatestatesstr">app.on.state(*states:str)<a class="headerlink" href="#apponstatestatesstr" title="Permanent link">&para;</a></h3>
+<p>注册应用运行在不同状态时的回调</p>
+<h3 id="apponcommandcmds-str">app.on.command(*cmds: str)<a class="headerlink" href="#apponcommandcmds-str" title="Permanent link">&para;</a></h3>
+<p>注册命令回调</p>
+<h3 id="appontext">app.on.text()<a class="headerlink" href="#appontext" title="Permanent link">&para;</a></h3>
+<p>注册消息回调</p>
+<h2 id="_4">使用顺序<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>必须是如下的先后顺序</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<h2 id="ayakajsonfilectrlchain">AyakaJsonFileCtrl.chain<a class="headerlink" href="#ayakajsonfilectrlchain" title="Permanent link">&para;</a></h2>
-<p>json文件可以设置多层key，因此<code>AyakaJsonFile</code>在读写数据时会遇到与<a href="../cache/#ayakacachectrlchain">缓存</a>同样的问题</p>
-<p><code>AyakaJsonFileCtrl</code>被用于解决这一困难，其API与<code>AyakaCacheCtrl</code>几乎完全一致，你可以</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># plugins/bag/__init__.py</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">plugin_path</span><span class="p">()</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="mi">10086</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="c1"># 缺省值100</span>
-<span class="linenos" data-linenos="6 "></span><span class="n">money</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="linenos" data-linenos="7 "></span><span class="c1"># +10</span>
-<span class="linenos" data-linenos="8 "></span><span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span> <span class="o">+</span> <span class="mi">10</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">state</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<p>对应文件</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1">// plugins/bag/data.json</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">    </span><span class="nt">&quot;10086&quot;</span><span class="p">:{</span><span class="w"></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">        </span><span class="nt">&quot;money&quot;</span><span class="p">:</span><span class="mi">110</span><span class="w"></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> 
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
 </code></pre></div>
-<h2 id="_3">下一步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="o">...</span>
+</code></pre></div>
+<h2 id="_5">闲置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在没有任何应用运行时，群聊处于闲置状态，此时注册的所有<code>on.idle</code>回调都可以响应，而<code>on.state</code>则无法响应，因为它们都依赖于相关应用的状态，而闲置时没有应用运行</p>
+<p>运行应用后，注册在对应应用下的<code>on.state</code>回调可以响应，而普通的<code>on.idle</code>无法响应，但对于设置了<code>super=True</code>的特殊的<code>on.idle</code>仍可以响应</p>
+<p>这种设计可以帮助一些有特殊需要的<code>无状态应用</code>在<code>有状态应用</code>运行时仍可响应用户的指令</p>
+<h2 id="_6">时间驱动<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>定时器定时触发回调</p>
+<p>触发时，回调无法通过分析消息得到各类信息（bot/group/message/event/sender等）</p>
+<p>因此有很多方法和属性都无法访问</p>
+<p>发送消息请使用专用的<code>app.t_send</code>/<code>app.t_send_many</code>，并且需要提供目标bot和群组的id</p>
+<h3 id="apponintervalgap-int-h-int-1-m-int-1-s-int-1">app.on.interval(gap: int, h: int = -1, m: int = -1, s: int = -1)<a class="headerlink" href="#apponintervalgap-int-h-int-1-m-int-1-s-int-1" title="Permanent link">&para;</a></h3>
+<p>在指定的时间点后循环触发</p>
+<h3 id="apponeverydayh-int-m-int-s-int">app.on.everyday(h: int, m: int, s: int)<a class="headerlink" href="#apponeverydayh-int-m-int-s-int" title="Permanent link">&para;</a></h3>
+<p>每日定时触发</p>
+<h2 id="_7">下一步<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>

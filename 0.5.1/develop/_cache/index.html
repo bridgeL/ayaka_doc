@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/api/">
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/0.5.1/develop/_cache/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
-        <title>Api - Ayaka - 文字游戏开发辅助插件</title>
+        <title>cache - Ayaka - 文字游戏开发辅助插件</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#app" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Api
+               cache
             
           </span>
         </div>
@@ -210,6 +210,24 @@
     <li class="md-tabs__item">
       <a href="../how-does-it-work/" class="md-tabs__link">
         开发衍生插件
+      </a>
+    </li>
+  
+
+        
+      
+        
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../games/" class="md-tabs__link">
+        小游戏合集
       </a>
     </li>
   
@@ -412,6 +430,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -434,6 +456,34 @@
     <li class="md-nav__item">
       <a href="../how-does-it-work/" class="md-nav__link">
         工作原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create-ayaka-app/" class="md-nav__link">
+        新建插件
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser/" class="md-nav__link">
+        浏览器截图
       </a>
     </li>
   
@@ -463,6 +513,102 @@
       
         
           
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../games/">小游戏合集</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="小游戏合集" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          小游戏合集
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/install/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/who-is-suspect/" class="md-nav__link">
+        谁是卧底
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../games/help/" class="md-nav__link">
+        更多帮助
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+        
+          
         
           
         
@@ -474,13 +620,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_4">
           更新日志
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="更新日志" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           更新日志
         </label>
@@ -591,251 +737,79 @@
                 
                   
 
-  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/api.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/bridgeL/nonebot-plugin-ayaka/edit/master/docs/develop/_cache.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-  <h1>Api</h1>
+  <h1> cache</h1>
 
-<p>详细api：<a href="https://bridgel.github.io/nonebot-plugin-ayaka/">https://bridgel.github.io/nonebot-plugin-ayaka/</a></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;helloooooo&quot;</span><span class="p">)</span>
+<p>如果需要临时保存一些数据，以供应用在不同时刻/函数中使用，那么需要使用缓存</p>
+<p><code>app.cache</code>中提供了一些有益的api</p>
+<h2 id="_1">快速上手<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="n">money</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span><span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">money</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">idle</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="o">...</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="n">uid</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">user_id</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="c1"># 如果已经设置了值，则返回10，否则返回缺省值0</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">money</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">uid</span><span class="p">,</span> <span class="s2">&quot;money&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="linenos" data-linenos="17 "></span>    <span class="o">...</span>
 </code></pre></div>
-<h2 id="app">app属性<a class="headerlink" href="#app" title="Permanent link">&para;</a></h2>
-<h3 id="_1">常用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>help</td>
-<td><code>str</code></td>
-<td>当前应用在当前状态下的帮助</td>
-</tr>
-<tr>
-<td>state</td>
-<td><code>bool</code></td>
-<td>当前应用的状态</td>
-</tr>
-<tr>
-<td>bot</td>
-<td><code>Bot</code></td>
-<td>当前机器人</td>
-</tr>
-<tr>
-<td>group</td>
-<td><code>AyakaGroup</code></td>
-<td>当前群组</td>
-</tr>
-<tr>
-<td>event</td>
-<td><code>MessageEvent</code></td>
-<td>当前消息事件</td>
-</tr>
-<tr>
-<td>message</td>
-<td><code>Message</code></td>
-<td>当前消息</td>
-</tr>
-<tr>
-<td>args</td>
-<td><code>List[MessageSegment]</code></td>
-<td>删除命令后，依照分隔符分割，并移除空数据</td>
-</tr>
-<tr>
-<td>group_id</td>
-<td><code>int</code></td>
-<td>当前群聊的群号</td>
-</tr>
-<tr>
-<td>user_id</td>
-<td><code>int</code></td>
-<td>当前消息的发送者的qq号</td>
-</tr>
-<tr>
-<td>user_name</td>
-<td><code>str</code></td>
-<td>当前消息的发送者的群名片或昵称（优先为群名片）</td>
-</tr>
-<tr>
-<td>cache</td>
-<td><code>AyakaCache</code></td>
-<td>为当前群组当前应用提供的独立缓存数据空间</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_2">常不用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td><code>str</code></td>
-<td>应用名称</td>
-</tr>
-<tr>
-<td>intro</td>
-<td><code>str</code></td>
-<td>应用介绍（设置help后自动生成）</td>
-</tr>
-<tr>
-<td>all_help</td>
-<td><code>str</code></td>
-<td>当前应用的所有帮助</td>
-</tr>
-<tr>
-<td>arg</td>
-<td><code>Message</code></td>
-<td>删除了命令后剩下的消息部分</td>
-</tr>
-<tr>
-<td>cmd</td>
-<td><code>str</code></td>
-<td>本次响应是针对哪个命令</td>
-</tr>
-<tr>
-<td>bot_id</td>
-<td><code>int</code></td>
-<td>当前机器人的qq号</td>
-</tr>
-</tbody>
-</table>
-<h2 id="app_1">app方法<a class="headerlink" href="#app_1" title="Permanent link">&para;</a></h2>
-<h3 id="_3">异步方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>start</td>
-<td>运行应用</td>
-</tr>
-<tr>
-<td>close</td>
-<td>关闭应用</td>
-</tr>
-<tr>
-<td>send</td>
-<td>发送消息</td>
-</tr>
-<tr>
-<td>send_many</td>
-<td>发送合并转发消息</td>
-</tr>
-</tbody>
-</table>
-<p>定时器触发回调时所使用的专用发送消息方法</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>t_send</td>
-<td>发送消息</td>
-</tr>
-<tr>
-<td>t_send_many</td>
-<td>发送合并转发消息</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">同步方法<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>注册回调</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>on.idle</td>
-<td>注册设备闲置时的回调</td>
-</tr>
-<tr>
-<td>on.state</td>
-<td>注册应用运行在不同状态时的回调</td>
-</tr>
-<tr>
-<td>on.command</td>
-<td>注册命令回调</td>
-</tr>
-<tr>
-<td>on.text</td>
-<td>注册消息回调</td>
-</tr>
-<tr>
-<td>on.everyday</td>
-<td>每日定时触发回调（东8区）</td>
-</tr>
-<tr>
-<td>on.interval</td>
-<td>在指定的时间点后开始循环触发（东8区）</td>
-</tr>
-</tbody>
-</table>
-<p>读取本地文件数据</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>storage.group_path</td>
-<td>路径<code>data/groups/&lt;bot_id&gt;/&lt;group_id&gt;/&lt;app_name&gt;</code></td>
-</tr>
-<tr>
-<td>storage.plugin_path</td>
-<td>路径<code>&lt;create_app_file&gt;/../</code></td>
-</tr>
-</tbody>
-</table>
-<p>添加对私聊的监听</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>add_listener</td>
-<td>为该群组添加对私聊的监听</td>
-</tr>
-<tr>
-<td>remove_listener</td>
-<td>移除该群组对私聊的监听</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="ayakacachectrlchain">AyakaCacheCtrl.chain<a class="headerlink" href="#ayakacachectrlchain" title="Permanent link">&para;</a></h2>
+<p>json文件可以设置多层key，但是读写时往往遇到困难，例如</p>
+<p><code>data["haha"]["ee"]["your name"]["wtf"] = 2</code></p>
+<p>你需要先层层设置，最终才可赋值</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="3 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="4 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="5 "></span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;haha&quot;</span><span class="p">][</span><span class="s2">&quot;ee&quot;</span><span class="p">][</span><span class="s2">&quot;your name&quot;</span><span class="p">][</span><span class="s2">&quot;wtf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div>
+<p><code>AyakaCacheCtrl</code>被用于解决这一困难</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka.cache</span> <span class="kn">import</span> <span class="n">AyakaCacheCtrl</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">data</span> <span class="o">=</span> <span class="n">AyakaCacheCtrl</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">,</span> <span class="s2">&quot;your name&quot;</span><span class="p">,</span> <span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1"># 读取数据, 缺省值0</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 0</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1"># 设置数据</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># 3</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 再次读取</span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 3</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 查看整体</span>
+<span class="linenos" data-linenos="12 "></span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1"># {&quot;haha&quot;:{&quot;ee&quot;:{&quot;your name&quot;:{&quot;wtf&quot;:3}}}}</span>
+</code></pre></div>
+<h3 id="_2">链式写法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>注意：<code>AyakaCacheCtrl.chain() -&gt; AyakaCacheCtrl</code></p>
+<p>chain的返回值，仍然是一个AyakaCacheCtrl对象，因此你可以</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;haha&quot;</span><span class="p">,</span> <span class="s2">&quot;ee&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;your name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s2">&quot;wtf&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="ayakacachectrl">如何获取AyakaCacheCtrl<a class="headerlink" href="#ayakacachectrl" title="Permanent link">&para;</a></h3>
+<p>无需您自行创建<code>AyakaCacheCtrl对象</code>，直接访问<code>app.cache</code>即可获取</p>
+<p>通过<code>app.cache</code>获得的<code>AyakaCacheCtrl对象</code>将与当前消息所在的群聊id、机器人id、应用名进行<strong>唯一绑定</strong>，也就是说，当您在其他插件或其他群聊或其他机器人中获取的<code>AyakaCacheCtrl对象</code>是相互独立的</p>
+<p>通过<code>app.cache</code>获得的<code>AyakaCacheCtrl对象</code>不会因为当前消息处理结束而销毁，因此可以在同一机器人、同一群聊、同一插件的情况下，通过<code>app.cache</code>来保存一些临时性的信息，例如：</p>
+<ul>
+<li>当用户发送指令A时，通过缓存保存该用户的名称</li>
+<li>再等到用户发送指令B时，通过缓存获取之前保存的名称</li>
+</ul>
+<p>注意：bot重启后，<code>app.cache</code>数据会丢失</p>
+<h2 id="_3">其他用法（不推荐）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># None</span>
+<span class="linenos" data-linenos="2 "></span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<span class="linenos" data-linenos="3 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>
+</code></pre></div>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
