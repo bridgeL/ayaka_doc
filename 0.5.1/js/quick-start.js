@@ -58,6 +58,74 @@ const demo3 = `<<< "user" 说：travel
 <<< "user" 说：exit
 >>>  "Bot" 说：已关闭应用 [星际旅行]`;
 
+const demo4 = `<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in ['太阳']
+<<< "user" 说：move 太阳.奶茶店
+>>>  "Bot" 说：前往 太阳.奶茶店
+<<< "user" 说：嗯？
+>>>  "Bot" 说：你发现这里只卖热饮
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in ['太阳', '奶茶店']
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]`;
+
+const demo5 = `<<< "user" 说：help 星际旅行
+>>>  "Bot" 说：[星际旅行]
+xing ji lv xing
+- 星际旅行/travel | 打开应用
+
+[星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+[星际旅行.地球]
+- drink | 喝水
+[星际旅行.月球]
+- drink | 喝土
+[星际旅行.太阳]
+- drink | 喝太阳风
+- watch/看表演 | 看表演
+[星际旅行.太阳.奶茶店]
+- drink | 喝奶茶
+- * | 令人震惊的事实
+[星际旅行.太阳.售票处]
+- buy/买票 | 买门票
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：help
+>>>  "Bot" 说：[root.星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+[root]
+xing ji lv xing
+- 星际旅行/travel | 打开应用
+<<< "user" 说：move 太阳.奶茶店
+>>>  "Bot" 说：前往 太阳.奶茶店
+<<< "user" 说：help
+>>>  "Bot" 说：[root.星际旅行.太阳.奶茶店]
+- drink | 喝奶茶
+- * | 令人震惊的事实
+[root.星际旅行.太阳]
+- drink | 喝太阳风
+- watch/看表演 | 看表演
+[root.星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+[root]
+xing ji lv xing
+- 星际旅行/travel | 打开应用
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]`;
+
 const div_lines = (demo) => {
     demo = demo.replaceAll(`<<< "user" 说：`, `<span class="demo-user">user</span>`);
     demo = demo.replaceAll(`>>>  "Bot" 说：`, `<span class="demo-bot">Bot</span>`);
@@ -69,6 +137,8 @@ const total_lines = {
     "demo1": div_lines(demo1),
     "demo2": div_lines(demo2),
     "demo3": div_lines(demo3),
+    "demo4": div_lines(demo4),
+    "demo5": div_lines(demo5),
 };
 
 
