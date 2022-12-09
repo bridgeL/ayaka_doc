@@ -23,8 +23,8 @@ const demo1 = `<<< "user" 说：travel
 `;
 
 const div_lines = (demo) => {
-    demo = demo.replace(`<<< "user"`, `<span class="demo-user">user</span>`);
-    demo = demo.replace(`<<< "Bot"`, `<span class="demo-bot">Bot</span>`);
+    demo = demo.replaceAll(`<<< "user" 说：`, `<span class="demo-user">user</span>`);
+    demo = demo.replaceAll(`<<< "Bot" 说：`, `<span class="demo-bot">Bot</span>`);
     demo = demo.split("\n");
     return demo;
 };

@@ -3,8 +3,24 @@
     height: 200px;
     background: black;
     overflow: hidden;
+    color: white;
 }
 
-.demo .demo-line {
-    color: white;
+.demo:nth-child(odd) {
+    background: #222;
+}
+
+.demo-user,
+.demo-bot {
+    font-weight: bold;
+    width: 40px;
+    display: inline-block;
+}
+
+.demo-user {
+    color: lightgreen;
+}
+
+.demo-bot {
+    color: #ff6000;
 }
