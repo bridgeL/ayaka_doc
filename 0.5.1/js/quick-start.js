@@ -1,26 +1,36 @@
+const demo1 = `<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in []
+<<< "user" 说：move 地球
+>>>  "Bot" 说：前往 地球
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in ['地球']
+<<< "user" 说：drink
+>>>  "Bot" 说：喝水
+<<< "user" 说：move 月球
+>>>  "Bot" 说：前往 月球
+<<< "user" 说：drink
+>>>  "Bot" 说：喝土
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：drink
+>>>  "Bot" 说：喝太阳风
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in ['太阳']
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+`;
+
+const div_lines = (demo) => {
+    demo = demo.replace(`<<< "user"`, `<span class="demo-user">user</span>`);
+    demo = demo.replace(`<<< "Bot"`, `<span class="demo-bot">Bot</span>`);
+    demo = demo.split("\n");
+    return demo;
+};
+
 const total_lines = {
-    "demo1": `<<< [user] 说：travel
-    >>> [ Bot] 说：已打开应用 [星际旅行]
-    <<< [user] 说：hi
-    >>> [ Bot] 说：hi I'm in []
-    <<< [user] 说：move 地球
-    >>> [ Bot] 说：前往 地球
-    <<< [user] 说：hi
-    >>> [ Bot] 说：hi I'm in ['地球']
-    <<< [user] 说：drink
-    >>> [ Bot] 说：喝水
-    <<< [user] 说：move 月球
-    >>> [ Bot] 说：前往 月球
-    <<< [user] 说：drink
-    >>> [ Bot] 说：喝土
-    <<< [user] 说：move 太阳
-    >>> [ Bot] 说：前往 太阳
-    <<< [user] 说：drink
-    >>> [ Bot] 说：喝太阳风
-    <<< [user] 说：hi
-    >>> [ Bot] 说：hi I'm in ['太阳']
-    <<< [user] 说：exit
-    >>> [ Bot] 说：已关闭应用 [星际旅行]`.split("\n")
+    "demo1": div_lines(demo1)
 };
 
 const show_demo = (id) => {
