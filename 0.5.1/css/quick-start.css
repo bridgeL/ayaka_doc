@@ -6,6 +6,7 @@
     overflow: auto;
     color: white;
     padding: 20px 0;
+    user-select: none;
 }
 
 .demo:hover {

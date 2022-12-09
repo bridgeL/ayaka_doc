@@ -73,10 +73,10 @@ const total_lines = {
 
 const add_demo = (e, id) => {
     e.preventDefault();
+    let lines = total_lines[id];
     let div = document.querySelector(`#${id}`);
     let i = div.i;
     div.i += 1;
-    let lines = total_lines[id];
     if (i < lines.length && i >= 0) {
         div.innerHTML += `<div class="demo-line line-${i}">${lines[i]}</div>`;
         div.scrollTo(0, 10000);
@@ -86,8 +86,8 @@ const add_demo = (e, id) => {
 const sub_demo = (e, id) => {
     e.preventDefault();
     let div = document.querySelector(`#${id}`);
-    let i = div.i;
     div.i -= 1;
+    let i = div.i;
     let d = div.querySelector(`.line-${i}`);
     if (d) {
         div.removeChild(d);
