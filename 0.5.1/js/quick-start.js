@@ -40,7 +40,11 @@ const show_demo = (id) => {
 let tiemr = setInterval(() => {
     let divs = document.querySelectorAll(".demo");
     if (divs) {
-        for (let div of divs) div.onClick = show_demo(div.id);
+        for (let div of divs) {
+            div.onClick = () => show_demo(div.id);
+            console.log(div);
+            console.dir(div);
+        }
         clearInterval(tiemr);
     }
 }, 1000)
