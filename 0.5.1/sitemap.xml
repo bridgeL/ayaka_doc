@@ -71,11 +71,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/help/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.1/develop/how-does-it-work/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
@@ -137,36 +132,6 @@
     </url>
     <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.1/intro/quick_start/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/baidu/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/clock/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/menu/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/mult_input/</loc>
-         <lastmod>2022-12-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.1/more/split/</loc>
          <lastmod>2022-12-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
