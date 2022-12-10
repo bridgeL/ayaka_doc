@@ -446,8 +446,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ayakainput" class="md-nav__link">
-    AyakaInput
+  <a href="#_3" class="md-nav__link">
+    群组状态
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    旅行
+  </a>
+  
+    <nav class="md-nav" aria-label="旅行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    用状态指代地点
   </a>
   
 </li>
@@ -459,20 +479,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    注册回调
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    子状态可以触发父状态的回调
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    state还可以切片
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ayakainput" class="md-nav__link">
+    AyakaInput
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     多层次的回调
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     缓存
   </a>
   
@@ -486,14 +534,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     插件帮助
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     下一步
   </a>
   
@@ -959,7 +1007,53 @@
 
 <h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>编写一个星际旅行插件</p>
+<p>假设所有消息都是群消息</p>
 <h2 id="_2">基本使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>打开和关闭应用</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>闲置状态</td>
+<td>星际旅行、travel</td>
+<td>打开星际旅行应用</td>
+</tr>
+<tr>
+<td>运行星际旅行中</td>
+<td>退出、exit</td>
+<td>关闭星际旅行应用</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaInput</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1"># 启动应用</span>
+<span class="hll"><span class="linenos" data-linenos=" 7 "></span><span class="n">app</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">)</span>
+</span><span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 装饰器的顺序没有强制要求，随便写</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># 关闭应用</span>
+<span class="hll"><span class="linenos" data-linenos="13 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
+<span class="hll"><span class="linenos" data-linenos="17 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="_3">群组状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>收到<code>星际旅行</code>或<code>travel</code>命令后，群组会从<code>闲置状态</code>变为<code>运行星际旅行应用</code>的状态（即从<code>root</code>状态变为<code>root.星际旅行</code>状态）</p>
+<p>收到<code>退出</code>或<code>exit</code>命令后，群组会从<code>运行星际旅行应用</code>变为<code>闲置状态</code>的状态（即从<code>root.星际旅行</code>状态变为<code>root</code>状态）</p>
+<h2 id="_4">旅行<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>实现旅行的功能</p>
 <table>
 <thead>
 <tr>
@@ -1058,11 +1152,9 @@
 <span class="linenos" data-linenos="60 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
 <span class="hll"><span class="linenos" data-linenos="61 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="ayakainput">AyakaInput<a class="headerlink" href="#ayakainput" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
-<span class="linenos" data-linenos="2 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
+<h3 id="_5">用状态指代地点<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>如果我们用<code>root.星际旅行.地球</code>状态指代<code>你正处于地球</code></p>
+<p>那么打开应用后，你处于<code>root.星际旅行</code>状态，这一状态是一切其他状态（<code>root.星际旅行.地球</code>、<code>root.星际旅行.月球</code>等）的基础</p>
 <h3 id="on_state">on_state<a class="headerlink" href="#on_state" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1078,29 +1170,47 @@
 </tr>
 <tr>
 <td><code>@app.on_state("地球")</code></td>
-<td>对应<code>root.地球</code></td>
+<td>对应<code>root.星际旅行.地球</code></td>
 </tr>
 <tr>
 <td><code>@app.on_state(["地球","中国"])</code></td>
-<td>对应<code>root.地球.中国</code></td>
+<td>对应<code>root.星际旅行.地球.中国</code></td>
 </tr>
 <tr>
 <td><code>@app.on_state("地球","月球")</code></td>
-<td>对应<code>root.地球</code>和<code>root.月球</code></td>
+<td>对应<code>root.星际旅行.地球</code>和<code>root.星际旅行.月球</code></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">pass</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下，且对所有子状态生效</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span> 
-<span class="linenos" data-linenos=" 9 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="k">pass</span>
+<h3 id="_6">注册回调<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>对不同的状态注册不同的回调 = 在不同的地点做不同的事情</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 在地球喝水</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 在月球喝水</span>
+<span class="linenos" data-linenos="10 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="_7">子状态可以触发父状态的回调<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下，由于设置了on_deep_all，它还对所有子状态生效</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1"># 也就说，当我们位于 root.星际旅行.月球 时，也可以触发move回调</span>
+<span class="linenos" data-linenos="3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="5 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="state">state还可以切片<a class="headerlink" href="#state" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span>    <span class="c1"># root.星际旅行.太阳</span>
 <span class="linenos" data-linenos="3 "></span>
@@ -1108,6 +1218,11 @@
 <span class="linenos" data-linenos="5 "></span>    <span class="c1"># 太阳</span>
 </code></pre></div>
 <p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
+<h3 id="ayakainput">AyakaInput<a class="headerlink" href="#ayakainput" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
 <p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#travel
@@ -1134,7 +1249,7 @@
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_3">多层次的回调<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_8">多层次的回调<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>在刚才的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店</p>
 <table>
 <thead>
@@ -1278,7 +1393,7 @@
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_4">缓存<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_9">缓存<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>宇宙旅游公司又开设了一个新项目：耀斑表演</p>
 <p>我们需要先去售票处买耀斑表演的门票，然后才能看表演，一张票不能用多次</p>
 <table>
@@ -1543,7 +1658,7 @@
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_5">插件帮助<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_10">插件帮助<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>现在，我们写完了一个小插件了，那么该为它编写帮助了</p>
 <p>不幸的是，你已经在上述代码中完成了它</p>
 <p>通过分析 注册回调的注释(<code>__doc__</code>)，ayaka内置插件<a href="../../develop/master/">ayaka_master</a>会自动生成对应的帮助</p>
@@ -1596,7 +1711,7 @@ xing ji lv xing
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_6">下一步<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_11">下一步<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
