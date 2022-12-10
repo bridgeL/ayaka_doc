@@ -975,12 +975,17 @@
 <span class="linenos" data-linenos="22 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span><span class="p">):</span>
 <span class="linenos" data-linenos="23 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;改名了&quot;</span>
 </code></pre></div>
-<p>用户直接输入 <code>#f1</code>   </p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>默认
-</code></pre></div>
-<p>用户先输入 <code>#f2</code> 再输入 <code>#f1</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>改名了
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1
+默认
+</div>
+
+<div class="demo">
+<<< "user" 说：#f2
+<<< "user" 说：#f1
+改名了
+</div>
+
 <h2 id="_4">其他用法（不推荐）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
 <span class="linenos" data-linenos="2 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>

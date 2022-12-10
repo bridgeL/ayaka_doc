@@ -960,16 +960,21 @@
 </tr>
 </tbody>
 </table>
-<p>用户直接输入 <code>#f2</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>pydantic.error_wrappers.ValidationError: 2 validation errors for Data
-<span class="linenos" data-linenos="2 "></span>name
-<span class="linenos" data-linenos="3 "></span>  field required (type=value_error.missing)
-<span class="linenos" data-linenos="4 "></span>age
-<span class="linenos" data-linenos="5 "></span>  field required (type=value_error.missing)
-</code></pre></div>
-<p>用户先输入 <code>#f1</code> 再输入 <code>#f2</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>id=1 name=&#39;测试&#39; age=12
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f2
+pydantic.error_wrappers.ValidationError: 2 validation errors for Data
+name
+  field required (type=value_error.missing)
+age
+  field required (type=value_error.missing)
+</div>
+
+<div class="demo">
+<<< "user" 说：#f1
+<<< "user" 说：#f2
+id=1 name='测试' age=12
+</div>
+
 <h2 id="_2">进阶：可以嵌套<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>可以嵌套其他BaseModel模型</p>
 <p>但是需要通过Field.extra属性声明其为<code>__json_key__</code></p>
