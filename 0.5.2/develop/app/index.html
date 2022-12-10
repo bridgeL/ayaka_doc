@@ -977,7 +977,7 @@
 </table>
 <h2 id="cmdargargs">cmd、arg、args<a class="headerlink" href="#cmdargargs" title="Permanent link">&para;</a></h2>
 <p>二 代 御 三 家</p>
-<p><em>在有了AyakaInput后，args已经没落了（悲（我装的</em></p>
+<p><em>在有了<a href="../input/">AyakaInput</a>后，args已经没落了（悲（我装的</em></p>
 <table>
 <thead>
 <tr>
@@ -1044,19 +1044,19 @@
 </thead>
 <tbody>
 <tr>
-<td>start</td>
+<td>app.start</td>
 <td>运行应用</td>
 </tr>
 <tr>
-<td>close</td>
+<td>app.close</td>
 <td>关闭应用</td>
 </tr>
 <tr>
-<td>send</td>
+<td>app.send</td>
 <td>发送消息</td>
 </tr>
 <tr>
-<td>send_many</td>
+<td>app.send_many</td>
 <td>发送合并转发消息</td>
 </tr>
 </tbody>
@@ -1065,8 +1065,39 @@
 <h2 id="set_start_cmds">set_start_cmds<a class="headerlink" href="#set_start_cmds" title="Permanent link">&para;</a></h2>
 <p>设置启动应用的命令</p>
 <h2 id="stateget_state">state、get_state<a class="headerlink" href="#stateget_state" title="Permanent link">&para;</a></h2>
+<p>详见<a href="../state/">AyakaState</a></p>
 <h2 id="set_stategotoback">set_state、goto、back<a class="headerlink" href="#set_stategotoback" title="Permanent link">&para;</a></h2>
+<p>状态转移方法，也都是异步方法</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.set_state</td>
+<td>令当前群组的状态变为指定的另一状态</td>
+</tr>
+<tr>
+<td>app.goto</td>
+<td>与app.set_state一样</td>
+</tr>
+<tr>
+<td>app.back</td>
+<td>令当前群组的状态变为其当前状态的父状态</td>
+</tr>
+</tbody>
+</table>
 <h2 id="on_xxx">on_xxx 注册回调<a class="headerlink" href="#on_xxx" title="Permanent link">&para;</a></h2>
+<ul>
+<li>on_cmd</li>
+<li>on_state</li>
+<li>on_deep_all</li>
+<li>on_no_block</li>
+</ul>
+<p>鸽了</p>
 <h2 id="add_listenerremove_listener">add_listener、remove_listener<a class="headerlink" href="#add_listenerremove_listener" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1077,11 +1108,11 @@
 </thead>
 <tbody>
 <tr>
-<td>add_listener</td>
+<td>app.add_listener</td>
 <td>为该群组添加对私聊的监听</td>
 </tr>
 <tr>
-<td>remove_listener</td>
+<td>app.remove_listener</td>
 <td>移除该群组对私聊的监听</td>
 </tr>
 </tbody>
@@ -1097,22 +1128,22 @@
 </thead>
 <tbody>
 <tr>
-<td>name</td>
+<td>app.name</td>
 <td><code>str</code></td>
 <td>应用名称</td>
 </tr>
 <tr>
-<td>bot_id</td>
+<td>app.bot_id</td>
 <td><code>int</code></td>
 <td>当前机器人的qq号</td>
 </tr>
 <tr>
-<td>group</td>
+<td>app.group</td>
 <td><code>AyakaGroup</code></td>
 <td>当前群组</td>
 </tr>
 <tr>
-<td>cache</td>
+<td>app.cache</td>
 <td><code>Dict[str,AyakaCache]</code></td>
 <td>为当前群组当前应用提供的独立缓存数据空间</td>
 </tr>
