@@ -494,7 +494,7 @@ async def handle():
 
 不幸的是，你已经在上述代码中完成了它
 
-通过分析 注册回调的注释(`__doc__`)，ayaka内置插件[ayaka_master](master.md)会自动生成对应的帮助
+通过分析 注册回调的注释(`__doc__`)，ayaka内置插件[ayaka_master](../develop/master.md)会自动生成对应的帮助
 
 现在，你只需发送命令`help` 
 
