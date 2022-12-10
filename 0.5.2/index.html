@@ -448,6 +448,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -483,63 +485,7 @@
   
     <li class="md-nav__item">
       <a href="develop/app/" class="md-nav__link">
-        应用
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="develop/cache/" class="md-nav__link">
-        缓存
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="develop/config/" class="md-nav__link">
-        配置
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="develop/input/" class="md-nav__link">
-        输入
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="develop/db/" class="md-nav__link">
-        数据库
+        应用 AyakaApp
       </a>
     </li>
   
@@ -553,7 +499,77 @@
   
     <li class="md-nav__item">
       <a href="develop/state/" class="md-nav__link">
-        状态
+        状态 AyakaState
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop/config/" class="md-nav__link">
+        配置 AyakaConfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop/cache/" class="md-nav__link">
+        缓存 AyakaCache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop/input/" class="md-nav__link">
+        输入 AyakaInput
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop/db/" class="md-nav__link">
+        数据库 AyakaDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop/test/" class="md-nav__link">
+        测试 ayaka_test
       </a>
     </li>
   
@@ -842,8 +858,11 @@
 <p>nonebot默认是以一次会话为单位处理事务，会话结束后东西就丢掉了，而且同一群聊内的多个会话之间的数据也是不互通的</p>
 <p>如果想实现多人的在同一群聊内的交互，还是比较麻烦的，需要写个全局字典，保存不同群聊的临时数据</p>
 <p>因此写了ayaka来解决这个问题</p>
-<p><code>app = AyakaApp("示例插件")</code></p>
-<p>ayaka为每个群聊提供了一个状态机和一个全局字典，帮助实现命令空间的隔离、数据空间的隔离</p>
+<ul>
+<li>ayaka为每个群聊设计了一个<code>AyakaGroup</code>类，提供了一个状态机和一个全局字典，帮助实现命令空间的隔离、数据空间的隔离</li>
+<li>ayaka增加了<code>AyakaConfig</code>、<code>AyakaDB</code>等类，帮助插件读写配置文件和数据库等</li>
+<li>ayaka为一些常见的需要获取的值（例如user_id，user_name）设置了快捷访问的方法</li>
+</ul>
 <h2 id="_3">相关链接<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka">ayaka仓库</a></p>
 <p><a href="https://github.com/bridgeL/ayaka_doc">ayaka文档仓库</a> </p>

@@ -71,6 +71,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.2/develop/test/</loc>
+         <lastmod>2022-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.2/games/</loc>
          <lastmod>2022-12-10</lastmod>
          <changefreq>daily</changefreq>
@@ -87,16 +92,6 @@
     </url>
     <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.2/games/who-is-suspect/</loc>
-         <lastmod>2022-12-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.2/intro/_term/</loc>
-         <lastmod>2022-12-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.2/intro/_test/</loc>
          <lastmod>2022-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
