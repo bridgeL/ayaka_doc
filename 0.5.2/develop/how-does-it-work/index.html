@@ -979,8 +979,10 @@
 <p>而<code>group</code>内部的<code>状态指针</code>则指向该树上的某个结点，表示该群组当前所处的状态。默认指向<code>root</code>状态</p>
 <h2 id="_2">状态转移<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>状态可以通过调用<code>app.goto()</code>或<code>app.set_state()</code>方法进行转移，状态转移时，如果存在相应的<code>进入回调</code>和<code>退出回调</code>，还会顺次执行它们</p>
+<p>从<code>root</code>状态，变更为<code>root.插件2</code>状态，再变回<code>root</code>状态（相当于打开了插件2后又关闭插件2）</p>
+<p><img alt="图片" src="../%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C4-1.png" /></p>
 <p>从<code>root.插件2.游戏中.出牌</code>状态，变更为<code>root.插件1.睡眠</code>状态：</p>
-<p><img alt="图片" src="../%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C4.png" /></p>
+<p><img alt="图片" src="../%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C4-2.png" /></p>
 <p>从<code>root</code>状态转移到<code>root.插件2</code>状态，相当于群组开启了插件2，从空闲状态（没有任何插件在运行）转移到运行插件2的状态</p>
 <p>从<code>root.插件2</code>状态转移到<code>root</code>状态，相当于群组关闭了插件2，恢复到空闲状态</p>
 <h2 id="_3">命令回调、消息回调、上溯查找和阻断<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
