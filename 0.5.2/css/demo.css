@@ -4,6 +4,7 @@
     background: #000;
     color: white;
     padding: 20px 0;
+    margin: 20px 0;
     font-family: var(--md-code-font-family);
 }
 
@@ -16,7 +17,8 @@
 }
 
 .demo-user,
-.demo-bot {
+.demo-bot,
+.demo-sys {
     font-weight: bold;
     width: 70px;
     display: inline-block;
@@ -28,4 +30,8 @@
 
 .demo-bot {
     color: #ff6000;
+}
+
+.demo-sys {
+    color: #ffff00;
 }

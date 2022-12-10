@@ -1034,9 +1034,15 @@ id=1 name='测试' age=12
 </tr>
 </tbody>
 </table>
-<p>用户执行 <code>#f2</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>user=User(name=&#39;测试一号&#39;, age=2222) id=123
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1
+<<< "user" 说：#f2
+user=User(name='测试一号', age=2222) id=123
+<<<  "sys" 说：重启bot后
+<<< "user" 说：#f2
+user=User(name='测试一号', age=2222) id=123
+</div>
+
 <h2 id="ayakagroupdb">进阶：AyakaGroupDB<a class="headerlink" href="#ayakagroupdb" title="Permanent link">&para;</a></h2>
 <p>已经提前预设主键为<code>app.group_id</code>，且不可更改</p>
 <p>优点是，可以放入回调参数表中，直接使用</p>
