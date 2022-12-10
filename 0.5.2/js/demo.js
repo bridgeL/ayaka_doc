@@ -10,7 +10,8 @@
         let divs = document.querySelectorAll(".demo");
         if (divs) {
             for (let div of divs) {
-                let lines = div_lines(div.innerText);
+                console.log(div.innerHTML);
+                let lines = div_lines(div.innerHTML);
                 div.innerHTML = "";
                 for (let line of lines) div.innerHTML += `<div class="demo-line">${line}</div>`;
             }
