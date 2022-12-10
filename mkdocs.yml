@@ -36,12 +36,13 @@ nav:
   - 快速开始: intro/quick_start.md
 - 开发衍生插件:
   - 工作原理: develop/how-does-it-work.md
-  - 应用: develop/app.md
-  - 缓存: develop/cache.md
-  - 配置: develop/config.md
-  - 输入: develop/input.md
-  - 数据库: develop/db.md
-  - 状态: develop/state.md
+  - 应用 AyakaApp: develop/app.md
+  - 状态 AyakaState: develop/state.md
+  - 配置 AyakaConfig: develop/config.md
+  - 缓存 AyakaCache: develop/cache.md
+  - 输入 AyakaInput: develop/input.md
+  - 数据库 AyakaDB: develop/db.md
+  - 测试 ayaka_test: develop/test.md
   - 浏览器截图: develop/browser.md
 - 小游戏合集:
   - 介绍: games/index.md

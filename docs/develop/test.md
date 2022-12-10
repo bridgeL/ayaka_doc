@@ -1,7 +1,5 @@
 # 测试ayaka衍生插件
 
-开发结束后自然是测试啦
-
 ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 
 目前的假cqhttp只提供了
@@ -17,14 +15,6 @@ ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 其他功能可以自行编写代码对ayaka_test进行增强！
 
 已给出两个[钩子函数](#ayaka_test)供拓展使用
-
-## 效果
-
-测试插件为 [谁是卧底](https://github.com/bridgeL/nonebot-plugin-ayaka-who-is-suspect)
-
-![图片](测试套件.gif)
-
-退出时直接 CTRL+C
 
 ## 使用方法
 
