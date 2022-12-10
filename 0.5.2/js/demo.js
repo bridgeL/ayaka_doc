@@ -1,7 +1,7 @@
 (function () {
     const div_lines = (demo) => {
-        demo = demo.replaceAll(`<<< "user" 说：`, `<span class="demo-user">user</span>`);
-        demo = demo.replaceAll(`>>>  "Bot" 说：`, `<span class="demo-bot">Bot</span>`);
+        demo = demo.replaceAll(`&lt;&lt;&lt; "user" 说：`, `<span class="demo-user">user</span>`);
+        demo = demo.replaceAll(`&gt;&gt;&gt;  "Bot" 说：`, `<span class="demo-bot">Bot</span>`);
         demo = demo.split("\n");
         return demo;
     };
