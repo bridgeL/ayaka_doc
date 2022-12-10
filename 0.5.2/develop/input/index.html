@@ -956,14 +956,16 @@ name='张三丰' age=100
 
 <div class="demo">
 <<< "user" 说：#f1 张三丰
->>>  "Bot" 说：1 validation error for UserInput
+>>>  "Bot" 说：
+1 validation error for UserInput
 age
   field required (type=value_error.missing)
 </div>
 
 <div class="demo">
 <<< "user" 说：#f1 张三丰 测试
->>>  "Bot" 说：1 validation error for UserInput
+>>>  "Bot" 说：
+1 validation error for UserInput
 age
   value is not a valid integer (type=type_error.integer)
 </div>
@@ -983,7 +985,8 @@ age
 </code></pre></div>
 <div class="demo">
 <<< "user" 说：#f1 123
->>>  "Bot" 说：1 validation error for UserInput
+>>>  "Bot" 说：
+1 validation error for UserInput
 at
   MessageSegment required (type=type_error)
 </div>
@@ -1009,7 +1012,8 @@ at=MessageSegment(type='at', data={'qq': '12'})
 </code></pre></div>
 <div class="demo">
 <<< "user" 说：#f1 -1
->>>  "Bot" 说：1 validation error for UserInput
+>>>  "Bot" 说：
+1 validation error for UserInput
 age
   ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
 </div>
@@ -1067,7 +1071,8 @@ age=100
 </code></pre></div>
 <div class="demo">
 <<< "user" 说：#f1
->>>  "Bot" 说：1 validation error for UserInput
+>>>  "Bot" 说：
+1 validation error for UserInput
 user
   field required (type=value_error.missing)
 </div>
