@@ -1,9 +1,9 @@
 (function () {
     const div_lines = (demo) => {
-        demo = demo.replaceAll(`<<< "user" 说：`, `<span class="demo-user">user</span>`);
-        demo = demo.replaceAll(`>>>  "Bot" 说：`, `<span class="demo-bot">Bot</span>`);
-        demo = demo.split("\n");
-        return demo;
+        demo = demo.replace(/.*"user" 说：/g, `<span class="demo-user">user</span>`);
+        demo = demo.replace(/.*"Bot" 说：/g, `<span class="demo-bot">Bot</span>`);
+        demo = demo.replace(/.*"sys" 说：/g, `<span class="demo-sys">系统</span>`);
+        return demo.split("\n");
     };
 
     let timer = setInterval(() => {

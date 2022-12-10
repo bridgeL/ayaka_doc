@@ -26,7 +26,7 @@ app = AyakaApp("测试一下")
 
 二 代 御 三 家
 
-_在有了AyakaInput后，args已经没落了（悲（我装的_
+_在有了[AyakaInput](./input.md)后，args已经没落了（悲（我装的_
 
 | 名称     | 类型                   | 功能                                     |
 | -------- | ---------------------- | ---------------------------------------- |
@@ -51,12 +51,12 @@ _在有了AyakaInput后，args已经没落了（悲（我装的_
 
 都是异步方法
 
-| 名称      | 功能             |
-| --------- | ---------------- |
-| start     | 运行应用         |
-| close     | 关闭应用         |
-| send      | 发送消息         |
-| send_many | 发送合并转发消息 |
+| 名称          | 功能             |
+| ------------- | ---------------- |
+| app.start     | 运行应用         |
+| app.close     | 关闭应用         |
+| app.send      | 发送消息         |
+| app.send_many | 发送合并转发消息 |
 
 特别的，start可以设置参数，令app运行后进入指定状态
 
@@ -66,25 +66,42 @@ _在有了AyakaInput后，args已经没落了（悲（我装的_
 
 ## state、get_state
 
+详见[AyakaState](./state.md)
+
 ## set_state、goto、back
+
+状态转移方法，也都是异步方法
+
+| 名称          | 功能                                   |
+| ------------- | -------------------------------------- |
+| app.set_state | 令当前群组的状态变为指定的另一状态     |
+| app.goto      | 与app.set_state一样                    |
+| app.back      | 令当前群组的状态变为其当前状态的父状态 |
 
 ## on_xxx 注册回调
 
+- on_cmd
+- on_state
+- on_deep_all
+- on_no_block
+
+鸽了
+
 ## add_listener、remove_listener
 
-| 名称            | 功能                     |
-| --------------- | ------------------------ |
-| add_listener    | 为该群组添加对私聊的监听 |
-| remove_listener | 移除该群组对私聊的监听   |
+| 名称                | 功能                     |
+| ------------------- | ------------------------ |
+| app.add_listener    | 为该群组添加对私聊的监听 |
+| app.remove_listener | 移除该群组对私聊的监听   |
 
 ## 其他
 
-| 名称   | 类型                   | 功能                                     |
-| ------ | ---------------------- | ---------------------------------------- |
-| name   | `str`                  | 应用名称                                 |
-| bot_id | `int`                  | 当前机器人的qq号                         |
-| group  | `AyakaGroup`           | 当前群组                                 |
-| cache  | `Dict[str,AyakaCache]` | 为当前群组当前应用提供的独立缓存数据空间 |
+| 名称       | 类型                   | 功能                                     |
+| ---------- | ---------------------- | ---------------------------------------- |
+| app.name   | `str`                  | 应用名称                                 |
+| app.bot_id | `int`                  | 当前机器人的qq号                         |
+| app.group  | `AyakaGroup`           | 当前群组                                 |
+| app.cache  | `Dict[str,AyakaCache]` | 为当前群组当前应用提供的独立缓存数据空间 |
 
 <!--
 ## t_send、t_send_many

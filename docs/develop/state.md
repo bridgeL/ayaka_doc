@@ -34,36 +34,41 @@ print(s0)
 # root
 ```
 
-## 注册回调
+## 注册命令回调、消息回调
 
-状态结点也可以直接注册回调
+状态结点也可以直接注册命令回调、消息回调
 
 事实上，`app.on_xxx`系列装饰器就是直接对相应的状态结点操作的
 
 ```py
-    def on_enter(self):
-        def decorator(func):
-            self.enter_funcs.append(func)
-            return func
-        return decorator
+from ayaka import AyakaApp
 
-    def on_exit(self):
-        def decorator(func):
-            self.exit_funcs.append(func)
-            return func
-        return decorator
+app = AyakaApp("test")
+s0 = app.root_state
+s1 = app.get_state()
 
-    def on_cmd(self, *cmds: str, app: "AyakaApp", deep: Union[int, Literal["all"]] = 0, block=True):
-        def decorator(func):
-            t = AyakaTrigger(func, cmds, deep, app, block, self)
-            self.triggers.append(t)
-            return func
-        return decorator
 
-    def on_text(self, app: "AyakaApp", deep: Union[int, Literal["all"]] = 0, block=True):
-        return self.on_cmd(app=app, deep=deep, block=block)
+@s0.on_cmd(["test"], app)
+async def func():
+    await app.start()
 
+
+@s1.on_cmd(["对吗"], app)
+async def func():
+    await app.send("对的")
 ```
+
+<div class="demo">
+<<< "user" 说：对吗
+<<< "user" 说：test
+>>>  "Bot" 说：已打开应用 [test]
+<<< "user" 说：对吗
+>>>  "Bot" 说：对的
+</div>
+
+## 注册进入回调、退出回调
+
+注意：不要在进入、退出回调函数内，调用`app.goto`或`app.set_state`方法
 
 ## 下一步
 

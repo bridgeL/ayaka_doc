@@ -33,27 +33,27 @@ async def func_1(userinput:UserInput):
 | `name:str`      | 正确 |
 | `name`          | 错误 |
 
-用户输入 `#f1 张三丰 100`
 
-```
+<div class="demo">
+<<< "user" 说：#f1 张三丰 100
 name='张三丰' age=100
-```
+</div>
 
-用户输入 `#f1 张三丰`
-
-```
+<div class="demo">
+<<< "user" 说：#f1 张三丰
+>>>  "Bot" 说：
 1 validation error for UserInput
 age
   field required (type=value_error.missing)
-```
+</div>
 
-用户输入 `#f1 张三丰 测试`
-
-```
+<div class="demo">
+<<< "user" 说：#f1 张三丰 测试
+>>>  "Bot" 说：
 1 validation error for UserInput
 age
   value is not a valid integer (type=type_error.integer)
-```
+</div>
 
 ## 进阶：msg_type
 
@@ -72,19 +72,18 @@ async def func_1(userinput:UserInput):
     print(userinput)
 ```
 
-用户输入 `#f1 123`
-
-```
+<div class="demo">
+<<< "user" 说：#f1 123
+>>>  "Bot" 说：
 1 validation error for UserInput
 at
   MessageSegment required (type=type_error)
-```
+</div>
 
-用户输入 `#f1 [CQ:at,qq=12]`
-
-```
+<div class="demo">
+<<< "user" 说：#f1 [CQ:at,qq=12]
 at=MessageSegment(type='at', data={'qq': '12'})
-```
+</div>
 
 ## 进阶：约束
 
@@ -104,18 +103,20 @@ async def func_1(userinput:UserInput):
     print(userinput)
 ```
 
-用户输入 `#f1 -1` 
 
-```
+<div class="demo">
+<<< "user" 说：#f1 -1
+>>>  "Bot" 说：
 1 validation error for UserInput
 age
   ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
-```
+</div>
 
-用户输入 `#f1 100 `
-```
+<div class="demo">
+<<< "user" 说：#f1 100
 age=100
-```
+</div>
+
 
 ## 进阶：帮助
 
@@ -138,14 +139,14 @@ async def func_1(userinput: UserInput):
     pass
 ```
 
-用户输入 `#help test`   
+<div class="demo">
+<<< "user" 说：#help test
+>>>  "Bot" 说：[test]
+- f1 &lt;name> &lt;age>
+    &lt;name> 名字
+    &lt;age> 年龄
+</div>
 
-```
-[test]
-- f1 <name> <age>
-    <name> 名字
-    <age> 年龄
-```
 
 ## 特殊：不能嵌套
 
@@ -173,13 +174,13 @@ async def func_1(userinput: UserInput):
 
 ```
 
-用户输入 `#f1`   
-
-```
+<div class="demo">
+<<< "user" 说：#f1
+>>>  "Bot" 说：
 1 validation error for UserInput
 user
   field required (type=value_error.missing)
-```
+</div>
 
 
 ## 下一步

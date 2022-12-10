@@ -71,17 +71,18 @@ async def func_1(cache: Cache):
     cache.user.name = "改名了"
 ```
 
-用户直接输入 `#f1`   
-
-```
+<div class="demo">
+<<< "user" 说：#f1
 默认
-```
+</div>
 
-用户先输入 `#f2` 再输入 `#f1`
 
-```
+<div class="demo">
+<<< "user" 说：#f2
+<<< "user" 说：#f1
 改名了
-```
+</div>
+
 
 ## 其他用法（不推荐）
 

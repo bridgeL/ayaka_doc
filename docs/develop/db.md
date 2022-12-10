@@ -50,21 +50,20 @@ async def _():
 | `name:str`      | 正确 |
 | `name`          | 错误 |
 
-用户直接输入 `#f2`
-
-```
+<div class="demo">
+<<< "user" 说：#f2
 pydantic.error_wrappers.ValidationError: 2 validation errors for Data
 name
   field required (type=value_error.missing)
 age
   field required (type=value_error.missing)
-```
+</div>
 
-用户先输入 `#f1` 再输入 `#f2`
-
-```
+<div class="demo">
+<<< "user" 说：#f1
+<<< "user" 说：#f2
 id=1 name='测试' age=12
-```
+</div>
 
 ## 进阶：可以嵌套
 
@@ -127,11 +126,14 @@ CREATE TABLE "test" (
 | --------------------------------- | --- |
 | {"name": "测试一号", "age": 2222} | 123 |
 
-用户执行 `#f2`
-
-```
+<div class="demo">
+<<< "user" 说：#f1
+<<< "user" 说：#f2
 user=User(name='测试一号', age=2222) id=123
-```
+<<<  "sys" 说：重启bot后
+<<< "user" 说：#f2
+user=User(name='测试一号', age=2222) id=123
+</div>
 
 ## 进阶：AyakaGroupDB
 
