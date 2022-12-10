@@ -947,8 +947,8 @@
 <span class="linenos" data-linenos="11 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
 <span class="linenos" data-linenos="12 "></span>
 <span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="n">Data</span><span class="o">.</span><span class="n">create_table</span><span class="p">()</span>
-<span class="linenos" data-linenos="15 "></span>
+<span class="hll"><span class="linenos" data-linenos="14 "></span><span class="n">Data</span><span class="o">.</span><span class="n">create_table</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="15 "></span>
 <span class="linenos" data-linenos="16 "></span>
 <span class="linenos" data-linenos="17 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="18 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
@@ -965,6 +965,7 @@
 <span class="linenos" data-linenos="29 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 <p>注意，一定要编写__table_name__</p>
+<p>注意，一定要调用<code>Data.create_table()</code>，否则数据库里没有创建相应的表（这一点考虑后续版本优化掉</p>
 <p>注意，一定要编写类型提示，默认值可以不写</p>
 <table>
 <thead>
