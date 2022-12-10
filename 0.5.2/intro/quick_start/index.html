@@ -989,9 +989,9 @@
 <span class="linenos" data-linenos="11 "></span>
 <span class="linenos" data-linenos="12 "></span>
 <span class="linenos" data-linenos="13 "></span><span class="c1"># 关闭应用</span>
-<span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="16 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="hll"><span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="16 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="17 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
 <span class="linenos" data-linenos="18 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="linenos" data-linenos="19 "></span>
@@ -1018,28 +1018,66 @@
 <span class="linenos" data-linenos="40 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="41 "></span>
 <span class="linenos" data-linenos="42 "></span>
-<span class="linenos" data-linenos="43 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
-<span class="linenos" data-linenos="44 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="45 "></span>
+<span class="hll"><span class="linenos" data-linenos="43 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos" data-linenos="44 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
+</span><span class="linenos" data-linenos="45 "></span>
 <span class="linenos" data-linenos="46 "></span>
-<span class="linenos" data-linenos="47 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos="48 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="49 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="linenos" data-linenos="50 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
-<span class="linenos" data-linenos="51 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="hll"><span class="linenos" data-linenos="47 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos" data-linenos="48 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="49 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="hll"><span class="linenos" data-linenos="50 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+</span><span class="linenos" data-linenos="51 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="52 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
 <span class="linenos" data-linenos="53 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="54 "></span>
 <span class="linenos" data-linenos="55 "></span>
-<span class="linenos" data-linenos="56 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos="57 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="58 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="hll"><span class="linenos" data-linenos="56 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+</span><span class="hll"><span class="linenos" data-linenos="57 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="58 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="59 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
 <span class="linenos" data-linenos="60 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="61 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>对应的state</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.on_state()</td>
+<td>参数为空，对应<code>root.星际旅行</code></td>
+</tr>
+<tr>
+<td>app.on_state("地球")</td>
+<td>对应<code>root.地球</code></td>
+</tr>
+<tr>
+<td>app.on_state(["地球","中国"])</td>
+<td>对应<code>root.地球.中国</code></td>
+</tr>
+<tr>
+<td>app.on_state("地球","月球")</td>
+<td>对应<code>root.地球</code>和<code>root.月球</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="k">pass</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下，且对所有子状态生效</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span> 
+<span class="linenos" data-linenos=" 9 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="k">pass</span>
+</code></pre></div>
 <p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
+<p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -1187,6 +1225,7 @@
 <li>当状态为<code>太阳.森林公园</code>、<code>太阳.巴拉巴拉</code>、<code>太阳.我就是来凑个数</code>、<code>太阳</code>时，触发前者</li>
 </ul>
 <p>进一步了解<code>上溯查询</code> <a href="../../develop/how-does-it-work/#_3">上溯查询</a></p>
+<p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -1328,6 +1367,7 @@
 </span><span class="hll"><span class="linenos" data-linenos="94 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>进一步了解<code>AyakaCache</code> <a href="../../develop/cache/">AyakaCache</a></p>
+<p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -1454,6 +1494,7 @@
 </span></code></pre></div>
 <p>消息触发的优先级低于命令触发</p>
 <p>进一步了解<code>app.on_xxx()</code> <a href="../../develop/app/#on_xxx">on_xxx</a></p>
+<p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -1478,6 +1519,7 @@
 <p>现在，你只需发送命令<code>help</code> </p>
 <p>进一步了解<code>app.help</code> <a href="../../develop/app/#help">help</a></p>
 <p><code>[*]</code> 代表它匹配任意状态，<code>*</code> 代表它匹配任意命令（=消息触发）</p>
+<p>实现效果</p>
 <div class="demo">
 <<< "user" 说：#help 星际旅行
 >>>  "Bot" 说：[星际旅行]
