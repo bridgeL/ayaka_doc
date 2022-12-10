@@ -10,6 +10,7 @@
 
 .demo-line {
     padding: 0 20px;
+    white-space: pre-wrap;
 }
 
 .demo-line:has(.demo-user) {

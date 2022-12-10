@@ -949,19 +949,25 @@
 </tr>
 </tbody>
 </table>
-<p>用户输入 <code>#f1 张三丰 100</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>name=&#39;张三丰&#39; age=100
-</code></pre></div>
-<p>用户输入 <code>#f1 张三丰</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
-<span class="linenos" data-linenos="2 "></span>age
-<span class="linenos" data-linenos="3 "></span>  field required (type=value_error.missing)
-</code></pre></div>
-<p>用户输入 <code>#f1 张三丰 测试</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
-<span class="linenos" data-linenos="2 "></span>age
-<span class="linenos" data-linenos="3 "></span>  value is not a valid integer (type=type_error.integer)
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1 张三丰 100
+name='张三丰' age=100
+</div>
+
+<div class="demo">
+<<< "user" 说：#f1 张三丰
+>>>  "Bot" 说：1 validation error for UserInput
+age
+  field required (type=value_error.missing)
+</div>
+
+<div class="demo">
+<<< "user" 说：#f1 张三丰 测试
+>>>  "Bot" 说：1 validation error for UserInput
+age
+  value is not a valid integer (type=type_error.integer)
+</div>
+
 <h2 id="msg_type">进阶：msg_type<a class="headerlink" href="#msg_type" title="Permanent link">&para;</a></h2>
 <p>使用<code>msg_type</code>获取指定类型的<code>MessageSegment</code>（除了<code>type=text</code>类型）</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">AyakaApp</span>
@@ -975,14 +981,18 @@
 <span class="linenos" data-linenos=" 9 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span><span class="n">UserInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="10 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
 </code></pre></div>
-<p>用户输入 <code>#f1 123</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
-<span class="linenos" data-linenos="2 "></span>at
-<span class="linenos" data-linenos="3 "></span>  MessageSegment required (type=type_error)
-</code></pre></div>
-<p>用户输入 <code>#f1 [CQ:at,qq=12]</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>at=MessageSegment(type=&#39;at&#39;, data={&#39;qq&#39;: &#39;12&#39;})
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1 123
+>>>  "Bot" 说：1 validation error for UserInput
+at
+  MessageSegment required (type=type_error)
+</div>
+
+<div class="demo">
+<<< "user" 说：#f1 [CQ:at,qq=12]
+at=MessageSegment(type='at', data={'qq': '12'})
+</div>
+
 <h2 id="_2">进阶：约束<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>使用<code>pydantic</code>进行约束，约束条件参考<a href="https://docs.pydantic.dev/usage/types/#constrained-types">pydantic.Field</a></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span><span class="p">,</span> <span class="n">AyakaApp</span>
@@ -997,14 +1007,18 @@
 <span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span><span class="n">UserInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="11 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
 </code></pre></div>
-<p>用户输入 <code>#f1 -1</code> </p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
-<span class="linenos" data-linenos="2 "></span>age
-<span class="linenos" data-linenos="3 "></span>  ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
-</code></pre></div>
-<p>用户输入 <code>#f1 100</code>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>age=100
-</code></pre></div></p>
+<div class="demo">
+<<< "user" 说：#f1 -1
+>>>  "Bot" 说：1 validation error for UserInput
+age
+  ensure this value is greater than 0 (type=value_error.number.not_gt; limit_value=0)
+</div>
+
+<div class="demo">
+<<< "user" 说：#f1 100
+age=100
+</div>
+
 <h2 id="_3">进阶：帮助<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>使用<code>Field</code>，编写<code>description</code>，以便<code>ayaka_master</code>为该属性提供帮助</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
@@ -1022,12 +1036,14 @@
 <span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="14 "></span>    <span class="k">pass</span>
 </code></pre></div>
-<p>用户输入 <code>#help test</code>   </p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>[test]
-<span class="linenos" data-linenos="2 "></span>- f1 &lt;name&gt; &lt;age&gt;
-<span class="linenos" data-linenos="3 "></span>    &lt;name&gt; 名字
-<span class="linenos" data-linenos="4 "></span>    &lt;age&gt; 年龄
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#help test
+>>>  "Bot" 说：[test]
+- f1 $lt;name> $lt;age>
+    $lt;name> 名字
+    $lt;age> 年龄
+</div>
+
 <h2 id="_4">特殊：不能嵌套<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>不可以嵌套其他BaseModel模型</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
@@ -1049,11 +1065,13 @@
 <span class="linenos" data-linenos="17 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="18 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">userinput</span><span class="p">)</span>
 </code></pre></div>
-<p>用户输入 <code>#f1</code>   </p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>1 validation error for UserInput
-<span class="linenos" data-linenos="2 "></span>user
-<span class="linenos" data-linenos="3 "></span>  field required (type=value_error.missing)
-</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1
+>>>  "Bot" 说：1 validation error for UserInput
+user
+  field required (type=value_error.missing)
+</div>
+
 <h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
