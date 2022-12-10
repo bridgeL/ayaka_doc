@@ -2,17 +2,56 @@
 
 编写一个星际旅行插件
 
+假设所有消息都是群消息
+
 ## 基本使用
 
-| 地点     | 动作        | 效果          |
-| -------- | ----------- | ------------- |
-| 地球     | drink       | 喝水          |
-| 月球     | drink       | 喝土          |
-| 太阳     | drink       | 喝太阳风      |
-| 任意地点 | move <地名> | 去指定地点    |
-| 任意地点 | hi          | 你好, <地名>! |
+打开和关闭应用
 
-```py
+| 状态           | 动作             | 效果             |
+| -------------- | ---------------- | ---------------- |
+| 闲置状态       | 星际旅行、travel | 打开星际旅行应用 |
+| 运行星际旅行中 | 退出、exit       | 关闭星际旅行应用 |
+
+```py hl_lines="7 17"
+from ayaka import AyakaApp, AyakaInput
+
+app = AyakaApp("星际旅行")
+app.help = "xing ji lv xing"
+
+# 启动应用
+app.set_start_cmds("星际旅行", "travel")
+
+# 装饰器的顺序没有强制要求，随便写
+
+
+# 关闭应用
+@app.on_state()
+@app.on_deep_all()
+@app.on_cmd("退出", "exit")
+async def exit_app():
+    await app.close()
+```
+
+### 群组状态
+
+收到`星际旅行`或`travel`命令后，群组会从`闲置状态`变为`运行星际旅行应用`（即从`root`状态变为`root.星际旅行`状态）
+
+收到`退出`或`exit`命令后，群组会从`运行星际旅行应用`变为`闲置状态`（即从`root.星际旅行`状态变为`root`状态）
+
+## 旅行
+
+实现旅行的功能
+
+| 地点     | 动作        | 效果             |
+| -------- | ----------- | ---------------- |
+| 地球     | drink       | 喝水             |
+| 月球     | drink       | 喝土             |
+| 太阳     | drink       | 喝太阳风         |
+| 任意地点 | move <地名> | 去指定地点       |
+| 任意地点 | hi          | hi I'm in <地名> |
+
+```py hl_lines="14 15 43 44 47 48 50 56 57 61"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaInput
 
@@ -27,8 +66,8 @@ app.set_start_cmds("星际旅行", "travel")
 
 # 关闭应用
 @app.on_state()
-@app.on_cmd("退出", "exit")
 @app.on_deep_all()
+@app.on_cmd("退出", "exit")
 async def exit_app():
     await app.close()
 
@@ -60,8 +99,8 @@ class UserInput(AyakaInput):
 
 
 @app.on_state()
-@app.on_cmd("move")
 @app.on_deep_all()
+@app.on_cmd("move")
 async def move(userinput: UserInput):
     '''移动'''
     await app.set_state(userinput.where)
@@ -69,16 +108,85 @@ async def move(userinput: UserInput):
 
 
 @app.on_state()
-@app.on_cmd("hi")
 @app.on_deep_all()
+@app.on_cmd("hi")
 async def say_hi():
     '''打招呼'''
     await app.send(f"hi I'm in {app.state[2:]}")
 ```
 
-进一步了解`AyakaInput` [AyakaInput](../develop/input.md)
+### 用状态指代地点
+
+如果我们用`root.星际旅行.地球`状态指代`你正处于地球`
+
+那么打开应用后，你处于`root.星际旅行`状态，这一状态是一切其他状态（`root.星际旅行.地球`、`root.星际旅行.月球`等）的基础
+
+### on_state
+
+| 代码                             | 对应的state                                    |
+| -------------------------------- | ---------------------------------------------- |
+| `@app.on_state()`                | 参数为空，对应`root.星际旅行`                  |
+| `@app.on_state("地球")`          | 对应`root.星际旅行.地球`                       |
+| `@app.on_state(["地球","中国"])` | 对应`root.星际旅行.地球.中国`                  |
+| `@app.on_state("地球","月球")`   | 对应`root.星际旅行.地球`和`root.星际旅行.月球` |
+
+### 注册回调
+
+对不同的状态注册不同的回调 = 在不同的地点做不同的事情
+
+```py
+# 在地球喝水
+@app.on_state("地球")
+@app.on_cmd("drink")
+async def drink():
+    '''喝水'''
+    await app.send("喝水")
+
+
+# 在月球喝水
+@app.on_state("月球")
+@app.on_cmd("drink")
+async def drink():
+    '''喝土'''
+    await app.send("喝土")
+```
+
+### 子状态可以触发父状态的回调
+
+```py
+# 该回调注册在 root.星际旅行 状态下，由于设置了on_deep_all，它还对所有子状态生效
+# 也就说，当我们位于 root.星际旅行.月球 时，也可以触发move回调
+@app.on_state()
+@app.on_deep_all()
+@app.on_cmd("move")
+async def move(userinput: UserInput):
+    '''移动'''
+    await app.set_state(userinput.where)
+    await app.send(f"前往 {userinput.where}")
+```
+
+### state还可以切片
+
+```py
+    print(app.state)
+    # root.星际旅行.太阳
+
+    print(app.state[2:])
+    # 太阳
+```
 
 进一步了解`app.state` [AyakaState](../develop/state.md)
+
+### AyakaInput
+
+```py
+class UserInput(AyakaInput):
+    where: str = Field(description="你要去的地方")
+```
+
+进一步了解`AyakaInput` [AyakaInput](../develop/input.md)
+
+实现效果
 
 <div class="demo">
 <<< "user" 说：#travel
@@ -203,6 +311,8 @@ async def say_hi():
 
 进一步了解`上溯查询` [上溯查询](../develop/how-does-it-work.md#_3)
 
+实现效果
+
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -229,15 +339,14 @@ async def say_hi():
 
 宇宙旅游公司又开设了一个新项目：耀斑表演
 
-我们需要先去售票处买耀斑表演的门票，然后才能看表演
-
+我们需要先去售票处买耀斑表演的门票，然后才能看表演，一张票不能用多次
 
 | 地点          | 动作  | 效果           |
 | ------------- | ----- | -------------- |
 | 太阳.售票处   | buy   | 耀斑表演门票+1 |
 | 太阳.任意地点 | watch | 看表演         |
 
-```py hl_lines="2 73-94"
+```py hl_lines="2 73 74 77-82 85-94"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaInput, AyakaCache
 
@@ -335,6 +444,8 @@ async def watch(cache: Cache):
 ```
 
 进一步了解`AyakaCache` [AyakaCache](../develop/cache.md)
+
+实现效果
 
 <div class="demo">
 <<< "user" 说：#travel
@@ -471,6 +582,8 @@ async def handle():
 
 进一步了解`app.on_xxx()` [on_xxx](../develop/app.md#on_xxx)
 
+实现效果
+
 <div class="demo">
 <<< "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
@@ -498,9 +611,7 @@ async def handle():
 
 现在，你只需发送命令`help` 
 
-进一步了解`app.help` [help](../develop/app.md#help)
-
-`[*]` 代表它匹配任意状态，`*` 代表它匹配任意命令（=消息触发）
+实现效果
 
 <div class="demo">
 <<< "user" 说：#help 星际旅行
