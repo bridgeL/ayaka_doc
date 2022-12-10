@@ -14,7 +14,7 @@ class Cache(AyakaCache):
     age:int = 0
 ```
 
-注意，一定要编写类型提示和默认值。
+注意，一定要编写类型提示和默认值
 
 | 代码            | 备注 |
 | --------------- | ---- |
@@ -41,6 +41,47 @@ async def func_3(cache:Cache):
     cache.name = str(app.arg)
 ```
 
+## 进阶：可以嵌套
+
+可以嵌套其他BaseModel模型
+
+```py hl_lines="13"
+from pydantic import BaseModel
+from ayaka import AyakaCache, AyakaApp
+
+app = AyakaApp("test")
+
+
+class User(BaseModel):
+    name: str
+    age: int
+
+
+class Cache(AyakaCache):
+    user: User = User(name="默认", age=0)
+
+
+@app.on_cmd("f1")
+async def func_1(cache: Cache):
+    print(cache.user.name)
+
+
+@app.on_cmd("f2")
+async def func_1(cache: Cache):
+    cache.user.name = "改名了"
+```
+
+用户直接输入 `#f1`   
+
+```
+默认
+```
+
+用户先输入 `#f2` 再输入 `#f1`
+
+```
+改名了
+```
 
 ## 其他用法（不推荐）
 

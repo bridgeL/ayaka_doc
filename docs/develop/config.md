@@ -19,7 +19,7 @@ class Config(AyakaConfig):
     numbers:List[int] = [1,2]
 ```
 
-注意，一定要编写类型提示和默认值。
+注意，一定要编写类型提示和默认值
 
 | 代码            | 备注 |
 | --------------- | ---- |
@@ -76,11 +76,68 @@ async def func_2():
     config.save()
 ```
 
+注意，即使调用了`AyakaConfig().save()`方法，也不意味着数据马上更新到配置文件中，`ayaka`可能会等待0~60s后才执行写入操作
+
+## 进阶：可以嵌套
+
+可以嵌套其他BaseModel模型
+
+```py hl_lines="14"
+from pydantic import BaseModel
+from ayaka import AyakaConfig, AyakaApp
+
+app = AyakaApp("test")
+
+
+class User(BaseModel):
+    name: str
+    age: int
+
+
+class Config(AyakaConfig):
+    __app_name__ = app.name
+    user: User = User(name="默认", age=0)
+    id:int = 1000
+
+
+config = Config()
+
+
+@app.on_cmd("f1")
+async def func_1():
+    print(config.user.name)
+
+
+@app.on_cmd("f2")
+async def func_1():
+    config.user.name = "改名了"
+    # 需要调用save
+    config.save()
+
+@app.on_cmd("f3")
+async def func_1():
+    config.id = 123
+    # 不需要调用save
+    # config.save()
+```
+
+对应配置文件
+
+```json
+    "test": {
+        "user": {
+            "name": "默认",
+            "age": 0
+        },
+        "id": 1000
+    }
+```
+
 ## AyakaLargeConfig
 
 当配置型较多时，建议使用`AyakaLargeConfig`，它读写的是独立配置文件，`data/ayaka/separate/<__app_name__>.json`
 
-其定义、读取和修改与`AyakaConfig`一致，仅存储位置不同而已
+使用方法与`AyakaConfig`一致，仅存储位置不同而已
 
 ## 下一步
 

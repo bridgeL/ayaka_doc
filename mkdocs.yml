@@ -80,9 +80,9 @@ extra:
 
 extra_javascript:
 - js/version.js
-- js/quick-start.js
+- js/demo.js
 extra_css:
 - css/code.css
 - css/tab-right.css
 - css/big-font.css
-- css/quick-start.css
+- css/demo.css

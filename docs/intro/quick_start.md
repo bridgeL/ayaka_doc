@@ -27,15 +27,15 @@ app.set_start_cmds("星际旅行", "travel")
 
 # 关闭应用
 @app.on_state()
-@app.on_deep_all()
 @app.on_cmd("退出", "exit")
+@app.on_deep_all()
 async def exit_app():
     await app.close()
 
 
 # 注册各种行动
-@app.on_cmd("drink")
 @app.on_state("地球")
+@app.on_cmd("drink")
 async def drink():
     '''喝水'''
     await app.send("喝水")
@@ -59,28 +59,51 @@ class UserInput(AyakaInput):
     where: str = Field(description="你要去的地方")
 
 
-@app.on_deep_all()
 @app.on_state()
 @app.on_cmd("move")
+@app.on_deep_all()
 async def move(userinput: UserInput):
     '''移动'''
     await app.set_state(userinput.where)
     await app.send(f"前往 {userinput.where}")
 
 
+@app.on_state()
 @app.on_cmd("hi")
 @app.on_deep_all()
-@app.on_state()
 async def say_hi():
     '''打招呼'''
-    await app.send(f"hi I'm in {app.state.keys[2:]}")
+    await app.send(f"hi I'm in {app.state[2:]}")
 ```
 
 进一步了解`AyakaInput` [AyakaInput](../develop/input.md)
 
 进一步了解`app.state` [AyakaState](../develop/state.md)
 
-<div id="demo1" class="demo"></div>
+<div class="demo">
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 
+<<< "user" 说：move 地球
+>>>  "Bot" 说：前往 地球
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 地球
+<<< "user" 说：drink
+>>>  "Bot" 说：喝水
+<<< "user" 说：move 月球
+>>>  "Bot" 说：前往 月球
+<<< "user" 说：drink
+>>>  "Bot" 说：喝土
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：drink
+>>>  "Bot" 说：喝太阳风
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 太阳
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+</div>
 
 
 ## 多层次的回调
@@ -108,15 +131,15 @@ app.set_start_cmds("星际旅行", "travel")
 
 # 关闭应用
 @app.on_state()
-@app.on_deep_all()
 @app.on_cmd("退出", "exit")
+@app.on_deep_all()
 async def exit_app():
     await app.close()
 
 
 # 注册各种行动
-@app.on_cmd("drink")
 @app.on_state("地球")
+@app.on_cmd("drink")
 async def drink():
     '''喝水'''
     await app.send("喝水")
@@ -129,16 +152,16 @@ async def drink():
     await app.send("喝土")
 
 
-@app.on_deep_all()
-@app.on_cmd("drink")
 @app.on_state("太阳")
+@app.on_cmd("drink")
+@app.on_deep_all()
 async def drink():
     '''喝太阳风'''
     await app.send("喝太阳风")
 
 
-@app.on_cmd("drink")
 @app.on_state(["太阳", "奶茶店"])
+@app.on_cmd("drink")
 async def drink():
     '''喝奶茶'''
     await app.send("喝了一口3000度的奶茶")
@@ -148,21 +171,21 @@ class UserInput(AyakaInput):
     where: str = Field(description="你要去的地方")
 
 
-@app.on_deep_all()
 @app.on_state()
 @app.on_cmd("move")
+@app.on_deep_all()
 async def move(userinput: UserInput):
     '''移动'''
     await app.set_state(userinput.where)
     await app.send(f"前往 {userinput.where}")
 
 
+@app.on_state()
 @app.on_cmd("hi")
 @app.on_deep_all()
-@app.on_state()
 async def say_hi():
     '''打招呼'''
-    await app.send(f"hi I'm in {app.state.keys[2:]}")
+    await app.send(f"hi I'm in {app.state[2:]}")
 
 ```
 
@@ -180,7 +203,26 @@ async def say_hi():
 
 进一步了解`上溯查询` [上溯查询](../develop/how-does-it-work.md#_3)
 
-<div id="demo2" class="demo"></div>
+<div class="demo">
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：drink
+>>>  "Bot" 说：喝太阳风
+<<< "user" 说：move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+<<< "user" 说：drink
+>>>  "Bot" 说：喝太阳风
+<<< "user" 说：move 太阳.奶茶店
+>>>  "Bot" 说：前往 太阳.奶茶店
+<<< "user" 说：drink
+>>>  "Bot" 说：喝了一口3000度的奶茶
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 太阳.奶茶店
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+</div>
 
 
 ## 缓存
@@ -211,15 +253,15 @@ app.set_start_cmds("星际旅行", "travel")
 
 # 关闭应用
 @app.on_state()
-@app.on_deep_all()
 @app.on_cmd("退出", "exit")
+@app.on_deep_all()
 async def exit_app():
     await app.close()
 
 
 # 注册各种行动
-@app.on_cmd("drink")
 @app.on_state("地球")
+@app.on_cmd("drink")
 async def drink():
     '''喝水'''
     await app.send("喝水")
@@ -232,16 +274,16 @@ async def drink():
     await app.send("喝土")
 
 
-@app.on_deep_all()
-@app.on_cmd("drink")
 @app.on_state("太阳")
+@app.on_cmd("drink")
+@app.on_deep_all()
 async def drink():
     '''喝太阳风'''
     await app.send("喝太阳风")
 
 
-@app.on_cmd("drink")
 @app.on_state(["太阳", "奶茶店"])
+@app.on_cmd("drink")
 async def drink():
     '''喝奶茶'''
     await app.send("喝了一口3000度的奶茶")
@@ -251,21 +293,21 @@ class UserInput(AyakaInput):
     where: str = Field(description="你要去的地方")
 
 
-@app.on_deep_all()
 @app.on_state()
 @app.on_cmd("move")
+@app.on_deep_all()
 async def move(userinput: UserInput):
     '''移动'''
     await app.set_state(userinput.where)
     await app.send(f"前往 {userinput.where}")
 
 
+@app.on_state()
 @app.on_cmd("hi")
 @app.on_deep_all()
-@app.on_state()
 async def say_hi():
     '''打招呼'''
-    await app.send(f"hi I'm in {app.state.keys[2:]}")
+    await app.send(f"hi I'm in {app.state[2:]}")
 
 
 class Cache(AyakaCache):
@@ -294,7 +336,24 @@ async def watch(cache: Cache):
 
 进一步了解`AyakaCache` [AyakaCache](../develop/cache.md)
 
-<div id="demo3" class="demo"></div>
+<div class="demo">
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：watch
+>>>  "Bot" 说：先去售票处买票！
+<<< "user" 说：move 太阳.售票处
+>>>  "Bot" 说：前往 太阳.售票处
+<<< "user" 说：buy
+>>>  "Bot" 说：耀斑表演门票+1
+<<< "user" 说：watch
+>>>  "Bot" 说：10分甚至9分的好看
+<<< "user" 说：watch
+>>>  "Bot" 说：先去售票处买票！
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+</div>
 
 ## 命令触发 vs 消息触发
 
@@ -320,15 +379,15 @@ app.set_start_cmds("星际旅行", "travel")
 
 # 关闭应用
 @app.on_state()
-@app.on_deep_all()
 @app.on_cmd("退出", "exit")
+@app.on_deep_all()
 async def exit_app():
     await app.close()
 
 
 # 注册各种行动
-@app.on_cmd("drink")
 @app.on_state("地球")
+@app.on_cmd("drink")
 async def drink():
     '''喝水'''
     await app.send("喝水")
@@ -341,16 +400,16 @@ async def drink():
     await app.send("喝土")
 
 
-@app.on_deep_all()
-@app.on_cmd("drink")
 @app.on_state("太阳")
+@app.on_cmd("drink")
+@app.on_deep_all()
 async def drink():
     '''喝太阳风'''
     await app.send("喝太阳风")
 
 
-@app.on_cmd("drink")
 @app.on_state(["太阳", "奶茶店"])
+@app.on_cmd("drink")
 async def drink():
     '''喝奶茶'''
     await app.send("喝了一口3000度的奶茶")
@@ -360,21 +419,21 @@ class UserInput(AyakaInput):
     where: str = Field(description="你要去的地方")
 
 
-@app.on_deep_all()
 @app.on_state()
 @app.on_cmd("move")
+@app.on_deep_all()
 async def move(userinput: UserInput):
     '''移动'''
     await app.set_state(userinput.where)
     await app.send(f"前往 {userinput.where}")
 
 
+@app.on_state()
 @app.on_cmd("hi")
 @app.on_deep_all()
-@app.on_state()
 async def say_hi():
     '''打招呼'''
-    await app.send(f"hi I'm in {app.state.keys[2:]}")
+    await app.send(f"hi I'm in {app.state[2:]}")
 
 
 class Cache(AyakaCache):
@@ -412,7 +471,22 @@ async def handle():
 
 进一步了解`app.on_xxx()` [on_xxx](../develop/app.md#on_xxx)
 
-<div id="demo4" class="demo"></div>
+<div class="demo">
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：move 太阳
+>>>  "Bot" 说：前往 太阳
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 太阳
+<<< "user" 说：move 太阳.奶茶店
+>>>  "Bot" 说：前往 太阳.奶茶店
+<<< "user" 说：嗯？
+>>>  "Bot" 说：你发现这里只卖热饮
+<<< "user" 说：hi
+>>>  "Bot" 说：hi I'm in 太阳.奶茶店
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+</div>
 
 ## 插件帮助
 
@@ -428,7 +502,52 @@ async def handle():
 
 `[*]` 代表它匹配任意状态，`*` 代表它匹配任意命令（=消息触发）
 
-<div id="demo5" class="demo"></div>
+<div class="demo">
+<<< "user" 说：help 星际旅行
+>>>  "Bot" 说：[星际旅行]
+xing ji lv xing
+- 星际旅行/travel | 打开应用
+[星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+[星际旅行.地球]
+- drink | 喝水
+[星际旅行.月球]
+- drink | 喝土
+[星际旅行.太阳]
+- drink | 喝太阳风
+- watch/看表演 | 看表演
+[星际旅行.太阳.奶茶店]
+- drink | 喝奶茶
+- <任意文字> | 令人震惊的事实
+[星际旅行.太阳.售票处]
+- buy/买票 | 买门票
+<<< "user" 说：travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+<<< "user" 说：help
+>>>  "Bot" 说：[星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+<<< "user" 说：move 太阳.奶茶店
+>>>  "Bot" 说：前往 太阳.奶茶店
+<<< "user" 说：help
+>>>  "Bot" 说：[星际旅行.太阳.奶茶店]
+- drink | 喝奶茶
+- <任意文字> | 令人震惊的事实
+[星际旅行.太阳]
+- watch/看表演 | 看表演
+[星际旅行]
+- 退出/exit 
+- move <where> | 移动
+    <where> 你要去的地方
+- hi | 打招呼
+<<< "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+</div>
 
 ## 下一步
 

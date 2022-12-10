@@ -147,6 +147,41 @@ async def func_1(userinput: UserInput):
     <age> 年龄
 ```
 
+## 特殊：不能嵌套
+
+不可以嵌套其他BaseModel模型
+
+```py hl_lines="13"
+from pydantic import BaseModel, Field
+from ayaka import AyakaInput, AyakaApp
+
+app = AyakaApp("test")
+
+
+class User(BaseModel):
+    name: str = Field(description="名字")
+    age: int = Field(description="年龄")
+
+
+class UserInput(AyakaInput):
+    user: User
+
+
+@app.on_cmd("f1")
+async def func_1(userinput: UserInput):
+    print(userinput)
+
+```
+
+用户输入 `#f1`   
+
+```
+1 validation error for UserInput
+user
+  field required (type=value_error.missing)
+```
+
+
 ## 下一步
 
 <div align="right">
