@@ -1043,15 +1043,15 @@
 <span class="linenos" data-linenos="10 "></span>
 <span class="linenos" data-linenos="11 "></span>
 <span class="linenos" data-linenos="12 "></span><span class="c1"># 关闭应用</span>
-<span class="hll"><span class="linenos" data-linenos="13 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-</span><span class="hll"><span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-</span><span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="16 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_app</span><span class="p">():</span>
 <span class="hll"><span class="linenos" data-linenos="17 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span></code></pre></div>
 <h3 id="_3">群组状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>收到<code>星际旅行</code>或<code>travel</code>命令后，群组会从<code>闲置状态</code>变为<code>运行星际旅行应用</code>的状态（即从<code>root</code>状态变为<code>root.星际旅行</code>状态）</p>
-<p>收到<code>退出</code>或<code>exit</code>命令后，群组会从<code>运行星际旅行应用</code>变为<code>闲置状态</code>的状态（即从<code>root.星际旅行</code>状态变为<code>root</code>状态）</p>
+<p>收到<code>星际旅行</code>或<code>travel</code>命令后，群组会从<code>闲置状态</code>变为<code>运行星际旅行应用</code>（即从<code>root</code>状态变为<code>root.星际旅行</code>状态）</p>
+<p>收到<code>退出</code>或<code>exit</code>命令后，群组会从<code>运行星际旅行应用</code>变为<code>闲置状态</code>（即从<code>root.星际旅行</code>状态变为<code>root</code>状态）</p>
 <h2 id="_4">旅行<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>实现旅行的功能</p>
 <table>
@@ -1086,7 +1086,7 @@
 <tr>
 <td>任意地点</td>
 <td>hi</td>
-<td>你好, &lt;地名&gt;!</td>
+<td>hi I'm in &lt;地名&gt;</td>
 </tr>
 </tbody>
 </table>
