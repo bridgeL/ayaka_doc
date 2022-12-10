@@ -1,8 +1,6 @@
 # 快速开始
 
-编写一个星际旅行插件
-
-假设所有消息都是群消息
+编写一个星际旅行插件，从简单到复杂
 
 ## 基本使用
 
@@ -728,6 +726,156 @@ async def get_gold(data: Data):
 >>>  "Bot" 说：前往 太阳.森林公园
 &lt;&lt;&lt; "user" 说：pick
 >>>  "Bot" 说：喜加一 5
+</div>
+
+## 配置
+
+一次捡1个金块已经不能满足你了，现在你想要一次捡10个，或者更多！
+
+```py hl_lines="2 101-103 106 113"
+from pydantic import Field
+from ayaka import AyakaApp, AyakaInput, AyakaCache, AyakaUserDB, AyakaConfig
+
+app = AyakaApp("星际旅行")
+app.help = "xing ji lv xing"
+
+# 启动应用
+app.set_start_cmds("星际旅行", "travel")
+# 关闭应用
+app.set_close_cmds("退出", "exit")
+
+
+# 装饰器的顺序没有强制要求，随便写
+# 注册各种行动
+@app.on_state("地球")
+@app.on_cmd("drink")
+async def drink():
+    '''喝水'''
+    await app.send("喝水")
+
+
+@app.on_state("月球")
+@app.on_cmd("drink")
+async def drink():
+    '''喝土'''
+    await app.send("喝土")
+
+
+@app.on_state("太阳")
+@app.on_deep_all()
+@app.on_cmd("drink")
+async def drink():
+    '''喝太阳风'''
+    await app.send("喝太阳风")
+
+
+class UserInput(AyakaInput):
+    where: str = Field(description="你要去的地方")
+
+
+@app.on_state()
+@app.on_deep_all()
+@app.on_cmd("move")
+async def move(userinput: UserInput):
+    '''移动'''
+    await app.set_state(userinput.where)
+    await app.send(f"前往 {userinput.where}")
+
+
+@app.on_state()
+@app.on_deep_all()
+@app.on_cmd("hi")
+async def say_hi():
+    '''打招呼'''
+    await app.send(f"hi I'm in {app.state[2:]}")
+
+
+@app.on_state(["太阳", "奶茶店"])
+@app.on_cmd("drink")
+async def drink():
+    '''喝奶茶'''
+    await app.send("喝了一口3000度的奶茶")
+
+
+class Cache(AyakaCache):
+    ticket: int = 0
+
+
+@app.on_state(["太阳", "售票处"])
+@app.on_cmd("buy", "买票")
+async def buy_ticket(cache: Cache):
+    '''买门票'''
+    cache.ticket += 1
+    await app.send("耀斑表演门票+1")
+
+
+@app.on_state("太阳")
+@app.on_deep_all()
+@app.on_cmd("watch", "看表演")
+async def watch(cache: Cache):
+    '''看表演'''
+    if cache.ticket <= 0:
+        await app.send("先去售票处买票！")
+    else:
+        cache.ticket -= 1
+        await app.send("10分甚至9分的好看")
+
+
+@app.on_state(["太阳", "奶茶店"])
+@app.on_text()
+async def handle():
+    '''令人震惊的事实'''
+    await app.send("你发现这里只卖热饮")
+
+
+class Data(AyakaUserDB):
+    __table_name__ = "gold"
+    gold_number: int = 0
+
+
+class Config(AyakaConfig):
+    __app_name__ = "gold"
+    each_number: int = 1
+
+
+config = Config()
+
+
+@app.on_state(["太阳", "森林公园"])
+@app.on_cmd("pick")
+async def get_gold(data: Data):
+    '''捡金子'''
+    data.gold_number += config.each_number
+    data.save()
+    await app.send(f"喜加一 {data.gold_number}")
+```
+
+现在你可以随时修改配置项了，重启bot后生效
+
+**实现效果**
+
+修改`data/ayaka/ayaka_setting.json`后
+
+```json
+{
+    "gold": {
+        "each_number": 10
+    },
+    // ...
+}
+```
+
+<div class="demo">
+&lt;&lt;&lt; "user" 说：星际旅行
+>>>  "Bot" 说：已打开应用 [星际旅行]
+&lt;&lt;&lt; "user" 说：move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+&lt;&lt;&lt; "user" 说：pick
+>>>  "Bot" 说：喜加一 15
+&lt;&lt;&lt; "user" 说：pick
+>>>  "Bot" 说：喜加一 25
+&lt;&lt;&lt; "user" 说：exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
 

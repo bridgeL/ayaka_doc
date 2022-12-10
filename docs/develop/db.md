@@ -6,7 +6,7 @@
 
 将需要保存的数据打包到一个类中，该类继承自`AyakaDB`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 
-```py hl_lines="8"
+```py hl_lines="8 14"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaDB
 
@@ -40,6 +40,8 @@ async def _():
 ```
 
 注意，一定要编写__table_name__
+
+注意，一定要调用`Data.create_table()`，否则数据库里没有创建相应的表（这一点考虑后续版本优化掉
 
 注意，一定要编写类型提示，默认值可以不写
 
