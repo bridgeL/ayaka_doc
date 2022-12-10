@@ -6,7 +6,7 @@
 
 将需要保存的数据打包到一个类中，该类继承自`AyakaDB`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 
-```py hl_lines="8 14"
+```py hl_lines="8"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaDB
 
@@ -18,9 +18,6 @@ class Data(AyakaDB):
     id: int = Field(extra=AyakaDB.__primary_key__)
     name: str
     age: int
-
-
-Data.create_table()
 
 
 @app.on_cmd("f1")
@@ -40,8 +37,6 @@ async def _():
 ```
 
 注意，一定要编写__table_name__
-
-注意，一定要调用`Data.create_table()`，否则数据库里没有创建相应的表（这一点考虑后续版本优化掉
 
 注意，一定要编写类型提示，默认值可以不写
 
@@ -73,7 +68,7 @@ id=1 name='测试' age=12
 
 但是需要通过Field.extra属性声明其为`__json_key__`
 
-```py hl_lines="14 25"
+```py hl_lines="14 22"
 from pydantic import BaseModel, Field
 from ayaka import AyakaDB, AyakaApp
 
@@ -89,9 +84,6 @@ class Data(AyakaDB):
     __table_name__ = app.name
     user: User = Field(extra=AyakaDB.__json_key__)
     id: int = Field(extra=AyakaDB.__primary_key__)
-
-
-Data.create_table()
 
 
 @app.on_cmd("f1")
@@ -143,7 +135,7 @@ user=User(name='测试一号', age=2222) id=123
 
 优点是，可以放入回调参数表中，直接使用
 
-```py hl_lines="16"
+```py hl_lines="1 6 13"
 from ayaka import AyakaGroupDB, AyakaApp
 
 app = AyakaApp("test")
@@ -153,9 +145,6 @@ class Data(AyakaGroupDB):
     __table_name__ = app.name
     name: str = "默认名"
     age: int = 12
-
-
-Data.create_table()
 
 
 @app.on_cmd("f1")
@@ -196,7 +185,7 @@ CREATE TABLE "test" (
 
 优点是，可以放入回调参数表中，直接使用
 
-```py hl_lines="6 16"
+```py hl_lines="1 6 13"
 from ayaka import AyakaUserDB, AyakaApp
 
 app = AyakaApp("test")
@@ -206,9 +195,6 @@ class Data(AyakaUserDB):
     __table_name__ = app.name
     name: str = "默认名"
     age: int = 12
-
-
-Data.create_table()
 
 
 @app.on_cmd("f1")

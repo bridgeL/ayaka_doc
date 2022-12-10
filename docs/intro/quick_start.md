@@ -466,7 +466,7 @@ async def watch(cache: Cache):
 
 比如，你在奶茶店随便说了一句话，就能触发该回调运行
 
-```py hl_lines="89-93"
+```py hl_lines="89-94"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaInput, AyakaCache
 
@@ -556,6 +556,7 @@ async def watch(cache: Cache):
 
 
 @app.on_state(["太阳", "奶茶店"])
+@app.on_text()
 async def handle():
     '''令人震惊的事实'''
     await app.send("你发现这里只卖热饮")
@@ -588,7 +589,7 @@ async def handle():
 
 你在太阳上的森林公园里捡到了一块金子，但是一旦重启bot，你就会失去它，这意味着你需要一个数据库来持久地保存数据
 
-```py hl_lines="2 95-97 100 103-109"
+```py hl_lines="2 96-98 101 104-110"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaInput, AyakaCache, AyakaUserDB
 
@@ -678,6 +679,7 @@ async def watch(cache: Cache):
 
 
 @app.on_state(["太阳", "奶茶店"])
+@app.on_text()
 async def handle():
     '''令人震惊的事实'''
     await app.send("你发现这里只卖热饮")
@@ -892,12 +894,12 @@ async def get_gold(data: Data):
 **实现效果**
 
 <div class="demo">
-<<< "user" 说：#help 星际旅行
+&lt;&lt;&lt; "user" 说：help 星际旅行
 >>>  "Bot" 说：[星际旅行]
 xing ji lv xing
 - 星际旅行/travel | 打开应用
 [星际旅行]
-- 退出/exit 
+- 退出/exit | 关闭应用
 - move &lt;where> | 移动
     &lt;where> 你要去的地方
 - hi | 打招呼
@@ -913,29 +915,8 @@ xing ji lv xing
 - &lt;任意文字> | 令人震惊的事实
 [星际旅行.太阳.售票处]
 - buy/买票 | 买门票
-<<< "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-<<< "user" 说：#help
->>>  "Bot" 说：[星际旅行]
-- 退出/exit 
-- move &lt;where> | 移动
-    &lt;where> 你要去的地方
-- hi | 打招呼
-<<< "user" 说：#move 太阳.奶茶店
->>>  "Bot" 说：前往 太阳.奶茶店
-<<< "user" 说：#help
->>>  "Bot" 说：[星际旅行.太阳.奶茶店]
-- drink | 喝奶茶
-- &lt;任意文字> | 令人震惊的事实
-[星际旅行.太阳]
-- watch/看表演 | 看表演
-[星际旅行]
-- 退出/exit 
-- move &lt;where> | 移动
-    &lt;where> 你要去的地方
-- hi | 打招呼
-<<< "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+[星际旅行.太阳.森林公园]
+- pick | 捡金子
 </div>
 
 ## 下一步
