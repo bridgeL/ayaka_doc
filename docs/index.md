@@ -12,7 +12,7 @@ ayaka 二次封装nonebot2提供的api，提供了专用api
 
 ## 注意
 
-1. ayaka默认插件工作在群聊中，其默认仅监听群聊消息；若想监听私聊消息，请使用[add_listener](https://bridgel.github.io/nonebot-plugin-ayaka/ayaka/ayaka.html#AyakaApp.add_listener)
+1. ayaka默认插件工作在群聊中，其默认仅监听群聊消息；若想监听私聊消息，请使用[add_listener](./api/ayaka/ayaka.html#AyakaApp.add_listener)
 2. 本站搜索栏如果搜不到数据，可以尝试将关键词分割为更小的单位（MkDocs对中文搜索的支持较差）
 
 ## 简单介绍

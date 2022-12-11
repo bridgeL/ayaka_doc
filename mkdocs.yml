@@ -56,7 +56,7 @@ nav:
   - v4: change-log/v4.md
   - v3: change-log/v3.md
   - v2: change-log/v2.md
-- API: https://bridgel.github.io/nonebot-plugin-ayaka/
+- API: api/index.html
 
 markdown_extensions:
 - pymdownx.highlight:
