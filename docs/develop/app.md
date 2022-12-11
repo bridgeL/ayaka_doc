@@ -8,9 +8,6 @@ from ayaka import AyakaApp
 app = AyakaApp("测试一下")
 ```
 
-详细api：[https://bridgel.github.io/nonebot-plugin-ayaka/](https://bridgel.github.io/nonebot-plugin-ayaka/)
-
-
 ## bot、event、message
 
 御 三 家

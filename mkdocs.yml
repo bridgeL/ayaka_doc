@@ -33,7 +33,7 @@ nav:
   - 介绍: index.md
   - 安装: intro/install.md
   - 常见问题: intro/qa.md
-  - 快速开始: intro/quick_start.md
+- 快速开始: intro/quick_start.md
 - 开发衍生插件:
   - 工作原理: develop/how-does-it-work.md
   - 应用 AyakaApp: develop/app.md
