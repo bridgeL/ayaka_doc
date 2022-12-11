@@ -10,7 +10,7 @@ from ayaka import AyakaApp
 app = AyakaApp("test")
 s1 = app.get_state()
 s2 = app.get_state("测试")
-s3 = app.get_state("test", "ok")
+s3 = app.get_state(["test","ok"])
 
 print(s1)
 # root.test
