@@ -70,6 +70,16 @@ async def func():
 
 注意：不要在进入、退出回调函数内，调用`app.goto`或`app.set_state`方法
 
+```py
+@s1.on_enter()
+async def func():
+    pass
+
+@s1.on_exit()
+async def func():
+    pass
+```
+
 ## 下一步
 
 <div align="right">
