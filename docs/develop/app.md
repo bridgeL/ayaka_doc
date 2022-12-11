@@ -26,13 +26,18 @@ app = AyakaApp("测试一下")
 
 二 代 御 三 家
 
-_在有了[AyakaInput](./input.md)后，args已经没落了（悲（我装的_
-
 | 名称     | 类型                   | 功能                                     |
 | -------- | ---------------------- | ---------------------------------------- |
 | app.cmd  | `str`                  | 本次响应是针对哪个命令                   |
 | app.arg  | `Message`              | 删除了命令后剩下的消息部分               |
 | app.args | `List[MessageSegment]` | 删除命令后，依照分隔符分割，并移除空数据 |
+
+<div class="demo">
+"user" 说：#得到的 水电费   来看看
+"sys" 说：app.cmd = "得到的"
+"sys" 说：app.arg = "水电费   来看看"
+"sys" 说：app.args = ["水电费","来看看"]
+</div>
 
 
 ## user_name、user_id、group_id
@@ -80,12 +85,15 @@ _在有了[AyakaInput](./input.md)后，args已经没落了（悲（我装的_
 
 ## on_xxx 注册回调
 
-- on_cmd
-- on_state
-- on_deep_all
-- on_no_block
 
-鸽了
+| 名称            | 功能                                   |
+| --------------- | -------------------------------------- |
+| app.on_cmd      | 注册为命令回调，参数表可以写多个命令   |
+| app.on_text     | 注册为消息回调                         |
+| app.on_state    | 注册在指定状态下，参数表可以写多个状态 |
+| app.on_idle     | 注册在闲置状态下                       |
+| app.on_deep_all | 声明该回调对所有子状态生效             |
+| app.on_no_block | 设置该回调触发后不阻断上溯查找         |
 
 ## add_listener、remove_listener
 

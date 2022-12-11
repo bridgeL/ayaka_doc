@@ -26,9 +26,9 @@ app.set_close_cmds("退出", "exit")
 **实现效果**
 
 <div class="demo">
-&lt;&lt;&lt; "user" 说：travel
+&lt;&lt;&lt; "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：exit
+&lt;&lt;&lt; "user" 说：#exit
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
@@ -108,7 +108,7 @@ async def say_hi():
 
 用`root.星际旅行.月球`状态指代`你正处于月球`
 
-天然的，我们可以意识到，`root.星际旅行`是其他状态（`root.星际旅行.地球`、`root.星际旅行.月球`等）的基础，也就是祖先
+天然的，我们可以意识到，`root.星际旅行`是其他状态（`root.星际旅行.地球`、`root.星际旅行.月球`等）的基础，是它们的祖先
 
 **on_state**
 
@@ -164,6 +164,10 @@ async def move(userinput: UserInput):
     # 太阳
 ```
 
+但切片后得到的状态结点不位于状态树上
+
+进一步了解状态树 [状态树](../develop/how-does-it-work.md#ayakaappayakastate)
+
 **修改当前状态**
 
 ```py
@@ -173,7 +177,10 @@ await app.set_state("地球")
 await app.set_state("月球")
 # 当前状态 -> root.星际旅行.月球
 
-await app.set_state("地球", "中国")
+await app.set_state(["地球","中国"])
+# 当前状态 -> root.星际旅行.地球.中国
+
+await app.set_state("地球.中国")
 # 当前状态 -> root.星际旅行.地球.中国
 ```
 
@@ -707,26 +714,26 @@ async def get_gold(data: Data):
 **实现效果**
 
 <div class="demo">
-&lt;&lt;&lt; "user" 说：星际旅行
+&lt;&lt;&lt; "user" 说：#星际旅行
 >>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：move 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
 >>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 1
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 2
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 3
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 4
-&lt;&lt;&lt; "user" 说：exit
+&lt;&lt;&lt; "user" 说：#exit
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 >>>  "sys" 说：重启bot后
-&lt;&lt;&lt; "user" 说：星际旅行
+&lt;&lt;&lt; "user" 说：#星际旅行
 >>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：move 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
 >>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 5
 </div>
 
@@ -868,15 +875,15 @@ async def get_gold(data: Data):
 ```
 
 <div class="demo">
-&lt;&lt;&lt; "user" 说：星际旅行
+&lt;&lt;&lt; "user" 说：#星际旅行
 >>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：move 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
 >>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 15
-&lt;&lt;&lt; "user" 说：pick
+&lt;&lt;&lt; "user" 说：#pick
 >>>  "Bot" 说：喜加一 25
-&lt;&lt;&lt; "user" 说：exit
+&lt;&lt;&lt; "user" 说：#exit
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
@@ -894,7 +901,7 @@ async def get_gold(data: Data):
 **实现效果**
 
 <div class="demo">
-&lt;&lt;&lt; "user" 说：help 星际旅行
+&lt;&lt;&lt; "user" 说：#help 星际旅行
 >>>  "Bot" 说：[星际旅行]
 xing ji lv xing
 - 星际旅行/travel | 打开应用
@@ -917,6 +924,24 @@ xing ji lv xing
 - buy/买票 | 买门票
 [星际旅行.太阳.森林公园]
 - pick | 捡金子
+</div>
+
+<div class="demo">
+&lt;&lt;&lt; "user" 说：#星际旅行
+>>>  "Bot" 说：已打开应用 [星际旅行]
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#help
+>>>  "Bot" 说：[星际旅行.太阳.森林公园]
+- pick | 捡金子
+[星际旅行.太阳]
+- drink | 喝太阳风
+- watch/看表演 | 看表演
+[星际旅行]
+- 退出/exit | 关闭应用
+- move &lt;where> | 移动
+    &lt;where> 你要去的地方
+- hi | 打招呼
 </div>
 
 ## 下一步

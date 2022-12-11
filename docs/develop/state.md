@@ -59,10 +59,10 @@ async def func():
 ```
 
 <div class="demo">
-<<< "user" 说：对吗
-<<< "user" 说：test
+<<< "user" 说：#对吗
+<<< "user" 说：#test
 >>>  "Bot" 说：已打开应用 [test]
-<<< "user" 说：对吗
+<<< "user" 说：#对吗
 >>>  "Bot" 说：对的
 </div>
 
