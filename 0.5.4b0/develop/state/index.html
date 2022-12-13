@@ -463,8 +463,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_3">
@@ -557,27 +555,20 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    如何获取根状态结点
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     注册命令回调、消息回调
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     注册进入回调、退出回调
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     下一步
   </a>
   
@@ -656,20 +647,6 @@
     <li class="md-nav__item">
       <a href="../test/" class="md-nav__link">
         测试 ayaka_test
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../browser/" class="md-nav__link">
-        浏览器截图
       </a>
     </li>
   
@@ -949,29 +926,27 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="n">s1</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="n">s2</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="n">s3</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;ok&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1"># root.test</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-<span class="linenos" data-linenos="12 "></span><span class="c1"># root.test.测试</span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
-<span class="linenos" data-linenos="15 "></span><span class="c1"># root.test.test.ok</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">s0</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">root_state</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">s1</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">plugin_state</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">s2</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">s3</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">s4</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;ok&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># root</span>
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="c1"># root.test</span>
+<span class="linenos" data-linenos="15 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="c1"># root.test</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span><span class="c1"># root.test.测试</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s4</span><span class="p">)</span>
+<span class="linenos" data-linenos="22 "></span><span class="c1"># root.test.test.ok</span>
 </code></pre></div>
-<h2 id="_2">如何获取根状态结点<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="4 "></span><span class="n">s0</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">root_state</span>
-<span class="linenos" data-linenos="5 "></span>
-<span class="linenos" data-linenos="6 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
-<span class="linenos" data-linenos="7 "></span><span class="c1"># root</span>
-</code></pre></div>
-<h2 id="_3">注册命令回调、消息回调<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">注册命令回调、消息回调<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>状态结点也可以直接注册命令回调、消息回调</p>
 <p>事实上，<code>app.on_xxx</code>系列装饰器就是直接对相应的状态结点操作的</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
@@ -998,17 +973,17 @@
 >>>  "Bot" 说：对的
 </div>
 
-<h2 id="_4">注册进入回调、退出回调<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">注册进入回调、退出回调<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>注意：不要在进入、退出回调函数内，调用<code>app.goto</code>或<code>app.set_state</code>方法</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@s1</span><span class="o">.</span><span class="n">on_enter</span><span class="p">()</span>
 <span class="linenos" data-linenos="2 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-<span class="linenos" data-linenos="3 "></span>    <span class="k">pass</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;进入s1状态前&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="4 "></span>
 <span class="linenos" data-linenos="5 "></span><span class="nd">@s1</span><span class="o">.</span><span class="n">on_exit</span><span class="p">()</span>
 <span class="linenos" data-linenos="6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-<span class="linenos" data-linenos="7 "></span>    <span class="k">pass</span>
+<span class="linenos" data-linenos="7 "></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;退出s1状态后&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>

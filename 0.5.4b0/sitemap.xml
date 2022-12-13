@@ -36,11 +36,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/0.5.4b0/develop/browser/</loc>
-         <lastmod>2022-12-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.4b0/develop/cache/</loc>
          <lastmod>2022-12-13</lastmod>
          <changefreq>daily</changefreq>
