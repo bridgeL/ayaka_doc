@@ -34,6 +34,9 @@
                     <a class="class" href="#AyakaDepend">AyakaDepend</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="function" href="#AyakaDepend.create_by_app">create_by_app</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#AyakaDepend.props">props</a>
                         </li>
                 </ul>
@@ -69,8 +72,8 @@
 </span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="k">class</span> <span class="nc">AyakaDepend</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="nd">@classmethod</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_by_app</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;AyakaApp&quot;</span><span class="p">):</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_by_app</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;AyakaApp&quot;</span><span class="p">):</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>        <span class="k">return</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="nd">@classmethod</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="k">def</span> <span class="nf">props</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
@@ -92,8 +95,8 @@
     <a class="headerlink" href="#AyakaDepend"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaDepend-9"><a href="#AyakaDepend-9"><span class="linenos"> 9</span></a><span class="k">class</span> <span class="nc">AyakaDepend</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="AyakaDepend-10"><a href="#AyakaDepend-10"><span class="linenos">10</span></a>    <span class="nd">@classmethod</span>
-</span><span id="AyakaDepend-11"><a href="#AyakaDepend-11"><span class="linenos">11</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_by_app</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;AyakaApp&quot;</span><span class="p">):</span>
-</span><span id="AyakaDepend-12"><a href="#AyakaDepend-12"><span class="linenos">12</span></a>        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</span><span id="AyakaDepend-11"><a href="#AyakaDepend-11"><span class="linenos">11</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_by_app</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;AyakaApp&quot;</span><span class="p">):</span>
+</span><span id="AyakaDepend-12"><a href="#AyakaDepend-12"><span class="linenos">12</span></a>        <span class="k">return</span>
 </span><span id="AyakaDepend-13"><a href="#AyakaDepend-13"><span class="linenos">13</span></a>
 </span><span id="AyakaDepend-14"><a href="#AyakaDepend-14"><span class="linenos">14</span></a>    <span class="nd">@classmethod</span>
 </span><span id="AyakaDepend-15"><a href="#AyakaDepend-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="nf">props</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
@@ -103,6 +106,27 @@
 
     
 
+                            <div id="AyakaDepend.create_by_app" class="classattr">
+                                        <input id="AyakaDepend.create_by_app-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@classmethod</div>
+
+        <span class="def">async def</span>
+        <span class="name">create_by_app</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">cls</span>, </span><span class="param"><span class="n">app</span><span class="p">:</span> <span class="n"><a href="../ayaka.html#AyakaApp">ayaka.ayaka.AyakaApp</a></span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="AyakaDepend.create_by_app-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#AyakaDepend.create_by_app"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaDepend.create_by_app-10"><a href="#AyakaDepend.create_by_app-10"><span class="linenos">10</span></a>    <span class="nd">@classmethod</span>
+</span><span id="AyakaDepend.create_by_app-11"><a href="#AyakaDepend.create_by_app-11"><span class="linenos">11</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_by_app</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">app</span><span class="p">:</span> <span class="s2">&quot;AyakaApp&quot;</span><span class="p">):</span>
+</span><span id="AyakaDepend.create_by_app-12"><a href="#AyakaDepend.create_by_app-12"><span class="linenos">12</span></a>        <span class="k">return</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
                             <div id="AyakaDepend.props" class="classattr">
                                         <input id="AyakaDepend.props-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
