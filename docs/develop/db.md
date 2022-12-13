@@ -38,6 +38,10 @@ async def _():
 
 注意，一定要编写__table_name__
 
+`ayaka`会在你调用`AyakaDB`的任意方法时，自动创建对应的表，当然你也可以手动调用`AyakaDB().create_table()`
+
+`AyakaDB`的所有方法详见[这里](../api/ayaka/depend/db.html)
+
 注意，一定要编写类型提示，默认值可以不写
 
 | 代码            | 备注 |

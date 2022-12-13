@@ -4,7 +4,6 @@
 
 ## 基本用法
 
-
 将需要的参数打包到一个类中，该类继承自`AyakaInput`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 
 使用时放入回调的参数表中即可

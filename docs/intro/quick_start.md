@@ -596,7 +596,7 @@ async def handle():
 
 你在太阳上的森林公园里捡到了一块金子，但是一旦重启bot，你就会失去它，这意味着你需要一个数据库来持久地保存数据
 
-```py hl_lines="2 96-98 101 104-110"
+```py hl_lines="2 96-98 101-107"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaInput, AyakaCache, AyakaUserDB
 
@@ -695,9 +695,6 @@ async def handle():
 class Data(AyakaUserDB):
     __table_name__ = "gold"
     gold_number: int = 0
-
-
-Data.create_table()
 
 
 @app.on_state(["太阳", "森林公园"])
