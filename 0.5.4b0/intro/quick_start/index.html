@@ -1093,6 +1093,33 @@
 <p>用<code>root.星际旅行.地球</code>状态指代<code>你正处于地球</code></p>
 <p>用<code>root.星际旅行.月球</code>状态指代<code>你正处于月球</code></p>
 <p>天然的，我们可以意识到，<code>root.星际旅行</code>是其他状态（<code>root.星际旅行.地球</code>、<code>root.星际旅行.月球</code>等）的基础，是它们的祖先</p>
+<p><img alt="图片" src="../%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B1.png" /></p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root</td>
+<td>闲置状态</td>
+</tr>
+<tr>
+<td>root.星际旅行</td>
+<td>开启应用-星际旅行</td>
+</tr>
+<tr>
+<td>root.星际旅行.地球</td>
+<td>到达地球</td>
+</tr>
+<tr>
+<td>root.星际旅行.太阳.奶茶店</td>
+<td>到达太阳奶茶店</td>
+</tr>
+</tbody>
+</table>
 <p><strong>on_state</strong></p>
 <table>
 <thead>
@@ -1137,6 +1164,10 @@
 <span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p><strong>发送消息</strong></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1"># bot发送 喝水</span>
+</code></pre></div>
 <p><strong>子状态可以触发父状态的回调</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下，由于设置了on_deep_all，它还对所有子状态生效</span>
 <span class="linenos" data-linenos="2 "></span><span class="c1"># 也就说，当我们位于 root.星际旅行.月球 时，也可以触发move回调</span>
@@ -1171,10 +1202,6 @@
 <span class="linenos" data-linenos="11 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
 </code></pre></div>
 <p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
-<p><strong>发送消息</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="2 "></span><span class="c1"># bot发送 喝水</span>
-</code></pre></div>
 <p><strong>AyakaInput</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="2 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
