@@ -59,7 +59,16 @@ async def func_1():
 
 ## 修改
 
-如果是修改不可变对象，那么`ayaka`会自动将新配置写入文件；
+```py
+@app.on_cmd("f1")
+async def func_1():
+    config.name = "测试1"
+    config.save()
+```
+
+## 自动保存
+
+如果是修改不可变对象，那么`ayaka`会自动将新配置写入文件，可省略`AyakaConfig().save()`
 
 如果是修改数组、字典等**可变对象**的值，则需要调用`AyakaConfig().save()`方法来提醒`ayaka`将数据写入文件
 

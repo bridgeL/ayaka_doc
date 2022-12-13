@@ -6,7 +6,7 @@
 
 将需要保存的数据打包到一个类中，该类继承自`AyakaDB`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 
-```py hl_lines="8"
+```py hl_lines="8 19"
 from pydantic import Field
 from ayaka import AyakaApp, AyakaDB
 
@@ -47,6 +47,29 @@ async def _():
 | `name:str`      | 正确 |
 | `name`          | 错误 |
 
+对应的数据库`data/ayaka/ayaka.db`
+
+注意，执行`AyakaDB().save()`后，数据不会马上更新，`ayaka`可能会等待0~60s后才执行写入操作
+
+处于灵活性考虑，初始化`AyakaDB`对象时并不会自动将该对象写入数据库，而需要手动执行`AyakaDB().save()`方法
+
+表信息
+
+```
+CREATE TABLE "test" (
+	"id"	integer,
+	"name"	text,
+	"age"	integer,
+	PRIMARY KEY("id")
+);
+```
+
+用户执行 `#f1` 后的表数据
+
+| id  | name | age |
+| --- | ---- | --- |
+| 123 | 测试 | 12  |
+
 <div class="demo">
 <<< "user" 说：#f2
 pydantic.error_wrappers.ValidationError: 2 validation errors for Data
@@ -68,7 +91,7 @@ id=1 name='测试' age=12
 
 但是需要通过Field.extra属性声明其为`__json_key__`
 
-```py hl_lines="14 22"
+```py hl_lines="7-9 14"
 from pydantic import BaseModel, Field
 from ayaka import AyakaDB, AyakaApp
 
@@ -99,10 +122,6 @@ async def func_1():
     print(data)
 
 ```
-
-注意，执行`data.save()`后，数据不会马上更新，`ayaka`可能会等待0~60s后才执行写入操作
-
-对应的数据库`data/ayaka/ayaka.db`
 
 表信息
 
@@ -135,7 +154,7 @@ user=User(name='测试一号', age=2222) id=123
 
 优点是，可以放入回调参数表中，直接使用
 
-```py hl_lines="1 6 13"
+```py hl_lines="1 6 13 14"
 from ayaka import AyakaGroupDB, AyakaApp
 
 app = AyakaApp("test")
@@ -150,7 +169,6 @@ class Data(AyakaGroupDB):
 @app.on_cmd("f1")
 async def func_1(data: Data):
     data.name = "新名字"
-    data.save()
 ```
 
 注意，与AyakaDB不同，AyakaGroupDB一定要编写默认值
@@ -172,6 +190,8 @@ CREATE TABLE "test" (
 	PRIMARY KEY("group_id")
 );
 ```
+
+与AyakaConfig的[自动保存](./config.md#_4)机制一样，当修改不可变对象时，会自动执行`AyakaDB().save()`方法
 
 用户执行 `#f1` 后的表数据
 
@@ -200,7 +220,6 @@ class Data(AyakaUserDB):
 @app.on_cmd("f1")
 async def func_1(data: Data):
     data.name = "新名字"
-    data.save()
 ```
 
 注意，与AyakaDB不同，AyakaUserDB一定要编写默认值
