@@ -585,6 +585,13 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    自动保存
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     进阶：可以嵌套
   </a>
   
@@ -598,7 +605,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     下一步
   </a>
   
@@ -1013,7 +1020,13 @@
 <span class="linenos" data-linenos="8 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 <h2 id="_3">修改<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>如果是修改不可变对象，那么<code>ayaka</code>会自动将新配置写入文件；</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;测试1&quot;</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="_4">自动保存<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>如果是修改不可变对象，那么<code>ayaka</code>会自动将新配置写入文件，可省略<code>AyakaConfig().save()</code></p>
 <p>如果是修改数组、字典等<strong>可变对象</strong>的值，则需要调用<code>AyakaConfig().save()</code>方法来提醒<code>ayaka</code>将数据写入文件</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 修改不可变对象</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
@@ -1027,7 +1040,7 @@
 <span class="linenos" data-linenos="10 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
 <p>注意，即使调用了<code>AyakaConfig().save()</code>方法，也不意味着数据马上更新到配置文件中，<code>ayaka</code>可能会等待0~60s后才执行写入操作</p>
-<h2 id="_4">进阶：可以嵌套<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">进阶：可以嵌套<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>可以嵌套其他BaseModel模型</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span><span class="p">,</span> <span class="n">AyakaApp</span>
@@ -1078,7 +1091,7 @@
 <h2 id="ayakalargeconfig">AyakaLargeConfig<a class="headerlink" href="#ayakalargeconfig" title="Permanent link">&para;</a></h2>
 <p>当配置型较多时，建议使用<code>AyakaLargeConfig</code>，它读写的是独立配置文件，<code>data/ayaka/separate/&lt;__app_name__&gt;.json</code></p>
 <p>使用方法与<code>AyakaConfig</code>一致，仅存储位置不同而已</p>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">下一步<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>

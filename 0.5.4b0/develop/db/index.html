@@ -965,8 +965,8 @@
 <span class="linenos" data-linenos="16 "></span>    <span class="c1"># 创建数据</span>
 <span class="linenos" data-linenos="17 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;测试&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="linenos" data-linenos="18 "></span>    <span class="c1"># 写入数据库</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="linenos" data-linenos="20 "></span>
+<span class="hll"><span class="linenos" data-linenos="19 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span><span class="linenos" data-linenos="20 "></span>
 <span class="linenos" data-linenos="21 "></span>
 <span class="linenos" data-linenos="22 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="23 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
@@ -1002,6 +1002,34 @@
 </tr>
 </tbody>
 </table>
+<p>对应的数据库<code>data/ayaka/ayaka.db</code></p>
+<p>注意，执行<code>AyakaDB().save()</code>后，数据不会马上更新，<code>ayaka</code>可能会等待0~60s后才执行写入操作</p>
+<p>处于灵活性考虑，初始化<code>AyakaDB</code>对象时并不会自动将该对象写入数据库，而需要手动执行<code>AyakaDB().save()</code>方法</p>
+<p>表信息</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
+<span class="linenos" data-linenos="2 "></span>    &quot;id&quot;    integer,
+<span class="linenos" data-linenos="3 "></span>    &quot;name&quot;  text,
+<span class="linenos" data-linenos="4 "></span>    &quot;age&quot;   integer,
+<span class="linenos" data-linenos="5 "></span>    PRIMARY KEY(&quot;id&quot;)
+<span class="linenos" data-linenos="6 "></span>);
+</code></pre></div>
+<p>用户执行 <code>#f1</code> 后的表数据</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>测试</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
 <div class="demo">
 <<< "user" 说：#f2
 pydantic.error_wrappers.ValidationError: 2 validation errors for Data
@@ -1026,10 +1054,10 @@ id=1 name='测试' age=12
 <span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 5 "></span>
 <span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-<span class="linenos" data-linenos="10 "></span>
+<span class="hll"><span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll"><span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+</span><span class="linenos" data-linenos="10 "></span>
 <span class="linenos" data-linenos="11 "></span>
 <span class="linenos" data-linenos="12 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaDB</span><span class="p">):</span>
 <span class="linenos" data-linenos="13 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
@@ -1041,16 +1069,14 @@ id=1 name='测试' age=12
 <span class="linenos" data-linenos="19 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
 <span class="linenos" data-linenos="20 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;测试一号&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">2222</span><span class="p">},</span> <span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 <span class="linenos" data-linenos="21 "></span>    <span class="c1"># 保存到数据库</span>
-<span class="hll"><span class="linenos" data-linenos="22 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</span><span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="22 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="linenos" data-linenos="23 "></span>
 <span class="linenos" data-linenos="24 "></span>
 <span class="linenos" data-linenos="25 "></span><span class="o">@</span> <span class="n">app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="26 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
 <span class="linenos" data-linenos="27 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
 <span class="linenos" data-linenos="28 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
-<p>注意，执行<code>data.save()</code>后，数据不会马上更新，<code>ayaka</code>可能会等待0~60s后才执行写入操作</p>
-<p>对应的数据库<code>data/ayaka/ayaka.db</code></p>
 <p>表信息</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
 <span class="linenos" data-linenos="2 "></span>    &quot;user&quot;  text,
@@ -1098,9 +1124,8 @@ user=User(name='测试一号', age=2222) id=123
 <span class="linenos" data-linenos="11 "></span>
 <span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
 <span class="hll"><span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
-</span><span class="linenos" data-linenos="14 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</code></pre></div>
+</span><span class="hll"><span class="linenos" data-linenos="14 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
+</span></code></pre></div>
 <p>注意，与AyakaDB不同，AyakaGroupDB一定要编写默认值</p>
 <table>
 <thead>
@@ -1136,6 +1161,7 @@ user=User(name='测试一号', age=2222) id=123
 <span class="linenos" data-linenos="5 "></span>    PRIMARY KEY(&quot;group_id&quot;)
 <span class="linenos" data-linenos="6 "></span>);
 </code></pre></div>
+<p>与AyakaConfig的<a href="../config/#_4">自动保存</a>机制一样，当修改不可变对象时，会自动执行<code>AyakaDB().save()</code>方法</p>
 <p>用户执行 <code>#f1</code> 后的表数据</p>
 <table>
 <thead>
@@ -1170,7 +1196,6 @@ user=User(name='测试一号', age=2222) id=123
 <span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
 <span class="hll"><span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
 </span><span class="linenos" data-linenos="14 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
 <p>注意，与AyakaDB不同，AyakaUserDB一定要编写默认值</p>
 <table>
