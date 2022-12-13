@@ -1120,30 +1120,51 @@
 </tr>
 </tbody>
 </table>
+<p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
 <p><strong>on_state</strong></p>
 <table>
 <thead>
 <tr>
 <th>代码</th>
-<th>对应的state</th>
+<th>意义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>@app.on_state()</code></td>
-<td>参数为空，对应<code>root.星际旅行</code></td>
+<td>参数为空，对应<code>root.星际旅行</code>，回调在该状态下时响应</td>
 </tr>
 <tr>
 <td><code>@app.on_state("地球")</code></td>
-<td>对应<code>root.星际旅行.地球</code></td>
+<td>回调在<code>root.星际旅行.地球</code>时响应</td>
 </tr>
 <tr>
 <td><code>@app.on_state(["地球","中国"])</code></td>
-<td>对应<code>root.星际旅行.地球.中国</code></td>
+<td>回调在<code>root.星际旅行.地球.中国</code>时响应</td>
 </tr>
 <tr>
-<td><code>@app.on_state("地球","月球")</code></td>
-<td>对应<code>root.星际旅行.地球</code>和<code>root.星际旅行.月球</code></td>
+<td><code>@app.on_state(["地球","中国"],"月球")</code></td>
+<td>回调在<code>root.星际旅行.地球.中国</code>或<code>root.星际旅行.月球</code>时响应</td>
+</tr>
+</tbody>
+</table>
+<p><strong>on_cmd</strong></p>
+<p>设置命令</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@app.on_cmd("drink")</code></td>
+<td>回调通过<code>drink</code>命令触发</td>
+</tr>
+<tr>
+<td><code>@app.on_cmd("drink", "喝水")</code></td>
+<td>回调通过<code>drink</code>或<code>喝水</code>命令触发</td>
 </tr>
 </tbody>
 </table>
@@ -1179,6 +1200,42 @@
 <span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
 <span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>注册回调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root.星际旅行</td>
+<td>move</td>
+</tr>
+<tr>
+<td>root.星际旅行.太阳</td>
+<td>drink</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>当位于此状态时</th>
+<th>可触发的回调</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root.星际旅行</td>
+<td>move</td>
+</tr>
+<tr>
+<td>root.星际旅行.太阳</td>
+<td>move,drink</td>
+</tr>
+</tbody>
+</table>
 <p><strong>state还可以切片</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span>    <span class="c1"># root.星际旅行.太阳</span>
@@ -1201,7 +1258,6 @@
 <span class="linenos" data-linenos="10 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球.中国&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="11 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
 </code></pre></div>
-<p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
 <p><strong>AyakaInput</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
 <span class="linenos" data-linenos="2 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
