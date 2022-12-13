@@ -1,11 +1,8 @@
 ## 安装
 
 ```
-pip install nonebot-plugin-ayaka
-playwright install chromium
+pip install git+https://github.com/bridgeL/nonebot-plugin-ayaka.git
 ``` 
-
-至此安装完成，可以开发ayaka衍生插件了
 
 ## 注意
 

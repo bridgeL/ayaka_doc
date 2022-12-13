@@ -843,8 +843,8 @@ class Data(AyakaUserDB):
 
 
 class Config(AyakaConfig):
-    __app_name__ = "gold"
-    each_number: int = 1
+    __app_name__ = app.name
+    gold_number: int = 1
 
 
 config = Config()
@@ -854,39 +854,58 @@ config = Config()
 @app.on_cmd("pick")
 async def get_gold(data: Data):
     '''捡金子'''
-    data.gold_number += config.each_number
+    data.gold_number += config.gold_number
     data.save()
     await app.send(f"喜加一 {data.gold_number}")
+
+
+class UserInput2(AyakaInput):
+    number: int = Field(description="一次捡起的金块数量")
+
+
+@app.on_state(["太阳", "森林公园"])
+@app.on_cmd("change")
+async def change_gold_number(userinput: UserInput2):
+    '''修改捡金子配置'''
+    config.gold_number = userinput.number
+    await app.send("修改成功")
 ```
 
-现在你可以随时修改配置项了，重启bot后生效
 
 **实现效果**
 
-修改`data/ayaka/ayaka_setting.json`后
-
-```json
-{
-    "gold": {
-        "each_number": 10
-    },
-    // ...
-}
-```
-
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#星际旅行
+&lt;&lt;&lt; "user" 说：#travel
 >>>  "Bot" 说：已打开应用 [星际旅行]
 &lt;&lt;&lt; "user" 说：#move 太阳.森林公园
 >>>  "Bot" 说：前往 太阳.森林公园
 &lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 15
+>>>  "Bot" 说：喜加一 53
 &lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 25
-&lt;&lt;&lt; "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+>>>  "Bot" 说：喜加一 54
+&lt;&lt;&lt; "user" 说：#change 10
+>>>  "Bot" 说：修改成功
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 64
+"sys" 说：bot重启后
+&lt;&lt;&lt; "user" 说：#travel
+>>>  "Bot" 说：已打开应用 [星际旅行]
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 74
 </div>
 
+查看`data/ayaka/ayaka_setting.json`
+
+```json
+{
+    "星际旅行": {
+        "gold_number": 10
+    },
+    // ...
+}
+```
 
 ## 插件帮助
 
@@ -924,6 +943,8 @@ xing ji lv xing
 - buy/买票 | 买门票
 [星际旅行.太阳.森林公园]
 - pick | 捡金子
+- change &lt;number> | 修改捡金子配置
+    &lt;number> 一次捡起的金块数量
 </div>
 
 <div class="demo">
@@ -934,6 +955,8 @@ xing ji lv xing
 &lt;&lt;&lt; "user" 说：#help
 >>>  "Bot" 说：[星际旅行.太阳.森林公园]
 - pick | 捡金子
+- change &lt;number> | 修改捡金子配置
+    &lt;number> 一次捡起的金块数量
 [星际旅行.太阳]
 - drink | 喝太阳风
 - watch/看表演 | 看表演
