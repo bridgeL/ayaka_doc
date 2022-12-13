@@ -110,6 +110,15 @@ async def say_hi():
 
 天然的，我们可以意识到，`root.星际旅行`是其他状态（`root.星际旅行.地球`、`root.星际旅行.月球`等）的基础，是它们的祖先
 
+![图片](./%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B1.png)
+
+| 状态                      | 意义              |
+| ------------------------- | ----------------- |
+| root                      | 闲置状态          |
+| root.星际旅行             | 开启应用-星际旅行 |
+| root.星际旅行.地球        | 到达地球          |
+| root.星际旅行.太阳.奶茶店 | 到达太阳奶茶店        |
+
 **on_state**
 
 | 代码                             | 对应的state                                    |
@@ -138,6 +147,13 @@ async def drink():
 async def drink():
     '''喝土'''
     await app.send("喝土")
+```
+
+**发送消息**
+
+```py
+await app.send("喝水")
+# bot发送 喝水
 ```
 
 **子状态可以触发父状态的回调**
@@ -185,13 +201,6 @@ await app.set_state("地球.中国")
 ```
 
 进一步了解`app.state` [AyakaState](../develop/state.md)
-
-**发送消息**
-
-```py
-await app.send("喝水")
-# bot发送 喝水
-```
 
 **AyakaInput**
 
