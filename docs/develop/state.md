@@ -8,30 +8,25 @@
 from ayaka import AyakaApp
 
 app = AyakaApp("test")
-s1 = app.get_state()
-s2 = app.get_state("测试")
-s3 = app.get_state(["test","ok"])
-
-print(s1)
-# root.test
-
-print(s2)
-# root.test.测试
-
-print(s3)
-# root.test.test.ok
-```
-
-## 如何获取根状态结点
-
-```py
-from ayaka import AyakaApp
-
-app = AyakaApp("test")
 s0 = app.root_state
+s1 = app.plugin_state
+s2 = app.get_state()
+s3 = app.get_state("测试")
+s4 = app.get_state(["test","ok"])
 
 print(s0)
 # root
+
+print(s1)
+# root.test
+print(s2)
+# root.test
+
+print(s3)
+# root.test.测试
+
+print(s4)
+# root.test.test.ok
 ```
 
 ## 注册命令回调、消息回调
@@ -73,11 +68,11 @@ async def func():
 ```py
 @s1.on_enter()
 async def func():
-    pass
+    print("进入s1状态前")
 
 @s1.on_exit()
 async def func():
-    pass
+    print("退出s1状态后")
 ```
 
 ## 下一步

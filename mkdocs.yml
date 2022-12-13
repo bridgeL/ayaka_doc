@@ -43,7 +43,6 @@ nav:
   - 输入 AyakaInput: develop/input.md
   - 数据库 AyakaDB: develop/db.md
   - 测试 ayaka_test: develop/test.md
-  - 浏览器截图: develop/browser.md
   - 内置插件: develop/master.md
 - 小游戏合集:
   - 介绍: games/index.md
