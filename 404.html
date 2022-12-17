@@ -853,20 +853,7 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-
-                  
-
-
-  <h1>Ayaka - 为群聊插件开发提供状态机支持</h1>
-
-
-
-
-
-
-
-                
-<h2 id="tip"></h2>
+<h2>404 - 页面不存在</h2>
 
               </article>
             </div>
@@ -911,7 +898,6 @@
     <script id="__config" type="application/json">{"base": "/ayaka_doc/0.5.4", "features": ["content.code.annotate", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "toc.integrate", "search.highlight", "search.suggest"], "search": "/ayaka_doc/0.5.4/assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-
       <script src="/ayaka_doc/0.5.4/assets/javascripts/bundle.8492ddcf.min.js"></script>
       
         <script src="/ayaka_doc/0.5.4/js/version.js"></script>
@@ -919,22 +905,5 @@
         <script src="/ayaka_doc/0.5.4/js/demo.js"></script>
       
     
-<script>
-    (function () {
-        let cnt = 3;
-        document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
-        let timer = setInterval(function () {
-            cnt -= 1;
-            if (!cnt) {
-                clearInterval(timer);
-                let paths = window.location.pathname.split("/").filter(_ => _).slice(0, 2);
-                let route = paths.join("/");
-                window.location.replace(window.location.origin + "/" + route);
-            }
-            else document.querySelector("#tip").innerHTML = `页面不存在，${cnt}s后自动跳转首页`;
-        }, 1000);
-    })()
-</script>
-
   </body>
 </html>
