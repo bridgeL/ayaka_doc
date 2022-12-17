@@ -86,6 +86,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.4/games/config/</loc>
+         <lastmod>2022-12-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/0.5.4/games/example/</loc>
+         <lastmod>2022-12-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://bridgel.github.io/ayaka_doc/0.5.4/games/help/</loc>
          <lastmod>2022-12-17</lastmod>
          <changefreq>daily</changefreq>
