@@ -6,6 +6,7 @@
     padding: 20px 0;
     margin: 20px 0;
     font-family: var(--md-code-font-family);
+    overflow: auto;
 }
 
 .demo-line {

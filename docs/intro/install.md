@@ -1,7 +1,7 @@
 ## 安装
 
 ```
-pip install git+https://github.com/bridgeL/nonebot-plugin-ayaka.git
+pip install nonebot-plugin-ayaka
 ``` 
 
 ## 注意

@@ -1,6 +1,8 @@
-code {
-    /* 代码自动换行 */
-    white-space: break-spaces;
+@media (min-width: 600px) {
+    code {
+        /* 代码自动换行 */
+        white-space: break-spaces;
+    }
 }
 
 /* code span {
