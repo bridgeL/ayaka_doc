@@ -1052,6 +1052,33 @@
 <span class="linenos" data-linenos="6 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
 <span class="hll"><span class="linenos" data-linenos="7 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+<p><strong>简单介绍</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@app.on_state()</code></td>
+<td>回调在群组处于<code>root.星际旅行</code>状态时响应</td>
+</tr>
+<tr>
+<td><code>@app.on_cmd("hi")</code></td>
+<td>回调通过<code>hi</code>命令触发</td>
+</tr>
+<tr>
+<td><code>@app.on_deep_all()</code></td>
+<td>回调对所有子状态可见</td>
+</tr>
+</tbody>
+</table>
+<p><strong>发送消息</strong></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1"># bot发送 你好</span>
+</code></pre></div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1090,9 +1117,49 @@
 </span><span class="hll"><span class="linenos" data-linenos="7 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 </span><span class="hll"><span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>app.args</strong></p>
-<p><strong>app.arg</strong></p>
+<p><strong>app.args和app.arg</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.arg</td>
+<td><code>Message</code></td>
+<td>删除了命令后剩下的消息部分</td>
+</tr>
+<tr>
+<td>app.args</td>
+<td><code>List[MessageSegment]</code></td>
+<td>删除命令后，依照分隔符分割，并移除空数据</td>
+</tr>
+</tbody>
+</table>
+<div class="demo">
+"user" 说：#得到的 水电费   来看看
+"sys" 说：app.cmd = "得到的"
+"sys" 说：app.arg = "水电费   来看看"
+"sys" 说：app.args = ["水电费","来看看"]
+</div>
+
 <p><strong>app.set_state</strong></p>
+<p>状态转移，令群组从A状态变为B状态</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.月球</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">([</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span><span class="s2">&quot;中国&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球.中国&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
+</code></pre></div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1148,38 +1215,6 @@
 <span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>用状态指代地点</strong></p>
-<p>用<code>root.星际旅行.地球</code>状态指代<code>你正处于地球</code></p>
-<p>用<code>root.星际旅行.月球</code>状态指代<code>你正处于月球</code></p>
-<p>天然的，我们可以意识到，<code>root.星际旅行</code>是其他状态（<code>root.星际旅行.地球</code>、<code>root.星际旅行.月球</code>等）的基础，是它们的祖先</p>
-<p><img alt="图片" src="../%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B1.png" /></p>
-<table>
-<thead>
-<tr>
-<th>状态</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>root</td>
-<td>闲置状态</td>
-</tr>
-<tr>
-<td>root.星际旅行</td>
-<td>开启应用-星际旅行</td>
-</tr>
-<tr>
-<td>root.星际旅行.地球</td>
-<td>到达地球</td>
-</tr>
-<tr>
-<td>root.星际旅行.太阳.奶茶店</td>
-<td>到达太阳奶茶店</td>
-</tr>
-</tbody>
-</table>
-<p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
 <p><strong>on_state</strong></p>
 <table>
 <thead>
@@ -1190,25 +1225,25 @@
 </thead>
 <tbody>
 <tr>
-<td><code>@app.on_state()</code></td>
-<td>参数为空，对应<code>root.星际旅行</code>，回调在该状态下时响应</td>
-</tr>
-<tr>
 <td><code>@app.on_state("地球")</code></td>
-<td>回调在<code>root.星际旅行.地球</code>时响应</td>
+<td><code>root.星际旅行.地球</code></td>
 </tr>
 <tr>
 <td><code>@app.on_state(["地球","中国"])</code></td>
-<td>回调在<code>root.星际旅行.地球.中国</code>时响应</td>
+<td><code>root.星际旅行.地球.中国</code></td>
 </tr>
 <tr>
-<td><code>@app.on_state(["地球","中国"],"月球")</code></td>
-<td>回调在<code>root.星际旅行.地球.中国</code>或<code>root.星际旅行.月球</code>时响应</td>
+<td><code>@app.on_state("地球.中国")</code></td>
+<td><code>root.星际旅行.地球.中国</code></td>
+</tr>
+<tr>
+<td><code>@app.on_state("地球","月球")</code></td>
+<td><code>root.星际旅行.地球</code>或<code>root.星际旅行.月球</code></td>
 </tr>
 </tbody>
 </table>
 <p><strong>on_cmd</strong></p>
-<p>设置命令</p>
+<p>设置一个或多个命令</p>
 <table>
 <thead>
 <tr>
@@ -1227,23 +1262,8 @@
 </tr>
 </tbody>
 </table>
-<p><strong>注册回调</strong></p>
-<p>对不同的状态注册不同的回调 = 在不同的地点做不同的事情</p>
-<p><strong>发送消息</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="2 "></span><span class="c1"># bot发送 喝水</span>
-</code></pre></div>
+<p>进一步了解<code>app.state</code> <a href="../../develop/state/">AyakaState</a></p>
 <p><strong>子状态可以触发父状态的回调</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># 该回调注册在 root.星际旅行 状态下，由于设置了on_deep_all，它还对所有子状态生效</span>
-<span class="linenos" data-linenos="2 "></span><span class="c1"># 也就说，当我们位于 root.星际旅行.月球 时，也可以触发move回调</span>
-<span class="linenos" data-linenos="3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
-<span class="linenos" data-linenos="4 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
-<span class="linenos" data-linenos="5 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
-<span class="linenos" data-linenos="7 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
-<span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
-<span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">userinput</span><span class="o">.</span><span class="n">where</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1276,32 +1296,11 @@
 </tr>
 <tr>
 <td>root.星际旅行.太阳</td>
-<td>move,drink</td>
+<td><strong>move</strong>,drink</td>
 </tr>
 </tbody>
 </table>
-<p><strong>state还可以切片</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
-<span class="linenos" data-linenos="2 "></span>    <span class="c1"># root.星际旅行.太阳</span>
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
-<span class="linenos" data-linenos="5 "></span>    <span class="c1"># 太阳</span>
-</code></pre></div>
-<p>但切片后得到的状态结点不位于状态树上</p>
-<p>进一步了解状态树 <a href="../../develop/how-does-it-work/#ayakaappayakastate">状态树</a></p>
-<p><strong>修改当前状态</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.月球</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">([</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span><span class="s2">&quot;中国&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球.中国&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="11 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
-</code></pre></div>
+<p>前提是<strong>move</strong>回调使用了<code>@app.on_deep_all()</code>装饰器</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1496,8 +1495,7 @@
 </div>
 
 <h2 id="_7">配置项<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>你在太阳上的森林公园里捡到了一块金子</p>
-<p>一次捡1个金块已经不能满足你了，现在你想要一次捡10个，或者更多！</p>
+<p>你在太阳上的森林公园里捡到了?块金子，你想设置你到底能捡到几个</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">AyakaConfig</span><span class="p">):</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 3 "></span>    <span class="n">__app_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
@@ -1513,6 +1511,10 @@
 <span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;虚假的喜加一 </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p><strong>app.name</strong></p>
+<p>对应</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p>查看<code>data/ayaka/ayaka_setting.json</code></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span><span class="w"></span>
 <span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nt">&quot;星际旅行&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1521,7 +1523,7 @@
 <span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
 <span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
-<p>修改配置后需要重启bot才生效</p>
+<p>修改配置后需要<strong>重启bot</strong>才生效</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1546,6 +1548,7 @@
 </div>
 
 <h2 id="_8">动态修改配置项<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>跑到后台修改配置再重启bot实在太麻烦了，你想通过命令修改配置</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 3 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
@@ -1575,8 +1578,10 @@
 
 </div>
 
-<p>注意，修改后可能不会立刻生效，需要等待0-60s后更新</p>
+<p>注意，修改后可能不会立刻写入配置文件（但是已经生效），需要等待0-60s后才写入</p>
 <h2 id="_9">使用正则<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>你可以使用正则让指令更人性</p>
+<p>关于正则：<a href="https://taoshu.in/hello-regexp.html">推荐教程</a></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
 <span class="hll"><span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd_regex</span><span class="p">(</span><span class="s2">&quot;一次捡(\d+)块&quot;</span><span class="p">)</span>
 </span><span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">():</span>
@@ -1599,7 +1604,7 @@
 </div>
 
 <h2 id="_10">数据库<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p>但是一旦重启bot，你就会失去它，这意味着你需要一个数据库来持久地保存数据</p>
+<p>但是一旦重启bot，你就会失去你的所有金子，这意味着你需要一个数据库来持久地保存数据</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 3 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;gold&quot;</span>

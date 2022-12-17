@@ -569,6 +569,13 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
+    可以切片
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     下一步
   </a>
   
@@ -931,20 +938,23 @@
 <span class="linenos" data-linenos=" 6 "></span><span class="n">s2</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
 <span class="linenos" data-linenos=" 7 "></span><span class="n">s3</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="n">s4</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">([</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;ok&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
-<span class="linenos" data-linenos="11 "></span><span class="c1"># root</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
-<span class="linenos" data-linenos="14 "></span><span class="c1"># root.test</span>
-<span class="linenos" data-linenos="15 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-<span class="linenos" data-linenos="16 "></span><span class="c1"># root.test</span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
-<span class="linenos" data-linenos="19 "></span><span class="c1"># root.test.测试</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s4</span><span class="p">)</span>
-<span class="linenos" data-linenos="22 "></span><span class="c1"># root.test.test.ok</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">s5</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">&quot;test.ok&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s0</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="c1"># root</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="c1"># root.test</span>
+<span class="linenos" data-linenos="16 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="c1"># root.test</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+<span class="linenos" data-linenos="20 "></span><span class="c1"># root.test.测试</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s4</span><span class="p">)</span>
+<span class="linenos" data-linenos="23 "></span><span class="c1"># root.test.test.ok</span>
+<span class="linenos" data-linenos="24 "></span><span class="nb">print</span><span class="p">(</span><span class="n">s5</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span><span class="c1"># root.test.test.ok</span>
 </code></pre></div>
 <h2 id="_2">注册命令回调、消息回调<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>状态结点也可以直接注册命令回调、消息回调</p>
@@ -983,7 +993,15 @@
 <span class="linenos" data-linenos="6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
 <span class="linenos" data-linenos="7 "></span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;退出s1状态后&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4">可以切片<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span><span class="c1"># root.星际旅行.太阳</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">:])</span>
+<span class="linenos" data-linenos="5 "></span><span class="c1"># 太阳</span>
+</code></pre></div>
+<p>但切片后得到的状态结点不位于状态树上</p>
+<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
