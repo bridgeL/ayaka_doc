@@ -1724,6 +1724,157 @@ xing ji lv xing
 "user" 说：#exit
 "Bot" 说：已关闭应用 [星际旅行]
 
+## 全部代码
+
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="c1"># ---------- 1 ----------</span>
+<span class="linenos" data-linenos="  2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos="  3 "></span>
+<span class="linenos" data-linenos="  4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="  5 "></span><span class="n">app</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+<span class="linenos" data-linenos="  6 "></span>
+<span class="linenos" data-linenos="  7 "></span><span class="c1"># 启动应用</span>
+<span class="linenos" data-linenos="  8 "></span><span class="n">app</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="s2">&quot;星际旅行&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="  9 "></span><span class="c1"># 关闭应用</span>
+<span class="linenos" data-linenos=" 10 "></span><span class="n">app</span><span class="o">.</span><span class="n">set_close_cmds</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 11 "></span>
+<span class="linenos" data-linenos=" 12 "></span>
+<span class="linenos" data-linenos=" 13 "></span><span class="c1"># ---------- 2 ----------</span>
+<span class="linenos" data-linenos=" 14 "></span><span class="c1"># 装饰器的顺序没有强制要求</span>
+<span class="linenos" data-linenos=" 15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 16 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 17 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 18 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 19 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 20 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 21 "></span>
+<span class="linenos" data-linenos=" 22 "></span>
+<span class="linenos" data-linenos=" 23 "></span><span class="c1"># ---------- 3 ----------</span>
+<span class="linenos" data-linenos=" 24 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 25 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 26 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 27 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 28 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 29 "></span>    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 30 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 31 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 32 "></span>
+<span class="linenos" data-linenos=" 33 "></span>
+<span class="linenos" data-linenos=" 34 "></span><span class="c1"># ---------- 4 ----------</span>
+<span class="linenos" data-linenos=" 35 "></span><span class="c1"># 注册各种行动</span>
+<span class="linenos" data-linenos=" 36 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 37 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 38 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 39 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 40 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 41 "></span>
+<span class="linenos" data-linenos=" 42 "></span>
+<span class="linenos" data-linenos=" 43 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 44 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 45 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 46 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 47 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 48 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 49 "></span>
+<span class="linenos" data-linenos=" 50 "></span>
+<span class="linenos" data-linenos=" 51 "></span><span class="c1"># ---------- 5 ----------</span>
+<span class="linenos" data-linenos=" 52 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.奶茶店&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 53 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 54 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 55 "></span>    <span class="sd">&#39;&#39;&#39;喝奶茶&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 56 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝了一口3000度的奶茶&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 57 "></span>
+<span class="linenos" data-linenos=" 58 "></span>
+<span class="linenos" data-linenos=" 59 "></span><span class="c1"># ---------- 6 ----------</span>
+<span class="linenos" data-linenos=" 60 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span>
+<span class="linenos" data-linenos=" 61 "></span><span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">AyakaCache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 62 "></span>    <span class="n">ticket</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos" data-linenos=" 63 "></span>
+<span class="linenos" data-linenos=" 64 "></span>
+<span class="linenos" data-linenos=" 65 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.售票处&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 66 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;buy&quot;</span><span class="p">,</span> <span class="s2">&quot;买票&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 67 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">buy_ticket</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 68 "></span>    <span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 69 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos" data-linenos=" 70 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 71 "></span>
+<span class="linenos" data-linenos=" 72 "></span>
+<span class="linenos" data-linenos=" 73 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 74 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 75 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;看表演&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 76 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">watch</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 77 "></span>    <span class="sd">&#39;&#39;&#39;看表演&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 78 "></span>    <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 79 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;先去售票处买票！&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 80 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 81 "></span>        <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="linenos" data-linenos=" 82 "></span>        <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 83 "></span>
+<span class="linenos" data-linenos=" 84 "></span>
+<span class="linenos" data-linenos=" 85 "></span><span class="c1"># ---------- 7 ----------</span>
+<span class="linenos" data-linenos=" 86 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.奶茶店&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 87 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_text</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 88 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 89 "></span>    <span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 90 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你发现这里只卖热饮&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 91 "></span>
+<span class="linenos" data-linenos=" 92 "></span>
+<span class="linenos" data-linenos=" 93 "></span><span class="c1"># ---------- 8 ----------</span>
+<span class="linenos" data-linenos=" 94 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span>
+<span class="linenos" data-linenos=" 95 "></span><span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">AyakaConfig</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 96 "></span>    <span class="n">__app_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
+<span class="linenos" data-linenos=" 97 "></span>    <span class="n">gold_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="linenos" data-linenos=" 98 "></span>
+<span class="linenos" data-linenos=" 99 "></span>
+<span class="linenos" data-linenos="100 "></span><span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+<span class="linenos" data-linenos="101 "></span>
+<span class="linenos" data-linenos="102 "></span>
+<span class="linenos" data-linenos="103 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="104 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="105 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
+<span class="linenos" data-linenos="106 "></span>    <span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="107 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;虚假的喜加一 </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="108 "></span>
+<span class="linenos" data-linenos="109 "></span>
+<span class="linenos" data-linenos="110 "></span><span class="c1"># ---------- 9 ----------</span>
+<span class="linenos" data-linenos="111 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="linenos" data-linenos="112 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span>
+<span class="linenos" data-linenos="113 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="114 "></span>    <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;一次捡起的金块数量&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="115 "></span>
+<span class="linenos" data-linenos="116 "></span>
+<span class="linenos" data-linenos="117 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="118 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="119 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="120 "></span>    <span class="sd">&#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="121 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">=</span> <span class="n">userinput</span><span class="o">.</span><span class="n">number</span>
+<span class="linenos" data-linenos="122 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="123 "></span>
+<span class="linenos" data-linenos="124 "></span>
+<span class="linenos" data-linenos="125 "></span><span class="c1"># ---------- 10 ----------</span>
+<span class="linenos" data-linenos="126 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="127 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd_regex</span><span class="p">(</span><span class="s2">&quot;一次捡(\d+)块&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="128 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">():</span>
+<span class="linenos" data-linenos="129 "></span>    <span class="sd">&#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="130 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cmd_regex</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="linenos" data-linenos="131 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="132 "></span>
+<span class="linenos" data-linenos="133 "></span>
+<span class="linenos" data-linenos="134 "></span><span class="c1"># ---------- 11 ----------</span>
+<span class="linenos" data-linenos="135 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span>
+<span class="linenos" data-linenos="136 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
+<span class="linenos" data-linenos="137 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;gold&quot;</span>
+<span class="linenos" data-linenos="138 "></span>    <span class="n">gold_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos" data-linenos="139 "></span>
+<span class="linenos" data-linenos="140 "></span>
+<span class="linenos" data-linenos="141 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="142 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;real_pick&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="143 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
+<span class="linenos" data-linenos="144 "></span>    <span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="145 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span>
+<span class="linenos" data-linenos="146 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="linenos" data-linenos="147 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;真正的喜加一 </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">gold_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
 </div>
 
 <h2 id="_12">下一步<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
