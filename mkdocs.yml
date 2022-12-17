@@ -47,9 +47,7 @@ nav:
   - 内置插件: develop/master.md
 - 小游戏合集:
   - 介绍: games/index.md
-  - 安装: games/install.md
-  - 配置: games/config.md
-  - 使用示例: games/example.md
+  - 安装与配置: games/install.md
   - 谁是卧底: games/who-is-suspect.md
   - 更多帮助: games/help.md
   - 更新日志: games/change-log.md
