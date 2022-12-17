@@ -101,6 +101,7 @@ async def move():
 
 | 名称     | 类型                   | 功能                                     |
 | -------- | ---------------------- | ---------------------------------------- |
+| app.cmd  | `str`                  | 本次响应是针对哪个命令                   |
 | app.arg  | `Message`              | 删除了命令后剩下的消息部分               |
 | app.args | `List[MessageSegment]` | 删除命令后，依照分隔符分割，并移除空数据 |
 
@@ -499,6 +500,10 @@ async def change_gold_number():
     config.gold_number = int(app.cmd_regex.group(1))
     await app.send("修改成功")
 ```
+
+**app.cmd_regex**
+
+返回`re.match("一次捡(\d+)块", text)`的结果
 
 正则只对命令生效
 
