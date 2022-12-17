@@ -1379,11 +1379,6 @@
 <td>drink</td>
 <td>喝了一口3000度的奶茶</td>
 </tr>
-<tr>
-<td>太阳.其他地点</td>
-<td>drink</td>
-<td>喝太阳风</td>
-</tr>
 </tbody>
 </table>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.奶茶店&quot;</span><span class="p">)</span>
@@ -1414,7 +1409,7 @@
 </tr>
 </tbody>
 </table>
-<p>优先触发最匹配的回调</p>
+<p>由于上溯查询的机制，优先触发当前状态下的回调，其次触发父状态的回调、爷状态的回调，例如：</p>
 <ul>
 <li>当状态为<code>太阳.奶茶店</code>时，触发后者</li>
 <li>当状态为<code>太阳</code>、<code>太阳.森林公园</code>、<code>太阳.巴拉巴拉.我就是来凑个数</code>时，触发前者</li>
