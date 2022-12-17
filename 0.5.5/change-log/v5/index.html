@@ -962,7 +962,7 @@
 <li>移除：删除了app.BaseConfig属性</li>
 <li>移除：暂时移除了ayaka_master中对各个插件的启用、禁用功能</li>
 <li>新特性：所有状态都是一个状态结点，所有状态结点均位于唯一一棵状态树上</li>
-<li>新特性：重新使用app.on_xxx系列装饰器，不过，旧的app.on.xxx系列装饰器仍可兼容使用</li>
+<li>新特性：重新使用app.on_xxx风格的装饰器，不过，旧的app.on.xxx装饰器仍可兼容使用</li>
 <li>新特性：app.on_xxx系列装饰器不再要求书写顺序</li>
 <li>新特性：增加了AyakaInput类和ayaka.msy_type模块</li>
 <li>新特性：增加了AyakaDB类、AyakaUserDB和AyakaGroupDB类，从而提供sqlite数据库支持</li>
@@ -986,7 +986,6 @@
 <li>新特性：AyakaDB 新增自动更新特性（与AyakaConfig一致</li>
 <li>新特性：AyakaInput._create_by_app更名为create_by_app，鼓励子类重写该方法</li>
 <li>新特性：新增注册回调方法on_start_cmds、on_close_cmds、on_everyday、on_interval、on_cmd_regex</li>
-<li>新特性：新增注册回调方法on_start_cmds、on_close_cmds、on_everyday、on_interval</li>
 <li>修改：修改了app.get_state的使用方式</li>
 </ul>
 <h2 id="055">0.5.5<a class="headerlink" href="#055" title="Permanent link">&para;</a></h2>
