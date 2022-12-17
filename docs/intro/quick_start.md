@@ -357,8 +357,6 @@ async def handle():
     await app.send("你发现这里只卖热饮")
 ```
 
-其实@app.on_text()是可以省略不写的，但是为了可读性，我还是推荐您写！
-
 消息触发的优先级低于命令触发
 
 进一步了解`app.on_xxx()` [on_xxx](../develop/app.md#on_xxx)
