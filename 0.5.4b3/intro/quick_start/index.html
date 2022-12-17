@@ -474,33 +474,6 @@
     旅行
   </a>
   
-    <nav class="md-nav" aria-label="旅行">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#appargs" class="md-nav__link">
-    app.args
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#apparg" class="md-nav__link">
-    app.arg
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#appset_state" class="md-nav__link">
-    app.set_state
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1045,10 +1018,12 @@
 </span></code></pre></div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#退出
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="hello">hello！<a class="headerlink" href="#hello" title="Permanent link">&para;</a></h2>
@@ -1077,6 +1052,18 @@
 <span class="linenos" data-linenos="6 "></span>    <span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
 <span class="hll"><span class="linenos" data-linenos="7 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;hi I&#39;m in </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#hi
+"Bot" 说：hi I'm in root.星际旅行
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
 <h2 id="_3">旅行<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1103,9 +1090,27 @@
 </span><span class="hll"><span class="linenos" data-linenos="7 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
 </span><span class="hll"><span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="appargs">app.args<a class="headerlink" href="#appargs" title="Permanent link">&para;</a></h3>
-<h3 id="apparg">app.arg<a class="headerlink" href="#apparg" title="Permanent link">&para;</a></h3>
-<h3 id="appset_state">app.set_state<a class="headerlink" href="#appset_state" title="Permanent link">&para;</a></h3>
+<p><strong>app.args</strong></p>
+<p><strong>app.arg</strong></p>
+<p><strong>app.set_state</strong></p>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 地球
+"Bot" 说：前往 地球
+"user" 说：#hi
+"Bot" 说：hi I'm in root.星际旅行.地球
+"user" 说：#move 地球 中国
+"Bot" 说：前往 地球 中国
+"user" 说：#hi
+"Bot" 说：hi I'm in root.星际旅行.地球.中国
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
 <h2 id="_4">不同地方不同效果<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -1299,28 +1304,20 @@
 </code></pre></div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-<<< "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 
-<<< "user" 说：#move 地球
->>>  "Bot" 说：前往 地球
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 地球
-<<< "user" 说：#drink
->>>  "Bot" 说：喝水
-<<< "user" 说：#move 月球
->>>  "Bot" 说：前往 月球
-<<< "user" 说：#drink
->>>  "Bot" 说：喝土
-<<< "user" 说：#move 太阳
->>>  "Bot" 说：前往 太阳
-<<< "user" 说：#drink
->>>  "Bot" 说：喝太阳风
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 太阳
-<<< "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 月球
+"Bot" 说：前往 月球
+"user" 说：#drink
+"Bot" 说：喝水
+"user" 说：#move 太阳
+"Bot" 说：前往 太阳
+"user" 说：#drink
+"Bot" 说：喝太阳风
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_5">多层次<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
@@ -1382,24 +1379,20 @@
 <p>进一步了解<code>上溯查询</code> <a href="../../develop/how-does-it-work/#_3">上溯查询</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-<<< "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-<<< "user" 说：#move 太阳
->>>  "Bot" 说：前往 太阳
-<<< "user" 说：#drink
->>>  "Bot" 说：喝太阳风
-<<< "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-<<< "user" 说：#drink
->>>  "Bot" 说：喝太阳风
-<<< "user" 说：#move 太阳.奶茶店
->>>  "Bot" 说：前往 太阳.奶茶店
-<<< "user" 说：#drink
->>>  "Bot" 说：喝了一口3000度的奶茶
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 太阳.奶茶店
-<<< "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳
+"Bot" 说：前往 太阳
+"user" 说：#drink
+"Bot" 说：喝太阳风
+"user" 说：#move 太阳 奶茶店
+"Bot" 说：前往 太阳 奶茶店
+"user" 说：#drink
+"Bot" 说：喝了一口3000度的奶茶
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_6">缓存<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
@@ -1453,22 +1446,24 @@
 <p>进一步了解<code>AyakaCache</code> <a href="../../develop/cache/">AyakaCache</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-<<< "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-<<< "user" 说：#move 太阳
->>>  "Bot" 说：前往 太阳
-<<< "user" 说：#watch
->>>  "Bot" 说：先去售票处买票！
-<<< "user" 说：#move 太阳.售票处
->>>  "Bot" 说：前往 太阳.售票处
-<<< "user" 说：#buy
->>>  "Bot" 说：耀斑表演门票+1
-<<< "user" 说：#watch
->>>  "Bot" 说：10分甚至9分的好看
-<<< "user" 说：#watch
->>>  "Bot" 说：先去售票处买票！
-<<< "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳
+"Bot" 说：前往 太阳
+"user" 说：#watch
+"Bot" 说：先去售票处买票！
+"user" 说：#move 太阳 售票处
+"Bot" 说：前往 太阳 售票处
+"user" 说：#buy
+"Bot" 说：耀斑表演门票+1
+"user" 说：#watch
+"Bot" 说：10分甚至9分的好看
+"user" 说：#watch
+"Bot" 说：先去售票处买票！
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="vs">命令触发 vs 消息触发<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
@@ -1486,20 +1481,18 @@
 <p>进一步了解<code>app.on_xxx()</code> <a href="../../develop/app/#on_xxx">on_xxx</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-<<< "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-<<< "user" 说：#move 太阳
->>>  "Bot" 说：前往 太阳
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 太阳
-<<< "user" 说：#move 太阳.奶茶店
->>>  "Bot" 说：前往 太阳.奶茶店
-<<< "user" 说：嗯？
->>>  "Bot" 说：你发现这里只卖热饮
-<<< "user" 说：#hi
->>>  "Bot" 说：hi I'm in 太阳.奶茶店
-<<< "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 奶茶店
+"Bot" 说：前往 太阳 奶茶店
+"user" 说：#drink
+"Bot" 说：喝了一口3000度的奶茶
+"user" 说：嗯？
+"Bot" 说：你发现这里只卖热饮
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_7">配置项<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
@@ -1531,27 +1524,25 @@
 <p>修改配置后需要重启bot才生效</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#星际旅行
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 1
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 2
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 3
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 4
-&lt;&lt;&lt; "user" 说：#exit
->>>  "Bot" 说：已关闭应用 [星际旅行]
->>>  "sys" 说：重启bot后
-&lt;&lt;&lt; "user" 说：#星际旅行
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 5
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#fake_pick
+"Bot" 说：虚假的喜加一 1
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+"sys" 说：修改配置为10并重启bot后
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#fake_pick
+"Bot" 说：虚假的喜加一 10
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_8">动态修改配置项<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
@@ -1570,6 +1561,21 @@
 </code></pre></div>
 <p><strong>AyakaInput</strong></p>
 <p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#change 100
+"Bot" 说：修改成功
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
+<p>注意，修改后可能不会立刻生效，需要等待0-60s后更新</p>
 <h2 id="_9">使用正则<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
 <span class="hll"><span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd_regex</span><span class="p">(</span><span class="s2">&quot;一次捡(\d+)块&quot;</span><span class="p">)</span>
@@ -1579,6 +1585,19 @@
 </span><span class="linenos" data-linenos="6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>正则只对命令生效</p>
+<div class="demo">
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#一次捡1000块
+"Bot" 说：修改成功
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
 <h2 id="_10">数据库<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>但是一旦重启bot，你就会失去它，这意味着你需要一个数据库来持久地保存数据</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span>
@@ -1598,25 +1617,25 @@
 <p>进一步了解<code>AyakaUserDB</code> <a href="../../develop/db/">AyakaUserDB</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 53
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 54
-&lt;&lt;&lt; "user" 说：#change 10
->>>  "Bot" 说：修改成功
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 64
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#real_pick
+"user" 说：#exit
+"Bot" 说：真正的喜加一 1000
+"Bot" 说：已关闭应用 [星际旅行]
 "sys" 说：bot重启后
-&lt;&lt;&lt; "user" 说：#travel
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：#pick
->>>  "Bot" 说：喜加一 74
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#real_pick
+"Bot" 说：真正的喜加一 2000
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_11">插件帮助<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
@@ -1626,19 +1645,26 @@
 <p>现在，你只需发送命令<code>help</code> </p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#help 星际旅行
->>>  "Bot" 说：[星际旅行]
+
+"user" 说：#help
+"Bot" 说：使用 帮助 &lt;插件名> 可以进一步展示指定插件的详细帮助信息
+
+</div>
+
+<div class="demo">
+
+"user" 说：#help 星际旅行
+"Bot" 说：[星际旅行]
 xing ji lv xing
 - 星际旅行/travel | 打开应用
 [星际旅行]
 - 退出/exit | 关闭应用
-- move &lt;where> | 移动
-    &lt;where> 你要去的地方
 - hi | 打招呼
+- move | 移动
 [星际旅行.地球]
 - drink | 喝水
 [星际旅行.月球]
-- drink | 喝土
+- drink | 喝水
 [星际旅行.太阳]
 - drink | 喝太阳风
 - watch/看表演 | 看表演
@@ -1648,34 +1674,57 @@ xing ji lv xing
 [星际旅行.太阳.售票处]
 - buy/买票 | 买门票
 [星际旅行.太阳.森林公园]
-- pick | 捡金子
+- fake_pick | 捡金子
 - change &lt;number> | 修改捡金子配置
     &lt;number> 一次捡起的金块数量
+- 一次捡(\d+)块 | 修改捡金子配置
+- real_pick | 捡金子
+
 </div>
 
 <div class="demo">
-&lt;&lt;&lt; "user" 说：#星际旅行
->>>  "Bot" 说：已打开应用 [星际旅行]
-&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
->>>  "Bot" 说：前往 太阳.森林公园
-&lt;&lt;&lt; "user" 说：#help
->>>  "Bot" 说：[星际旅行.太阳.森林公园]
-- pick | 捡金子
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#help
+"Bot" 说：[星际旅行]
+- 退出/exit | 关闭应用
+- hi | 打招呼
+- move | 移动
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
+<div class="demo">
+
+"user" 说：#travel
+"Bot" 说：已打开应用 [星际旅行]
+"user" 说：#move 太阳 森林公园
+"Bot" 说：前往 太阳 森林公园
+"user" 说：#help
+"Bot" 说：[星际旅行.太阳.森林公园]
+- fake_pick | 捡金子
 - change &lt;number> | 修改捡金子配置
     &lt;number> 一次捡起的金块数量
+- 一次捡(\d+)块 | 修改捡金子配置
+- real_pick | 捡金子
 [星际旅行.太阳]
 - drink | 喝太阳风
 - watch/看表演 | 看表演
 [星际旅行]
 - 退出/exit | 关闭应用
-- move &lt;where> | 移动
-    &lt;where> 你要去的地方
 - hi | 打招呼
+- move | 移动
+"user" 说：#exit
+"Bot" 说：已关闭应用 [星际旅行]
+
 </div>
 
 <h2 id="_12">下一步<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
+
 </div>
 
 
