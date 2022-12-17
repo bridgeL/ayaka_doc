@@ -13,6 +13,7 @@ s1 = app.plugin_state
 s2 = app.get_state()
 s3 = app.get_state("测试")
 s4 = app.get_state(["test","ok"])
+s5 = app.get_state("test.ok")
 
 print(s0)
 # root
@@ -26,6 +27,8 @@ print(s3)
 # root.test.测试
 
 print(s4)
+# root.test.test.ok
+print(s5)
 # root.test.test.ok
 ```
 
@@ -74,6 +77,18 @@ async def func():
 async def func():
     print("退出s1状态后")
 ```
+
+## 可以切片
+
+```py
+print(app.state)
+# root.星际旅行.太阳
+
+print(app.state[2:])
+# 太阳
+```
+
+但切片后得到的状态结点不位于状态树上
 
 ## 下一步
 
