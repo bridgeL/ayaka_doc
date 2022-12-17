@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -585,9 +590,40 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          定时任务
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         定时任务
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -893,7 +929,47 @@
 
   <h1>定时任务</h1>
 
-<p>定时</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="linenos" data-linenos="2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_interval</span><span class="p">(</span><span class="n">gap</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="sd">&#39;&#39;&#39;x时x分10秒时报时一次，60s一循环 = 每分钟的第10s报时&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">t_send</span><span class="p">(</span><span class="n">bot_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
+</code></pre></div>
+<div class="demo">
+
+"Bot" 说：2022-12-17 22:54:10.984382
+"Bot" 说：2022-12-17 22:55:10.995215
+
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="linenos" data-linenos="2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_interval</span><span class="p">(</span><span class="n">gap</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="sd">&#39;&#39;&#39;x时0分0秒时报时一次，3600s一循环 = 整点报时&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">t_send</span><span class="p">(</span><span class="n">bot_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="linenos" data-linenos="2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="5 "></span>
+<span class="linenos" data-linenos="6 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_everyday</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos" data-linenos="7 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="linenos" data-linenos="8 "></span>    <span class="sd">&#39;&#39;&#39;每天8时0分0秒时报时一次&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">t_send</span><span class="p">(</span><span class="n">bot_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span>
+</code></pre></div>
+<h2 id="_1">下一步<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
 
 
 
