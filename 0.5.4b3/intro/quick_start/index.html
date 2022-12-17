@@ -1135,6 +1135,11 @@
 </thead>
 <tbody>
 <tr>
+<td>app.cmd</td>
+<td><code>str</code></td>
+<td>本次响应是针对哪个命令</td>
+</tr>
+<tr>
 <td>app.arg</td>
 <td><code>Message</code></td>
 <td>删除了命令后剩下的消息部分</td>
@@ -1596,6 +1601,8 @@
 <span class="hll"><span class="linenos" data-linenos="5 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cmd_regex</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 </span><span class="linenos" data-linenos="6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p><strong>app.cmd_regex</strong></p>
+<p>返回<code>re.match("一次捡(\d+)块", text)</code>的结果</p>
 <p>正则只对命令生效</p>
 <div class="demo">
 
