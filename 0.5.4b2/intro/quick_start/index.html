@@ -474,17 +474,51 @@
     旅行
   </a>
   
+    <nav class="md-nav" aria-label="旅行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#appargs" class="md-nav__link">
+    app.args
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apparg" class="md-nav__link">
+    app.arg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appset_state" class="md-nav__link">
+    app.set_state
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    多层次
+    不同地方不同效果
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
+    多层次
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
     缓存
   </a>
   
@@ -498,35 +532,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     配置项
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    使用正则
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    数据库
+    动态修改配置项
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
-    插件帮助
+    使用正则
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
+    数据库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    插件帮助
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
     下一步
   </a>
   
@@ -1053,44 +1094,55 @@
 </tr>
 </tbody>
 </table>
-<p>```py hl_lines=""
-@app.on_state()
-@app.on_deep_all()
-@app.on_cmd("move")
-async def move():
-    '''移动'''
-    args = [str(a) for a in app.args]
-    await app.set_state(*args)
-    await app.send(f"前往 {app.arg}")
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>### app.args
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>### app.arg
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span>### app.set_state
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span>## 不同地方不同效果
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+<span class="hll"><span class="linenos" data-linenos="6 "></span>    <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">app</span><span class="o">.</span><span class="n">args</span><span class="p">]</span>
+</span><span class="hll"><span class="linenos" data-linenos="7 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos" data-linenos="8 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="appargs">app.args<a class="headerlink" href="#appargs" title="Permanent link">&para;</a></h3>
+<h3 id="apparg">app.arg<a class="headerlink" href="#apparg" title="Permanent link">&para;</a></h3>
+<h3 id="appset_state">app.set_state<a class="headerlink" href="#appset_state" title="Permanent link">&para;</a></h3>
+<h2 id="_4">不同地方不同效果<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地球，月球</td>
+<td>drink</td>
+<td>喝水</td>
+</tr>
+<tr>
+<td>太阳</td>
+<td>drink</td>
+<td>喝太阳风</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 注册各种行动</span>
+<span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">)</span>
+</span><span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos=" 6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span>
 <span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span>| 地点       | 动作  | 效果     |
-<span class="linenos" data-linenos="10 "></span>| ---------- | ----- | -------- |
-<span class="linenos" data-linenos="11 "></span>| 地球，月球 | drink | 喝水     |
-<span class="linenos" data-linenos="12 "></span>| 太阳       | drink | 喝太阳风 |
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span>```py hl_lines=&quot;2&quot;
-<span class="linenos" data-linenos="15 "></span># 注册各种行动
-<span class="linenos" data-linenos="16 "></span>@app.on_state(&quot;地球&quot;, &quot;月球&quot;)
-<span class="linenos" data-linenos="17 "></span>@app.on_cmd(&quot;drink&quot;)
-<span class="linenos" data-linenos="18 "></span>async def drink():
-<span class="linenos" data-linenos="19 "></span>    &#39;&#39;&#39;喝水&#39;&#39;&#39;
-<span class="linenos" data-linenos="20 "></span>    await app.send(&quot;喝水&quot;)
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span>
-<span class="linenos" data-linenos="23 "></span>@app.on_state(&quot;太阳&quot;)
-<span class="linenos" data-linenos="24 "></span>@app.on_deep_all()
-<span class="linenos" data-linenos="25 "></span>@app.on_cmd(&quot;drink&quot;)
-<span class="linenos" data-linenos="26 "></span>async def drink():
-<span class="linenos" data-linenos="27 "></span>    &#39;&#39;&#39;喝太阳风&#39;&#39;&#39;
-<span class="linenos" data-linenos="28 "></span>    await app.send(&quot;喝太阳风&quot;)
-</code></pre></div></p>
+<span class="linenos" data-linenos=" 9 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_deep_all</span><span class="p">()</span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
+</code></pre></div>
 <p><strong>用状态指代地点</strong></p>
 <p>用<code>root.星际旅行.地球</code>状态指代<code>你正处于地球</code></p>
 <p>用<code>root.星际旅行.月球</code>状态指代<code>你正处于月球</code></p>
@@ -1172,21 +1224,6 @@ async def move():
 </table>
 <p><strong>注册回调</strong></p>
 <p>对不同的状态注册不同的回调 = 在不同的地点做不同的事情</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># 在地球喝水</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;地球&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 3 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 5 "></span>    <span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
-<span class="linenos" data-linenos=" 6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 在月球喝土</span>
-<span class="linenos" data-linenos="10 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;月球&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
-<span class="linenos" data-linenos="13 "></span>    <span class="sd">&#39;&#39;&#39;喝土&#39;&#39;&#39;</span>
-<span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝土&quot;</span><span class="p">)</span>
-</code></pre></div>
 <p><strong>发送消息</strong></p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span><span class="c1"># bot发送 喝水</span>
@@ -1260,11 +1297,6 @@ async def move():
 <span class="linenos" data-linenos="10 "></span><span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;地球.中国&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="11 "></span><span class="c1"># 当前状态 -&gt; root.星际旅行.地球.中国</span>
 </code></pre></div>
-<p><strong>AyakaInput</strong></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
-<span class="linenos" data-linenos="2 "></span>    <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;你要去的地方&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 <<< "user" 说：#travel
@@ -1291,7 +1323,7 @@ async def move():
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_4">多层次<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_5">多层次<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>在刚才的基础上，我们希望能再加点功能，比如，太阳上新开了一家奶茶店</p>
 <table>
 <thead>
@@ -1370,7 +1402,7 @@ async def move():
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_5">缓存<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_6">缓存<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>宇宙旅游公司又开设了一个新项目：耀斑表演</p>
 <p>我们需要先去售票处买耀斑表演的门票，然后才能看表演，一张票不能用多次</p>
 <table>
@@ -1449,7 +1481,7 @@ async def move():
 <span class="linenos" data-linenos="4 "></span>    <span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
 <span class="linenos" data-linenos="5 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你发现这里只卖热饮&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>其实@app.on_text()是可以省略不写的，但是为了以后的可读性，我还是推荐您写！</p>
+<p>其实@app.on_text()是可以省略不写的，但是为了可读性，我还是推荐您写！</p>
 <p>消息触发的优先级低于命令触发</p>
 <p>进一步了解<code>app.on_xxx()</code> <a href="../../develop/app/#on_xxx">on_xxx</a></p>
 <p><strong>实现效果</strong></p>
@@ -1470,7 +1502,7 @@ async def move():
 >>>  "Bot" 说：已关闭应用 [星际旅行]
 </div>
 
-<h2 id="_6">配置项<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">配置项<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>你在太阳上的森林公园里捡到了一块金子</p>
 <p>一次捡1个金块已经不能满足你了，现在你想要一次捡10个，或者更多！</p>
 <p>```py hl_lines="1-4 "
@@ -1484,51 +1516,59 @@ class Config(AyakaConfig):
 async def get_gold():
     '''捡金子'''
     await app.send(f"虚假的喜加一 {config.gold_number}")
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>进一步了解`AyakaUserDB` [AyakaUserDB](../develop/db.md)
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>**实现效果**
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span>&lt;div class=&quot;demo&quot;&gt;
-<span class="linenos" data-linenos=" 6 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#星际旅行
-<span class="linenos" data-linenos=" 7 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：已打开应用 [星际旅行]
-<span class="linenos" data-linenos=" 8 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#move 太阳.森林公园
-<span class="linenos" data-linenos=" 9 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：前往 太阳.森林公园
-<span class="linenos" data-linenos="10 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#pick
-<span class="linenos" data-linenos="11 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：喜加一 1
-<span class="linenos" data-linenos="12 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#pick
-<span class="linenos" data-linenos="13 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：喜加一 2
-<span class="linenos" data-linenos="14 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#pick
-<span class="linenos" data-linenos="15 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：喜加一 3
-<span class="linenos" data-linenos="16 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#pick
-<span class="linenos" data-linenos="17 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：喜加一 4
-<span class="linenos" data-linenos="18 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#exit
-<span class="linenos" data-linenos="19 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：已关闭应用 [星际旅行]
-<span class="linenos" data-linenos="20 "></span>&gt;&gt;&gt;  &quot;sys&quot; 说：重启bot后
-<span class="linenos" data-linenos="21 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#星际旅行
-<span class="linenos" data-linenos="22 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：已打开应用 [星际旅行]
-<span class="linenos" data-linenos="23 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#move 太阳.森林公园
-<span class="linenos" data-linenos="24 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：前往 太阳.森林公园
-<span class="linenos" data-linenos="25 "></span>&amp;lt;&amp;lt;&amp;lt; &quot;user&quot; 说：#pick
-<span class="linenos" data-linenos="26 "></span>&gt;&gt;&gt;  &quot;Bot&quot; 说：喜加一 5
-<span class="linenos" data-linenos="27 "></span>&lt;/div&gt;
-<span class="linenos" data-linenos="28 "></span>
-<span class="linenos" data-linenos="29 "></span>## 动态修改配置项
-<span class="linenos" data-linenos="30 "></span>
-<span class="linenos" data-linenos="31 "></span>```py
-<span class="linenos" data-linenos="32 "></span>from pydantic import Field
-<span class="linenos" data-linenos="33 "></span>from ayaka import AyakaInput
-<span class="linenos" data-linenos="34 "></span>class UserInput(AyakaInput):
-<span class="linenos" data-linenos="35 "></span>    number: int = Field(description=&quot;一次捡起的金块数量&quot;)
-<span class="linenos" data-linenos="36 "></span>
-<span class="linenos" data-linenos="37 "></span>
-<span class="linenos" data-linenos="38 "></span>@app.on_state(&quot;太阳.森林公园&quot;)
-<span class="linenos" data-linenos="39 "></span>@app.on_cmd(&quot;change&quot;)
-<span class="linenos" data-linenos="40 "></span>async def change_gold_number(userinput: UserInput):
-<span class="linenos" data-linenos="41 "></span>    &#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;
-<span class="linenos" data-linenos="42 "></span>    config.gold_number = userinput.number
-<span class="linenos" data-linenos="43 "></span>    await app.send(&quot;修改成功&quot;)
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>查看`data/ayaka/ayaka_setting.json`
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>```json
+<span class="linenos" data-linenos="4 "></span>{
+<span class="linenos" data-linenos="5 "></span>    &quot;星际旅行&quot;: {
+<span class="linenos" data-linenos="6 "></span>        &quot;gold_number&quot;: 1
+<span class="linenos" data-linenos="7 "></span>    },
+<span class="linenos" data-linenos="8 "></span>    // ...
+<span class="linenos" data-linenos="9 "></span>}
 </code></pre></div></p>
-<h2 id="_7">使用正则<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>修改配置后需要重启bot才生效</p>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+&lt;&lt;&lt; "user" 说：#星际旅行
+>>>  "Bot" 说：已打开应用 [星际旅行]
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 1
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 2
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 3
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 4
+&lt;&lt;&lt; "user" 说：#exit
+>>>  "Bot" 说：已关闭应用 [星际旅行]
+>>>  "sys" 说：重启bot后
+&lt;&lt;&lt; "user" 说：#星际旅行
+>>>  "Bot" 说：已打开应用 [星际旅行]
+&lt;&lt;&lt; "user" 说：#move 太阳.森林公园
+>>>  "Bot" 说：前往 太阳.森林公园
+&lt;&lt;&lt; "user" 说：#pick
+>>>  "Bot" 说：喜加一 5
+</div>
+
+<h2 id="_8">动态修改配置项<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaInput</span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">class</span> <span class="nc">UserInput</span><span class="p">(</span><span class="n">AyakaInput</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;一次捡起的金块数量&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">(</span><span class="n">userinput</span><span class="p">:</span> <span class="n">UserInput</span><span class="p">):</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="sd">&#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">=</span> <span class="n">userinput</span><span class="o">.</span><span class="n">number</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>AyakaInput</strong></p>
+<p>进一步了解<code>AyakaInput</code> <a href="../../develop/input/">AyakaInput</a></p>
+<h2 id="_9">使用正则<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_state</span><span class="p">(</span><span class="s2">&quot;太阳.森林公园&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="2 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_regex</span><span class="p">(</span><span class="s2">&quot;一次捡(\d+)块&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos="3 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">():</span>
@@ -1536,7 +1576,7 @@ async def get_gold():
 <span class="linenos" data-linenos="5 "></span>    <span class="n">config</span><span class="o">.</span><span class="n">gold_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cmd_regex</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="linenos" data-linenos="6 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;修改成功&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_8">数据库<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_10">数据库<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>但是一旦重启bot，你就会失去它，这意味着你需要一个数据库来持久地保存数据</p>
 <div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span>
 </span><span class="hll"><span class="linenos" data-linenos=" 2 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
@@ -1552,6 +1592,7 @@ async def get_gold():
 <span class="linenos" data-linenos="12 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 <span class="linenos" data-linenos="13 "></span>    <span class="k">await</span> <span class="n">app</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;真正的喜加一 </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">gold_number</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+<p>进一步了解<code>AyakaUserDB</code> <a href="../../develop/db/">AyakaUserDB</a></p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 &lt;&lt;&lt; "user" 说：#travel
@@ -1575,15 +1616,7 @@ async def get_gold():
 >>>  "Bot" 说：喜加一 74
 </div>
 
-<p>查看<code>data/ayaka/ayaka_setting.json</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="2 "></span><span class="w">    </span><span class="nt">&quot;星际旅行&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="linenos" data-linenos="3 "></span><span class="w">        </span><span class="nt">&quot;gold_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
-<span class="linenos" data-linenos="4 "></span><span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="linenos" data-linenos="5 "></span><span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
-<span class="linenos" data-linenos="6 "></span><span class="p">}</span><span class="w"></span>
-</code></pre></div>
-<h2 id="_9">插件帮助<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h2 id="_11">插件帮助<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>现在，我们写完了一个小插件了，那么该为它编写帮助了</p>
 <p>不幸的是，你已经在上述代码中完成了它</p>
 <p>通过分析 注册回调的注释(<code>__doc__</code>)，ayaka内置插件<a href="../../develop/master/">ayaka_master</a>会自动生成对应的帮助</p>
@@ -1637,7 +1670,7 @@ xing ji lv xing
 - hi | 打招呼
 </div>
 
-<h2 id="_10">下一步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_12">下一步<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
