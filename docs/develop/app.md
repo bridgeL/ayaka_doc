@@ -83,14 +83,17 @@ app = AyakaApp("测试一下")
 ## on_xxx 注册回调
 
 
-| 名称            | 功能                                   |
-| --------------- | -------------------------------------- |
-| app.on_cmd      | 注册为命令回调，参数表可以写多个命令   |
-| app.on_text     | 注册为消息回调                         |
-| app.on_state    | 注册在指定状态下，参数表可以写多个状态 |
-| app.on_idle     | 注册在闲置状态下                       |
-| app.on_deep_all | 声明该回调对所有子状态生效             |
-| app.on_no_block | 设置该回调触发后不阻断上溯查找         |
+| 名称             | 功能                                               |
+| ---------------- | -------------------------------------------------- |
+| app.on_cmd       | 注册为命令回调，参数表可以写多个命令（默认为阻断） |
+| app.on_text      | 注册为消息回调（默认为不阻断）                     |
+| app.on_state     | 注册在指定状态下，参数表可以写多个状态             |
+| app.on_idle      | 注册在闲置状态下                                   |
+| app.on_deep_all  | 声明该回调对所有子状态生效                         |
+| app.on_no_block  | 设置该回调触发后不阻断上溯查找                     |
+| app.on_cmd_regex | 注册为命令回调，通过正则表达式匹配命令             |
+| app.on_everyday  | 注册每日定时任务，可设置起点                       |
+| app.on_interval  | 注册定时任务，可设置起点和周期                     |
 
 ## add_listener、remove_listener
 
@@ -108,33 +111,22 @@ app = AyakaApp("测试一下")
 | app.group  | `AyakaGroup`           | 当前群组                                 |
 | app.cache  | `Dict[str,AyakaCache]` | 为当前群组当前应用提供的独立缓存数据空间 |
 
-<!--
 ## t_send、t_send_many
 
+都是异步方法
 
- ## 闲置
+| 名称            | 功能             |
+| --------------- | ---------------- |
+| app.t_send      | 发送消息         |
+| app.t_send_many | 发送合并转发消息 |
 
-在没有任何应用运行时，群聊处于闲置状态，此时注册的所有`on.idle`回调都可以响应，而`on.state`则无法响应，因为它们都依赖于相关应用的状态，而闲置时没有应用运行
+在定时任务时发送消息请使用该方法，而不是send和send_many
 
-运行应用后，注册在对应应用下的`on.state`回调可以响应，而普通的`on.idle`无法响应，但对于设置了`super=True`的特殊的`on.idle`仍可以响应
-
-这种设计可以帮助一些有特殊需要的`无状态应用`在`有状态应用`运行时仍可响应用户的指令
-
-## 时间驱动
-
-定时器定时触发回调
-
-触发时，回调无法通过分析消息得到各类信息（bot/group/message/event/sender等）
+因为定时器触发时，回调无法通过分析消息（压根就没有消息）得到各类信息（bot/group/message/event/sender等）
 
 因此有很多方法和属性都无法访问
 
 发送消息请使用专用的`app.t_send`/`app.t_send_many`，并且需要提供目标bot和群组的id
-
-### app.on.interval(gap: int, h: int = -1, m: int = -1, s: int = -1)
-在指定的时间点后循环触发
-
-### app.on.everyday(h: int, m: int, s: int)
-每日定时触发 -->
 
 ## 下一步
 
