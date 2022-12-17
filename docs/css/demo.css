@@ -15,7 +15,7 @@
 }
 
 .demo-line:has(.demo-user) {
-    background: #222;
+    background: #234;
 }
 
 .demo-user,
