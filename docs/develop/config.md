@@ -142,7 +142,7 @@ async def func_1():
     }
 ```
 
-## AyakaLargeConfig
+## 进阶：AyakaLargeConfig
 
 当配置型较多时，建议使用`AyakaLargeConfig`，它读写的是独立配置文件，`data/ayaka/separate/<__app_name__>.json`
 

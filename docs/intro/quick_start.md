@@ -105,11 +105,16 @@ async def move():
 | app.arg  | `Message`              | 删除了命令后剩下的消息部分               |
 | app.args | `List[MessageSegment]` | 删除命令后，依照分隔符分割，并移除空数据 |
 
+
+**实现效果**
+
 <div class="demo">
+
 "user" 说：#得到的 水电费   来看看
 "sys" 说：app.cmd = "得到的"
 "sys" 说：app.arg = "水电费   来看看"
 "sys" 说：app.args = ["水电费","来看看"]
+
 </div>
 
 **app.set_state**
@@ -503,6 +508,8 @@ async def change_gold_number():
 返回`re.match("一次捡(\d+)块", text)`的结果
 
 正则只对命令生效
+
+**实现效果**
 
 <div class="demo">
 
