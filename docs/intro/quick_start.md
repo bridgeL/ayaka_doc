@@ -481,6 +481,8 @@ async def change_gold_number(userinput: UserInput):
 "Bot" 说：前往 太阳 森林公园
 "user" 说：#change 100
 "Bot" 说：修改成功
+"user" 说：#fake_pick
+"Bot" 说：虚假的喜加一 100
 "user" 说：#exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -519,6 +521,8 @@ async def change_gold_number():
 "Bot" 说：前往 太阳 森林公园
 "user" 说：#一次捡1000块
 "Bot" 说：修改成功
+"user" 说：#fake_pick
+"Bot" 说：虚假的喜加一 1000
 "user" 说：#exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -555,8 +559,8 @@ async def get_gold(data: Data):
 "user" 说：#move 太阳 森林公园
 "Bot" 说：前往 太阳 森林公园
 "user" 说：#real_pick
-"user" 说：#exit
 "Bot" 说：真正的喜加一 1000
+"user" 说：#exit
 "Bot" 说：已关闭应用 [星际旅行]
 "sys" 说：bot重启后
 "user" 说：#travel
