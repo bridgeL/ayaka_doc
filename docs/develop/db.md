@@ -53,10 +53,6 @@ async def _():
 
 对应的数据库`data/ayaka/ayaka.db`
 
-注意，执行`AyakaDB().save()`后，数据不会马上更新，`ayaka`可能会等待0~60s后才执行写入操作
-
-处于灵活性考虑，初始化`AyakaDB`对象时并不会自动将该对象写入数据库，而需要手动执行`AyakaDB().save()`方法
-
 表信息
 
 ```
@@ -88,6 +84,12 @@ age
 <<< "user" 说：#f2
 id=1 name='测试' age=12
 </div>
+
+## 手动保存
+
+修改或插入一个`AyakaDB`对象时，需要手动执行`AyakaDB().save()`方法
+
+注意，执行`AyakaDB().save()`后，数据不会马上更新，`ayaka`可能会等待0~60s后才执行写入操作
 
 ## 进阶：可以嵌套
 
@@ -173,6 +175,7 @@ class Data(AyakaGroupDB):
 @app.on_cmd("f1")
 async def func_1(data: Data):
     data.name = "新名字"
+    data.save()
 ```
 
 注意，与AyakaDB不同，AyakaGroupDB一定要编写默认值
@@ -194,8 +197,6 @@ CREATE TABLE "test" (
 	PRIMARY KEY("group_id")
 );
 ```
-
-与AyakaConfig的[自动保存](./config.md#_4)机制一样，当修改不可变对象时，会自动执行`AyakaDB().save()`方法
 
 用户执行 `#f1` 后的表数据
 
@@ -224,6 +225,7 @@ class Data(AyakaUserDB):
 @app.on_cmd("f1")
 async def func_1(data: Data):
     data.name = "新名字"
+    data.save()
 ```
 
 注意，与AyakaDB不同，AyakaUserDB一定要编写默认值
