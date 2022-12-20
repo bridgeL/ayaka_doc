@@ -578,34 +578,27 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    定义
+    基本使用
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    使用
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     进阶：可以嵌套
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     其他用法（不推荐）
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     下一步
   </a>
   
@@ -961,13 +954,25 @@
 
 <h1 id="ayakacache">AyakaCache<a class="headerlink" href="#ayakacache" title="Permanent link">&para;</a></h1>
 <p>如果需要临时保存一些数据，以供应用在不同时刻/函数中使用，那么需要使用缓存</p>
-<h2 id="_1">定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">基本使用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>将需要缓存的数据打包到一个类中，该类继承自<code>AyakaCache</code>，编写方法参考<a href="https://docs.pydantic.dev/usage/models/">pydantic.BaseModel</a></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">AyakaCache</span><span class="p">):</span>
-<span class="linenos" data-linenos="4 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="linenos" data-linenos="5 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">AyakaCache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cache</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_2</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f3&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_3</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
 </code></pre></div>
 <p>注意，一定要编写类型提示和默认值</p>
 <table>
@@ -996,21 +1001,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_2">使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>放入回调的参数表中即可</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cache</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_2</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f3&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_3</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
-<span class="linenos" data-linenos="11 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="_3">进阶：可以嵌套<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">进阶：可以嵌套<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>可以嵌套其他BaseModel模型</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span><span class="p">,</span> <span class="n">AyakaApp</span>
@@ -1047,7 +1038,7 @@
 改名了
 </div>
 
-<h2 id="_4">其他用法（不推荐）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_3">其他用法（不推荐）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
 <span class="linenos" data-linenos="2 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>
 </code></pre></div>
@@ -1055,7 +1046,7 @@
 <li>缺乏类型提示</li>
 <li>若读取操作在写入操作之前（执行前后顺序，不是代码顺序），会报错</li>
 </ol>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
