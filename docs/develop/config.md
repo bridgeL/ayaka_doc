@@ -2,7 +2,7 @@
 
 所有ayaka衍生插件均可申请读写`data/ayaka/ayaka_setting.json`中的配置
 
-## 定义
+## 基本使用
 
 将配置数据打包到一个类中，该类继承自`AyakaConfig`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 
@@ -17,6 +17,20 @@ class Config(AyakaConfig):
     name:str = ""
     age:int = 0
     numbers:List[int] = [1,2]
+
+# 加载配置
+config = Config()
+
+# 使用配置
+@app.on_cmd("f1")
+async def func_1():
+    print(config.name, config.age, config.numbers)
+
+# 修改配置
+@app.on_cmd("f2")
+async def func_2():
+    config.name = "测试1"
+    # config.save()
 ```
 
 注意，一定要编写类型提示和默认值
@@ -30,20 +44,6 @@ class Config(AyakaConfig):
 
 如果配置文件不存在，或存在但并没有该插件的配置数据，那么此时默认值便会写入配置文件中，因此，一定要编写默认值
 
-## 读取
-
-直接实例化即可
-
-```py
-# 加载配置
-config = Config()
-
-# 使用配置
-@app.on_cmd("f1")
-async def func_1():
-    print(config.name, config.age, config.numbers)
-```
-
 对应配置文件`data/ayaka/ayaka_setting.json`
 
 ```json
@@ -55,15 +55,6 @@ async def func_1():
     },
     ...
 }
-```
-
-## 修改
-
-```py
-@app.on_cmd("f1")
-async def func_1():
-    config.name = "测试1"
-    config.save()
 ```
 
 ## 自动保存

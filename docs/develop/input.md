@@ -2,7 +2,7 @@
 
 将`Message`转换为我们所需要的一系列参数
 
-## 基本用法
+## 基本使用
 
 将需要的参数打包到一个类中，该类继承自`AyakaInput`，编写方法参考[pydantic.BaseModel](https://docs.pydantic.dev/usage/models/)
 

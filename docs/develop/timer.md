@@ -1,3 +1,5 @@
+## 基本使用
+
 ```py
 from datetime import datetime
 from ayaka import AyakaApp
@@ -18,6 +20,8 @@ async def func():
 "Bot" 说：2022-12-17 22:57:11.031758
 
 </div>
+
+## 其他用法
 
 ```py
 from datetime import datetime
