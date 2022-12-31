@@ -6,26 +6,9 @@
 
 修改配置后需要**重启bot**才生效！
 
-### 根配置（可选）
-
-ayaka使用单独的配置文件（因为担心和其他插件冲突），位于`data/ayaka`目录下
-
-命令前缀默认为`#`，可以修改`data/ayaka/ayaka_setting.json`文件进行自定义配置
-
-```json
-{
-    "__root__": {
-        // 可修改为空字符串，或你习惯的其他前缀
-        "prefix": "#", 
-        // ...
-    }
-    // ...
-}
-```
-
 ### 接龙配置（可选）
 
-位置`data\ayaka\separate\接龙.json`
+位置`data\ayaka\接龙.json`
 
 可以自行添加你想要的词汇，格式如下
 
@@ -50,21 +33,18 @@ ayaka使用单独的配置文件（因为担心和其他插件冲突），位于
 
 ### 签到配置（可选）
 
-位置`data/ayaka/ayaka_setting.json`
+位置`data/ayaka/签到.json`
 
 ```json
 {
-    "签到": {
-        // 签到奖励金额
-        "reward_money": 10000
-    }
-    // ...
+    // 签到奖励金额
+    "reward_money": 10000
 }
 ```
 
 ### 谁是卧底配置（可选）
 
-位置`data\ayaka\separate\谁是卧底.json`
+位置`data\ayaka\谁是卧底.json`
 
 可以自行添加你想要的词汇，格式如下
 
