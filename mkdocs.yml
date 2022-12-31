@@ -32,19 +32,6 @@ nav:
 - 主页: 
   - 介绍: index.md
   - 安装: intro/install.md
-  - 常见问题: intro/qa.md
-- 快速开始: intro/quick_start.md
-- 开发衍生插件:
-  - 工作原理: develop/how-does-it-work.md
-  - 应用 AyakaApp: develop/app.md
-  - 状态 AyakaState: develop/state.md
-  - 配置 AyakaConfig: develop/config.md
-  - 缓存 AyakaCache: develop/cache.md
-  - 输入 AyakaInput: develop/input.md
-  - 数据库 AyakaDB: develop/db.md
-  - 定时任务: develop/timer.md
-  - 测试 ayaka_test: develop/test.md
-  - 内置插件 ayaka_master: develop/master.md
 - 小游戏合集:
   - 介绍: games/index.md
   - 安装与配置: games/install.md
@@ -53,6 +40,7 @@ nav:
   - 更新日志: games/change-log.md
 - 更新日志:
   - 未来计划: change-log/next.md
+  - box: change-log/box.md
   - v5: change-log/v5.md
   - v4: change-log/v4.md
   - v3: change-log/v3.md

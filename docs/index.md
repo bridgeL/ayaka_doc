@@ -14,15 +14,7 @@
 
 ## 更多
 
-- ayaka为一些常见的需要获取的值（例如user_id，user_name）设置了快捷访问的方法
-- ayaka增加了`AyakaConfig`、`AyakaDB`等类，帮助插件读写配置文件和数据库等
-- ayaka能自动生成帮助
-- 可以通过`ayaka_test`在离线环境下对插件进行简单测试
-
-## 注意
-
-- ayaka默认插件工作在群聊中，其默认仅监听群聊消息。不过，可以使用[add_listener](./api/ayaka/ayaka.html#AyakaApp.add_listener)，令ayaka接受某私聊的消息，ayaka将该消息视为来自群聊
-- 本站搜索栏如果搜不到想要的内容，可以尝试将关键词分割为更小的单位（MkDocs对中文搜索的支持较差）
+更多文档正在重写
 
 ## 相关链接
 

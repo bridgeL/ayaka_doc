@@ -24,16 +24,10 @@
 
         <h2>Submodules</h2>
         <ul>
-                <li><a href="ayaka/ayaka.html">ayaka</a></li>
-                <li><a href="ayaka/ayaka_master.html">ayaka_master</a></li>
+                <li><a href="ayaka/box.html">box</a></li>
                 <li><a href="ayaka/config.html">config</a></li>
-                <li><a href="ayaka/constant.html">constant</a></li>
-                <li><a href="ayaka/depend.html">depend</a></li>
-                <li><a href="ayaka/driver.html">driver</a></li>
-                <li><a href="ayaka/extension.html">extension</a></li>
-                <li><a href="ayaka/on.html">on</a></li>
-                <li><a href="ayaka/state.html">state</a></li>
-                <li><a href="ayaka/utils.html">utils</a></li>
+                <li><a href="ayaka/helpers.html">helpers</a></li>
+                <li><a href="ayaka/orm.html">orm</a></li>
         </ul>
 
 
@@ -50,28 +44,35 @@
                     <h1 class="modulename">
 ayaka    </h1>
 
-                        <div class="docstring"><p>0.5.5</p>
+                        <div class="docstring"><p>1.0.0b1</p>
 
-<p><a href="https://bridgel.github.io/ayaka_doc/0.5.5/">https://bridgel.github.io/ayaka_doc/0.5.5/</a></p>
+<p><a href="https://bridgel.github.io/ayaka_doc/1.0.0/">https://bridgel.github.io/ayaka_doc/1.0.0/</a></p>
 </div>
 
                         <input id="mod-ayaka-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 
                         <label class="view-source-button" for="mod-ayaka-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&#39;&#39;&#39;0.5.5</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&#39;&#39;&#39;1.0.0b1</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">https://bridgel.github.io/ayaka_doc/0.5.5/</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a><span class="sd">https://bridgel.github.io/ayaka_doc/1.0.0/</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">&#39;&#39;&#39;</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">.ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">.driver</span> <span class="kn">import</span> <span class="n">Message</span><span class="p">,</span> <span class="n">MessageSegment</span><span class="p">,</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">MessageEvent</span><span class="p">,</span> <span class="n">GroupMessageEvent</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">DataclassEncoder</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">,</span> <span class="n">get_driver</span><span class="p">,</span> <span class="n">on_message</span><span class="p">,</span> <span class="n">load_plugin</span><span class="p">,</span> <span class="n">load_plugins</span><span class="p">,</span> <span class="n">run</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">AyakaConfig</span><span class="p">,</span> <span class="n">AyakaLargeConfig</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="kn">from</span> <span class="nn">.depend</span> <span class="kn">import</span> <span class="n">AyakaDB</span><span class="p">,</span> <span class="n">AyakaUserDB</span><span class="p">,</span> <span class="n">AyakaGroupDB</span><span class="p">,</span> <span class="n">AyakaCache</span><span class="p">,</span> <span class="n">AyakaInput</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="c1"># 初始化内置插件</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ayaka_master</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="k">try</span><span class="p">:</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>    <span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">get_driver</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>    <span class="n">get_driver</span><span class="p">()</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="k">except</span><span class="p">:</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>    <span class="kn">import</span> <span class="nn">nonebot</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>    <span class="n">nonebot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    
+</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="kn">from</span> <span class="nn">.box</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="kn">from</span> <span class="nn">.config</span> <span class="kn">import</span> <span class="n">AyakaConfig</span><span class="p">,</span> <span class="n">load_data_from_file</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="kn">from</span> <span class="nn">.helpers</span> <span class="kn">import</span> <span class="n">get_user</span><span class="p">,</span> <span class="n">do_nothing</span><span class="p">,</span> <span class="n">singleton</span><span class="p">,</span> <span class="n">run_in_startup</span><span class="p">,</span> <span class="n">Timer</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="kn">from</span> <span class="nn">.orm</span> <span class="kn">import</span> <span class="n">AyakaDB</span><span class="p">,</span> <span class="n">AyakaGroupDB</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="c1"># ---- 方便使用 ----</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a><span class="kn">from</span> <span class="nn">nonebot.typing</span> <span class="kn">import</span> <span class="n">T_State</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="kn">from</span> <span class="nn">nonebot.adapters.onebot.v11.helpers</span> <span class="kn">import</span> <span class="n">Numbers</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">BaseModel</span>
 </span></pre></div>
 
 
