@@ -8,21 +8,23 @@
       
       
       
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/1.0.1/develop/cache/">
       
       
-      <link rel="icon" href="/ayaka_doc/1.0.1/assets/images/favicon.png">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
-        <title>Ayaka - 为群聊插件开发提供状态机支持</title>
+        <title>AyakaCache - Ayaka - 为群聊插件开发提供状态机支持</title>
       
     
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/assets/stylesheets/main.f56500e0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
-        <link rel="stylesheet" href="/ayaka_doc/1.0.1/assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -38,15 +40,15 @@
       
     
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/code.css">
+      <link rel="stylesheet" href="../../css/code.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/tab-right.css">
+      <link rel="stylesheet" href="../../css/tab-right.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/big-font.css">
+      <link rel="stylesheet" href="../../css/big-font.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/demo.css">
+      <link rel="stylesheet" href="../../css/demo.css">
     
-    <script>__md_scope=new URL("/ayaka_doc/1.0.1",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,6 +72,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ayakacache" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -86,7 +93,7 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/ayaka_doc/1.0.1/." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-header__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
+    <a href="../.." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-header__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -105,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              AyakaCache
             
           </span>
         </div>
@@ -180,7 +187,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         主页
       </a>
     </li>
@@ -195,7 +202,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/ayaka_doc/1.0.1/intro/quick_start/" class="md-tabs__link">
+    <a href="../../intro/quick_start/" class="md-tabs__link">
       快速开始
     </a>
   </li>
@@ -212,7 +219,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/games/" class="md-tabs__link">
+      <a href="../../games/" class="md-tabs__link">
         小游戏合集
       </a>
     </li>
@@ -230,7 +237,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/change-log/next/" class="md-tabs__link">
+      <a href="../../change-log/next/" class="md-tabs__link">
         更新日志
       </a>
     </li>
@@ -244,7 +251,7 @@
   
 
 <li class="md-tabs__item tab-right">
-  <a href="/ayaka_doc/1.0.1/api/" class="md-tabs__link">
+  <a href="../../api/" class="md-tabs__link">
     API
   </a>
 </li>
@@ -279,7 +286,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/ayaka_doc/1.0.1/." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-nav__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
+    <a href="../.." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-nav__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -329,7 +336,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="/ayaka_doc/1.0.1/.">主页</a>
+          <a href="../..">主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -352,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/intro/install/" class="md-nav__link">
+      <a href="../../intro/install/" class="md-nav__link">
         安装
       </a>
     </li>
@@ -374,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/intro/quick_start/" class="md-nav__link">
+      <a href="../../intro/quick_start/" class="md-nav__link">
         快速开始
       </a>
     </li>
@@ -414,7 +421,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="/ayaka_doc/1.0.1/games/">小游戏合集</a>
+          <a href="../../games/">小游戏合集</a>
           
             <label for="__nav_3">
               <span class="md-nav__icon md-icon"></span>
@@ -437,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/install/" class="md-nav__link">
+      <a href="../../games/install/" class="md-nav__link">
         安装与配置
       </a>
     </li>
@@ -451,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/who-is-suspect/" class="md-nav__link">
+      <a href="../../games/who-is-suspect/" class="md-nav__link">
         谁是卧底
       </a>
     </li>
@@ -465,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/help/" class="md-nav__link">
+      <a href="../../games/help/" class="md-nav__link">
         更多帮助
       </a>
     </li>
@@ -479,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/change-log/" class="md-nav__link">
+      <a href="../../games/change-log/" class="md-nav__link">
         更新日志
       </a>
     </li>
@@ -541,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/next/" class="md-nav__link">
+      <a href="../../change-log/next/" class="md-nav__link">
         未来计划
       </a>
     </li>
@@ -555,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/box/" class="md-nav__link">
+      <a href="../../change-log/box/" class="md-nav__link">
         box
       </a>
     </li>
@@ -569,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v5/" class="md-nav__link">
+      <a href="../../change-log/v5/" class="md-nav__link">
         v5
       </a>
     </li>
@@ -583,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v4/" class="md-nav__link">
+      <a href="../../change-log/v4/" class="md-nav__link">
         v4
       </a>
     </li>
@@ -597,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v3/" class="md-nav__link">
+      <a href="../../change-log/v3/" class="md-nav__link">
         v3
       </a>
     </li>
@@ -611,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v2/" class="md-nav__link">
+      <a href="../../change-log/v2/" class="md-nav__link">
         v2
       </a>
     </li>
@@ -633,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         API
       </a>
     </li>
@@ -652,8 +659,117 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-<h2>404 - 页面不存在</h2>
+                  
 
+  
+  
+
+
+
+<h1 id="ayakacache">AyakaCache<a class="headerlink" href="#ayakacache" title="Permanent link">&para;</a></h1>
+<p>如果需要临时保存一些数据，以供应用在不同时刻/函数中使用，那么需要使用缓存</p>
+<h2 id="_1">基本使用<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>将需要缓存的数据打包到一个类中，该类继承自<code>AyakaCache</code>，编写方法参考<a href="https://docs.pydantic.dev/usage/models/">pydantic.BaseModel</a></p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">AyakaCache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cache</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_2</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f3&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="16 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_3</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+</code></pre></div>
+<p>注意，一定要编写类型提示和默认值</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name:str = ""</code></td>
+<td>正确</td>
+</tr>
+<tr>
+<td><code>name = ""</code></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><code>name:str</code></td>
+<td>错误</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">进阶：可以嵌套<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>可以嵌套其他BaseModel模型</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaCache</span><span class="p">,</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 5 "></span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span><span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">AyakaCache</span><span class="p">):</span>
+<span class="hll"><span class="linenos" data-linenos="13 "></span>    <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;默认&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="linenos" data-linenos="14 "></span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">cache</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="22 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span><span class="p">):</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="n">cache</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;改名了&quot;</span>
+</code></pre></div>
+<div class="demo">
+<<< "user" 说：#f1
+默认
+</div>
+
+<div class="demo">
+<<< "user" 说：#f2
+<<< "user" 说：#f1
+改名了
+</div>
+
+<h2 id="_3">其他用法（不推荐）<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+<span class="linenos" data-linenos="2 "></span><span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># a</span>
+</code></pre></div>
+<ol>
+<li>缺乏类型提示</li>
+<li>若读取操作在写入操作之前（执行前后顺序，不是代码顺序），会报错</li>
+</ol>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -696,14 +812,14 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/ayaka_doc/1.0.1", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "/ayaka_doc/1.0.1/assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/ayaka_doc/1.0.1/assets/javascripts/bundle.5cf534bf.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-        <script src="/ayaka_doc/1.0.1/js/version.js"></script>
+        <script src="../../js/version.js"></script>
       
-        <script src="/ayaka_doc/1.0.1/js/demo.js"></script>
+        <script src="../../js/demo.js"></script>
       
     
   </body>

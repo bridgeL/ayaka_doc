@@ -8,21 +8,23 @@
       
       
       
+        <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/1.0.1/develop/app/">
       
       
-      <link rel="icon" href="/ayaka_doc/1.0.1/assets/images/favicon.png">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
-        <title>Ayaka - 为群聊插件开发提供状态机支持</title>
+        <title>AyakaApp - Ayaka - 为群聊插件开发提供状态机支持</title>
       
     
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/assets/stylesheets/main.f56500e0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f56500e0.min.css">
       
         
-        <link rel="stylesheet" href="/ayaka_doc/1.0.1/assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -38,15 +40,15 @@
       
     
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/code.css">
+      <link rel="stylesheet" href="../../css/code.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/tab-right.css">
+      <link rel="stylesheet" href="../../css/tab-right.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/big-font.css">
+      <link rel="stylesheet" href="../../css/big-font.css">
     
-      <link rel="stylesheet" href="/ayaka_doc/1.0.1/css/demo.css">
+      <link rel="stylesheet" href="../../css/demo.css">
     
-    <script>__md_scope=new URL("/ayaka_doc/1.0.1",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -70,6 +72,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ayakaapp" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -86,7 +93,7 @@
 
 <header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/ayaka_doc/1.0.1/." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-header__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
+    <a href="../.." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-header__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -105,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              AyakaApp
             
           </span>
         </div>
@@ -180,7 +187,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         主页
       </a>
     </li>
@@ -195,7 +202,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/ayaka_doc/1.0.1/intro/quick_start/" class="md-tabs__link">
+    <a href="../../intro/quick_start/" class="md-tabs__link">
       快速开始
     </a>
   </li>
@@ -212,7 +219,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/games/" class="md-tabs__link">
+      <a href="../../games/" class="md-tabs__link">
         小游戏合集
       </a>
     </li>
@@ -230,7 +237,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ayaka_doc/1.0.1/change-log/next/" class="md-tabs__link">
+      <a href="../../change-log/next/" class="md-tabs__link">
         更新日志
       </a>
     </li>
@@ -244,7 +251,7 @@
   
 
 <li class="md-tabs__item tab-right">
-  <a href="/ayaka_doc/1.0.1/api/" class="md-tabs__link">
+  <a href="../../api/" class="md-tabs__link">
     API
   </a>
 </li>
@@ -279,7 +286,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/ayaka_doc/1.0.1/." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-nav__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
+    <a href="../.." title="Ayaka - 为群聊插件开发提供状态机支持" class="md-nav__button md-logo" aria-label="Ayaka - 为群聊插件开发提供状态机支持" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -329,7 +336,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="/ayaka_doc/1.0.1/.">主页</a>
+          <a href="../..">主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -352,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/intro/install/" class="md-nav__link">
+      <a href="../../intro/install/" class="md-nav__link">
         安装
       </a>
     </li>
@@ -374,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/intro/quick_start/" class="md-nav__link">
+      <a href="../../intro/quick_start/" class="md-nav__link">
         快速开始
       </a>
     </li>
@@ -414,7 +421,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="/ayaka_doc/1.0.1/games/">小游戏合集</a>
+          <a href="../../games/">小游戏合集</a>
           
             <label for="__nav_3">
               <span class="md-nav__icon md-icon"></span>
@@ -437,7 +444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/install/" class="md-nav__link">
+      <a href="../../games/install/" class="md-nav__link">
         安装与配置
       </a>
     </li>
@@ -451,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/who-is-suspect/" class="md-nav__link">
+      <a href="../../games/who-is-suspect/" class="md-nav__link">
         谁是卧底
       </a>
     </li>
@@ -465,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/help/" class="md-nav__link">
+      <a href="../../games/help/" class="md-nav__link">
         更多帮助
       </a>
     </li>
@@ -479,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/games/change-log/" class="md-nav__link">
+      <a href="../../games/change-log/" class="md-nav__link">
         更新日志
       </a>
     </li>
@@ -541,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/next/" class="md-nav__link">
+      <a href="../../change-log/next/" class="md-nav__link">
         未来计划
       </a>
     </li>
@@ -555,7 +562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/box/" class="md-nav__link">
+      <a href="../../change-log/box/" class="md-nav__link">
         box
       </a>
     </li>
@@ -569,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v5/" class="md-nav__link">
+      <a href="../../change-log/v5/" class="md-nav__link">
         v5
       </a>
     </li>
@@ -583,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v4/" class="md-nav__link">
+      <a href="../../change-log/v4/" class="md-nav__link">
         v4
       </a>
     </li>
@@ -597,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v3/" class="md-nav__link">
+      <a href="../../change-log/v3/" class="md-nav__link">
         v3
       </a>
     </li>
@@ -611,7 +618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/change-log/v2/" class="md-nav__link">
+      <a href="../../change-log/v2/" class="md-nav__link">
         v2
       </a>
     </li>
@@ -633,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ayaka_doc/1.0.1/api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         API
       </a>
     </li>
@@ -652,8 +659,300 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-<h2>404 - 页面不存在</h2>
+                  
 
+  
+  
+
+
+
+<h1 id="ayakaapp">AyakaApp<a class="headerlink" href="#ayakaapp" title="Permanent link">&para;</a></h1>
+<p>首先，你需要导入并初始化一个<code>AyakaApp</code>对象</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span>
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;测试一下&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="boteventmessage">bot、event、message<a class="headerlink" href="#boteventmessage" title="Permanent link">&para;</a></h2>
+<p>御 三 家</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.bot</td>
+<td><code>Bot</code></td>
+<td>当前机器人</td>
+</tr>
+<tr>
+<td>app.event</td>
+<td><code>MessageEvent</code></td>
+<td>当前消息事件</td>
+</tr>
+<tr>
+<td>app.message</td>
+<td><code>Message</code></td>
+<td>当前消息</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cmdargargs">cmd、arg、args<a class="headerlink" href="#cmdargargs" title="Permanent link">&para;</a></h2>
+<p>二 代 御 三 家</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.cmd</td>
+<td><code>str</code></td>
+<td>本次响应是针对哪个命令</td>
+</tr>
+<tr>
+<td>app.arg</td>
+<td><code>Message</code></td>
+<td>删除了命令后剩下的消息部分</td>
+</tr>
+<tr>
+<td>app.args</td>
+<td><code>List[MessageSegment]</code></td>
+<td>删除命令后，依照分隔符分割，并移除空数据</td>
+</tr>
+</tbody>
+</table>
+<div class="demo">
+"user" 说：#得到的 水电费   来看看
+"sys" 说：app.cmd = "得到的"
+"sys" 说：app.arg = "水电费   来看看"
+"sys" 说：app.args = ["水电费","来看看"]
+</div>
+
+<h2 id="user_nameuser_idgroup_id">user_name、user_id、group_id<a class="headerlink" href="#user_nameuser_idgroup_id" title="Permanent link">&para;</a></h2>
+<p>懒 人 三 件 套</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.group_id</td>
+<td><code>int</code></td>
+<td>当前群聊的群号</td>
+</tr>
+<tr>
+<td>app.user_id</td>
+<td><code>int</code></td>
+<td>当前消息的发送者的qq号</td>
+</tr>
+<tr>
+<td>app.user_name</td>
+<td><code>str</code></td>
+<td>当前消息的发送者的群名片或昵称（优先为群名片）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="startclosesendsend_many">start、close、send、send_many<a class="headerlink" href="#startclosesendsend_many" title="Permanent link">&para;</a></h2>
+<p>四 大 天 王</p>
+<p>都是异步方法</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.start</td>
+<td>运行应用</td>
+</tr>
+<tr>
+<td>app.close</td>
+<td>关闭应用</td>
+</tr>
+<tr>
+<td>app.send</td>
+<td>发送消息</td>
+</tr>
+<tr>
+<td>app.send_many</td>
+<td>发送合并转发消息</td>
+</tr>
+</tbody>
+</table>
+<p>特别的，start可以设置参数，令app运行后进入指定状态</p>
+<h2 id="set_start_cmds">set_start_cmds<a class="headerlink" href="#set_start_cmds" title="Permanent link">&para;</a></h2>
+<p>设置启动应用的命令</p>
+<h2 id="stateget_state">state、get_state<a class="headerlink" href="#stateget_state" title="Permanent link">&para;</a></h2>
+<p>详见<a href="../state/">AyakaState</a></p>
+<h2 id="set_stategotoback">set_state、goto、back<a class="headerlink" href="#set_stategotoback" title="Permanent link">&para;</a></h2>
+<p>状态转移方法，也都是异步方法</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.set_state</td>
+<td>令当前群组的状态变为指定的另一状态</td>
+</tr>
+<tr>
+<td>app.goto</td>
+<td>与app.set_state一样</td>
+</tr>
+<tr>
+<td>app.back</td>
+<td>令当前群组的状态变为其当前状态的父状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="on_xxx">on_xxx 注册回调<a class="headerlink" href="#on_xxx" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.on_cmd</td>
+<td>注册为命令回调，参数表可以写多个命令（默认为阻断）</td>
+</tr>
+<tr>
+<td>app.on_text</td>
+<td>注册为消息回调（默认为不阻断）</td>
+</tr>
+<tr>
+<td>app.on_state</td>
+<td>注册在指定状态下，参数表可以写多个状态</td>
+</tr>
+<tr>
+<td>app.on_idle</td>
+<td>注册在闲置状态下</td>
+</tr>
+<tr>
+<td>app.on_deep_all</td>
+<td>声明该回调对所有子状态生效</td>
+</tr>
+<tr>
+<td>app.on_no_block</td>
+<td>设置该回调触发后不阻断上溯查找</td>
+</tr>
+<tr>
+<td>app.on_cmd_regex</td>
+<td>注册为命令回调，通过正则表达式匹配命令</td>
+</tr>
+<tr>
+<td>app.on_everyday</td>
+<td>注册每日定时任务，可设置起点</td>
+</tr>
+<tr>
+<td>app.on_interval</td>
+<td>注册定时任务，可设置起点和周期</td>
+</tr>
+</tbody>
+</table>
+<h2 id="add_listenerremove_listener">add_listener、remove_listener<a class="headerlink" href="#add_listenerremove_listener" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.add_listener</td>
+<td>为该群组添加对私聊的监听</td>
+</tr>
+<tr>
+<td>app.remove_listener</td>
+<td>移除该群组对私聊的监听</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.name</td>
+<td><code>str</code></td>
+<td>应用名称</td>
+</tr>
+<tr>
+<td>app.bot_id</td>
+<td><code>int</code></td>
+<td>当前机器人的qq号</td>
+</tr>
+<tr>
+<td>app.group</td>
+<td><code>AyakaGroup</code></td>
+<td>当前群组</td>
+</tr>
+<tr>
+<td>app.cache</td>
+<td><code>Dict[str,AyakaCache]</code></td>
+<td>为当前群组当前应用提供的独立缓存数据空间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="t_sendt_send_many">t_send、t_send_many<a class="headerlink" href="#t_sendt_send_many" title="Permanent link">&para;</a></h2>
+<p>都是异步方法</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app.t_send</td>
+<td>发送消息</td>
+</tr>
+<tr>
+<td>app.t_send_many</td>
+<td>发送合并转发消息</td>
+</tr>
+</tbody>
+</table>
+<p>在定时任务时发送消息请使用该方法，而不是send和send_many</p>
+<p>因为定时器触发时，回调无法通过分析消息（压根就没有消息）得到各类信息（bot/group/message/event/sender等）</p>
+<p>因此有很多方法和属性都无法访问</p>
+<p>发送消息请使用专用的<code>app.t_send</code>/<code>app.t_send_many</code>，并且需要提供目标bot和群组的id</p>
+<h2 id="_2">下一步<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -696,14 +995,14 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/ayaka_doc/1.0.1", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "/ayaka_doc/1.0.1/assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="/ayaka_doc/1.0.1/assets/javascripts/bundle.5cf534bf.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
       
-        <script src="/ayaka_doc/1.0.1/js/version.js"></script>
+        <script src="../../js/version.js"></script>
       
-        <script src="/ayaka_doc/1.0.1/js/demo.js"></script>
+        <script src="../../js/demo.js"></script>
       
     
   </body>
