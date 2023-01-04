@@ -848,6 +848,63 @@
 </div>
 
 <h2 id="_3">数据缓存<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">nonebot2</label><label for="__tabbed_2_2">ayaka</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">on_command</span>
+
+<span class="k">class</span> <span class="nc">CacheData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># 创建box</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
+
+<span class="c1"># 定义matcher</span>
+<span class="n">PLUS_ONE</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;加一秒&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
+
+<span class="c1"># 加一秒</span>
+<span class="nd">@PLUS_ONE</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">plus_one</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">CacheData</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">await</span> <span class="n">PLUS_ONE</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span> <span class="nc">CacheData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># 创建box</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
+
+<span class="c1"># 加一秒</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;加一秒&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">plus_one</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">CacheData</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+"user" 说：加一秒
+"Bot" 说：1
+"user" 说：加一秒
+"Bot" 说：2
+"user" 说：加一秒
+"Bot" 说：3
+"user" 说：加一秒
+"Bot" 说：4
+</div>
+
+<p>注意：重启bot后数据丢失</p>
 <h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
