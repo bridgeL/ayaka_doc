@@ -724,15 +724,15 @@
 
 <p>进入box时代</p>
 <h2 id="100">1.0.0 （临时过渡）<a class="headerlink" href="#100" title="Permanent link">&para;</a></h2>
+<p>闲聊</p>
 <ul>
 <li>坏消息：app消失了，旧API大幅更换</li>
 <li>不那么坏的消息：这次注释写的很规范</li>
-<li>
-<p>好消息：这次不再是所有ayaka衍生插件共用一个nb的matcher了，而是各个命令对应到各自的matcher上，设计上也更加宽松，可以在沿用nb的代码风格上非侵入的使用ayaka来实现状态机</p>
-</li>
-<li>
-<p>暂时保留：保留了0.5.5版本中自定义的sql orm模型类 AyakaDB，预计1.1.0+版本后抛弃该设计，转而使用sqlmodel</p>
-</li>
+<li>好消息：这次不再是所有ayaka衍生插件共用一个nb的matcher了，而是各个命令对应到各自的matcher上，设计上也更加宽松，可以在沿用nb的代码风格上非侵入的使用ayaka来实现状态机</li>
+</ul>
+<p>更新一览</p>
+<ul>
+<li>暂时保留：保留了0.5.5版本中自定义的sql orm模型类 AyakaDB，预计1.1.0+版本后抛弃该设计，转而使用sqlmodel</li>
 <li>移除：ayaka_master被移除</li>
 <li>移除：ayaka_root_config的绝大部分配置都被删除，现在ayaka使用nb配置中的命令前缀和分割符</li>
 <li>移除：AyakaInput、AyakaCache、AyakaLargeConfig、AyakaDepend</li>
