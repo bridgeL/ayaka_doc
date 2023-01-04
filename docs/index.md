@@ -16,7 +16,7 @@
 
 更多文档正在重写
 
-https://bridgel.github.io/ayaka_doc/1.0.0/api/
+[API](https://bridgel.github.io/ayaka_doc/1.0.1/api/)
 
 ## 相关链接
 

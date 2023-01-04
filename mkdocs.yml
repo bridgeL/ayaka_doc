@@ -17,12 +17,14 @@ theme:
     primary: brown
   features:
   - content.code.annotate
+  - content.code.copy
   - navigation.indexes
   - navigation.sections
   - navigation.tabs
   - navigation.tabs.sticky
   - navigation.tracking
   - navigation.top
+  - navigation.footer
   - toc.integrate
   - search.highlight
   - search.suggest
@@ -32,6 +34,7 @@ nav:
 - 主页: 
   - 介绍: index.md
   - 安装: intro/install.md
+- 快速开始: intro/quick_start.md
 - 小游戏合集:
   - 介绍: games/index.md
   - 安装与配置: games/install.md
