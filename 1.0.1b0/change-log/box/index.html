@@ -603,7 +603,14 @@
       
         <li class="md-nav__item">
   <a href="#100" class="md-nav__link">
-    1.0.0
+    1.0.0 （临时过渡）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    1.0.1
   </a>
   
 </li>
@@ -716,10 +723,40 @@
   <h1>box</h1>
 
 <p>进入box时代</p>
-<h2 id="100">1.0.0<a class="headerlink" href="#100" title="Permanent link">&para;</a></h2>
+<h2 id="100">1.0.0 （临时过渡）<a class="headerlink" href="#100" title="Permanent link">&para;</a></h2>
 <ul>
 <li>坏消息：app消失了，旧API大幅更换</li>
 <li>不那么坏的消息：这次注释写的很规范</li>
+<li>
+<p>好消息：这次不再是所有ayaka衍生插件共用一个nb的matcher了，而是各个命令对应到各自的matcher上，设计上也更加宽松，可以在沿用nb的代码风格上非侵入的使用ayaka来实现状态机</p>
+</li>
+<li>
+<p>暂时保留：保留了0.5.5版本中自定义的sql orm模型类 AyakaDB，预计1.1.0+版本后抛弃该设计，转而使用sqlmodel</p>
+</li>
+<li>移除：ayaka_master被移除</li>
+<li>新特性：重新设计实现了0.5.5版本的帮助、查看状态功能</li>
+<li>修复BUG：非命令触发时，box.arg无法正确获取消息</li>
+<li>修复BUG: sql无法正确提交数据</li>
+</ul>
+<h1 id="101">1.0.1<a class="headerlink" href="#101" title="Permanent link">&para;</a></h1>
+<ul>
+<li>新特性：allow_same，允许重名，将返回先前的重名的box</li>
+<li>新特性：新增ayaka.lazy模块，懒人包一键导入各个类和方法</li>
+<li>新特性：新增ayaka.master模块，将帮助、查看状态功能整合进 盒子管理器</li>
+<li>新特性：box.matcher_state属性</li>
+<li>新特性：box.help属性</li>
+<li>新特性: box.send_help方法</li>
+<li>新特性: box.get_data方法</li>
+<li>新特性: box.get_arbitrary_data方法</li>
+<li>新特性: 关闭恼人的duplicated warning提示</li>
+<li>新特性: 新增slow_load_config装饰器</li>
+<li>移除：移除了box.create_cmd_matcher、box.create_text_matcher、box.reset_state</li>
+<li>移除：删除了类型提示不佳的StrOrMsgList类，不影响box.args的使用</li>
+<li>修改：重命名box.add_help方法为_add_help（不允许外部使用</li>
+<li>修改：修改了初始状态，现在应用启动后的默认状态是idle，而不再是menu；取消了应用未运行时的状态，此时状态无意义</li>
+<li>修改：修改了box.rule、box.on_cmd、box.on_text、box.set_start_cmds、box.set_close_cmds的API</li>
+<li>修复BUG: cached无法正常使用</li>
+<li>优化代码结构，完善注释</li>
 </ul>
 
 
