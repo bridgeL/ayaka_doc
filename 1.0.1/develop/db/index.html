@@ -692,32 +692,32 @@
 <p>如果需要持久保存一些数据，以供应用在bot重启后仍可使用，那么需要使用数据库</p>
 <h2 id="_2">基本使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>将需要保存的数据打包到一个类中，该类继承自<code>AyakaDB</code>，编写方法参考<a href="https://docs.pydantic.dev/usage/models/">pydantic.BaseModel</a></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaDB</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaDB</span><span class="p">):</span>
-<span class="hll"><span class="linenos" data-linenos=" 8 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
-</span><span class="linenos" data-linenos=" 9 "></span>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__primary_key__</span><span class="p">)</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="linenos" data-linenos="11 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="15 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos="16 "></span>    <span class="c1"># 创建数据</span>
-<span class="linenos" data-linenos="17 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;测试&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="linenos" data-linenos="18 "></span>    <span class="c1"># 写入数据库</span>
-<span class="hll"><span class="linenos" data-linenos="19 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</span><span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="23 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
-<span class="linenos" data-linenos="24 "></span>    <span class="c1"># 读取数据库</span>
-<span class="linenos" data-linenos="25 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="linenos" data-linenos="26 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaApp</span><span class="p">,</span> <span class="n">AyakaDB</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaDB</span><span class="p">):</span>
+<span class="hll">    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+</span>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__primary_key__</span><span class="p">)</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+    <span class="c1"># 创建数据</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;测试&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="c1"># 写入数据库</span>
+<span class="hll">    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_</span><span class="p">():</span>
+    <span class="c1"># 读取数据库</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 <p>注意，一定要编写__table_name__</p>
 <p><code>ayaka</code>会在你调用<code>AyakaDB</code>的任意方法时，自动创建对应的表，当然你也可以手动调用<code>AyakaDB().create_table()</code></p>
@@ -751,12 +751,12 @@
 </table>
 <p>对应的数据库<code>data/ayaka/ayaka.db</code></p>
 <p>表信息</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
-<span class="linenos" data-linenos="2 "></span>    &quot;id&quot;    integer,
-<span class="linenos" data-linenos="3 "></span>    &quot;name&quot;  text,
-<span class="linenos" data-linenos="4 "></span>    &quot;age&quot;   integer,
-<span class="linenos" data-linenos="5 "></span>    PRIMARY KEY(&quot;id&quot;)
-<span class="linenos" data-linenos="6 "></span>);
+<div class="highlight"><pre><span></span><code>CREATE TABLE &quot;test&quot; (
+    &quot;id&quot;    integer,
+    &quot;name&quot;  text,
+    &quot;age&quot;   integer,
+    PRIMARY KEY(&quot;id&quot;)
+);
 </code></pre></div>
 <p>用户执行 <code>#f1</code> 后的表数据</p>
 <table>
@@ -796,41 +796,41 @@ id=1 name='测试' age=12
 <h2 id="_4">进阶：可以嵌套<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>可以嵌套其他BaseModel模型</p>
 <p>但是需要通过Field.extra属性声明其为<code>__json_key__</code></p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="hll"><span class="linenos" data-linenos=" 7 "></span><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-</span><span class="hll"><span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
-</span><span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaDB</span><span class="p">):</span>
-<span class="linenos" data-linenos="13 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
-<span class="hll"><span class="linenos" data-linenos="14 "></span>    <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__json_key__</span><span class="p">)</span>
-</span><span class="linenos" data-linenos="15 "></span>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__primary_key__</span><span class="p">)</span>
-<span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="19 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
-<span class="linenos" data-linenos="20 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;测试一号&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">2222</span><span class="p">},</span> <span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="linenos" data-linenos="21 "></span>    <span class="c1"># 保存到数据库</span>
-<span class="linenos" data-linenos="22 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span>
-<span class="linenos" data-linenos="25 "></span><span class="o">@</span> <span class="n">app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="26 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
-<span class="linenos" data-linenos="27 "></span>    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
-<span class="linenos" data-linenos="28 "></span>    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+</span><span class="hll">    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+</span>
+
+<span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaDB</span><span class="p">):</span>
+    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
+<span class="hll">    <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__json_key__</span><span class="p">)</span>
+</span>    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">AyakaDB</span><span class="o">.</span><span class="n">__primary_key__</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;测试一号&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">2222</span><span class="p">},</span> <span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+    <span class="c1"># 保存到数据库</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+<span class="o">@</span> <span class="n">app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 <p>表信息</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
-<span class="linenos" data-linenos="2 "></span>    &quot;user&quot;  text,
-<span class="linenos" data-linenos="3 "></span>    &quot;id&quot;    integer,
-<span class="linenos" data-linenos="4 "></span>    PRIMARY KEY(&quot;id&quot;)
-<span class="linenos" data-linenos="5 "></span>);
+<div class="highlight"><pre><span></span><code>CREATE TABLE &quot;test&quot; (
+    &quot;user&quot;  text,
+    &quot;id&quot;    integer,
+    PRIMARY KEY(&quot;id&quot;)
+);
 </code></pre></div>
 <p>用户执行 <code>#f1</code> 后的表数据</p>
 <table>
@@ -859,21 +859,21 @@ user=User(name='测试一号', age=2222) id=123
 <h2 id="ayakagroupdb">进阶：AyakaGroupDB<a class="headerlink" href="#ayakagroupdb" title="Permanent link">&para;</a></h2>
 <p>已经提前预设主键为<code>app.group_id</code>，且不可更改</p>
 <p>优点是，可以放入回调参数表中，直接使用</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaGroupDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
-</span><span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="hll"><span class="linenos" data-linenos=" 6 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaGroupDB</span><span class="p">):</span>
-</span><span class="linenos" data-linenos=" 7 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;默认名&quot;</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
-<span class="hll"><span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
-</span><span class="hll"><span class="linenos" data-linenos="14 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
-</span><span class="linenos" data-linenos="15 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaGroupDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaGroupDB</span><span class="p">):</span>
+</span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;默认名&quot;</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
+</span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
 <p>注意，与AyakaDB不同，AyakaGroupDB一定要编写默认值</p>
 <table>
@@ -903,12 +903,12 @@ user=User(name='测试一号', age=2222) id=123
 </tbody>
 </table>
 <p>表信息</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
-<span class="linenos" data-linenos="2 "></span>    &quot;group_id&quot;  integer,
-<span class="linenos" data-linenos="3 "></span>    &quot;name&quot;  string,
-<span class="linenos" data-linenos="4 "></span>    &quot;age&quot;   integer,
-<span class="linenos" data-linenos="5 "></span>    PRIMARY KEY(&quot;group_id&quot;)
-<span class="linenos" data-linenos="6 "></span>);
+<div class="highlight"><pre><span></span><code>CREATE TABLE &quot;test&quot; (
+    &quot;group_id&quot;  integer,
+    &quot;name&quot;  string,
+    &quot;age&quot;   integer,
+    PRIMARY KEY(&quot;group_id&quot;)
+);
 </code></pre></div>
 <p>用户执行 <code>#f1</code> 后的表数据</p>
 <table>
@@ -930,21 +930,21 @@ user=User(name='测试一号', age=2222) id=123
 <h2 id="ayakauserdb">进阶：AyakaUserDB<a class="headerlink" href="#ayakauserdb" title="Permanent link">&para;</a></h2>
 <p>已经提前预设主键为<code>app.group_id</code>和<code>app.user_id</code>，且不可更改</p>
 <p>优点是，可以放入回调参数表中，直接使用</p>
-<div class="highlight"><pre><span></span><code><span class="hll"><span class="linenos" data-linenos=" 1 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
-</span><span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="hll"><span class="linenos" data-linenos=" 6 "></span><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
-</span><span class="linenos" data-linenos=" 7 "></span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
-<span class="linenos" data-linenos=" 8 "></span>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;默认名&quot;</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
-<span class="hll"><span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
-</span><span class="linenos" data-linenos="14 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="hll"><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaUserDB</span><span class="p">,</span> <span class="n">AyakaApp</span>
+</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">AyakaApp</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+
+<span class="hll"><span class="k">class</span> <span class="nc">Data</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
+</span>    <span class="n">__table_name__</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;默认名&quot;</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+<span class="hll"><span class="k">async</span> <span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Data</span><span class="p">):</span>
+</span>    <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;新名字&quot;</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
 <p>注意，与AyakaDB不同，AyakaUserDB一定要编写默认值</p>
 <table>
@@ -974,13 +974,13 @@ user=User(name='测试一号', age=2222) id=123
 </tbody>
 </table>
 <p>表信息</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>CREATE TABLE &quot;test&quot; (
-<span class="linenos" data-linenos="2 "></span>    &quot;group_id&quot;  integer,
-<span class="linenos" data-linenos="3 "></span>    &quot;user_id&quot;   integer,
-<span class="linenos" data-linenos="4 "></span>    &quot;name&quot;  string,
-<span class="linenos" data-linenos="5 "></span>    &quot;age&quot;   integer,
-<span class="linenos" data-linenos="6 "></span>    PRIMARY KEY(&quot;group_id&quot;,&quot;user_id&quot;)
-<span class="linenos" data-linenos="7 "></span>);
+<div class="highlight"><pre><span></span><code>CREATE TABLE &quot;test&quot; (
+    &quot;group_id&quot;  integer,
+    &quot;user_id&quot;   integer,
+    &quot;name&quot;  string,
+    &quot;age&quot;   integer,
+    PRIMARY KEY(&quot;group_id&quot;,&quot;user_id&quot;)
+);
 </code></pre></div>
 <p>用户执行 <code>#f1</code> 后的表数据</p>
 <table>
@@ -1055,7 +1055,7 @@ user=User(name='测试一号', age=2222) id=123
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.footer", "toc.integrate", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.5cf534bf.min.js"></script>
