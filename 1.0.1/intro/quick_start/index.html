@@ -423,35 +423,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#box" class="md-nav__link">
-    创建box
+  <a href="#_2" class="md-nav__link">
+    传统写法
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    打开、关闭盒子
+  <a href="#box" class="md-nav__link">
+    box写法
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    修改盒子状态
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
     实现效果
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     下一步
   </a>
   
@@ -745,79 +738,67 @@
 
 <h1 id="_1">快速开始<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>如何定义一个带有状态机支持的命令matcher</p>
-<h2 id="box">创建box<a class="headerlink" href="#box" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># my_plugin.py</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
-<span class="linenos" data-linenos="4 "></span>
-<span class="linenos" data-linenos="5 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="_2">打开、关闭盒子<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">传统写法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>兼容性更好</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># my_plugin.py</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
 <span class="linenos" data-linenos=" 4 "></span><span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">on_command</span>
 <span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">ENTANCE</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;open&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="n">EXIT</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;关闭&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="n">DO_SOMETHING</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">]))</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="nd">@ENTANCE</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="linenos" data-linenos="12 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">entrance</span><span class="p">():</span>
-<span class="linenos" data-linenos="13 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="c1"># 创建box</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="c1"># 定义matchers</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">ENTANCE</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;open&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">EXIT</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;关闭&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">DO_SOMETHING</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">]))</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">GOTO_WORLD</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;换个状态&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">))</span>
 <span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span><span class="nd">@EXIT</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="linenos" data-linenos="16 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_box</span><span class="p">():</span>
-<span class="linenos" data-linenos="17 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span><span class="nd">@DO_SOMETHING</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="linenos" data-linenos="20 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-<span class="linenos" data-linenos="21 "></span>    <span class="k">await</span> <span class="n">DO_SOMETHING</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你好，世界！&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="22 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;hello, world!&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span><span class="c1"># 打开、关闭盒子</span>
+<span class="linenos" data-linenos="16 "></span><span class="nd">@ENTANCE</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="linenos" data-linenos="17 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">entrance</span><span class="p">():</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos" data-linenos="19 "></span>
+<span class="linenos" data-linenos="20 "></span><span class="nd">@EXIT</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="linenos" data-linenos="21 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">exit_box</span><span class="p">():</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos" data-linenos="23 "></span>
+<span class="linenos" data-linenos="24 "></span><span class="c1"># 你好</span>
+<span class="linenos" data-linenos="25 "></span><span class="nd">@DO_SOMETHING</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="linenos" data-linenos="26 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<span class="linenos" data-linenos="27 "></span>    <span class="k">await</span> <span class="n">DO_SOMETHING</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">] 你好，世界！&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span><span class="c1"># 换个状态</span>
+<span class="linenos" data-linenos="30 "></span><span class="nd">@GOTO_WORLD</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="linenos" data-linenos="31 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">goto_world</span><span class="p">():</span>
+<span class="linenos" data-linenos="32 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="33 "></span>    <span class="k">await</span> <span class="n">GOTO_WORLD</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;已设置状态为world&quot;</span><span class="p">)</span>
 </code></pre></div>
-<p>另一种写法</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># my_plugin.py</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="n">box</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="s2">&quot;open&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">box</span><span class="o">.</span><span class="n">set_close_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;关闭&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;你好&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">])</span>
-<span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你好，世界！&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="12 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;hello, world!&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="_3">修改盒子状态<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># my_plugin.py</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
-<span class="linenos" data-linenos=" 4 "></span><span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">on_command</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 7 "></span><span class="n">GOTO_WORLD</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;换个状态&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">))</span>
-<span class="linenos" data-linenos=" 8 "></span>
-<span class="linenos" data-linenos=" 9 "></span><span class="nd">@GOTO_WORLD</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="linenos" data-linenos="10 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">goto_world</span><span class="p">():</span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="12 "></span>    <span class="k">await</span> <span class="n">GOTO_WORLD</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;已设置状态为world&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p>另一种写法</p>
+<h2 id="box">box写法<a class="headerlink" href="#box" title="Permanent link">&para;</a></h2>
+<p>代码量更少</p>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># my_plugin.py</span>
 <span class="linenos" data-linenos=" 2 "></span>
 <span class="linenos" data-linenos=" 3 "></span><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
 <span class="linenos" data-linenos=" 4 "></span>
 <span class="linenos" data-linenos=" 5 "></span><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
 <span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;换个状态&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">goto_world</span><span class="p">():</span>
-<span class="linenos" data-linenos=" 9 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
-<span class="linenos" data-linenos="10 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;已设置状态为world&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="c1"># 打开、关闭盒子</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="n">box</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="s2">&quot;open&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="n">box</span><span class="o">.</span><span class="n">set_close_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;关闭&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="c1"># 你好</span>
+<span class="linenos" data-linenos="12 "></span><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;你好&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos="13 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">] 你好，世界！&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="c1"># 换个状态</span>
+<span class="linenos" data-linenos="17 "></span><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;换个状态&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="18 "></span><span class="k">async</span> <span class="k">def</span> <span class="nf">goto_world</span><span class="p">():</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;已设置状态为world&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_4">实现效果<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h2 id="_5">下一步<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_3">实现效果<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_4">下一步<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 
