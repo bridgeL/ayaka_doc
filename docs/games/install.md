@@ -33,7 +33,7 @@
 
 ### 签到配置（可选）
 
-位置`data/ayaka/签到.json`
+位置`data\ayaka\签到.json`
 
 ```json
 {

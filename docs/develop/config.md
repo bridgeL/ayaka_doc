@@ -1,3 +1,5 @@
+# 已废弃界面
+
 # AyakaConfig
 
 所有ayaka衍生插件均可申请读写`data/ayaka/ayaka_setting.json`中的配置

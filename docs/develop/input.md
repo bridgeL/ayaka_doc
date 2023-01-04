@@ -1,3 +1,5 @@
+# 已废弃界面
+
 # AyakaInput
 
 将`Message`转换为我们所需要的一系列参数

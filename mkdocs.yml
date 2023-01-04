@@ -15,9 +15,11 @@ theme:
   custom_dir: overrides
   palette:
     primary: brown
+    accent: blue
   features:
   - content.code.annotate
   - content.code.copy
+  - content.tabs.link
   - navigation.indexes
   - navigation.sections
   - navigation.tabs
@@ -31,12 +33,12 @@ theme:
   hide:
     - toc
 nav:
-- 主页: 
-  - 介绍: index.md
-  - 安装: intro/install.md
-- 快速开始: intro/quick_start.md
+- 主页: index.md
+- 快速开始: quick_start.md
+- 开发衍生插件:
+  - 星际旅行: develop/travel.md
 - 小游戏合集:
-  - 介绍: games/index.md
+  - 介绍: games/game.md
   - 安装与配置: games/install.md
   - 谁是卧底: games/who-is-suspect.md
   - 更多帮助: games/help.md

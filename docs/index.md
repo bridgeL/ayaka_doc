@@ -14,9 +14,7 @@
 
 ## 更多
 
-更多文档正在重写
-
-[API](https://bridgel.github.io/ayaka_doc/1.0.1/api/)
+更多文档正在重写 [API](https://bridgel.github.io/ayaka_doc/1.0.1/api/)
 
 ## 相关链接
 
@@ -25,6 +23,12 @@
 [ayaka文档仓库](https://github.com/bridgeL/ayaka_doc) 
 
 [基于ayaka的小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
+
+## 安装
+
+```
+pip install nonebot-plugin-ayaka
+``` 
 
 ## 下一步
 
