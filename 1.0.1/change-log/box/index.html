@@ -734,7 +734,14 @@
 <p>暂时保留：保留了0.5.5版本中自定义的sql orm模型类 AyakaDB，预计1.1.0+版本后抛弃该设计，转而使用sqlmodel</p>
 </li>
 <li>移除：ayaka_master被移除</li>
+<li>移除：ayaka_root_config的绝大部分配置都被删除，现在ayaka使用nb配置中的命令前缀和分割符</li>
+<li>移除：AyakaInput、AyakaCache、AyakaLargeConfig、AyakaDepend</li>
+<li>移除：不再有复杂的多层状态，现在，任意状态都分布在同一层；不再有唯一状态树，也不再有on_enter、on_exit等设计，也不再有deep和上溯查找</li>
+<li>移除：注册定时回答的方法，未来暂无重新添加回来的打算</li>
+<li>修改：AyakaConfig现在都对应独立的配置文件，其地址位于<code>data/ayaka/&lt;config_name&gt;.json</code></li>
+<li>新特性：新增box.get_data方法作为AyakaCache的替代品</li>
 <li>新特性：重新设计实现了0.5.5版本的帮助、查看状态功能</li>
+<li>新特性：on_immediate，当ayaka进入该状态后，将会立刻执行该状态下注册的回调函数</li>
 <li>修复BUG：非命令触发时，box.arg无法正确获取消息</li>
 <li>修复BUG: sql无法正确提交数据</li>
 </ul>
@@ -755,6 +762,7 @@
 <li>修改：重命名box.add_help方法为_add_help（不允许外部使用</li>
 <li>修改：修改了初始状态，现在应用启动后的默认状态是idle，而不再是menu；取消了应用未运行时的状态，此时状态无意义</li>
 <li>修改：修改了box.rule、box.on_cmd、box.on_text、box.set_start_cmds、box.set_close_cmds的API</li>
+<li>修改：一些ayaka.extension中的有益方法被迁移至ayaka.helper模块中</li>
 <li>修复BUG: cached无法正常使用</li>
 <li>优化代码结构，完善注释</li>
 </ul>
