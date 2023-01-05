@@ -475,22 +475,35 @@
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
+    常用操作
+  </a>
+  
+    <nav class="md-nav" aria-label="常用操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
     注册命令
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
     打开、关闭盒子
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
     设置状态
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -872,7 +885,8 @@
     <span class="n">test_data</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">TestData</span><span class="p">)</span>
 </code></pre></div>
 <p><code>test_data</code>为<code>TestData</code>对象，如果不存在则使用<code>TestData()</code>初始化</p>
-<h2 id="_6">注册命令<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_6">常用操作<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">注册命令<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>命令可以注册在不同的状态下，令它们仅在该状态下生效</p>
 <p>命令天然的属于某个box</p>
 <p>举例：</p>
@@ -948,14 +962,14 @@
 </tbody>
 </table>
 <p>c命令一般用于开启box</p>
-<h2 id="_7">打开、关闭盒子<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">打开、关闭盒子<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
 <p>box.start还可以额外附加参数，指定打开盒子后的初始状态（不再使用默认的idle）</p>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_8">设置状态<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">设置状态<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;next&quot;</span><span class="p">)</span>
 </code></pre></div>
 
