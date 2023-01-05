@@ -482,79 +482,6 @@
 
 </div>
 
-## 数据库
-
-但是一旦重启bot，你就会失去你的所有金子，这意味着你需要一个数据库来持久地保存数据
-
-=== "NONEBOT2"
-
-    ``` py
-    # ---------- 9 ----------
-    from ayaka import AyakaBox, AyakaUserDB
-
-    class UserGold(AyakaUserDB):
-        __table_name__ = "user_gold"
-        value:int = 0
-
-    m12 = on_command("real_pick", rule=box.rule(states="沙城"))
-    @m12.handle()
-    async def get_gold():
-        '''捡金子'''
-        config = Config()
-        gold = UserGold.select_one(
-            group_id = box.group_id,
-            user_id = box.user_id
-        )
-        gold.value += config.gold_each_time
-        await m12.send(f"real +{config.gold_each_time} / {gold.value}")
-    ```
-
-=== "AYAKA"
-
-    ```py
-    # ---------- 9 ----------
-    from ayaka import AyakaBox, AyakaUserDB
-
-    class UserGold(AyakaUserDB):
-        __table_name__ = "user_gold"
-        value:int = 0
-
-    @box.on_cmd(cmds="real_pick", states="沙城")
-    async def get_gold():
-        '''捡金子'''
-        config = Config()
-        gold = UserGold.select_one(
-            group_id = box.group_id,
-            user_id = box.user_id
-        )
-        gold.value += config.gold_each_time
-        await box.send(f"real +{config.gold_each_time} / {gold.value}")
-    ```
-
-**实现效果**
-
-<div class="demo">
-
-"user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
-"user" 说：move 沙城
-"Bot" 说：前往 沙城
-"user" 说：real_pick
-"Bot" 说：real +1000 / 1000
-"user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
-"sys" 说：bot重启后
-"user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
-"user" 说：move 沙城
-"Bot" 说：前往 沙城
-"user" 说：real_pick
-"Bot" 说：real +1000 / 2000
-"user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
-
-</div>
-
 ## 插件帮助
 
 现在，我们写完了一个小插件了，那么该为它编写帮助了
@@ -570,8 +497,8 @@
 <div class="demo">
 "user" 说：盒子帮助
 "Bot" 说：[盒子管理器]
-- 盒子帮助/box help/box_help/box-help/box帮助 展示盒子帮助
-- 盒子状态/box state/box_state/box-state/box状态
+- 盒子帮助 展示盒子帮助
+- 盒子状态 展示盒子状态
 "Bot" 说：[星际旅行]
 xing ji lv xing
 - 星际旅行/travel 启动应用
