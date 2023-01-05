@@ -81,12 +81,13 @@
 </span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
 </span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">GroupMessageEvent</span><span class="p">):</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>    <span class="n">group</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>    <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="p">:</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行应用[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何应用在运行&quot;</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>    <span class="n">group</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>    <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="p">:</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行应用[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何应用在运行&quot;</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -148,16 +149,19 @@
     <a class="headerlink" href="#show_state"></a>
             <div class="pdoc-code codehilite"><pre><span></span><span id="show_state-21"><a href="#show_state-21"><span class="linenos">21</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="show_state-22"><a href="#show_state-22"><span class="linenos">22</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">GroupMessageEvent</span><span class="p">):</span>
-</span><span id="show_state-23"><a href="#show_state-23"><span class="linenos">23</span></a>    <span class="n">group</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-</span><span id="show_state-24"><a href="#show_state-24"><span class="linenos">24</span></a>    <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="p">:</span>
-</span><span id="show_state-25"><a href="#show_state-25"><span class="linenos">25</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行应用[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="show_state-26"><a href="#show_state-26"><span class="linenos">26</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="show_state-27"><a href="#show_state-27"><span class="linenos">27</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何应用在运行&quot;</span>
-</span><span id="show_state-28"><a href="#show_state-28"><span class="linenos">28</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="show_state-23"><a href="#show_state-23"><span class="linenos">23</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
+</span><span id="show_state-24"><a href="#show_state-24"><span class="linenos">24</span></a>    <span class="n">group</span> <span class="o">=</span> <span class="n">get_group</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="show_state-25"><a href="#show_state-25"><span class="linenos">25</span></a>    <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="p">:</span>
+</span><span id="show_state-26"><a href="#show_state-26"><span class="linenos">26</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行应用[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">current_box_name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="show_state-27"><a href="#show_state-27"><span class="linenos">27</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="show_state-28"><a href="#show_state-28"><span class="linenos">28</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何应用在运行&quot;</span>
+</span><span id="show_state-29"><a href="#show_state-29"><span class="linenos">29</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
 </span></pre></div>
 
 
-    
+            <div class="docstring"><p>展示盒子状态</p>
+</div>
+
 
                 </section>
     </main>
