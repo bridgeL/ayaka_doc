@@ -1356,7 +1356,6 @@
         <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
     <span class="p">)</span>
     <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="n">gold</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
     <span class="k">await</span> <span class="n">m12</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
@@ -1377,7 +1376,6 @@
         <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
     <span class="p">)</span>
     <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="n">gold</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
