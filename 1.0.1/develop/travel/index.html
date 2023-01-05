@@ -903,13 +903,13 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
-<span class="n">m4</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
-<span class="nd">@m4</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="nd">@m3</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
     <span class="n">arg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">m4</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">m3</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -958,11 +958,11 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
-<span class="n">m3</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">]))</span>
-<span class="nd">@m3</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="n">m4</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">]))</span>
+<span class="nd">@m4</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">m3</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">m4</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
