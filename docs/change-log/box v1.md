@@ -1,4 +1,4 @@
-进入box时代
+进入box时期
 
 ## 1.0.0 （临时过渡）
 
@@ -6,7 +6,7 @@
 
 - 坏消息：app消失了，旧API大幅更换
 - 不那么坏的消息：这次注释写的很规范
-- 好消息：这次不再是所有ayaka衍生插件共用一个nb的matcher了，而是各个命令对应到各自的matcher上，设计上也更加宽松，可以在沿用nb的代码风格上非侵入的使用ayaka来实现状态机
+- 好消息：这次不再是所有ayaka衍生插件共用一个nb的matcher了，而是各个命令对应到各自的matcher上，设计上也更加宽松，可以在沿用nb的代码风格上使用ayaka来实现状态机
 
 更新一览
 
@@ -36,8 +36,13 @@
 - 新特性: 关闭恼人的duplicated warning提示
 - 新特性: 新增slow_load_config装饰器
 - 新特性：AyakaFunc，极大提高插件加载速度
+- 新特性：现在box可以设置默认priority；通过box注册的所有matcher都沿用该priority；特别的，on_message matcher使用priority+1
+- 新特性：现在nb能正确显示matcher的module_name了，而不再是ayaka.box
+- 新特性：新增load_cwd_plugins方法
+- 新特性：ayaka现在仅仅临时关闭Duplicated prefix rule warning，在ayaka插件加载完毕后恢复该警告提示
 - 移除：移除了box.create_cmd_matcher、box.create_text_matcher、box.reset_state
 - 移除：删除了类型提示不佳的StrOrMsgList类，不影响box.args的使用
+- 修改：修改了盒子管理器中，盒子帮助命令的表现
 - 修改：重命名box.add_help方法为_add_help（不允许外部使用
 - 修改：修改了初始状态，现在应用启动后的默认状态是idle，而不再是menu；取消了应用未运行时的状态，此时状态无意义
 - 修改：修改了box.rule、box.on_cmd、box.on_text、box.set_start_cmds、box.set_close_cmds的API
