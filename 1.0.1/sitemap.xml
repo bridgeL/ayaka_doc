@@ -41,7 +41,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://bridgel.github.io/ayaka_doc/1.0.1/develop/app/</loc>
+         <loc>https://bridgel.github.io/ayaka_doc/1.0.1/develop/box/</loc>
          <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -62,6 +62,11 @@
     </url>
     <url>
          <loc>https://bridgel.github.io/ayaka_doc/1.0.1/develop/input/</loc>
+         <lastmod>2023-01-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bridgel.github.io/ayaka_doc/1.0.1/develop/intro/</loc>
          <lastmod>2023-01-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
