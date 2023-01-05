@@ -827,8 +827,13 @@
 <li>新特性: 关闭恼人的duplicated warning提示</li>
 <li>新特性: 新增slow_load_config装饰器</li>
 <li>新特性：AyakaFunc，极大提高插件加载速度</li>
+<li>新特性：现在box可以设置默认priority；通过box注册的所有matcher都沿用该priority；特别的，on_message matcher使用priority+1</li>
+<li>新特性：现在nb能正确显示matcher的module_name了，而不再是ayaka.box</li>
+<li>新特性：新增load_cwd_plugins方法</li>
+<li>新特性：ayaka现在仅仅临时关闭Duplicated prefix rule warning，在ayaka插件加载完毕后恢复该警告提示</li>
 <li>移除：移除了box.create_cmd_matcher、box.create_text_matcher、box.reset_state</li>
 <li>移除：删除了类型提示不佳的StrOrMsgList类，不影响box.args的使用</li>
+<li>修改：修改了盒子管理器中，盒子帮助命令的表现</li>
 <li>修改：重命名box.add_help方法为_add_help（不允许外部使用</li>
 <li>修改：修改了初始状态，现在应用启动后的默认状态是idle，而不再是menu；取消了应用未运行时的状态，此时状态无意义</li>
 <li>修改：修改了box.rule、box.on_cmd、box.on_text、box.set_start_cmds、box.set_close_cmds的API</li>
