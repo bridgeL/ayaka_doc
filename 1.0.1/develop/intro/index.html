@@ -381,6 +381,14 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_3">
@@ -507,6 +515,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -524,6 +539,62 @@
     <li class="md-nav__item">
       <a href="../travel/" class="md-nav__link">
         星际旅行
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../box/" class="md-nav__link">
+        盒子
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        数据库
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        测试
       </a>
     </li>
   
@@ -889,9 +960,9 @@
 <p>每个群聊中的每个盒子都有一个字典，可用于保存数据</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-  <span class="n">box</span><span class="o">.</span><span class="n">cache</span>
-  <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
-  <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">]</span>
+    <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ok&quot;</span>
+    <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
 </code></pre></div>
 <p>你也可以结合<code>pydantic.BaseModel</code>使用</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
@@ -992,6 +1063,10 @@
 <h3 id="_9">设置状态<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;next&quot;</span><span class="p">)</span>
 </code></pre></div>
+<h2 id="_10">下一步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<div align="right">
+    在这里~ ↘
+</div>
 
 
 

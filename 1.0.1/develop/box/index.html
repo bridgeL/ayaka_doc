@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://bridgel.github.io/ayaka_doc/1.0.1/develop/box/">
       
       
+        <link rel="prev" href="../travel/">
+      
+      
+        <link rel="next" href="../config/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
     
     
       
-        <title>AyakaBox - Ayaka - 为群聊插件开发提供状态机支持</title>
+        <title>盒子 - Ayaka - 为群聊插件开发提供状态机支持</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AyakaBox
+              盒子
             
           </span>
         </div>
@@ -209,13 +213,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../intro/" class="md-tabs__link">
+      <a href="../intro/" class="md-tabs__link md-tabs__link--active">
         开发衍生插件
       </a>
     </li>
@@ -359,15 +365,25 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
+        
+          
+        
+          
+        
+          
+        
+          
         
           
         
@@ -409,6 +425,154 @@
     <li class="md-nav__item">
       <a href="../travel/" class="md-nav__link">
         星际旅行
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          盒子
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        盒子
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="本页索引">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      本页索引
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    常用计算属性
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user_nameuser_idgroup_id" class="md-nav__link">
+    user_name、user_id、group_id
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#startclosesendsend_manyset_state" class="md-nav__link">
+    start、close、send、send_many、set_state
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set_start_cmdsset_close_cmds" class="md-nav__link">
+    set_start_cmds、set_close_cmds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#on_xxx" class="md-nav__link">
+    on_xxx 注册回调
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add_listenerremove_listener" class="md-nav__link">
+    add_listener、remove_listener
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    其他
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    下一步
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        配置
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db/" class="md-nav__link">
+        数据库
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        测试
       </a>
     </li>
   
@@ -691,10 +855,9 @@
 <p>首先，你需要导入并初始化一个<code>AyakaBox</code>对象</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
 
-<span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试一下&quot;</span><span class="p">)</span>
+<span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="boteventmessage">bot、event、message<a class="headerlink" href="#boteventmessage" title="Permanent link">&para;</a></h2>
-<p>御 三 家</p>
+<h2 id="_1">常用计算属性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -719,24 +882,6 @@
 <td><code>Message</code></td>
 <td>当前消息</td>
 </tr>
-</tbody>
-</table>
-<h2 id="cmdargargs">cmd、arg、args<a class="headerlink" href="#cmdargargs" title="Permanent link">&para;</a></h2>
-<p>二 代 御 三 家</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>box.cmd</td>
-<td><code>str</code></td>
-<td>本次响应是针对哪个命令</td>
-</tr>
 <tr>
 <td>box.arg</td>
 <td><code>Message</code></td>
@@ -744,20 +889,18 @@
 </tr>
 <tr>
 <td>box.args</td>
-<td><code>List[MessageSegment]</code></td>
+<td><code>list[MessageSegment | str]</code></td>
 <td>删除命令后，依照分隔符分割，并移除空数据</td>
 </tr>
 </tbody>
 </table>
 <div class="demo">
-"user" 说：#得到的 水电费   来看看
-"sys" 说：box.cmd = "得到的"
+"user" 说：#test 水电费   来看看
 "sys" 说：box.arg = "水电费   来看看"
 "sys" 说：box.args = ["水电费","来看看"]
 </div>
 
 <h2 id="user_nameuser_idgroup_id">user_name、user_id、group_id<a class="headerlink" href="#user_nameuser_idgroup_id" title="Permanent link">&para;</a></h2>
-<p>懒 人 三 件 套</p>
 <table>
 <thead>
 <tr>
@@ -784,8 +927,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="startclosesendsend_many">start、close、send、send_many<a class="headerlink" href="#startclosesendsend_many" title="Permanent link">&para;</a></h2>
-<p>四 大 天 王</p>
+<h2 id="startclosesendsend_manyset_state">start、close、send、send_many、set_state<a class="headerlink" href="#startclosesendsend_manyset_state" title="Permanent link">&para;</a></h2>
 <p>都是异步方法</p>
 <table>
 <thead>
@@ -797,11 +939,15 @@
 <tbody>
 <tr>
 <td>box.start</td>
-<td>运行应用</td>
+<td>运行盒子</td>
 </tr>
 <tr>
 <td>box.close</td>
-<td>关闭应用</td>
+<td>关闭盒子</td>
+</tr>
+<tr>
+<td>box.set_state</td>
+<td>令当前群组的状态变为指定的另一状态</td>
 </tr>
 <tr>
 <td>box.send</td>
@@ -813,11 +959,8 @@
 </tr>
 </tbody>
 </table>
-<p>特别的，start可以设置参数，令box运行后进入指定状态</p>
-<h2 id="set_start_cmds">set_start_cmds<a class="headerlink" href="#set_start_cmds" title="Permanent link">&para;</a></h2>
-<p>设置启动应用的命令</p>
-<h2 id="set_state">set_state<a class="headerlink" href="#set_state" title="Permanent link">&para;</a></h2>
-<p>状态转移方法，也都是异步方法</p>
+<p>特别的，box.start可以设置参数，令box运行后进入指定状态</p>
+<h2 id="set_start_cmdsset_close_cmds">set_start_cmds、set_close_cmds<a class="headerlink" href="#set_start_cmdsset_close_cmds" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -827,8 +970,12 @@
 </thead>
 <tbody>
 <tr>
-<td>box.set_state</td>
-<td>令当前群组的状态变为指定的另一状态</td>
+<td>box.set_start_cmds</td>
+<td>设置打开盒子的命令</td>
+</tr>
+<tr>
+<td>box.set_close_cmds</td>
+<td>设置关闭盒子的命令</td>
 </tr>
 </tbody>
 </table>
@@ -870,7 +1017,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_1">其他<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_2">其他<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -883,7 +1030,7 @@
 <tr>
 <td>box.name</td>
 <td><code>str</code></td>
-<td>应用名称</td>
+<td>盒子名称</td>
 </tr>
 <tr>
 <td>box.bot_id</td>
@@ -897,12 +1044,12 @@
 </tr>
 <tr>
 <td>box.cache</td>
-<td><code>Dict[str,AyakaCache]</code></td>
-<td>为当前群组当前应用提供的独立缓存数据空间</td>
+<td><code>dict</code></td>
+<td>为当前群组当前盒子提供的独立缓存数据空间</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">下一步<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_3">下一步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
@@ -929,6 +1076,42 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../travel/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 星际旅行" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Previous
+                </span>
+                星际旅行
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../config/" class="md-footer__link md-footer__link--next" aria-label="Next: 配置" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  Next
+                </span>
+                配置
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
