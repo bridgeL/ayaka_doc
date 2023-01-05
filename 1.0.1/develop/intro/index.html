@@ -899,25 +899,14 @@
 
 <span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="k">pass</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;menu&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">])</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="k">pass</span>
-
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
-    <span class="k">pass</span>
+<span class="n">box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">)(</span><span class="n">func</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;menu&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">])(</span><span class="n">func</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)(</span><span class="n">func</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">)(</span><span class="n">func</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">func</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
