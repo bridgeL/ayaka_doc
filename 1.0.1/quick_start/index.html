@@ -766,7 +766,7 @@
 </tr>
 <tr>
 <td>AYAKA</td>
-<td>代码更紧凑，更快的加载速度</td>
+<td>代码更紧凑，更快的插件加载速度</td>
 </tr>
 </tbody>
 </table>
@@ -781,16 +781,17 @@
 <span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
 
 <span class="c1"># 定义matchers</span>
-<span class="n">ENTANCE</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;open&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
+<span class="n">ENTER</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;open&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
 <span class="n">EXIT</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;关闭&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
 <span class="n">DO_SOMETHING</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span> <span class="s2">&quot;world&quot;</span><span class="p">]))</span>
 <span class="n">GOTO_WORLD</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;换个状态&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">))</span>
 
-<span class="c1"># 打开、关闭盒子</span>
-<span class="nd">@ENTANCE</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">entrance</span><span class="p">():</span>
+<span class="c1"># 打开盒子</span>
+<span class="nd">@ENTER</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">enter_box</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 
+<span class="c1"># 关闭盒子</span>
 <span class="nd">@EXIT</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">exit_box</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -813,8 +814,9 @@
 <span class="c1"># 创建box</span>
 <span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;测试&quot;</span><span class="p">)</span>
 
-<span class="c1"># 打开、关闭盒子</span>
+<span class="c1"># 打开盒子</span>
 <span class="n">box</span><span class="o">.</span><span class="n">set_start_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;打开&quot;</span><span class="p">,</span> <span class="s2">&quot;open&quot;</span><span class="p">])</span>
+<span class="c1"># 关闭盒子</span>
 <span class="n">box</span><span class="o">.</span><span class="n">set_close_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;关闭&quot;</span><span class="p">)</span>
 
 <span class="c1"># 你好</span>
