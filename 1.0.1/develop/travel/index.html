@@ -510,36 +510,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-9-" class="md-nav__link">
-    ---------- 9 ----------
-  </a>
-  
-    <nav class="md-nav" aria-label="---------- 9 ----------">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     插件帮助
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     全部代码
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     下一步
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -847,15 +834,23 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">NONEBOT2</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">NONEBOT2</label><label for="__tabbed_1_2">AYAKA</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 1 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
+<span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">on_command</span>
+
+<span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;星际旅行-nb&quot;</span><span class="p">)</span>
+<span class="n">box</span><span class="o">.</span><span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;xing ji lv xing&quot;</span>
+
+<span class="c1"># 启动应用</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;星际旅行-nb&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;travel-nb&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">())</span>
+<span class="nd">@m1</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AYAKA</label></div>
-<div class="tabbed-content">
+</div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 1 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
@@ -898,18 +893,22 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">NONEBOT2</label><label for="__tabbed_2_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;move&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
+<span class="n">m4</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;move&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="nd">@m4</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
+    <span class="n">arg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">m4</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;move&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
     <span class="n">arg</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
@@ -949,18 +948,20 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">NONEBOT2</label><label for="__tabbed_3_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hi&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
+<span class="n">m3</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">]))</span>
+<span class="nd">@m3</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">m3</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;hi&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
@@ -1004,24 +1005,33 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">NONEBOT2</label><label for="__tabbed_4_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 4 ----------</span>
 <span class="c1"># 相同命令，不同行为</span>
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;drink&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">])</span>
+<span class="n">m5</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">]))</span>
+<span class="nd">@m5</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">m5</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
+
+<span class="n">m6</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;drink&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;太阳&quot;</span><span class="p">))</span>
+<span class="nd">@m6</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">m6</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 4 ----------</span>
+<span class="c1"># 相同命令，不同行为</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;drink&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">])</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;喝水&#39;&#39;&#39;</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝水&quot;</span><span class="p">)</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;drink&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;drink&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;太阳&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">drink</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
@@ -1071,14 +1081,7 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">NONEBOT2</label><label for="__tabbed_5_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 5 ----------</span>
@@ -1087,14 +1090,42 @@
 <span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">ticket</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;buy&quot;</span><span class="p">,</span> <span class="s2">&quot;买票&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;售票处&quot;</span><span class="p">])</span>
+<span class="n">m7</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;buy&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;买票&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;售票处&quot;</span><span class="p">))</span>
+<span class="nd">@m7</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">buy_ticket</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache</span><span class="p">)</span>
+    <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">await</span> <span class="n">m7</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
+
+<span class="n">m8</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;看表演&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="nd">@m8</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">watch</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;看表演&#39;&#39;&#39;</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">m8</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;先去售票处买票！&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">await</span> <span class="n">m8</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;门票-1&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">m8</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 5 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span> <span class="nc">Cache</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">ticket</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;buy&quot;</span><span class="p">,</span> <span class="s2">&quot;买票&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;售票处&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">buy_ticket</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;买门票&#39;&#39;&#39;</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache</span><span class="p">)</span>
     <span class="n">cache</span><span class="o">.</span><span class="n">ticket</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;耀斑表演门票+1&quot;</span><span class="p">)</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;看表演&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;watch&quot;</span><span class="p">,</span> <span class="s2">&quot;看表演&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">watch</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;看表演&#39;&#39;&#39;</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache</span><span class="p">)</span>
@@ -1132,14 +1163,29 @@
 <p>刚才的所有回调都是由具体的、指定的命令来触发运行的</p>
 <p>然而，你也可以使用消息触发</p>
 <p>比如，你随便说了一句话，就能触发该回调运行</p>
-<pre><code>```py 
-# ---------- 6 ----------
-@box.on_text(states=["火星"])
-async def handle():
-    '''令人震惊的事实'''
-    await box.send("你火星了")
-```
-</code></pre>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">NONEBOT2</label><label for="__tabbed_6_2">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 6 ----------</span>
+<span class="kn">from</span> <span class="nn">nonebot</span> <span class="kn">import</span> <span class="n">on_message</span>
+
+<span class="n">m9</span> <span class="o">=</span> <span class="n">on_message</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;火星&quot;</span><span class="p">))</span>
+<span class="nd">@m9</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">m9</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你火星了&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 6 ----------</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_text</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;火星&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你火星了&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>消息触发的优先级低于命令触发</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
@@ -1157,31 +1203,46 @@ async def handle():
 
 <h2 id="_5">配置项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>你在沙城里捡到了?块金子，你想设置你到底能捡到几个</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">NONEBOT2</label><label for="__tabbed_7_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 7 ----------</span>
-<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span><span class="p">,</span> <span class="n">slow_load_config</span>
 
 <span class="k">class</span> <span class="nc">Cache2</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">gold</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
+<span class="nd">@slow_load_config</span>
 <span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">AyakaConfig</span><span class="p">):</span>
     <span class="n">__config_name__</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span>
     <span class="n">gold_each_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
-
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;沙城&quot;</span><span class="p">])</span>
+<span class="n">m10</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
+<span class="nd">@m10</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache2</span><span class="p">)</span>
+    <span class="n">cache</span><span class="o">.</span><span class="n">gold</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
+    <span class="k">await</span> <span class="n">m10</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fake +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 7 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span><span class="p">,</span> <span class="n">slow_load_config</span>
+
+<span class="k">class</span> <span class="nc">Cache2</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">gold</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@slow_load_config</span>
+<span class="k">class</span> <span class="nc">Config</span><span class="p">(</span><span class="n">AyakaConfig</span><span class="p">):</span>
+    <span class="n">__config_name__</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">gold_each_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache2</span><span class="p">)</span>
     <span class="n">cache</span><span class="o">.</span><span class="n">gold</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fake +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1222,22 +1283,29 @@ async def handle():
 
 <h2 id="_6">动态修改配置项<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>跑到后台修改配置再重启bot实在太麻烦了，你想通过命令修改配置</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">NONEBOT2</label><label for="__tabbed_8_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 8 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">Numbers</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;change&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;沙城&quot;</span><span class="p">])</span>
+<span class="n">m11</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
+<span class="nd">@m11</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="n">Numbers</span><span class="p">(</span><span class="s2">&quot;请输入一个数字&quot;</span><span class="p">)):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">await</span> <span class="n">m11</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;修改每次拾取数量为</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 8 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">Numbers</span>
+
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">change_gold_number</span><span class="p">(</span><span class="n">nums</span><span class="o">=</span><span class="n">Numbers</span><span class="p">(</span><span class="s2">&quot;请输入一个数字&quot;</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;修改捡金子配置&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;修改每次拾取数量为</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1262,37 +1330,53 @@ async def handle():
 
 <h2 id="_7">数据库<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>但是一旦重启bot，你就会失去你的所有金子，这意味着你需要一个数据库来持久地保存数据</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">NONEBOT2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">AYAKA</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">NONEBOT2</label><label for="__tabbed_9_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>```py</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 9 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
+
+<span class="k">class</span> <span class="nc">UserGold</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
+    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;user_gold&quot;</span>
+    <span class="n">value</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">m12</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;real_pick&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
+<span class="nd">@m12</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+    <span class="n">gold</span> <span class="o">=</span> <span class="n">UserGold</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span>
+        <span class="n">group_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
+    <span class="p">)</span>
+    <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
+    <span class="n">gold</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">m12</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 9 ----------</span>
+<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
+
+<span class="k">class</span> <span class="nc">UserGold</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
+    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;user_gold&quot;</span>
+    <span class="n">value</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;real_pick&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+    <span class="n">gold</span> <span class="o">=</span> <span class="n">UserGold</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span>
+        <span class="n">group_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span>
+        <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
+    <span class="p">)</span>
+    <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
+    <span class="n">gold</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
 </div>
 </div>
 </div>
-<h1 id="-9-">---------- 9 ----------<a class="headerlink" href="#-9-" title="Permanent link">&para;</a></h1>
-<p>from ayaka import AyakaBox, AyakaUserDB</p>
-<p>class UserGold(AyakaUserDB):
-    <strong>table_name</strong> = "user_gold"
-    value:int = 0</p>
-<p>@box.on_cmd(cmds="real_pick", states="沙城")
-async def get_gold():
-    '''捡金子'''
-    config = Config()
-    gold = UserGold.select_one(
-        group_id = box.group_id,
-        user_id = box.user_id
-    )
-    gold.value += config.gold_each_time
-    gold.save()
-    await box.send(f"real +{config.gold_each_time} / {gold.value}")
-    ```</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1354,6 +1438,17 @@ xing ji lv xing
 </div>
 
 <h2 id="_9">全部代码<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka/blob/master/plugins/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C-nb.py">星际旅行-nb.py</a></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
 <p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka/blob/master/plugins/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C.py">星际旅行.py</a></p>
 <h2 id="_10">下一步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <div align="right">
