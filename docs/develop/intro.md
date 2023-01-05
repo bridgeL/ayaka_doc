@@ -10,7 +10,7 @@
 - 所谓的独占仅仅是对所有使用了盒子（即使用了`ayaka`）的插件而言的，对其他插件来说没有影响
 - 再次发送相应关闭命令，关闭该盒子，群聊恢复为闲置状态
 
-同一群聊同一时间只能运行0个或1个盒子
+显然，同一群聊同一时间最多只能运行一个盒子
 
 ## 状态机
 
@@ -39,20 +39,26 @@
 | 其他 | 自定义的其他盒子状态     |
 | *    | 所有盒子状态             |
 
-注意：盒子idle状态与群聊闲置状态不同。群聊闲置状态是指没有任何盒子在运行；盒子idle状态是指该盒子已打开，但是正处于默认初始状态，此时群聊正被该盒子独占
+注意：盒子idle状态与群聊闲置状态不同
+
+| 名称         | 意义                                                           |
+| ------------ | -------------------------------------------------------------- |
+| 群聊闲置状态 | 没有任何盒子在运行                                             |
+| 盒子idle状态 | 盒子已打开，但是正处于默认初始状态idle，此时群聊正被该盒子独占 |
 
 ## 数据缓存
 
 每个群聊中的每个盒子都有一个字典，可用于保存数据
 
 ```py
+@box.on_cmd(cmds="test")
 async def func():
-  box.cache
-  box.cache["data"]
-  box.cache["yes"]
+    box.cache["data"] = "ok"
+    box.cache["yes"] = 12
+    print(box.cache)
 ```
 
-你可以结合`pydantic.BaseModel`使用
+你也可以结合`pydantic.BaseModel`使用
 
 ```py
 from pydantic import BaseModel
@@ -61,6 +67,7 @@ class TestData(BaseModel):
     name:str = "tom"
     age:int = 404
 
+@box.on_cmd(cmds="test")
 async def func():
     test_data = box.get_data(TestData)
 ```
@@ -112,7 +119,6 @@ async def func():
     box.on_cmd(cmds="e", always=True)(func)
     ```
 
-
 | 命令 | 从属box | 在何时生效                    |
 | ---- | ------- | ----------------------------- |
 | a    | test    | box.state == idle             |
@@ -141,3 +147,9 @@ await box.start("test")
 ```py
 await box.set_state("next")
 ```
+
+## 下一步
+
+<div align="right">
+    在这里~ ↘
+</div>

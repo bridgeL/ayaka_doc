@@ -2,10 +2,10 @@
 
 两种代码风格均可
 
-| 风格     | 特点                       |
-| -------- | -------------------------- |
-| NONEBOT2 | 兼容性更好                 |
-| AYAKA    | 代码更紧凑，更快的加载速度 |
+| 风格     | 特点                           |
+| -------- | ------------------------------ |
+| NONEBOT2 | 兼容性更好                     |
+| AYAKA    | 代码更紧凑，更快的插件加载速度 |
 
 ## 状态机
 
@@ -19,16 +19,17 @@
     box = AyakaBox("测试")
 
     # 定义matchers
-    ENTANCE = on_command("打开", aliases={"open"}, rule=box.rule())
+    ENTER = on_command("打开", aliases={"open"}, rule=box.rule())
     EXIT = on_command("关闭", rule=box.rule(states="*"))
     DO_SOMETHING = on_command("你好", rule=box.rule(states=["idle", "world"]))
     GOTO_WORLD = on_command("换个状态", rule=box.rule(states="idle"))
 
-    # 打开、关闭盒子
-    @ENTANCE.handle()
-    async def entrance():
+    # 打开盒子
+    @ENTER.handle()
+    async def enter_box():
         await box.start()
 
+    # 关闭盒子
     @EXIT.handle()
     async def exit_box():
         await box.close()
@@ -53,8 +54,9 @@
     # 创建box
     box = AyakaBox("测试")
 
-    # 打开、关闭盒子
+    # 打开盒子
     box.set_start_cmds(cmds=["打开", "open"])
+    # 关闭盒子
     box.set_close_cmds(cmds="关闭")
 
     # 你好

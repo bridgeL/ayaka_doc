@@ -37,6 +37,10 @@ nav:
 - 开发衍生插件:
   - 概念介绍: develop/intro.md
   - 星际旅行: develop/travel.md
+  - 盒子: develop/box.md
+  - 配置: develop/config.md
+  - 数据库: develop/db.md
+  - 测试: develop/test.md
 - 小游戏合集:
   - 介绍: games/game.md
   - 安装与配置: games/install.md
