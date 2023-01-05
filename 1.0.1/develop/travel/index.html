@@ -834,6 +834,16 @@
 </tr>
 </tbody>
 </table>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 1 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span>
 
@@ -845,6 +855,9 @@
 <span class="c1"># 关闭应用</span>
 <span class="n">box</span><span class="o">.</span><span class="n">set_close_cmds</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">])</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -872,6 +885,16 @@
 </tr>
 </tbody>
 </table>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
 <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;move&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
@@ -880,6 +903,9 @@
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;前往 </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -910,12 +936,25 @@
 </tr>
 </tbody>
 </table>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
 <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hi&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -952,6 +991,16 @@
 </tr>
 </tbody>
 </table>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:1"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:1"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 4 ----------</span>
 <span class="c1"># 相同命令，不同行为</span>
 <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;drink&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">])</span>
@@ -964,6 +1013,9 @@
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;喝太阳风&#39;&#39;&#39;</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;喝太阳风&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1006,6 +1058,16 @@
 </tr>
 </tbody>
 </table>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:1"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 5 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
@@ -1030,6 +1092,9 @@
         <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;门票-1&quot;</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;10分甚至9分的好看&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1054,12 +1119,14 @@
 <p>刚才的所有回调都是由具体的、指定的命令来触发运行的</p>
 <p>然而，你也可以使用消息触发</p>
 <p>比如，你随便说了一句话，就能触发该回调运行</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 6 ----------</span>
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_text</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;火星&quot;</span><span class="p">])</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">handle</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;令人震惊的事实&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;你火星了&quot;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code>```py 
+# ---------- 6 ----------
+@box.on_text(states=["火星"])
+async def handle():
+    '''令人震惊的事实'''
+    await box.send("你火星了")
+```
+</code></pre>
 <p>消息触发的优先级低于命令触发</p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
@@ -1077,6 +1144,16 @@
 
 <h2 id="_5">配置项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>你在沙城里捡到了?块金子，你想设置你到底能捡到几个</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:1"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 7 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaConfig</span>
 
@@ -1096,6 +1173,9 @@
     <span class="n">cache</span><span class="o">.</span><span class="n">gold</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fake +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>查看<code>data/ayaka/星际旅行.json</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;gold_number&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
@@ -1129,6 +1209,16 @@
 
 <h2 id="_6">动态修改配置项<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>跑到后台修改配置再重启bot实在太麻烦了，你想通过命令修改配置</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:1"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:1"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 8 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">Numbers</span>
 
@@ -1138,6 +1228,9 @@
     <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;修改每次拾取数量为</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1156,6 +1249,16 @@
 
 <h2 id="_7">数据库<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>但是一旦重启bot，你就会失去你的所有金子，这意味着你需要一个数据库来持久地保存数据</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:1"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">NONEBOT2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:1"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">AYAKA</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># ---------- 9 ----------</span>
 <span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
 
@@ -1173,6 +1276,9 @@
     <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><strong>实现效果</strong></p>
 <div class="demo">
 
@@ -1198,8 +1304,8 @@
 
 <h2 id="_8">插件帮助<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>现在，我们写完了一个小插件了，那么该为它编写帮助了</p>
-<p>不幸的是，你已经在上述代码中完成了它</p>
-<p>通过分析 注册回调的注释(<code>__doc__</code>)，<code>ayaka</code>会自动生成对应的帮助</p>
+<p>不幸的是，如果你使用的是AYAKA风格编写代码，那么你已经在上述代码中完成了它</p>
+<p>通过分析注册回调的注释(<code>func.__doc__</code>)，<code>ayaka</code>会自动生成对应的帮助</p>
 <p>现在，你只需发送命令<code>盒子帮助</code> </p>
 <p><strong>实现效果</strong></p>
 <div class="demo">
