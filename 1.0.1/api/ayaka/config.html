@@ -49,6 +49,9 @@
 
             </li>
             <li>
+                    <a class="variable" href="#ayaka_root_config">ayaka_root_config</a>
+            </li>
+            <li>
                     <a class="function" href="#load_data_from_file">load_data_from_file</a>
             </li>
     </ul>
@@ -146,35 +149,37 @@
 </span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
 </span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
 </span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a><span class="n">ayaka_root_config</span> <span class="o">=</span> <span class="n">RootConfig</span><span class="p">()</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="n">ayaka_root_config</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">AYAKA_VERSION</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="n">logger</span><span class="o">.</span><span class="n">opt</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ayaka当前版本 &lt;y&gt;</span><span class="si">{</span><span class="n">AYAKA_VERSION</span><span class="si">}</span><span class="s2">&lt;/y&gt;&quot;</span><span class="p">)</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a><span class="k">def</span> <span class="nf">load_data_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;从指定文件加载数据</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="sd">    参数:</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="sd">&#39;&#39;&#39;ayaka根配置，目前是吉祥物，仅标识ayaka的版本号&#39;&#39;&#39;</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="n">ayaka_root_config</span><span class="o">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">AYAKA_VERSION</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a><span class="n">logger</span><span class="o">.</span><span class="n">opt</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;y&gt;ayaka&lt;/y&gt; 当前版本 &lt;y&gt;</span><span class="si">{</span><span class="n">AYAKA_VERSION</span><span class="si">}</span><span class="s2">&lt;/y&gt;&quot;</span><span class="p">)</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a><span class="k">def</span> <span class="nf">load_data_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;从指定文件加载数据</span>
 </span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="sd">        path: 文件路径。文件类型，必须是.json文件或.txt文件</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a><span class="sd">    参数:</span>
 </span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="sd">    返回:</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="sd">        path: 文件路径。文件类型，必须是.json文件或.txt文件</span>
 </span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="sd">        json反序列化后的结果(对应.json文件) 或 字符串数组(对应.txt文件)</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="sd">    返回:</span>
 </span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a><span class="sd">    异常:</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a><span class="sd">        json反序列化后的结果(对应.json文件) 或 字符串数组(对应.txt文件)</span>
 </span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">        错误的文件类型</span>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.txt&quot;</span><span class="p">]:</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;错误的文件类型&quot;</span><span class="p">)</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.json&quot;</span><span class="p">:</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>            <span class="c1"># 排除空行</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>            <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="sd">    异常:</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="sd">        错误的文件类型</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.txt&quot;</span><span class="p">]:</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;错误的文件类型&quot;</span><span class="p">)</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.json&quot;</span><span class="p">:</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>            <span class="c1"># 排除空行</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>            <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </span></pre></div>
 
 
@@ -391,6 +396,19 @@
                                 </dl>
                             </div>
                 </section>
+                <section id="ayaka_root_config">
+                    <div class="attr variable">
+            <span class="name">ayaka_root_config</span><span class="default_value"> = RootConfig(version=&#39;1.0.1b0&#39;)</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ayaka_root_config"></a>
+    
+            <div class="docstring"><p>ayaka根配置，目前是吉祥物，仅标识ayaka的版本号</p>
+</div>
+
+
+                </section>
                 <section id="load_data_from_file">
                             <input id="load_data_from_file-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -402,31 +420,31 @@
 
     </div>
     <a class="headerlink" href="#load_data_from_file"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="load_data_from_file-78"><a href="#load_data_from_file-78"><span class="linenos"> 78</span></a><span class="k">def</span> <span class="nf">load_data_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
-</span><span id="load_data_from_file-79"><a href="#load_data_from_file-79"><span class="linenos"> 79</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;从指定文件加载数据</span>
-</span><span id="load_data_from_file-80"><a href="#load_data_from_file-80"><span class="linenos"> 80</span></a>
-</span><span id="load_data_from_file-81"><a href="#load_data_from_file-81"><span class="linenos"> 81</span></a><span class="sd">    参数:</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="load_data_from_file-80"><a href="#load_data_from_file-80"><span class="linenos"> 80</span></a><span class="k">def</span> <span class="nf">load_data_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+</span><span id="load_data_from_file-81"><a href="#load_data_from_file-81"><span class="linenos"> 81</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;从指定文件加载数据</span>
 </span><span id="load_data_from_file-82"><a href="#load_data_from_file-82"><span class="linenos"> 82</span></a>
-</span><span id="load_data_from_file-83"><a href="#load_data_from_file-83"><span class="linenos"> 83</span></a><span class="sd">        path: 文件路径。文件类型，必须是.json文件或.txt文件</span>
+</span><span id="load_data_from_file-83"><a href="#load_data_from_file-83"><span class="linenos"> 83</span></a><span class="sd">    参数:</span>
 </span><span id="load_data_from_file-84"><a href="#load_data_from_file-84"><span class="linenos"> 84</span></a>
-</span><span id="load_data_from_file-85"><a href="#load_data_from_file-85"><span class="linenos"> 85</span></a><span class="sd">    返回:</span>
+</span><span id="load_data_from_file-85"><a href="#load_data_from_file-85"><span class="linenos"> 85</span></a><span class="sd">        path: 文件路径。文件类型，必须是.json文件或.txt文件</span>
 </span><span id="load_data_from_file-86"><a href="#load_data_from_file-86"><span class="linenos"> 86</span></a>
-</span><span id="load_data_from_file-87"><a href="#load_data_from_file-87"><span class="linenos"> 87</span></a><span class="sd">        json反序列化后的结果(对应.json文件) 或 字符串数组(对应.txt文件)</span>
+</span><span id="load_data_from_file-87"><a href="#load_data_from_file-87"><span class="linenos"> 87</span></a><span class="sd">    返回:</span>
 </span><span id="load_data_from_file-88"><a href="#load_data_from_file-88"><span class="linenos"> 88</span></a>
-</span><span id="load_data_from_file-89"><a href="#load_data_from_file-89"><span class="linenos"> 89</span></a><span class="sd">    异常:</span>
+</span><span id="load_data_from_file-89"><a href="#load_data_from_file-89"><span class="linenos"> 89</span></a><span class="sd">        json反序列化后的结果(对应.json文件) 或 字符串数组(对应.txt文件)</span>
 </span><span id="load_data_from_file-90"><a href="#load_data_from_file-90"><span class="linenos"> 90</span></a>
-</span><span id="load_data_from_file-91"><a href="#load_data_from_file-91"><span class="linenos"> 91</span></a><span class="sd">        错误的文件类型</span>
-</span><span id="load_data_from_file-92"><a href="#load_data_from_file-92"><span class="linenos"> 92</span></a><span class="sd">    &#39;&#39;&#39;</span>
-</span><span id="load_data_from_file-93"><a href="#load_data_from_file-93"><span class="linenos"> 93</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.txt&quot;</span><span class="p">]:</span>
-</span><span id="load_data_from_file-94"><a href="#load_data_from_file-94"><span class="linenos"> 94</span></a>        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;错误的文件类型&quot;</span><span class="p">)</span>
-</span><span id="load_data_from_file-95"><a href="#load_data_from_file-95"><span class="linenos"> 95</span></a>
-</span><span id="load_data_from_file-96"><a href="#load_data_from_file-96"><span class="linenos"> 96</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.json&quot;</span><span class="p">:</span>
-</span><span id="load_data_from_file-97"><a href="#load_data_from_file-97"><span class="linenos"> 97</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="load_data_from_file-98"><a href="#load_data_from_file-98"><span class="linenos"> 98</span></a>            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</span><span id="load_data_from_file-99"><a href="#load_data_from_file-99"><span class="linenos"> 99</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="load_data_from_file-100"><a href="#load_data_from_file-100"><span class="linenos">100</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span><span id="load_data_from_file-101"><a href="#load_data_from_file-101"><span class="linenos">101</span></a>            <span class="c1"># 排除空行</span>
-</span><span id="load_data_from_file-102"><a href="#load_data_from_file-102"><span class="linenos">102</span></a>            <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</span><span id="load_data_from_file-91"><a href="#load_data_from_file-91"><span class="linenos"> 91</span></a><span class="sd">    异常:</span>
+</span><span id="load_data_from_file-92"><a href="#load_data_from_file-92"><span class="linenos"> 92</span></a>
+</span><span id="load_data_from_file-93"><a href="#load_data_from_file-93"><span class="linenos"> 93</span></a><span class="sd">        错误的文件类型</span>
+</span><span id="load_data_from_file-94"><a href="#load_data_from_file-94"><span class="linenos"> 94</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="load_data_from_file-95"><a href="#load_data_from_file-95"><span class="linenos"> 95</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;.json&quot;</span><span class="p">,</span> <span class="s2">&quot;.txt&quot;</span><span class="p">]:</span>
+</span><span id="load_data_from_file-96"><a href="#load_data_from_file-96"><span class="linenos"> 96</span></a>        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;错误的文件类型&quot;</span><span class="p">)</span>
+</span><span id="load_data_from_file-97"><a href="#load_data_from_file-97"><span class="linenos"> 97</span></a>
+</span><span id="load_data_from_file-98"><a href="#load_data_from_file-98"><span class="linenos"> 98</span></a>    <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.json&quot;</span><span class="p">:</span>
+</span><span id="load_data_from_file-99"><a href="#load_data_from_file-99"><span class="linenos"> 99</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="load_data_from_file-100"><a href="#load_data_from_file-100"><span class="linenos">100</span></a>            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="load_data_from_file-101"><a href="#load_data_from_file-101"><span class="linenos">101</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="load_data_from_file-102"><a href="#load_data_from_file-102"><span class="linenos">102</span></a>        <span class="k">with</span> <span class="n">path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span><span id="load_data_from_file-103"><a href="#load_data_from_file-103"><span class="linenos">103</span></a>            <span class="c1"># 排除空行</span>
+</span><span id="load_data_from_file-104"><a href="#load_data_from_file-104"><span class="linenos">104</span></a>            <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span> <span class="k">if</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
 </span></pre></div>
 
 
