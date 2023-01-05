@@ -512,27 +512,20 @@
       
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    数据库
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
     插件帮助
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     全部代码
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     下一步
   </a>
   
@@ -1398,77 +1391,7 @@
 
 </div>
 
-<h2 id="_7">数据库<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>但是一旦重启bot，你就会失去你的所有金子，这意味着你需要一个数据库来持久地保存数据</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">NONEBOT2</label><label for="__tabbed_9_2">AYAKA</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 9 ----------</span>
-<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
-
-<span class="k">class</span> <span class="nc">UserGold</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
-    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;user_gold&quot;</span>
-    <span class="n">value</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">m12</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;real_pick&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
-<span class="nd">@m12</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
-    <span class="n">gold</span> <span class="o">=</span> <span class="n">UserGold</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span>
-        <span class="n">group_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span>
-        <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
-    <span class="p">)</span>
-    <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="k">await</span> <span class="n">m12</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 9 ----------</span>
-<span class="kn">from</span> <span class="nn">ayaka</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">AyakaUserDB</span>
-
-<span class="k">class</span> <span class="nc">UserGold</span><span class="p">(</span><span class="n">AyakaUserDB</span><span class="p">):</span>
-    <span class="n">__table_name__</span> <span class="o">=</span> <span class="s2">&quot;user_gold&quot;</span>
-    <span class="n">value</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;real_pick&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
-    <span class="n">gold</span> <span class="o">=</span> <span class="n">UserGold</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span>
-        <span class="n">group_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span>
-        <span class="n">user_id</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">user_id</span>
-    <span class="p">)</span>
-    <span class="n">gold</span><span class="o">.</span><span class="n">value</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;real +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">gold</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<p><strong>实现效果</strong></p>
-<div class="demo">
-
-"user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
-"user" 说：move 沙城
-"Bot" 说：前往 沙城
-"user" 说：real_pick
-"Bot" 说：real +1000 / 1000
-"user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
-"sys" 说：bot重启后
-"user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
-"user" 说：move 沙城
-"Bot" 说：前往 沙城
-"user" 说：real_pick
-"Bot" 说：real +1000 / 2000
-"user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
-
-</div>
-
-<h2 id="_8">插件帮助<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_7">插件帮助<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>现在，我们写完了一个小插件了，那么该为它编写帮助了</p>
 <p>不幸的是，如果你使用的是AYAKA风格编写代码，那么你已经在上述代码中完成了它</p>
 <p>通过分析注册回调的注释(<code>func.__doc__</code>)，<code>ayaka</code>会自动生成对应的帮助</p>
@@ -1505,8 +1428,8 @@ xing ji lv xing
 - real_pick 捡金子
 </div>
 
-<h2 id="_9">全部代码<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">NONEBOT2</label><label for="__tabbed_10_2">AYAKA</label></div>
+<h2 id="_8">全部代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">NONEBOT2</label><label for="__tabbed_9_2">AYAKA</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka/blob/master/plugins/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C-nb.py">星际旅行-nb.py</a></p>
@@ -1516,7 +1439,7 @@ xing ji lv xing
 </div>
 </div>
 </div>
-<h2 id="_10">下一步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h2 id="_9">下一步<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 
