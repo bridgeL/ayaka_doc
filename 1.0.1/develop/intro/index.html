@@ -814,7 +814,7 @@
 <li>所谓的独占仅仅是对所有使用了盒子（即使用了<code>ayaka</code>）的插件而言的，对其他插件来说没有影响</li>
 <li>再次发送相应关闭命令，关闭该盒子，群聊恢复为闲置状态</li>
 </ul>
-<p>同一群聊同一时间只能运行0个或1个盒子</p>
+<p>显然，同一群聊同一时间最多只能运行一个盒子</p>
 <h2 id="_2">状态机<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>打开盒子后，群聊处于盒子独占状态</p>
 <p>在此基础上，群聊还将保存一个字符串，标识盒子状态</p>
@@ -866,21 +866,41 @@
 </tr>
 </tbody>
 </table>
-<p>注意：盒子idle状态与群聊闲置状态不同。群聊闲置状态是指没有任何盒子在运行；盒子idle状态是指该盒子已打开，但是正处于默认初始状态，此时群聊正被该盒子独占</p>
+<p>注意：盒子idle状态与群聊闲置状态不同</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>群聊闲置状态</td>
+<td>没有任何盒子在运行</td>
+</tr>
+<tr>
+<td>盒子idle状态</td>
+<td>盒子已打开，但是正处于默认初始状态idle，此时群聊正被该盒子独占</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_5">数据缓存<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>每个群聊中的每个盒子都有一个字典，可用于保存数据</p>
-<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
   <span class="n">box</span><span class="o">.</span><span class="n">cache</span>
   <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
   <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">]</span>
 </code></pre></div>
-<p>你可以结合<code>pydantic.BaseModel</code>使用</p>
+<p>你也可以结合<code>pydantic.BaseModel</code>使用</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 
 <span class="k">class</span> <span class="nc">TestData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tom&quot;</span>
     <span class="n">age</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="mi">404</span>
 
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="n">test_data</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">TestData</span><span class="p">)</span>
 </code></pre></div>
