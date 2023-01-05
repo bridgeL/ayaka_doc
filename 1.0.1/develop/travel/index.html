@@ -849,6 +849,12 @@
 <span class="nd">@m1</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
     <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># 关闭应用</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;退出&quot;</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;exit&quot;</span><span class="p">},</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">))</span>
+<span class="nd">@m2</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1438,18 +1444,16 @@ xing ji lv xing
 </div>
 
 <h2 id="_9">全部代码<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:1"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">NONEBOT2</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">NONEBOT2</label><label for="__tabbed_10_2">AYAKA</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka/blob/master/plugins/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C-nb.py">星际旅行-nb.py</a></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:1"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">AYAKA</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <p><a href="https://github.com/bridgeL/nonebot-plugin-ayaka/blob/master/plugins/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C.py">星际旅行.py</a></p>
+</div>
+</div>
+</div>
 <h2 id="_10">下一步<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
