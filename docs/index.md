@@ -6,17 +6,20 @@
 
 单独安装本插件没有意义，本插件的意义在于帮助衍生插件实现功能
 
-## ayaka可以提供
+## 安装
 
-- 命令隔离
-- 数据隔离
+```
+pip install nonebot-plugin-ayaka
+``` 
+
+## 特性
+
 - 状态机
+- 数据缓存
 
-## 更多
+**相关链接**
 
-更多文档正在重写 [API](https://bridgel.github.io/ayaka_doc/1.0.1/api/)
-
-## 相关链接
+[API](https://bridgel.github.io/ayaka_doc/1.0.1/api/)
 
 [ayaka仓库](https://github.com/bridgeL/nonebot-plugin-ayaka)
 
@@ -24,11 +27,6 @@
 
 [基于ayaka的小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
-## 安装
-
-```
-pip install nonebot-plugin-ayaka
-``` 
 
 ## 下一步
 

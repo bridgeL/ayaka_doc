@@ -17,7 +17,6 @@ theme:
     primary: brown
     accent: blue
   features:
-  - content.code.annotate
   - content.code.copy
   - content.tabs.link
   - navigation.indexes
@@ -36,11 +35,11 @@ nav:
 - 主页: index.md
 - 快速开始: quick_start.md
 - 开发衍生插件:
+  - 概念介绍: develop/intro.md
   - 星际旅行: develop/travel.md
 - 小游戏合集:
   - 介绍: games/game.md
   - 安装与配置: games/install.md
-  - 谁是卧底: games/who-is-suspect.md
   - 更多帮助: games/help.md
   - 更新日志: games/change-log.md
 - 更新日志:
@@ -53,15 +52,13 @@ nav:
 - API: api/index.html
 
 markdown_extensions:
-- pymdownx.highlight:
-    linenums_style: pymdownx-inline
-    linenums: true
-- pymdownx.inlinehilite
-- pymdownx.snippets
 - pymdownx.superfences
+- pymdownx.tabbed:
+    alternate_style: true 
 - toc:
     title: 本页索引
     permalink: true
+
 
 plugins:
 - search:

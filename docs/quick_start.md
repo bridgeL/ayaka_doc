@@ -1,75 +1,75 @@
 # 快速开始
 
-有两种写法，二者是等价的，只不过由box进行了封装，少写点代码罢了
+两种代码风格均可
 
-## matcher 写法
+| 风格     | 特点                       |
+| -------- | -------------------------- |
+| NONEBOT2 | 兼容性更好                 |
+| AYAKA    | 代码更紧凑，更快的加载速度 |
 
-兼容性更好
+## 状态机
 
-```py
-# my_plugin.py
+=== "NONEBOT2"
 
-from ayaka import AyakaBox
-from nonebot import on_command
+    ```py
+    from ayaka import AyakaBox
+    from nonebot import on_command
 
-# 创建box
-box = AyakaBox("测试")
+    # 创建box
+    box = AyakaBox("测试")
 
-# 定义matchers
-ENTANCE = on_command("打开", aliases={"open"}, rule=box.rule())
-EXIT = on_command("关闭", rule=box.rule(states="*"))
-DO_SOMETHING = on_command("你好", rule=box.rule(states=["idle", "world"]))
-GOTO_WORLD = on_command("换个状态", rule=box.rule(states="idle"))
+    # 定义matchers
+    ENTANCE = on_command("打开", aliases={"open"}, rule=box.rule())
+    EXIT = on_command("关闭", rule=box.rule(states="*"))
+    DO_SOMETHING = on_command("你好", rule=box.rule(states=["idle", "world"]))
+    GOTO_WORLD = on_command("换个状态", rule=box.rule(states="idle"))
 
-# 打开、关闭盒子
-@ENTANCE.handle()
-async def entrance():
-    await box.start()
+    # 打开、关闭盒子
+    @ENTANCE.handle()
+    async def entrance():
+        await box.start()
 
-@EXIT.handle()
-async def exit_box():
-    await box.close()
+    @EXIT.handle()
+    async def exit_box():
+        await box.close()
 
-# 你好
-@DO_SOMETHING.handle()
-async def hello():
-    await DO_SOMETHING.send(f"[{box.state}] 你好，世界！")
+    # 你好
+    @DO_SOMETHING.handle()
+    async def hello():
+        await DO_SOMETHING.send(f"[{box.state}] 你好，世界！")
 
-# 换个状态
-@GOTO_WORLD.handle()
-async def goto_world():
-    await box.set_state("world")
-    await GOTO_WORLD.send("已设置状态为world")
-```
+    # 换个状态
+    @GOTO_WORLD.handle()
+    async def goto_world():
+        await box.set_state("world")
+        await GOTO_WORLD.send("已设置状态为world")
+    ```
 
-## box.on_xxx 写法
+=== "AYAKA"
 
-代码更紧凑
+    ```py
+    from ayaka import AyakaBox
 
-```py
-# my_plugin.py
+    # 创建box
+    box = AyakaBox("测试")
 
-from ayaka import AyakaBox
+    # 打开、关闭盒子
+    box.set_start_cmds(cmds=["打开", "open"])
+    box.set_close_cmds(cmds="关闭")
 
-box = AyakaBox("测试")
+    # 你好
+    @box.on_cmd(cmds="你好", states=["idle", "world"])
+    async def hello():
+        await box.send(f"[{box.state}] 你好，世界！")
 
-# 打开、关闭盒子
-box.set_start_cmds(cmds=["打开", "open"])
-box.set_close_cmds(cmds="关闭")
+    # 换个状态
+    @box.on_cmd(cmds="换个状态", states="idle")
+    async def goto_world():
+        await box.set_state("world")
+        await box.send("已设置状态为world")
+    ```
 
-# 你好
-@box.on_cmd(cmds="你好", states=["idle", "world"])
-async def hello():
-    await box.send(f"[{box.state}] 你好，世界！")
-
-# 换个状态
-@box.on_cmd(cmds="换个状态", states="idle")
-async def goto_world():
-    await box.set_state("world")
-    await box.send("已设置状态为world")
-```
-
-## 实现效果
+**实现效果**
 
 <div class="demo">
 "user" 说：你好
@@ -85,6 +85,67 @@ async def goto_world():
 "user" 说：关闭
 "Bot" 说：已关闭应用[测试]
 </div>
+
+## 数据缓存
+
+=== "NONEBOT2"
+
+    ```py
+    from ayaka import AyakaBox
+    from pydantic import BaseModel
+    from nonebot import on_command
+
+    class CacheData(BaseModel):
+        time:int = 0
+
+    # 创建box
+    box = AyakaBox("测试")
+
+    # 定义matcher
+    PLUS_ONE = on_command("加一秒", rule=box.rule())
+
+    # 加一秒
+    @PLUS_ONE.handle()
+    async def plus_one():
+        data = box.get_data(CacheData)
+        data.time += 1
+        await PLUS_ONE.send(f"{data.time}")
+    ```
+
+=== "AYAKA"
+
+    ```py
+    from ayaka import AyakaBox
+    from pydantic import BaseModel
+
+    class CacheData(BaseModel):
+        time:int = 0
+
+    # 创建box
+    box = AyakaBox("测试")
+
+    # 加一秒
+    @box.on_cmd(cmds="加一秒")
+    async def plus_one():
+        data = box.get_data(CacheData)
+        data.time += 1
+        await box.send(f"{data.time}")
+    ```
+
+**实现效果**
+
+<div class="demo">
+"user" 说：加一秒
+"Bot" 说：1
+"user" 说：加一秒
+"Bot" 说：2
+"user" 说：加一秒
+"Bot" 说：3
+"user" 说：加一秒
+"Bot" 说：4
+</div>
+
+注意：重启bot后数据丢失
 
 ## 下一步
 

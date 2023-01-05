@@ -35,6 +35,7 @@
 - 新特性: box.get_arbitrary_data方法
 - 新特性: 关闭恼人的duplicated warning提示
 - 新特性: 新增slow_load_config装饰器
+- 新特性：AyakaFunc，极大提高插件加载速度
 - 移除：移除了box.create_cmd_matcher、box.create_text_matcher、box.reset_state
 - 移除：删除了类型提示不佳的StrOrMsgList类，不影响box.args的使用
 - 修改：重命名box.add_help方法为_add_help（不允许外部使用
