@@ -438,15 +438,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hello" class="md-nav__link">
-    hello！
+  <a href="#_2" class="md-nav__link">
+    旅行
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    旅行
+  <a href="#hello" class="md-nav__link">
+    hello！
   </a>
   
 </li>
@@ -803,19 +803,16 @@
 <table>
 <thead>
 <tr>
-<th>状态</th>
 <th>动作</th>
 <th>效果</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>闲置状态</td>
 <td>星际旅行、travel</td>
 <td>打开星际旅行应用</td>
 </tr>
 <tr>
-<td>运行星际旅行中</td>
 <td>退出、exit</td>
 <td>关闭星际旅行应用</td>
 </tr>
@@ -842,42 +839,6 @@
 
 </div>
 
-<h2 id="hello">hello！<a class="headerlink" href="#hello" title="Permanent link">&para;</a></h2>
-<p>实现打招呼的功能</p>
-<table>
-<thead>
-<tr>
-<th>地点</th>
-<th>动作</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>任意地点</td>
-<td>hi</td>
-<td>你好，&lt;地名&gt; ！</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hi&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
-    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
-</code></pre></div>
-<p><strong>实现效果</strong></p>
-<div class="demo">
-
-"user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
-"user" 说：hi
-"Bot" 说：你好，idle
-"user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
-
-</div>
-
 <h2 id="_2">旅行<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -895,7 +856,7 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 2 ----------</span>
 <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;move&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;*&quot;</span><span class="p">])</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;移动&#39;&#39;&#39;</span>
@@ -908,8 +869,42 @@
 
 "user" 说：travel
 "Bot" 说：已打开应用 [星际旅行]
-"user" 说：hi
-"Bot" 说：你好，idle
+"user" 说：move 地球
+"Bot" 说：前往 地球
+"user" 说：exit
+"Bot" 说：已关闭应用 [星际旅行]
+
+</div>
+
+<h2 id="hello">hello！<a class="headerlink" href="#hello" title="Permanent link">&para;</a></h2>
+<p>实现打招呼的功能</p>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>动作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地球, 月球, 太阳</td>
+<td>hi</td>
+<td>你好，&lt;地名&gt; ！</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># ---------- 3 ----------</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;hi&quot;</span><span class="p">],</span> <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;地球&quot;</span><span class="p">,</span> <span class="s2">&quot;月球&quot;</span><span class="p">,</span> <span class="s2">&quot;太阳&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">say_hi</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;打招呼&#39;&#39;&#39;</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;你好，</span><span class="si">{</span><span class="n">box</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">！&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+
+"user" 说：travel
+"Bot" 说：已打开应用 [星际旅行]
 "user" 说：move 地球
 "Bot" 说：前往 地球
 "user" 说：hi
