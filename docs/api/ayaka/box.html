@@ -849,139 +849,137 @@
 </span><span id="L-618"><a href="#L-618"><span class="linenos">618</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
 </span><span id="L-619"><a href="#L-619"><span class="linenos">619</span></a>
 </span><span id="L-620"><a href="#L-620"><span class="linenos">620</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a>
-</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a>
-</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="L-629"><a href="#L-629"><span class="linenos">629</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
-</span><span id="L-631"><a href="#L-631"><span class="linenos">631</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a><span class="sd">        ```</span>
-</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
-</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="L-639"><a href="#L-639"><span class="linenos">639</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
-</span><span id="L-640"><a href="#L-640"><span class="linenos">640</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span id="L-641"><a href="#L-641"><span class="linenos">641</span></a>
-</span><span id="L-642"><a href="#L-642"><span class="linenos">642</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-</span><span id="L-643"><a href="#L-643"><span class="linenos">643</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
-</span><span id="L-644"><a href="#L-644"><span class="linenos">644</span></a>
-</span><span id="L-645"><a href="#L-645"><span class="linenos">645</span></a><span class="sd">        参数:</span>
-</span><span id="L-646"><a href="#L-646"><span class="linenos">646</span></a>
-</span><span id="L-647"><a href="#L-647"><span class="linenos">647</span></a><span class="sd">            key: 键名</span>
-</span><span id="L-648"><a href="#L-648"><span class="linenos">648</span></a>
-</span><span id="L-649"><a href="#L-649"><span class="linenos">649</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
-</span><span id="L-650"><a href="#L-650"><span class="linenos">650</span></a>
-</span><span id="L-651"><a href="#L-651"><span class="linenos">651</span></a><span class="sd">        返回:</span>
-</span><span id="L-652"><a href="#L-652"><span class="linenos">652</span></a>
-</span><span id="L-653"><a href="#L-653"><span class="linenos">653</span></a><span class="sd">            self.cache[key]</span>
-</span><span id="L-654"><a href="#L-654"><span class="linenos">654</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="L-655"><a href="#L-655"><span class="linenos">655</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="L-656"><a href="#L-656"><span class="linenos">656</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
-</span><span id="L-657"><a href="#L-657"><span class="linenos">657</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</span><span id="L-658"><a href="#L-658"><span class="linenos">658</span></a>
-</span><span id="L-659"><a href="#L-659"><span class="linenos">659</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
-</span><span id="L-660"><a href="#L-660"><span class="linenos">660</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
-</span><span id="L-661"><a href="#L-661"><span class="linenos">661</span></a>
-</span><span id="L-662"><a href="#L-662"><span class="linenos">662</span></a><span class="sd">        参数:</span>
-</span><span id="L-663"><a href="#L-663"><span class="linenos">663</span></a>
-</span><span id="L-664"><a href="#L-664"><span class="linenos">664</span></a><span class="sd">            cls: BaseModel类</span>
-</span><span id="L-665"><a href="#L-665"><span class="linenos">665</span></a>
-</span><span id="L-666"><a href="#L-666"><span class="linenos">666</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
-</span><span id="L-667"><a href="#L-667"><span class="linenos">667</span></a>
-</span><span id="L-668"><a href="#L-668"><span class="linenos">668</span></a><span class="sd">        返回:</span>
-</span><span id="L-669"><a href="#L-669"><span class="linenos">669</span></a>
-</span><span id="L-670"><a href="#L-670"><span class="linenos">670</span></a><span class="sd">            BaseModel对象</span>
-</span><span id="L-671"><a href="#L-671"><span class="linenos">671</span></a>
-</span><span id="L-672"><a href="#L-672"><span class="linenos">672</span></a><span class="sd">        示例代码:</span>
-</span><span id="L-673"><a href="#L-673"><span class="linenos">673</span></a><span class="sd">        ```</span>
-</span><span id="L-674"><a href="#L-674"><span class="linenos">674</span></a><span class="sd">            from pydantic import BaseModel</span>
-</span><span id="L-675"><a href="#L-675"><span class="linenos">675</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
-</span><span id="L-676"><a href="#L-676"><span class="linenos">676</span></a>
-</span><span id="L-677"><a href="#L-677"><span class="linenos">677</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="L-678"><a href="#L-678"><span class="linenos">678</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="L-679"><a href="#L-679"><span class="linenos">679</span></a>
-</span><span id="L-680"><a href="#L-680"><span class="linenos">680</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="L-681"><a href="#L-681"><span class="linenos">681</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="L-682"><a href="#L-682"><span class="linenos">682</span></a>
-</span><span id="L-683"><a href="#L-683"><span class="linenos">683</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="L-684"><a href="#L-684"><span class="linenos">684</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="L-685"><a href="#L-685"><span class="linenos">685</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="L-686"><a href="#L-686"><span class="linenos">686</span></a><span class="sd">                data.cnt += 1</span>
-</span><span id="L-687"><a href="#L-687"><span class="linenos">687</span></a><span class="sd">                print(data.cnt)</span>
-</span><span id="L-688"><a href="#L-688"><span class="linenos">688</span></a><span class="sd">        ```</span>
-</span><span id="L-689"><a href="#L-689"><span class="linenos">689</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="L-690"><a href="#L-690"><span class="linenos">690</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="L-691"><a href="#L-691"><span class="linenos">691</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="L-692"><a href="#L-692"><span class="linenos">692</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="L-693"><a href="#L-693"><span class="linenos">693</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-</span><span id="L-694"><a href="#L-694"><span class="linenos">694</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-</span><span id="L-695"><a href="#L-695"><span class="linenos">695</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="L-696"><a href="#L-696"><span class="linenos">696</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</span><span id="L-697"><a href="#L-697"><span class="linenos">697</span></a>
-</span><span id="L-698"><a href="#L-698"><span class="linenos">698</span></a>    <span class="c1"># ---- 快捷发送 ----</span>
-</span><span id="L-699"><a href="#L-699"><span class="linenos">699</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="L-700"><a href="#L-700"><span class="linenos">700</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
-</span><span id="L-701"><a href="#L-701"><span class="linenos">701</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</span><span id="L-702"><a href="#L-702"><span class="linenos">702</span></a>
-</span><span id="L-703"><a href="#L-703"><span class="linenos">703</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
-</span><span id="L-704"><a href="#L-704"><span class="linenos">704</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
-</span><span id="L-705"><a href="#L-705"><span class="linenos">705</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
-</span><span id="L-706"><a href="#L-706"><span class="linenos">706</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
-</span><span id="L-707"><a href="#L-707"><span class="linenos">707</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
-</span><span id="L-708"><a href="#L-708"><span class="linenos">708</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
-</span><span id="L-709"><a href="#L-709"><span class="linenos">709</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
-</span><span id="L-710"><a href="#L-710"><span class="linenos">710</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
-</span><span id="L-711"><a href="#L-711"><span class="linenos">711</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
-</span><span id="L-712"><a href="#L-712"><span class="linenos">712</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
-</span><span id="L-713"><a href="#L-713"><span class="linenos">713</span></a>            <span class="p">)</span>
-</span><span id="L-714"><a href="#L-714"><span class="linenos">714</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
-</span><span id="L-715"><a href="#L-715"><span class="linenos">715</span></a>
-</span><span id="L-716"><a href="#L-716"><span class="linenos">716</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-717"><a href="#L-717"><span class="linenos">717</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
-</span><span id="L-718"><a href="#L-718"><span class="linenos">718</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="L-719"><a href="#L-719"><span class="linenos">719</span></a>
-</span><span id="L-720"><a href="#L-720"><span class="linenos">720</span></a>    <span class="c1"># ---- 监听私聊 ----</span>
-</span><span id="L-721"><a href="#L-721"><span class="linenos">721</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-722"><a href="#L-722"><span class="linenos">722</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
-</span><span id="L-723"><a href="#L-723"><span class="linenos">723</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
-</span><span id="L-724"><a href="#L-724"><span class="linenos">724</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="L-725"><a href="#L-725"><span class="linenos">725</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-</span><span id="L-726"><a href="#L-726"><span class="linenos">726</span></a>
-</span><span id="L-727"><a href="#L-727"><span class="linenos">727</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-</span><span id="L-728"><a href="#L-728"><span class="linenos">728</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
-</span><span id="L-729"><a href="#L-729"><span class="linenos">729</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="L-730"><a href="#L-730"><span class="linenos">730</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-</span><span id="L-731"><a href="#L-731"><span class="linenos">731</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
-</span><span id="L-732"><a href="#L-732"><span class="linenos">732</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
-</span><span id="L-733"><a href="#L-733"><span class="linenos">733</span></a>            <span class="k">return</span>
-</span><span id="L-734"><a href="#L-734"><span class="linenos">734</span></a>
-</span><span id="L-735"><a href="#L-735"><span class="linenos">735</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
-</span><span id="L-736"><a href="#L-736"><span class="linenos">736</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="L-737"><a href="#L-737"><span class="linenos">737</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-</span><span id="L-738"><a href="#L-738"><span class="linenos">738</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="L-739"><a href="#L-739"><span class="linenos">739</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-</span><span id="L-740"><a href="#L-740"><span class="linenos">740</span></a>
-</span><span id="L-741"><a href="#L-741"><span class="linenos">741</span></a>
-</span><span id="L-742"><a href="#L-742"><span class="linenos">742</span></a><span class="nd">@LISTEN</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-</span><span id="L-743"><a href="#L-743"><span class="linenos">743</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">listener_handle</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">PrivateMessageEvent</span><span class="p">):</span>
-</span><span id="L-744"><a href="#L-744"><span class="linenos">744</span></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">user_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
-</span><span id="L-745"><a href="#L-745"><span class="linenos">745</span></a>        <span class="n">_event</span> <span class="o">=</span> <span class="n">GroupMessageEvent</span><span class="p">(</span>
-</span><span id="L-746"><a href="#L-746"><span class="linenos">746</span></a>            <span class="o">**</span><span class="n">event</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message_type&quot;</span><span class="p">}),</span>
-</span><span id="L-747"><a href="#L-747"><span class="linenos">747</span></a>            <span class="n">group_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-</span><span id="L-748"><a href="#L-748"><span class="linenos">748</span></a>            <span class="n">message_type</span><span class="o">=</span><span class="s2">&quot;group&quot;</span>
-</span><span id="L-749"><a href="#L-749"><span class="linenos">749</span></a>        <span class="p">)</span>
-</span><span id="L-750"><a href="#L-750"><span class="linenos">750</span></a>
-</span><span id="L-751"><a href="#L-751"><span class="linenos">751</span></a>        <span class="k">for</span> <span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">user_id</span><span class="p">]:</span>
-</span><span id="L-752"><a href="#L-752"><span class="linenos">752</span></a>            <span class="n">_event</span><span class="o">.</span><span class="n">group_id</span> <span class="o">=</span> <span class="n">group_id</span>
-</span><span id="L-753"><a href="#L-753"><span class="linenos">753</span></a>            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">handle_event</span><span class="p">(</span><span class="n">_event</span><span class="p">)</span>
+</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a>
+</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a>
+</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="L-629"><a href="#L-629"><span class="linenos">629</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
+</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="L-631"><a href="#L-631"><span class="linenos">631</span></a><span class="sd">        ```</span>
+</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
+</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
+</span><span id="L-639"><a href="#L-639"><span class="linenos">639</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="L-640"><a href="#L-640"><span class="linenos">640</span></a>
+</span><span id="L-641"><a href="#L-641"><span class="linenos">641</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+</span><span id="L-642"><a href="#L-642"><span class="linenos">642</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
+</span><span id="L-643"><a href="#L-643"><span class="linenos">643</span></a>
+</span><span id="L-644"><a href="#L-644"><span class="linenos">644</span></a><span class="sd">        参数:</span>
+</span><span id="L-645"><a href="#L-645"><span class="linenos">645</span></a>
+</span><span id="L-646"><a href="#L-646"><span class="linenos">646</span></a><span class="sd">            key: 键名</span>
+</span><span id="L-647"><a href="#L-647"><span class="linenos">647</span></a>
+</span><span id="L-648"><a href="#L-648"><span class="linenos">648</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
+</span><span id="L-649"><a href="#L-649"><span class="linenos">649</span></a>
+</span><span id="L-650"><a href="#L-650"><span class="linenos">650</span></a><span class="sd">        返回:</span>
+</span><span id="L-651"><a href="#L-651"><span class="linenos">651</span></a>
+</span><span id="L-652"><a href="#L-652"><span class="linenos">652</span></a><span class="sd">            self.cache[key]</span>
+</span><span id="L-653"><a href="#L-653"><span class="linenos">653</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="L-654"><a href="#L-654"><span class="linenos">654</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="L-655"><a href="#L-655"><span class="linenos">655</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
+</span><span id="L-656"><a href="#L-656"><span class="linenos">656</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</span><span id="L-657"><a href="#L-657"><span class="linenos">657</span></a>
+</span><span id="L-658"><a href="#L-658"><span class="linenos">658</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
+</span><span id="L-659"><a href="#L-659"><span class="linenos">659</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
+</span><span id="L-660"><a href="#L-660"><span class="linenos">660</span></a>
+</span><span id="L-661"><a href="#L-661"><span class="linenos">661</span></a><span class="sd">        参数:</span>
+</span><span id="L-662"><a href="#L-662"><span class="linenos">662</span></a>
+</span><span id="L-663"><a href="#L-663"><span class="linenos">663</span></a><span class="sd">            cls: BaseModel类</span>
+</span><span id="L-664"><a href="#L-664"><span class="linenos">664</span></a>
+</span><span id="L-665"><a href="#L-665"><span class="linenos">665</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
+</span><span id="L-666"><a href="#L-666"><span class="linenos">666</span></a>
+</span><span id="L-667"><a href="#L-667"><span class="linenos">667</span></a><span class="sd">        返回:</span>
+</span><span id="L-668"><a href="#L-668"><span class="linenos">668</span></a>
+</span><span id="L-669"><a href="#L-669"><span class="linenos">669</span></a><span class="sd">            BaseModel对象</span>
+</span><span id="L-670"><a href="#L-670"><span class="linenos">670</span></a>
+</span><span id="L-671"><a href="#L-671"><span class="linenos">671</span></a><span class="sd">        示例代码:</span>
+</span><span id="L-672"><a href="#L-672"><span class="linenos">672</span></a><span class="sd">        ```</span>
+</span><span id="L-673"><a href="#L-673"><span class="linenos">673</span></a><span class="sd">            from pydantic import BaseModel</span>
+</span><span id="L-674"><a href="#L-674"><span class="linenos">674</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
+</span><span id="L-675"><a href="#L-675"><span class="linenos">675</span></a>
+</span><span id="L-676"><a href="#L-676"><span class="linenos">676</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
+</span><span id="L-677"><a href="#L-677"><span class="linenos">677</span></a>
+</span><span id="L-678"><a href="#L-678"><span class="linenos">678</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="L-679"><a href="#L-679"><span class="linenos">679</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="L-680"><a href="#L-680"><span class="linenos">680</span></a>
+</span><span id="L-681"><a href="#L-681"><span class="linenos">681</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="L-682"><a href="#L-682"><span class="linenos">682</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="L-683"><a href="#L-683"><span class="linenos">683</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="L-684"><a href="#L-684"><span class="linenos">684</span></a><span class="sd">                data.cnt += 1</span>
+</span><span id="L-685"><a href="#L-685"><span class="linenos">685</span></a><span class="sd">                print(data.cnt)</span>
+</span><span id="L-686"><a href="#L-686"><span class="linenos">686</span></a><span class="sd">        ```</span>
+</span><span id="L-687"><a href="#L-687"><span class="linenos">687</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="L-688"><a href="#L-688"><span class="linenos">688</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="L-689"><a href="#L-689"><span class="linenos">689</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="L-690"><a href="#L-690"><span class="linenos">690</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="L-691"><a href="#L-691"><span class="linenos">691</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+</span><span id="L-692"><a href="#L-692"><span class="linenos">692</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="L-693"><a href="#L-693"><span class="linenos">693</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-694"><a href="#L-694"><span class="linenos">694</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</span><span id="L-695"><a href="#L-695"><span class="linenos">695</span></a>
+</span><span id="L-696"><a href="#L-696"><span class="linenos">696</span></a>    <span class="c1"># ---- 快捷发送 ----</span>
+</span><span id="L-697"><a href="#L-697"><span class="linenos">697</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-698"><a href="#L-698"><span class="linenos">698</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
+</span><span id="L-699"><a href="#L-699"><span class="linenos">699</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span id="L-700"><a href="#L-700"><span class="linenos">700</span></a>
+</span><span id="L-701"><a href="#L-701"><span class="linenos">701</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
+</span><span id="L-702"><a href="#L-702"><span class="linenos">702</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
+</span><span id="L-703"><a href="#L-703"><span class="linenos">703</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
+</span><span id="L-704"><a href="#L-704"><span class="linenos">704</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="L-705"><a href="#L-705"><span class="linenos">705</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
+</span><span id="L-706"><a href="#L-706"><span class="linenos">706</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
+</span><span id="L-707"><a href="#L-707"><span class="linenos">707</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
+</span><span id="L-708"><a href="#L-708"><span class="linenos">708</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
+</span><span id="L-709"><a href="#L-709"><span class="linenos">709</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
+</span><span id="L-710"><a href="#L-710"><span class="linenos">710</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
+</span><span id="L-711"><a href="#L-711"><span class="linenos">711</span></a>            <span class="p">)</span>
+</span><span id="L-712"><a href="#L-712"><span class="linenos">712</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
+</span><span id="L-713"><a href="#L-713"><span class="linenos">713</span></a>
+</span><span id="L-714"><a href="#L-714"><span class="linenos">714</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-715"><a href="#L-715"><span class="linenos">715</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
+</span><span id="L-716"><a href="#L-716"><span class="linenos">716</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+</span><span id="L-717"><a href="#L-717"><span class="linenos">717</span></a>
+</span><span id="L-718"><a href="#L-718"><span class="linenos">718</span></a>    <span class="c1"># ---- 监听私聊 ----</span>
+</span><span id="L-719"><a href="#L-719"><span class="linenos">719</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-720"><a href="#L-720"><span class="linenos">720</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
+</span><span id="L-721"><a href="#L-721"><span class="linenos">721</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+</span><span id="L-722"><a href="#L-722"><span class="linenos">722</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-723"><a href="#L-723"><span class="linenos">723</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="L-724"><a href="#L-724"><span class="linenos">724</span></a>
+</span><span id="L-725"><a href="#L-725"><span class="linenos">725</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+</span><span id="L-726"><a href="#L-726"><span class="linenos">726</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
+</span><span id="L-727"><a href="#L-727"><span class="linenos">727</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-728"><a href="#L-728"><span class="linenos">728</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="L-729"><a href="#L-729"><span class="linenos">729</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
+</span><span id="L-730"><a href="#L-730"><span class="linenos">730</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+</span><span id="L-731"><a href="#L-731"><span class="linenos">731</span></a>            <span class="k">return</span>
+</span><span id="L-732"><a href="#L-732"><span class="linenos">732</span></a>
+</span><span id="L-733"><a href="#L-733"><span class="linenos">733</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
+</span><span id="L-734"><a href="#L-734"><span class="linenos">734</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="L-735"><a href="#L-735"><span class="linenos">735</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="L-736"><a href="#L-736"><span class="linenos">736</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="L-737"><a href="#L-737"><span class="linenos">737</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="L-738"><a href="#L-738"><span class="linenos">738</span></a>
+</span><span id="L-739"><a href="#L-739"><span class="linenos">739</span></a>
+</span><span id="L-740"><a href="#L-740"><span class="linenos">740</span></a><span class="nd">@LISTEN</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+</span><span id="L-741"><a href="#L-741"><span class="linenos">741</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">listener_handle</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">PrivateMessageEvent</span><span class="p">):</span>
+</span><span id="L-742"><a href="#L-742"><span class="linenos">742</span></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">user_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+</span><span id="L-743"><a href="#L-743"><span class="linenos">743</span></a>        <span class="n">_event</span> <span class="o">=</span> <span class="n">GroupMessageEvent</span><span class="p">(</span>
+</span><span id="L-744"><a href="#L-744"><span class="linenos">744</span></a>            <span class="o">**</span><span class="n">event</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message_type&quot;</span><span class="p">}),</span>
+</span><span id="L-745"><a href="#L-745"><span class="linenos">745</span></a>            <span class="n">group_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="L-746"><a href="#L-746"><span class="linenos">746</span></a>            <span class="n">message_type</span><span class="o">=</span><span class="s2">&quot;group&quot;</span>
+</span><span id="L-747"><a href="#L-747"><span class="linenos">747</span></a>        <span class="p">)</span>
+</span><span id="L-748"><a href="#L-748"><span class="linenos">748</span></a>
+</span><span id="L-749"><a href="#L-749"><span class="linenos">749</span></a>        <span class="k">for</span> <span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">user_id</span><span class="p">]:</span>
+</span><span id="L-750"><a href="#L-750"><span class="linenos">750</span></a>            <span class="n">_event</span><span class="o">.</span><span class="n">group_id</span> <span class="o">=</span> <span class="n">group_id</span>
+</span><span id="L-751"><a href="#L-751"><span class="linenos">751</span></a>            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">handle_event</span><span class="p">(</span><span class="n">_event</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -1919,125 +1917,123 @@ group_id: 群组qq号
 </span><span id="AyakaBox-619"><a href="#AyakaBox-619"><span class="linenos">619</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
 </span><span id="AyakaBox-620"><a href="#AyakaBox-620"><span class="linenos">620</span></a>
 </span><span id="AyakaBox-621"><a href="#AyakaBox-621"><span class="linenos">621</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="AyakaBox-622"><a href="#AyakaBox-622"><span class="linenos">622</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="AyakaBox-623"><a href="#AyakaBox-623"><span class="linenos">623</span></a>
-</span><span id="AyakaBox-624"><a href="#AyakaBox-624"><span class="linenos">624</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="AyakaBox-625"><a href="#AyakaBox-625"><span class="linenos">625</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="AyakaBox-626"><a href="#AyakaBox-626"><span class="linenos">626</span></a>
-</span><span id="AyakaBox-627"><a href="#AyakaBox-627"><span class="linenos">627</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="AyakaBox-628"><a href="#AyakaBox-628"><span class="linenos">628</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="AyakaBox-629"><a href="#AyakaBox-629"><span class="linenos">629</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="AyakaBox-630"><a href="#AyakaBox-630"><span class="linenos">630</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="AyakaBox-631"><a href="#AyakaBox-631"><span class="linenos">631</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
-</span><span id="AyakaBox-632"><a href="#AyakaBox-632"><span class="linenos">632</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="AyakaBox-633"><a href="#AyakaBox-633"><span class="linenos">633</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox-634"><a href="#AyakaBox-634"><span class="linenos">634</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox-635"><a href="#AyakaBox-635"><span class="linenos">635</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="AyakaBox-636"><a href="#AyakaBox-636"><span class="linenos">636</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
-</span><span id="AyakaBox-637"><a href="#AyakaBox-637"><span class="linenos">637</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="AyakaBox-638"><a href="#AyakaBox-638"><span class="linenos">638</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="AyakaBox-639"><a href="#AyakaBox-639"><span class="linenos">639</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="AyakaBox-640"><a href="#AyakaBox-640"><span class="linenos">640</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
-</span><span id="AyakaBox-641"><a href="#AyakaBox-641"><span class="linenos">641</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span id="AyakaBox-642"><a href="#AyakaBox-642"><span class="linenos">642</span></a>
-</span><span id="AyakaBox-643"><a href="#AyakaBox-643"><span class="linenos">643</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-</span><span id="AyakaBox-644"><a href="#AyakaBox-644"><span class="linenos">644</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
-</span><span id="AyakaBox-645"><a href="#AyakaBox-645"><span class="linenos">645</span></a>
-</span><span id="AyakaBox-646"><a href="#AyakaBox-646"><span class="linenos">646</span></a><span class="sd">        参数:</span>
-</span><span id="AyakaBox-647"><a href="#AyakaBox-647"><span class="linenos">647</span></a>
-</span><span id="AyakaBox-648"><a href="#AyakaBox-648"><span class="linenos">648</span></a><span class="sd">            key: 键名</span>
-</span><span id="AyakaBox-649"><a href="#AyakaBox-649"><span class="linenos">649</span></a>
-</span><span id="AyakaBox-650"><a href="#AyakaBox-650"><span class="linenos">650</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
-</span><span id="AyakaBox-651"><a href="#AyakaBox-651"><span class="linenos">651</span></a>
-</span><span id="AyakaBox-652"><a href="#AyakaBox-652"><span class="linenos">652</span></a><span class="sd">        返回:</span>
-</span><span id="AyakaBox-653"><a href="#AyakaBox-653"><span class="linenos">653</span></a>
-</span><span id="AyakaBox-654"><a href="#AyakaBox-654"><span class="linenos">654</span></a><span class="sd">            self.cache[key]</span>
-</span><span id="AyakaBox-655"><a href="#AyakaBox-655"><span class="linenos">655</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox-656"><a href="#AyakaBox-656"><span class="linenos">656</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="AyakaBox-657"><a href="#AyakaBox-657"><span class="linenos">657</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
-</span><span id="AyakaBox-658"><a href="#AyakaBox-658"><span class="linenos">658</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</span><span id="AyakaBox-659"><a href="#AyakaBox-659"><span class="linenos">659</span></a>
-</span><span id="AyakaBox-660"><a href="#AyakaBox-660"><span class="linenos">660</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
-</span><span id="AyakaBox-661"><a href="#AyakaBox-661"><span class="linenos">661</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
-</span><span id="AyakaBox-662"><a href="#AyakaBox-662"><span class="linenos">662</span></a>
-</span><span id="AyakaBox-663"><a href="#AyakaBox-663"><span class="linenos">663</span></a><span class="sd">        参数:</span>
-</span><span id="AyakaBox-664"><a href="#AyakaBox-664"><span class="linenos">664</span></a>
-</span><span id="AyakaBox-665"><a href="#AyakaBox-665"><span class="linenos">665</span></a><span class="sd">            cls: BaseModel类</span>
-</span><span id="AyakaBox-666"><a href="#AyakaBox-666"><span class="linenos">666</span></a>
-</span><span id="AyakaBox-667"><a href="#AyakaBox-667"><span class="linenos">667</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
-</span><span id="AyakaBox-668"><a href="#AyakaBox-668"><span class="linenos">668</span></a>
-</span><span id="AyakaBox-669"><a href="#AyakaBox-669"><span class="linenos">669</span></a><span class="sd">        返回:</span>
-</span><span id="AyakaBox-670"><a href="#AyakaBox-670"><span class="linenos">670</span></a>
-</span><span id="AyakaBox-671"><a href="#AyakaBox-671"><span class="linenos">671</span></a><span class="sd">            BaseModel对象</span>
-</span><span id="AyakaBox-672"><a href="#AyakaBox-672"><span class="linenos">672</span></a>
-</span><span id="AyakaBox-673"><a href="#AyakaBox-673"><span class="linenos">673</span></a><span class="sd">        示例代码:</span>
-</span><span id="AyakaBox-674"><a href="#AyakaBox-674"><span class="linenos">674</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox-675"><a href="#AyakaBox-675"><span class="linenos">675</span></a><span class="sd">            from pydantic import BaseModel</span>
-</span><span id="AyakaBox-676"><a href="#AyakaBox-676"><span class="linenos">676</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
-</span><span id="AyakaBox-677"><a href="#AyakaBox-677"><span class="linenos">677</span></a>
-</span><span id="AyakaBox-678"><a href="#AyakaBox-678"><span class="linenos">678</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="AyakaBox-679"><a href="#AyakaBox-679"><span class="linenos">679</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="AyakaBox-680"><a href="#AyakaBox-680"><span class="linenos">680</span></a>
-</span><span id="AyakaBox-681"><a href="#AyakaBox-681"><span class="linenos">681</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="AyakaBox-682"><a href="#AyakaBox-682"><span class="linenos">682</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="AyakaBox-683"><a href="#AyakaBox-683"><span class="linenos">683</span></a>
-</span><span id="AyakaBox-684"><a href="#AyakaBox-684"><span class="linenos">684</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="AyakaBox-685"><a href="#AyakaBox-685"><span class="linenos">685</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="AyakaBox-686"><a href="#AyakaBox-686"><span class="linenos">686</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="AyakaBox-687"><a href="#AyakaBox-687"><span class="linenos">687</span></a><span class="sd">                data.cnt += 1</span>
-</span><span id="AyakaBox-688"><a href="#AyakaBox-688"><span class="linenos">688</span></a><span class="sd">                print(data.cnt)</span>
-</span><span id="AyakaBox-689"><a href="#AyakaBox-689"><span class="linenos">689</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox-690"><a href="#AyakaBox-690"><span class="linenos">690</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox-691"><a href="#AyakaBox-691"><span class="linenos">691</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="AyakaBox-692"><a href="#AyakaBox-692"><span class="linenos">692</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="AyakaBox-693"><a href="#AyakaBox-693"><span class="linenos">693</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="AyakaBox-694"><a href="#AyakaBox-694"><span class="linenos">694</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-</span><span id="AyakaBox-695"><a href="#AyakaBox-695"><span class="linenos">695</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-</span><span id="AyakaBox-696"><a href="#AyakaBox-696"><span class="linenos">696</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="AyakaBox-697"><a href="#AyakaBox-697"><span class="linenos">697</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-</span><span id="AyakaBox-698"><a href="#AyakaBox-698"><span class="linenos">698</span></a>
-</span><span id="AyakaBox-699"><a href="#AyakaBox-699"><span class="linenos">699</span></a>    <span class="c1"># ---- 快捷发送 ----</span>
-</span><span id="AyakaBox-700"><a href="#AyakaBox-700"><span class="linenos">700</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="AyakaBox-701"><a href="#AyakaBox-701"><span class="linenos">701</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
-</span><span id="AyakaBox-702"><a href="#AyakaBox-702"><span class="linenos">702</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-</span><span id="AyakaBox-703"><a href="#AyakaBox-703"><span class="linenos">703</span></a>
-</span><span id="AyakaBox-704"><a href="#AyakaBox-704"><span class="linenos">704</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
-</span><span id="AyakaBox-705"><a href="#AyakaBox-705"><span class="linenos">705</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
-</span><span id="AyakaBox-706"><a href="#AyakaBox-706"><span class="linenos">706</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
-</span><span id="AyakaBox-707"><a href="#AyakaBox-707"><span class="linenos">707</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
-</span><span id="AyakaBox-708"><a href="#AyakaBox-708"><span class="linenos">708</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
-</span><span id="AyakaBox-709"><a href="#AyakaBox-709"><span class="linenos">709</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
-</span><span id="AyakaBox-710"><a href="#AyakaBox-710"><span class="linenos">710</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
-</span><span id="AyakaBox-711"><a href="#AyakaBox-711"><span class="linenos">711</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
-</span><span id="AyakaBox-712"><a href="#AyakaBox-712"><span class="linenos">712</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
-</span><span id="AyakaBox-713"><a href="#AyakaBox-713"><span class="linenos">713</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
-</span><span id="AyakaBox-714"><a href="#AyakaBox-714"><span class="linenos">714</span></a>            <span class="p">)</span>
-</span><span id="AyakaBox-715"><a href="#AyakaBox-715"><span class="linenos">715</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
-</span><span id="AyakaBox-716"><a href="#AyakaBox-716"><span class="linenos">716</span></a>
-</span><span id="AyakaBox-717"><a href="#AyakaBox-717"><span class="linenos">717</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="AyakaBox-718"><a href="#AyakaBox-718"><span class="linenos">718</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
-</span><span id="AyakaBox-719"><a href="#AyakaBox-719"><span class="linenos">719</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="AyakaBox-720"><a href="#AyakaBox-720"><span class="linenos">720</span></a>
-</span><span id="AyakaBox-721"><a href="#AyakaBox-721"><span class="linenos">721</span></a>    <span class="c1"># ---- 监听私聊 ----</span>
-</span><span id="AyakaBox-722"><a href="#AyakaBox-722"><span class="linenos">722</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="AyakaBox-723"><a href="#AyakaBox-723"><span class="linenos">723</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
-</span><span id="AyakaBox-724"><a href="#AyakaBox-724"><span class="linenos">724</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
-</span><span id="AyakaBox-725"><a href="#AyakaBox-725"><span class="linenos">725</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="AyakaBox-726"><a href="#AyakaBox-726"><span class="linenos">726</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
-</span><span id="AyakaBox-727"><a href="#AyakaBox-727"><span class="linenos">727</span></a>
-</span><span id="AyakaBox-728"><a href="#AyakaBox-728"><span class="linenos">728</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-</span><span id="AyakaBox-729"><a href="#AyakaBox-729"><span class="linenos">729</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
-</span><span id="AyakaBox-730"><a href="#AyakaBox-730"><span class="linenos">730</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="AyakaBox-731"><a href="#AyakaBox-731"><span class="linenos">731</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-</span><span id="AyakaBox-732"><a href="#AyakaBox-732"><span class="linenos">732</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
-</span><span id="AyakaBox-733"><a href="#AyakaBox-733"><span class="linenos">733</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
-</span><span id="AyakaBox-734"><a href="#AyakaBox-734"><span class="linenos">734</span></a>            <span class="k">return</span>
-</span><span id="AyakaBox-735"><a href="#AyakaBox-735"><span class="linenos">735</span></a>
-</span><span id="AyakaBox-736"><a href="#AyakaBox-736"><span class="linenos">736</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
-</span><span id="AyakaBox-737"><a href="#AyakaBox-737"><span class="linenos">737</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="AyakaBox-738"><a href="#AyakaBox-738"><span class="linenos">738</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-</span><span id="AyakaBox-739"><a href="#AyakaBox-739"><span class="linenos">739</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="AyakaBox-740"><a href="#AyakaBox-740"><span class="linenos">740</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="AyakaBox-622"><a href="#AyakaBox-622"><span class="linenos">622</span></a>
+</span><span id="AyakaBox-623"><a href="#AyakaBox-623"><span class="linenos">623</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="AyakaBox-624"><a href="#AyakaBox-624"><span class="linenos">624</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="AyakaBox-625"><a href="#AyakaBox-625"><span class="linenos">625</span></a>
+</span><span id="AyakaBox-626"><a href="#AyakaBox-626"><span class="linenos">626</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="AyakaBox-627"><a href="#AyakaBox-627"><span class="linenos">627</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="AyakaBox-628"><a href="#AyakaBox-628"><span class="linenos">628</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="AyakaBox-629"><a href="#AyakaBox-629"><span class="linenos">629</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="AyakaBox-630"><a href="#AyakaBox-630"><span class="linenos">630</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
+</span><span id="AyakaBox-631"><a href="#AyakaBox-631"><span class="linenos">631</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="AyakaBox-632"><a href="#AyakaBox-632"><span class="linenos">632</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox-633"><a href="#AyakaBox-633"><span class="linenos">633</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox-634"><a href="#AyakaBox-634"><span class="linenos">634</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="AyakaBox-635"><a href="#AyakaBox-635"><span class="linenos">635</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
+</span><span id="AyakaBox-636"><a href="#AyakaBox-636"><span class="linenos">636</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="AyakaBox-637"><a href="#AyakaBox-637"><span class="linenos">637</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="AyakaBox-638"><a href="#AyakaBox-638"><span class="linenos">638</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AyakaBox-639"><a href="#AyakaBox-639"><span class="linenos">639</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
+</span><span id="AyakaBox-640"><a href="#AyakaBox-640"><span class="linenos">640</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="AyakaBox-641"><a href="#AyakaBox-641"><span class="linenos">641</span></a>
+</span><span id="AyakaBox-642"><a href="#AyakaBox-642"><span class="linenos">642</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+</span><span id="AyakaBox-643"><a href="#AyakaBox-643"><span class="linenos">643</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
+</span><span id="AyakaBox-644"><a href="#AyakaBox-644"><span class="linenos">644</span></a>
+</span><span id="AyakaBox-645"><a href="#AyakaBox-645"><span class="linenos">645</span></a><span class="sd">        参数:</span>
+</span><span id="AyakaBox-646"><a href="#AyakaBox-646"><span class="linenos">646</span></a>
+</span><span id="AyakaBox-647"><a href="#AyakaBox-647"><span class="linenos">647</span></a><span class="sd">            key: 键名</span>
+</span><span id="AyakaBox-648"><a href="#AyakaBox-648"><span class="linenos">648</span></a>
+</span><span id="AyakaBox-649"><a href="#AyakaBox-649"><span class="linenos">649</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
+</span><span id="AyakaBox-650"><a href="#AyakaBox-650"><span class="linenos">650</span></a>
+</span><span id="AyakaBox-651"><a href="#AyakaBox-651"><span class="linenos">651</span></a><span class="sd">        返回:</span>
+</span><span id="AyakaBox-652"><a href="#AyakaBox-652"><span class="linenos">652</span></a>
+</span><span id="AyakaBox-653"><a href="#AyakaBox-653"><span class="linenos">653</span></a><span class="sd">            self.cache[key]</span>
+</span><span id="AyakaBox-654"><a href="#AyakaBox-654"><span class="linenos">654</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox-655"><a href="#AyakaBox-655"><span class="linenos">655</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="AyakaBox-656"><a href="#AyakaBox-656"><span class="linenos">656</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
+</span><span id="AyakaBox-657"><a href="#AyakaBox-657"><span class="linenos">657</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</span><span id="AyakaBox-658"><a href="#AyakaBox-658"><span class="linenos">658</span></a>
+</span><span id="AyakaBox-659"><a href="#AyakaBox-659"><span class="linenos">659</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
+</span><span id="AyakaBox-660"><a href="#AyakaBox-660"><span class="linenos">660</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
+</span><span id="AyakaBox-661"><a href="#AyakaBox-661"><span class="linenos">661</span></a>
+</span><span id="AyakaBox-662"><a href="#AyakaBox-662"><span class="linenos">662</span></a><span class="sd">        参数:</span>
+</span><span id="AyakaBox-663"><a href="#AyakaBox-663"><span class="linenos">663</span></a>
+</span><span id="AyakaBox-664"><a href="#AyakaBox-664"><span class="linenos">664</span></a><span class="sd">            cls: BaseModel类</span>
+</span><span id="AyakaBox-665"><a href="#AyakaBox-665"><span class="linenos">665</span></a>
+</span><span id="AyakaBox-666"><a href="#AyakaBox-666"><span class="linenos">666</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
+</span><span id="AyakaBox-667"><a href="#AyakaBox-667"><span class="linenos">667</span></a>
+</span><span id="AyakaBox-668"><a href="#AyakaBox-668"><span class="linenos">668</span></a><span class="sd">        返回:</span>
+</span><span id="AyakaBox-669"><a href="#AyakaBox-669"><span class="linenos">669</span></a>
+</span><span id="AyakaBox-670"><a href="#AyakaBox-670"><span class="linenos">670</span></a><span class="sd">            BaseModel对象</span>
+</span><span id="AyakaBox-671"><a href="#AyakaBox-671"><span class="linenos">671</span></a>
+</span><span id="AyakaBox-672"><a href="#AyakaBox-672"><span class="linenos">672</span></a><span class="sd">        示例代码:</span>
+</span><span id="AyakaBox-673"><a href="#AyakaBox-673"><span class="linenos">673</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox-674"><a href="#AyakaBox-674"><span class="linenos">674</span></a><span class="sd">            from pydantic import BaseModel</span>
+</span><span id="AyakaBox-675"><a href="#AyakaBox-675"><span class="linenos">675</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
+</span><span id="AyakaBox-676"><a href="#AyakaBox-676"><span class="linenos">676</span></a>
+</span><span id="AyakaBox-677"><a href="#AyakaBox-677"><span class="linenos">677</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
+</span><span id="AyakaBox-678"><a href="#AyakaBox-678"><span class="linenos">678</span></a>
+</span><span id="AyakaBox-679"><a href="#AyakaBox-679"><span class="linenos">679</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="AyakaBox-680"><a href="#AyakaBox-680"><span class="linenos">680</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="AyakaBox-681"><a href="#AyakaBox-681"><span class="linenos">681</span></a>
+</span><span id="AyakaBox-682"><a href="#AyakaBox-682"><span class="linenos">682</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="AyakaBox-683"><a href="#AyakaBox-683"><span class="linenos">683</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="AyakaBox-684"><a href="#AyakaBox-684"><span class="linenos">684</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="AyakaBox-685"><a href="#AyakaBox-685"><span class="linenos">685</span></a><span class="sd">                data.cnt += 1</span>
+</span><span id="AyakaBox-686"><a href="#AyakaBox-686"><span class="linenos">686</span></a><span class="sd">                print(data.cnt)</span>
+</span><span id="AyakaBox-687"><a href="#AyakaBox-687"><span class="linenos">687</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox-688"><a href="#AyakaBox-688"><span class="linenos">688</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox-689"><a href="#AyakaBox-689"><span class="linenos">689</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AyakaBox-690"><a href="#AyakaBox-690"><span class="linenos">690</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="AyakaBox-691"><a href="#AyakaBox-691"><span class="linenos">691</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="AyakaBox-692"><a href="#AyakaBox-692"><span class="linenos">692</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+</span><span id="AyakaBox-693"><a href="#AyakaBox-693"><span class="linenos">693</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="AyakaBox-694"><a href="#AyakaBox-694"><span class="linenos">694</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="AyakaBox-695"><a href="#AyakaBox-695"><span class="linenos">695</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</span><span id="AyakaBox-696"><a href="#AyakaBox-696"><span class="linenos">696</span></a>
+</span><span id="AyakaBox-697"><a href="#AyakaBox-697"><span class="linenos">697</span></a>    <span class="c1"># ---- 快捷发送 ----</span>
+</span><span id="AyakaBox-698"><a href="#AyakaBox-698"><span class="linenos">698</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="AyakaBox-699"><a href="#AyakaBox-699"><span class="linenos">699</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
+</span><span id="AyakaBox-700"><a href="#AyakaBox-700"><span class="linenos">700</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span id="AyakaBox-701"><a href="#AyakaBox-701"><span class="linenos">701</span></a>
+</span><span id="AyakaBox-702"><a href="#AyakaBox-702"><span class="linenos">702</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
+</span><span id="AyakaBox-703"><a href="#AyakaBox-703"><span class="linenos">703</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
+</span><span id="AyakaBox-704"><a href="#AyakaBox-704"><span class="linenos">704</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
+</span><span id="AyakaBox-705"><a href="#AyakaBox-705"><span class="linenos">705</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="AyakaBox-706"><a href="#AyakaBox-706"><span class="linenos">706</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
+</span><span id="AyakaBox-707"><a href="#AyakaBox-707"><span class="linenos">707</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
+</span><span id="AyakaBox-708"><a href="#AyakaBox-708"><span class="linenos">708</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
+</span><span id="AyakaBox-709"><a href="#AyakaBox-709"><span class="linenos">709</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
+</span><span id="AyakaBox-710"><a href="#AyakaBox-710"><span class="linenos">710</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
+</span><span id="AyakaBox-711"><a href="#AyakaBox-711"><span class="linenos">711</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
+</span><span id="AyakaBox-712"><a href="#AyakaBox-712"><span class="linenos">712</span></a>            <span class="p">)</span>
+</span><span id="AyakaBox-713"><a href="#AyakaBox-713"><span class="linenos">713</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
+</span><span id="AyakaBox-714"><a href="#AyakaBox-714"><span class="linenos">714</span></a>
+</span><span id="AyakaBox-715"><a href="#AyakaBox-715"><span class="linenos">715</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AyakaBox-716"><a href="#AyakaBox-716"><span class="linenos">716</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
+</span><span id="AyakaBox-717"><a href="#AyakaBox-717"><span class="linenos">717</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+</span><span id="AyakaBox-718"><a href="#AyakaBox-718"><span class="linenos">718</span></a>
+</span><span id="AyakaBox-719"><a href="#AyakaBox-719"><span class="linenos">719</span></a>    <span class="c1"># ---- 监听私聊 ----</span>
+</span><span id="AyakaBox-720"><a href="#AyakaBox-720"><span class="linenos">720</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="AyakaBox-721"><a href="#AyakaBox-721"><span class="linenos">721</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
+</span><span id="AyakaBox-722"><a href="#AyakaBox-722"><span class="linenos">722</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+</span><span id="AyakaBox-723"><a href="#AyakaBox-723"><span class="linenos">723</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="AyakaBox-724"><a href="#AyakaBox-724"><span class="linenos">724</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+</span><span id="AyakaBox-725"><a href="#AyakaBox-725"><span class="linenos">725</span></a>
+</span><span id="AyakaBox-726"><a href="#AyakaBox-726"><span class="linenos">726</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+</span><span id="AyakaBox-727"><a href="#AyakaBox-727"><span class="linenos">727</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
+</span><span id="AyakaBox-728"><a href="#AyakaBox-728"><span class="linenos">728</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="AyakaBox-729"><a href="#AyakaBox-729"><span class="linenos">729</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="AyakaBox-730"><a href="#AyakaBox-730"><span class="linenos">730</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
+</span><span id="AyakaBox-731"><a href="#AyakaBox-731"><span class="linenos">731</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+</span><span id="AyakaBox-732"><a href="#AyakaBox-732"><span class="linenos">732</span></a>            <span class="k">return</span>
+</span><span id="AyakaBox-733"><a href="#AyakaBox-733"><span class="linenos">733</span></a>
+</span><span id="AyakaBox-734"><a href="#AyakaBox-734"><span class="linenos">734</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
+</span><span id="AyakaBox-735"><a href="#AyakaBox-735"><span class="linenos">735</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="AyakaBox-736"><a href="#AyakaBox-736"><span class="linenos">736</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="AyakaBox-737"><a href="#AyakaBox-737"><span class="linenos">737</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AyakaBox-738"><a href="#AyakaBox-738"><span class="linenos">738</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -2879,26 +2875,25 @@ params: 其他参数，参考nonebot.on_message
 </span><span id="AyakaBox.remove_data-619"><a href="#AyakaBox.remove_data-619"><span class="linenos">619</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
 </span><span id="AyakaBox.remove_data-620"><a href="#AyakaBox.remove_data-620"><span class="linenos">620</span></a>
 </span><span id="AyakaBox.remove_data-621"><a href="#AyakaBox.remove_data-621"><span class="linenos">621</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="AyakaBox.remove_data-622"><a href="#AyakaBox.remove_data-622"><span class="linenos">622</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="AyakaBox.remove_data-623"><a href="#AyakaBox.remove_data-623"><span class="linenos">623</span></a>
-</span><span id="AyakaBox.remove_data-624"><a href="#AyakaBox.remove_data-624"><span class="linenos">624</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="AyakaBox.remove_data-625"><a href="#AyakaBox.remove_data-625"><span class="linenos">625</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="AyakaBox.remove_data-626"><a href="#AyakaBox.remove_data-626"><span class="linenos">626</span></a>
-</span><span id="AyakaBox.remove_data-627"><a href="#AyakaBox.remove_data-627"><span class="linenos">627</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="AyakaBox.remove_data-628"><a href="#AyakaBox.remove_data-628"><span class="linenos">628</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="AyakaBox.remove_data-629"><a href="#AyakaBox.remove_data-629"><span class="linenos">629</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="AyakaBox.remove_data-630"><a href="#AyakaBox.remove_data-630"><span class="linenos">630</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="AyakaBox.remove_data-631"><a href="#AyakaBox.remove_data-631"><span class="linenos">631</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
-</span><span id="AyakaBox.remove_data-632"><a href="#AyakaBox.remove_data-632"><span class="linenos">632</span></a><span class="sd">                print(box.cache)</span>
-</span><span id="AyakaBox.remove_data-633"><a href="#AyakaBox.remove_data-633"><span class="linenos">633</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox.remove_data-634"><a href="#AyakaBox.remove_data-634"><span class="linenos">634</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox.remove_data-635"><a href="#AyakaBox.remove_data-635"><span class="linenos">635</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="AyakaBox.remove_data-636"><a href="#AyakaBox.remove_data-636"><span class="linenos">636</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
-</span><span id="AyakaBox.remove_data-637"><a href="#AyakaBox.remove_data-637"><span class="linenos">637</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="AyakaBox.remove_data-638"><a href="#AyakaBox.remove_data-638"><span class="linenos">638</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="AyakaBox.remove_data-639"><a href="#AyakaBox.remove_data-639"><span class="linenos">639</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="AyakaBox.remove_data-640"><a href="#AyakaBox.remove_data-640"><span class="linenos">640</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
-</span><span id="AyakaBox.remove_data-641"><a href="#AyakaBox.remove_data-641"><span class="linenos">641</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="AyakaBox.remove_data-622"><a href="#AyakaBox.remove_data-622"><span class="linenos">622</span></a>
+</span><span id="AyakaBox.remove_data-623"><a href="#AyakaBox.remove_data-623"><span class="linenos">623</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="AyakaBox.remove_data-624"><a href="#AyakaBox.remove_data-624"><span class="linenos">624</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="AyakaBox.remove_data-625"><a href="#AyakaBox.remove_data-625"><span class="linenos">625</span></a>
+</span><span id="AyakaBox.remove_data-626"><a href="#AyakaBox.remove_data-626"><span class="linenos">626</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="AyakaBox.remove_data-627"><a href="#AyakaBox.remove_data-627"><span class="linenos">627</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="AyakaBox.remove_data-628"><a href="#AyakaBox.remove_data-628"><span class="linenos">628</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="AyakaBox.remove_data-629"><a href="#AyakaBox.remove_data-629"><span class="linenos">629</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="AyakaBox.remove_data-630"><a href="#AyakaBox.remove_data-630"><span class="linenos">630</span></a><span class="sd">                box.remove_data_from_cache(data)</span>
+</span><span id="AyakaBox.remove_data-631"><a href="#AyakaBox.remove_data-631"><span class="linenos">631</span></a><span class="sd">                print(box.cache)</span>
+</span><span id="AyakaBox.remove_data-632"><a href="#AyakaBox.remove_data-632"><span class="linenos">632</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox.remove_data-633"><a href="#AyakaBox.remove_data-633"><span class="linenos">633</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox.remove_data-634"><a href="#AyakaBox.remove_data-634"><span class="linenos">634</span></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="AyakaBox.remove_data-635"><a href="#AyakaBox.remove_data-635"><span class="linenos">635</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span>
+</span><span id="AyakaBox.remove_data-636"><a href="#AyakaBox.remove_data-636"><span class="linenos">636</span></a>        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key_or_obj</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="AyakaBox.remove_data-637"><a href="#AyakaBox.remove_data-637"><span class="linenos">637</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">key_or_obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="AyakaBox.remove_data-638"><a href="#AyakaBox.remove_data-638"><span class="linenos">638</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="AyakaBox.remove_data-639"><a href="#AyakaBox.remove_data-639"><span class="linenos">639</span></a>            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;参数类型错误，必须是字符串或BaseModel对象&quot;</span><span class="p">)</span>
+</span><span id="AyakaBox.remove_data-640"><a href="#AyakaBox.remove_data-640"><span class="linenos">640</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -2920,12 +2915,11 @@ params: 其他参数，参考nonebot.on_message
     from <a href="">ayaka.box</a> import AyakaBox
 
     box = AyakaBox("测试")
-    matcher = box.create_text_matcher()
 
     class Data(BaseModel):
         cnt: int = 0
 
-    @matcher.handle()
+    @box.on_text()
     async def matcher_handle():
         data = box.load_data_from_cache(Data)
         print(box.cache)
@@ -2947,22 +2941,22 @@ params: 其他参数，参考nonebot.on_message
 
     </div>
     <a class="headerlink" href="#AyakaBox.get_arbitrary_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.get_arbitrary_data-643"><a href="#AyakaBox.get_arbitrary_data-643"><span class="linenos">643</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-</span><span id="AyakaBox.get_arbitrary_data-644"><a href="#AyakaBox.get_arbitrary_data-644"><span class="linenos">644</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
-</span><span id="AyakaBox.get_arbitrary_data-645"><a href="#AyakaBox.get_arbitrary_data-645"><span class="linenos">645</span></a>
-</span><span id="AyakaBox.get_arbitrary_data-646"><a href="#AyakaBox.get_arbitrary_data-646"><span class="linenos">646</span></a><span class="sd">        参数:</span>
-</span><span id="AyakaBox.get_arbitrary_data-647"><a href="#AyakaBox.get_arbitrary_data-647"><span class="linenos">647</span></a>
-</span><span id="AyakaBox.get_arbitrary_data-648"><a href="#AyakaBox.get_arbitrary_data-648"><span class="linenos">648</span></a><span class="sd">            key: 键名</span>
-</span><span id="AyakaBox.get_arbitrary_data-649"><a href="#AyakaBox.get_arbitrary_data-649"><span class="linenos">649</span></a>
-</span><span id="AyakaBox.get_arbitrary_data-650"><a href="#AyakaBox.get_arbitrary_data-650"><span class="linenos">650</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
-</span><span id="AyakaBox.get_arbitrary_data-651"><a href="#AyakaBox.get_arbitrary_data-651"><span class="linenos">651</span></a>
-</span><span id="AyakaBox.get_arbitrary_data-652"><a href="#AyakaBox.get_arbitrary_data-652"><span class="linenos">652</span></a><span class="sd">        返回:</span>
-</span><span id="AyakaBox.get_arbitrary_data-653"><a href="#AyakaBox.get_arbitrary_data-653"><span class="linenos">653</span></a>
-</span><span id="AyakaBox.get_arbitrary_data-654"><a href="#AyakaBox.get_arbitrary_data-654"><span class="linenos">654</span></a><span class="sd">            self.cache[key]</span>
-</span><span id="AyakaBox.get_arbitrary_data-655"><a href="#AyakaBox.get_arbitrary_data-655"><span class="linenos">655</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox.get_arbitrary_data-656"><a href="#AyakaBox.get_arbitrary_data-656"><span class="linenos">656</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="AyakaBox.get_arbitrary_data-657"><a href="#AyakaBox.get_arbitrary_data-657"><span class="linenos">657</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
-</span><span id="AyakaBox.get_arbitrary_data-658"><a href="#AyakaBox.get_arbitrary_data-658"><span class="linenos">658</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.get_arbitrary_data-642"><a href="#AyakaBox.get_arbitrary_data-642"><span class="linenos">642</span></a>    <span class="k">def</span> <span class="nf">get_arbitrary_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default_factory</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+</span><span id="AyakaBox.get_arbitrary_data-643"><a href="#AyakaBox.get_arbitrary_data-643"><span class="linenos">643</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定key下的任意类型对象，即self.cache[key]，若不存在则自动通过default_factory()创建</span>
+</span><span id="AyakaBox.get_arbitrary_data-644"><a href="#AyakaBox.get_arbitrary_data-644"><span class="linenos">644</span></a>
+</span><span id="AyakaBox.get_arbitrary_data-645"><a href="#AyakaBox.get_arbitrary_data-645"><span class="linenos">645</span></a><span class="sd">        参数:</span>
+</span><span id="AyakaBox.get_arbitrary_data-646"><a href="#AyakaBox.get_arbitrary_data-646"><span class="linenos">646</span></a>
+</span><span id="AyakaBox.get_arbitrary_data-647"><a href="#AyakaBox.get_arbitrary_data-647"><span class="linenos">647</span></a><span class="sd">            key: 键名</span>
+</span><span id="AyakaBox.get_arbitrary_data-648"><a href="#AyakaBox.get_arbitrary_data-648"><span class="linenos">648</span></a>
+</span><span id="AyakaBox.get_arbitrary_data-649"><a href="#AyakaBox.get_arbitrary_data-649"><span class="linenos">649</span></a><span class="sd">            default_factory: 若key不存在，则通过default_factory()方法创建默认值，保存到cache中并返回</span>
+</span><span id="AyakaBox.get_arbitrary_data-650"><a href="#AyakaBox.get_arbitrary_data-650"><span class="linenos">650</span></a>
+</span><span id="AyakaBox.get_arbitrary_data-651"><a href="#AyakaBox.get_arbitrary_data-651"><span class="linenos">651</span></a><span class="sd">        返回:</span>
+</span><span id="AyakaBox.get_arbitrary_data-652"><a href="#AyakaBox.get_arbitrary_data-652"><span class="linenos">652</span></a>
+</span><span id="AyakaBox.get_arbitrary_data-653"><a href="#AyakaBox.get_arbitrary_data-653"><span class="linenos">653</span></a><span class="sd">            self.cache[key]</span>
+</span><span id="AyakaBox.get_arbitrary_data-654"><a href="#AyakaBox.get_arbitrary_data-654"><span class="linenos">654</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox.get_arbitrary_data-655"><a href="#AyakaBox.get_arbitrary_data-655"><span class="linenos">655</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="AyakaBox.get_arbitrary_data-656"><a href="#AyakaBox.get_arbitrary_data-656"><span class="linenos">656</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_factory</span><span class="p">()</span>
+</span><span id="AyakaBox.get_arbitrary_data-657"><a href="#AyakaBox.get_arbitrary_data-657"><span class="linenos">657</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -2994,44 +2988,43 @@ default_factory: 若key不存在，则通过default_factory()方法创建默认�
 
     </div>
     <a class="headerlink" href="#AyakaBox.get_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.get_data-660"><a href="#AyakaBox.get_data-660"><span class="linenos">660</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
-</span><span id="AyakaBox.get_data-661"><a href="#AyakaBox.get_data-661"><span class="linenos">661</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
-</span><span id="AyakaBox.get_data-662"><a href="#AyakaBox.get_data-662"><span class="linenos">662</span></a>
-</span><span id="AyakaBox.get_data-663"><a href="#AyakaBox.get_data-663"><span class="linenos">663</span></a><span class="sd">        参数:</span>
-</span><span id="AyakaBox.get_data-664"><a href="#AyakaBox.get_data-664"><span class="linenos">664</span></a>
-</span><span id="AyakaBox.get_data-665"><a href="#AyakaBox.get_data-665"><span class="linenos">665</span></a><span class="sd">            cls: BaseModel类</span>
-</span><span id="AyakaBox.get_data-666"><a href="#AyakaBox.get_data-666"><span class="linenos">666</span></a>
-</span><span id="AyakaBox.get_data-667"><a href="#AyakaBox.get_data-667"><span class="linenos">667</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
-</span><span id="AyakaBox.get_data-668"><a href="#AyakaBox.get_data-668"><span class="linenos">668</span></a>
-</span><span id="AyakaBox.get_data-669"><a href="#AyakaBox.get_data-669"><span class="linenos">669</span></a><span class="sd">        返回:</span>
-</span><span id="AyakaBox.get_data-670"><a href="#AyakaBox.get_data-670"><span class="linenos">670</span></a>
-</span><span id="AyakaBox.get_data-671"><a href="#AyakaBox.get_data-671"><span class="linenos">671</span></a><span class="sd">            BaseModel对象</span>
-</span><span id="AyakaBox.get_data-672"><a href="#AyakaBox.get_data-672"><span class="linenos">672</span></a>
-</span><span id="AyakaBox.get_data-673"><a href="#AyakaBox.get_data-673"><span class="linenos">673</span></a><span class="sd">        示例代码:</span>
-</span><span id="AyakaBox.get_data-674"><a href="#AyakaBox.get_data-674"><span class="linenos">674</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox.get_data-675"><a href="#AyakaBox.get_data-675"><span class="linenos">675</span></a><span class="sd">            from pydantic import BaseModel</span>
-</span><span id="AyakaBox.get_data-676"><a href="#AyakaBox.get_data-676"><span class="linenos">676</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
-</span><span id="AyakaBox.get_data-677"><a href="#AyakaBox.get_data-677"><span class="linenos">677</span></a>
-</span><span id="AyakaBox.get_data-678"><a href="#AyakaBox.get_data-678"><span class="linenos">678</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
-</span><span id="AyakaBox.get_data-679"><a href="#AyakaBox.get_data-679"><span class="linenos">679</span></a><span class="sd">            matcher = box.create_text_matcher()</span>
-</span><span id="AyakaBox.get_data-680"><a href="#AyakaBox.get_data-680"><span class="linenos">680</span></a>
-</span><span id="AyakaBox.get_data-681"><a href="#AyakaBox.get_data-681"><span class="linenos">681</span></a><span class="sd">            class Data(BaseModel):</span>
-</span><span id="AyakaBox.get_data-682"><a href="#AyakaBox.get_data-682"><span class="linenos">682</span></a><span class="sd">                cnt: int = 0</span>
-</span><span id="AyakaBox.get_data-683"><a href="#AyakaBox.get_data-683"><span class="linenos">683</span></a>
-</span><span id="AyakaBox.get_data-684"><a href="#AyakaBox.get_data-684"><span class="linenos">684</span></a><span class="sd">            @matcher.handle()</span>
-</span><span id="AyakaBox.get_data-685"><a href="#AyakaBox.get_data-685"><span class="linenos">685</span></a><span class="sd">            async def matcher_handle():</span>
-</span><span id="AyakaBox.get_data-686"><a href="#AyakaBox.get_data-686"><span class="linenos">686</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
-</span><span id="AyakaBox.get_data-687"><a href="#AyakaBox.get_data-687"><span class="linenos">687</span></a><span class="sd">                data.cnt += 1</span>
-</span><span id="AyakaBox.get_data-688"><a href="#AyakaBox.get_data-688"><span class="linenos">688</span></a><span class="sd">                print(data.cnt)</span>
-</span><span id="AyakaBox.get_data-689"><a href="#AyakaBox.get_data-689"><span class="linenos">689</span></a><span class="sd">        ```</span>
-</span><span id="AyakaBox.get_data-690"><a href="#AyakaBox.get_data-690"><span class="linenos">690</span></a><span class="sd">        &#39;&#39;&#39;</span>
-</span><span id="AyakaBox.get_data-691"><a href="#AyakaBox.get_data-691"><span class="linenos">691</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="AyakaBox.get_data-692"><a href="#AyakaBox.get_data-692"><span class="linenos">692</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
-</span><span id="AyakaBox.get_data-693"><a href="#AyakaBox.get_data-693"><span class="linenos">693</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
-</span><span id="AyakaBox.get_data-694"><a href="#AyakaBox.get_data-694"><span class="linenos">694</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-</span><span id="AyakaBox.get_data-695"><a href="#AyakaBox.get_data-695"><span class="linenos">695</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
-</span><span id="AyakaBox.get_data-696"><a href="#AyakaBox.get_data-696"><span class="linenos">696</span></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="AyakaBox.get_data-697"><a href="#AyakaBox.get_data-697"><span class="linenos">697</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.get_data-659"><a href="#AyakaBox.get_data-659"><span class="linenos">659</span></a>    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">T_BaseModel</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T_BaseModel</span><span class="p">:</span>
+</span><span id="AyakaBox.get_data-660"><a href="#AyakaBox.get_data-660"><span class="linenos">660</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;从当前群组的缓存中加载指定的BaseModel对象</span>
+</span><span id="AyakaBox.get_data-661"><a href="#AyakaBox.get_data-661"><span class="linenos">661</span></a>
+</span><span id="AyakaBox.get_data-662"><a href="#AyakaBox.get_data-662"><span class="linenos">662</span></a><span class="sd">        参数:</span>
+</span><span id="AyakaBox.get_data-663"><a href="#AyakaBox.get_data-663"><span class="linenos">663</span></a>
+</span><span id="AyakaBox.get_data-664"><a href="#AyakaBox.get_data-664"><span class="linenos">664</span></a><span class="sd">            cls: BaseModel类</span>
+</span><span id="AyakaBox.get_data-665"><a href="#AyakaBox.get_data-665"><span class="linenos">665</span></a>
+</span><span id="AyakaBox.get_data-666"><a href="#AyakaBox.get_data-666"><span class="linenos">666</span></a><span class="sd">            key: 键名，为空时使用cls.__name__作为键名</span>
+</span><span id="AyakaBox.get_data-667"><a href="#AyakaBox.get_data-667"><span class="linenos">667</span></a>
+</span><span id="AyakaBox.get_data-668"><a href="#AyakaBox.get_data-668"><span class="linenos">668</span></a><span class="sd">        返回:</span>
+</span><span id="AyakaBox.get_data-669"><a href="#AyakaBox.get_data-669"><span class="linenos">669</span></a>
+</span><span id="AyakaBox.get_data-670"><a href="#AyakaBox.get_data-670"><span class="linenos">670</span></a><span class="sd">            BaseModel对象</span>
+</span><span id="AyakaBox.get_data-671"><a href="#AyakaBox.get_data-671"><span class="linenos">671</span></a>
+</span><span id="AyakaBox.get_data-672"><a href="#AyakaBox.get_data-672"><span class="linenos">672</span></a><span class="sd">        示例代码:</span>
+</span><span id="AyakaBox.get_data-673"><a href="#AyakaBox.get_data-673"><span class="linenos">673</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox.get_data-674"><a href="#AyakaBox.get_data-674"><span class="linenos">674</span></a><span class="sd">            from pydantic import BaseModel</span>
+</span><span id="AyakaBox.get_data-675"><a href="#AyakaBox.get_data-675"><span class="linenos">675</span></a><span class="sd">            from ayaka.box import AyakaBox</span>
+</span><span id="AyakaBox.get_data-676"><a href="#AyakaBox.get_data-676"><span class="linenos">676</span></a>
+</span><span id="AyakaBox.get_data-677"><a href="#AyakaBox.get_data-677"><span class="linenos">677</span></a><span class="sd">            box = AyakaBox(&quot;测试&quot;)</span>
+</span><span id="AyakaBox.get_data-678"><a href="#AyakaBox.get_data-678"><span class="linenos">678</span></a>
+</span><span id="AyakaBox.get_data-679"><a href="#AyakaBox.get_data-679"><span class="linenos">679</span></a><span class="sd">            class Data(BaseModel):</span>
+</span><span id="AyakaBox.get_data-680"><a href="#AyakaBox.get_data-680"><span class="linenos">680</span></a><span class="sd">                cnt: int = 0</span>
+</span><span id="AyakaBox.get_data-681"><a href="#AyakaBox.get_data-681"><span class="linenos">681</span></a>
+</span><span id="AyakaBox.get_data-682"><a href="#AyakaBox.get_data-682"><span class="linenos">682</span></a><span class="sd">            @box.on_text()</span>
+</span><span id="AyakaBox.get_data-683"><a href="#AyakaBox.get_data-683"><span class="linenos">683</span></a><span class="sd">            async def matcher_handle():</span>
+</span><span id="AyakaBox.get_data-684"><a href="#AyakaBox.get_data-684"><span class="linenos">684</span></a><span class="sd">                data = box.load_data_from_cache(Data)</span>
+</span><span id="AyakaBox.get_data-685"><a href="#AyakaBox.get_data-685"><span class="linenos">685</span></a><span class="sd">                data.cnt += 1</span>
+</span><span id="AyakaBox.get_data-686"><a href="#AyakaBox.get_data-686"><span class="linenos">686</span></a><span class="sd">                print(data.cnt)</span>
+</span><span id="AyakaBox.get_data-687"><a href="#AyakaBox.get_data-687"><span class="linenos">687</span></a><span class="sd">        ```</span>
+</span><span id="AyakaBox.get_data-688"><a href="#AyakaBox.get_data-688"><span class="linenos">688</span></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="AyakaBox.get_data-689"><a href="#AyakaBox.get_data-689"><span class="linenos">689</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="AyakaBox.get_data-690"><a href="#AyakaBox.get_data-690"><span class="linenos">690</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
+</span><span id="AyakaBox.get_data-691"><a href="#AyakaBox.get_data-691"><span class="linenos">691</span></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">:</span>
+</span><span id="AyakaBox.get_data-692"><a href="#AyakaBox.get_data-692"><span class="linenos">692</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+</span><span id="AyakaBox.get_data-693"><a href="#AyakaBox.get_data-693"><span class="linenos">693</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+</span><span id="AyakaBox.get_data-694"><a href="#AyakaBox.get_data-694"><span class="linenos">694</span></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="AyakaBox.get_data-695"><a href="#AyakaBox.get_data-695"><span class="linenos">695</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -3055,12 +3048,11 @@ key: 键名，为空时使用cls.__name__作为键名
     from <a href="">ayaka.box</a> import AyakaBox
 
     box = AyakaBox("测试")
-    matcher = box.create_text_matcher()
 
     class Data(BaseModel):
         cnt: int = 0
 
-    @matcher.handle()
+    @box.on_text()
     async def matcher_handle():
         data = box.load_data_from_cache(Data)
         data.cnt += 1
@@ -3081,9 +3073,9 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#AyakaBox.send"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send-700"><a href="#AyakaBox.send-700"><span class="linenos">700</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="AyakaBox.send-701"><a href="#AyakaBox.send-701"><span class="linenos">701</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
-</span><span id="AyakaBox.send-702"><a href="#AyakaBox.send-702"><span class="linenos">702</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send-698"><a href="#AyakaBox.send-698"><span class="linenos">698</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="AyakaBox.send-699"><a href="#AyakaBox.send-699"><span class="linenos">699</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送消息&#39;&#39;&#39;</span>
+</span><span id="AyakaBox.send-700"><a href="#AyakaBox.send-700"><span class="linenos">700</span></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">matcher</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -3103,18 +3095,18 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#AyakaBox.send_many"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send_many-704"><a href="#AyakaBox.send_many-704"><span class="linenos">704</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
-</span><span id="AyakaBox.send_many-705"><a href="#AyakaBox.send_many-705"><span class="linenos">705</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
-</span><span id="AyakaBox.send_many-706"><a href="#AyakaBox.send_many-706"><span class="linenos">706</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
-</span><span id="AyakaBox.send_many-707"><a href="#AyakaBox.send_many-707"><span class="linenos">707</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
-</span><span id="AyakaBox.send_many-708"><a href="#AyakaBox.send_many-708"><span class="linenos">708</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
-</span><span id="AyakaBox.send_many-709"><a href="#AyakaBox.send_many-709"><span class="linenos">709</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
-</span><span id="AyakaBox.send_many-710"><a href="#AyakaBox.send_many-710"><span class="linenos">710</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
-</span><span id="AyakaBox.send_many-711"><a href="#AyakaBox.send_many-711"><span class="linenos">711</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
-</span><span id="AyakaBox.send_many-712"><a href="#AyakaBox.send_many-712"><span class="linenos">712</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
-</span><span id="AyakaBox.send_many-713"><a href="#AyakaBox.send_many-713"><span class="linenos">713</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
-</span><span id="AyakaBox.send_many-714"><a href="#AyakaBox.send_many-714"><span class="linenos">714</span></a>            <span class="p">)</span>
-</span><span id="AyakaBox.send_many-715"><a href="#AyakaBox.send_many-715"><span class="linenos">715</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send_many-702"><a href="#AyakaBox.send_many-702"><span class="linenos">702</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_many</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Message</span> <span class="o">|</span> <span class="n">MessageSegment</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]):</span>
+</span><span id="AyakaBox.send_many-703"><a href="#AyakaBox.send_many-703"><span class="linenos">703</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送合并转发消息&#39;&#39;&#39;</span>
+</span><span id="AyakaBox.send_many-704"><a href="#AyakaBox.send_many-704"><span class="linenos">704</span></a>        <span class="c1"># 分割长消息组（不可超过100条</span>
+</span><span id="AyakaBox.send_many-705"><a href="#AyakaBox.send_many-705"><span class="linenos">705</span></a>        <span class="n">div_len</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="AyakaBox.send_many-706"><a href="#AyakaBox.send_many-706"><span class="linenos">706</span></a>        <span class="n">div_cnt</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span> <span class="o">/</span> <span class="n">div_len</span><span class="p">)</span>
+</span><span id="AyakaBox.send_many-707"><a href="#AyakaBox.send_many-707"><span class="linenos">707</span></a>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">div_cnt</span><span class="p">):</span>
+</span><span id="AyakaBox.send_many-708"><a href="#AyakaBox.send_many-708"><span class="linenos">708</span></a>            <span class="n">msgs</span> <span class="o">=</span> <span class="n">pack_messages</span><span class="p">(</span>
+</span><span id="AyakaBox.send_many-709"><a href="#AyakaBox.send_many-709"><span class="linenos">709</span></a>                <span class="n">user_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span><span class="p">,</span>
+</span><span id="AyakaBox.send_many-710"><a href="#AyakaBox.send_many-710"><span class="linenos">710</span></a>                <span class="n">user_name</span><span class="o">=</span><span class="s2">&quot;Ayaka Bot&quot;</span><span class="p">,</span>
+</span><span id="AyakaBox.send_many-711"><a href="#AyakaBox.send_many-711"><span class="linenos">711</span></a>                <span class="n">messages</span><span class="o">=</span><span class="n">messages</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">div_len</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">div_len</span><span class="p">]</span>
+</span><span id="AyakaBox.send_many-712"><a href="#AyakaBox.send_many-712"><span class="linenos">712</span></a>            <span class="p">)</span>
+</span><span id="AyakaBox.send_many-713"><a href="#AyakaBox.send_many-713"><span class="linenos">713</span></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">send_group_forward_msg</span><span class="p">(</span><span class="n">group_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">,</span> <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -3134,9 +3126,9 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#AyakaBox.send_help"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send_help-717"><a href="#AyakaBox.send_help-717"><span class="linenos">717</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="AyakaBox.send_help-718"><a href="#AyakaBox.send_help-718"><span class="linenos">718</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
-</span><span id="AyakaBox.send_help-719"><a href="#AyakaBox.send_help-719"><span class="linenos">719</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.send_help-715"><a href="#AyakaBox.send_help-715"><span class="linenos">715</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">send_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="AyakaBox.send_help-716"><a href="#AyakaBox.send_help-716"><span class="linenos">716</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;发送自身帮助&#39;&#39;&#39;</span>
+</span><span id="AyakaBox.send_help-717"><a href="#AyakaBox.send_help-717"><span class="linenos">717</span></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -3156,11 +3148,11 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#AyakaBox.add_listener"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.add_listener-722"><a href="#AyakaBox.add_listener-722"><span class="linenos">722</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="AyakaBox.add_listener-723"><a href="#AyakaBox.add_listener-723"><span class="linenos">723</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
-</span><span id="AyakaBox.add_listener-724"><a href="#AyakaBox.add_listener-724"><span class="linenos">724</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
-</span><span id="AyakaBox.add_listener-725"><a href="#AyakaBox.add_listener-725"><span class="linenos">725</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="AyakaBox.add_listener-726"><a href="#AyakaBox.add_listener-726"><span class="linenos">726</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.add_listener-720"><a href="#AyakaBox.add_listener-720"><span class="linenos">720</span></a>    <span class="k">def</span> <span class="nf">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="AyakaBox.add_listener-721"><a href="#AyakaBox.add_listener-721"><span class="linenos">721</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;为该群组添加对指定私聊的监听&#39;&#39;&#39;</span>
+</span><span id="AyakaBox.add_listener-722"><a href="#AyakaBox.add_listener-722"><span class="linenos">722</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+</span><span id="AyakaBox.add_listener-723"><a href="#AyakaBox.add_listener-723"><span class="linenos">723</span></a>            <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="AyakaBox.add_listener-724"><a href="#AyakaBox.add_listener-724"><span class="linenos">724</span></a>        <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -3180,19 +3172,19 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#AyakaBox.remove_listener"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.remove_listener-728"><a href="#AyakaBox.remove_listener-728"><span class="linenos">728</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
-</span><span id="AyakaBox.remove_listener-729"><a href="#AyakaBox.remove_listener-729"><span class="linenos">729</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
-</span><span id="AyakaBox.remove_listener-730"><a href="#AyakaBox.remove_listener-730"><span class="linenos">730</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="AyakaBox.remove_listener-731"><a href="#AyakaBox.remove_listener-731"><span class="linenos">731</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-</span><span id="AyakaBox.remove_listener-732"><a href="#AyakaBox.remove_listener-732"><span class="linenos">732</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
-</span><span id="AyakaBox.remove_listener-733"><a href="#AyakaBox.remove_listener-733"><span class="linenos">733</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
-</span><span id="AyakaBox.remove_listener-734"><a href="#AyakaBox.remove_listener-734"><span class="linenos">734</span></a>            <span class="k">return</span>
-</span><span id="AyakaBox.remove_listener-735"><a href="#AyakaBox.remove_listener-735"><span class="linenos">735</span></a>
-</span><span id="AyakaBox.remove_listener-736"><a href="#AyakaBox.remove_listener-736"><span class="linenos">736</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
-</span><span id="AyakaBox.remove_listener-737"><a href="#AyakaBox.remove_listener-737"><span class="linenos">737</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-</span><span id="AyakaBox.remove_listener-738"><a href="#AyakaBox.remove_listener-738"><span class="linenos">738</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
-</span><span id="AyakaBox.remove_listener-739"><a href="#AyakaBox.remove_listener-739"><span class="linenos">739</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="AyakaBox.remove_listener-740"><a href="#AyakaBox.remove_listener-740"><span class="linenos">740</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="AyakaBox.remove_listener-726"><a href="#AyakaBox.remove_listener-726"><span class="linenos">726</span></a>    <span class="k">def</span> <span class="nf">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+</span><span id="AyakaBox.remove_listener-727"><a href="#AyakaBox.remove_listener-727"><span class="linenos">727</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;默认移除该群组对其他私聊的所有监听&#39;&#39;&#39;</span>
+</span><span id="AyakaBox.remove_listener-728"><a href="#AyakaBox.remove_listener-728"><span class="linenos">728</span></a>        <span class="k">if</span> <span class="n">user_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="AyakaBox.remove_listener-729"><a href="#AyakaBox.remove_listener-729"><span class="linenos">729</span></a>            <span class="n">uids</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listeners</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="AyakaBox.remove_listener-730"><a href="#AyakaBox.remove_listener-730"><span class="linenos">730</span></a>            <span class="k">for</span> <span class="n">uid</span> <span class="ow">in</span> <span class="n">uids</span><span class="p">:</span>
+</span><span id="AyakaBox.remove_listener-731"><a href="#AyakaBox.remove_listener-731"><span class="linenos">731</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+</span><span id="AyakaBox.remove_listener-732"><a href="#AyakaBox.remove_listener-732"><span class="linenos">732</span></a>            <span class="k">return</span>
+</span><span id="AyakaBox.remove_listener-733"><a href="#AyakaBox.remove_listener-733"><span class="linenos">733</span></a>
+</span><span id="AyakaBox.remove_listener-734"><a href="#AyakaBox.remove_listener-734"><span class="linenos">734</span></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]:</span>
+</span><span id="AyakaBox.remove_listener-735"><a href="#AyakaBox.remove_listener-735"><span class="linenos">735</span></a>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="AyakaBox.remove_listener-736"><a href="#AyakaBox.remove_listener-736"><span class="linenos">736</span></a>                <span class="n">listeners</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+</span><span id="AyakaBox.remove_listener-737"><a href="#AyakaBox.remove_listener-737"><span class="linenos">737</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="AyakaBox.remove_listener-738"><a href="#AyakaBox.remove_listener-738"><span class="linenos">738</span></a>                <span class="n">listeners</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">group_id</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -3214,18 +3206,18 @@ key: 键名，为空时使用cls.__name__作为键名
 
     </div>
     <a class="headerlink" href="#listener_handle"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="listener_handle-743"><a href="#listener_handle-743"><span class="linenos">743</span></a><span class="nd">@LISTEN</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
-</span><span id="listener_handle-744"><a href="#listener_handle-744"><span class="linenos">744</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">listener_handle</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">PrivateMessageEvent</span><span class="p">):</span>
-</span><span id="listener_handle-745"><a href="#listener_handle-745"><span class="linenos">745</span></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">user_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
-</span><span id="listener_handle-746"><a href="#listener_handle-746"><span class="linenos">746</span></a>        <span class="n">_event</span> <span class="o">=</span> <span class="n">GroupMessageEvent</span><span class="p">(</span>
-</span><span id="listener_handle-747"><a href="#listener_handle-747"><span class="linenos">747</span></a>            <span class="o">**</span><span class="n">event</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message_type&quot;</span><span class="p">}),</span>
-</span><span id="listener_handle-748"><a href="#listener_handle-748"><span class="linenos">748</span></a>            <span class="n">group_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-</span><span id="listener_handle-749"><a href="#listener_handle-749"><span class="linenos">749</span></a>            <span class="n">message_type</span><span class="o">=</span><span class="s2">&quot;group&quot;</span>
-</span><span id="listener_handle-750"><a href="#listener_handle-750"><span class="linenos">750</span></a>        <span class="p">)</span>
-</span><span id="listener_handle-751"><a href="#listener_handle-751"><span class="linenos">751</span></a>
-</span><span id="listener_handle-752"><a href="#listener_handle-752"><span class="linenos">752</span></a>        <span class="k">for</span> <span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">user_id</span><span class="p">]:</span>
-</span><span id="listener_handle-753"><a href="#listener_handle-753"><span class="linenos">753</span></a>            <span class="n">_event</span><span class="o">.</span><span class="n">group_id</span> <span class="o">=</span> <span class="n">group_id</span>
-</span><span id="listener_handle-754"><a href="#listener_handle-754"><span class="linenos">754</span></a>            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">handle_event</span><span class="p">(</span><span class="n">_event</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="listener_handle-741"><a href="#listener_handle-741"><span class="linenos">741</span></a><span class="nd">@LISTEN</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
+</span><span id="listener_handle-742"><a href="#listener_handle-742"><span class="linenos">742</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">listener_handle</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Bot</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">PrivateMessageEvent</span><span class="p">):</span>
+</span><span id="listener_handle-743"><a href="#listener_handle-743"><span class="linenos">743</span></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">user_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">:</span>
+</span><span id="listener_handle-744"><a href="#listener_handle-744"><span class="linenos">744</span></a>        <span class="n">_event</span> <span class="o">=</span> <span class="n">GroupMessageEvent</span><span class="p">(</span>
+</span><span id="listener_handle-745"><a href="#listener_handle-745"><span class="linenos">745</span></a>            <span class="o">**</span><span class="n">event</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;message_type&quot;</span><span class="p">}),</span>
+</span><span id="listener_handle-746"><a href="#listener_handle-746"><span class="linenos">746</span></a>            <span class="n">group_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="listener_handle-747"><a href="#listener_handle-747"><span class="linenos">747</span></a>            <span class="n">message_type</span><span class="o">=</span><span class="s2">&quot;group&quot;</span>
+</span><span id="listener_handle-748"><a href="#listener_handle-748"><span class="linenos">748</span></a>        <span class="p">)</span>
+</span><span id="listener_handle-749"><a href="#listener_handle-749"><span class="linenos">749</span></a>
+</span><span id="listener_handle-750"><a href="#listener_handle-750"><span class="linenos">750</span></a>        <span class="k">for</span> <span class="n">group_id</span> <span class="ow">in</span> <span class="n">listeners</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">user_id</span><span class="p">]:</span>
+</span><span id="listener_handle-751"><a href="#listener_handle-751"><span class="linenos">751</span></a>            <span class="n">_event</span><span class="o">.</span><span class="n">group_id</span> <span class="o">=</span> <span class="n">group_id</span>
+</span><span id="listener_handle-752"><a href="#listener_handle-752"><span class="linenos">752</span></a>            <span class="k">await</span> <span class="n">bot</span><span class="o">.</span><span class="n">handle_event</span><span class="p">(</span><span class="n">_event</span><span class="p">)</span>
 </span></pre></div>
 
 
