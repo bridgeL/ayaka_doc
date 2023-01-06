@@ -85,7 +85,7 @@
 </span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="kn">from</span> <span class="nn">.helpers</span> <span class="kn">import</span> <span class="n">ensure_dir_exists</span>
 </span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="kn">from</span> <span class="nn">.lazy</span> <span class="kn">import</span> <span class="n">logger</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Path</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>
-</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="n">AYAKA_VERSION</span> <span class="o">=</span> <span class="s2">&quot;1.0.1b1&quot;</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="n">AYAKA_VERSION</span> <span class="o">=</span> <span class="s2">&quot;1.0.1&quot;</span>
 </span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>
 </span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="n">data_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;ayaka&quot;</span><span class="p">)</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="n">ensure_dir_exists</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
@@ -120,7 +120,7 @@
 </span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>
 </span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确&quot;</span><span class="p">)</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确；如果不确定出错的原因，可以尝试更新插件-删除配置-重启bot&quot;</span><span class="p">)</span>
 </span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>            <span class="k">raise</span> <span class="n">e</span>
 </span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>
 </span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>        <span class="c1"># 强制更新（更新默认值）</span>
@@ -224,7 +224,7 @@
 </span><span id="AyakaConfig-42"><a href="#AyakaConfig-42"><span class="linenos">42</span></a>
 </span><span id="AyakaConfig-43"><a href="#AyakaConfig-43"><span class="linenos">43</span></a>        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="AyakaConfig-44"><a href="#AyakaConfig-44"><span class="linenos">44</span></a>            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-</span><span id="AyakaConfig-45"><a href="#AyakaConfig-45"><span class="linenos">45</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确&quot;</span><span class="p">)</span>
+</span><span id="AyakaConfig-45"><a href="#AyakaConfig-45"><span class="linenos">45</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确；如果不确定出错的原因，可以尝试更新插件-删除配置-重启bot&quot;</span><span class="p">)</span>
 </span><span id="AyakaConfig-46"><a href="#AyakaConfig-46"><span class="linenos">46</span></a>            <span class="k">raise</span> <span class="n">e</span>
 </span><span id="AyakaConfig-47"><a href="#AyakaConfig-47"><span class="linenos">47</span></a>
 </span><span id="AyakaConfig-48"><a href="#AyakaConfig-48"><span class="linenos">48</span></a>        <span class="c1"># 强制更新（更新默认值）</span>
@@ -285,7 +285,7 @@
 </span><span id="AyakaConfig.__init__-42"><a href="#AyakaConfig.__init__-42"><span class="linenos">42</span></a>
 </span><span id="AyakaConfig.__init__-43"><a href="#AyakaConfig.__init__-43"><span class="linenos">43</span></a>        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="AyakaConfig.__init__-44"><a href="#AyakaConfig.__init__-44"><span class="linenos">44</span></a>            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-</span><span id="AyakaConfig.__init__-45"><a href="#AyakaConfig.__init__-45"><span class="linenos">45</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确&quot;</span><span class="p">)</span>
+</span><span id="AyakaConfig.__init__-45"><a href="#AyakaConfig.__init__-45"><span class="linenos">45</span></a>                <span class="sa">f</span><span class="s2">&quot;导入配置失败，请检查</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">的配置是否正确；如果不确定出错的原因，可以尝试更新插件-删除配置-重启bot&quot;</span><span class="p">)</span>
 </span><span id="AyakaConfig.__init__-46"><a href="#AyakaConfig.__init__-46"><span class="linenos">46</span></a>            <span class="k">raise</span> <span class="n">e</span>
 </span><span id="AyakaConfig.__init__-47"><a href="#AyakaConfig.__init__-47"><span class="linenos">47</span></a>
 </span><span id="AyakaConfig.__init__-48"><a href="#AyakaConfig.__init__-48"><span class="linenos">48</span></a>        <span class="c1"># 强制更新（更新默认值）</span>
@@ -398,7 +398,7 @@
                 </section>
                 <section id="ayaka_root_config">
                     <div class="attr variable">
-            <span class="name">ayaka_root_config</span><span class="default_value"> = RootConfig(version=&#39;1.0.1b1&#39;)</span>
+            <span class="name">ayaka_root_config</span><span class="default_value"> = RootConfig(version=&#39;1.0.1&#39;)</span>
 
         
     </div>
