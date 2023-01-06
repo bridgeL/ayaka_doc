@@ -1264,14 +1264,14 @@
     <span class="n">__config_name__</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span>
     <span class="n">gold_each_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">m10</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
+<span class="n">m10</span> <span class="o">=</span> <span class="n">on_command</span><span class="p">(</span><span class="s2">&quot;pick&quot;</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">rule</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">))</span>
 <span class="nd">@m10</span><span class="o">.</span><span class="n">handle</span><span class="p">()</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache2</span><span class="p">)</span>
     <span class="n">cache</span><span class="o">.</span><span class="n">gold</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="k">await</span> <span class="n">m10</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fake +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">m10</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;+</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -1286,13 +1286,13 @@
     <span class="n">__config_name__</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span>
     <span class="n">gold_each_time</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;fake_pick&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
+<span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;pick&quot;</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="s2">&quot;沙城&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">get_gold</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;捡金子&#39;&#39;&#39;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">Cache2</span><span class="p">)</span>
     <span class="n">cache</span><span class="o">.</span><span class="n">gold</span> <span class="o">+=</span> <span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span>
-    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fake +</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;+</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">gold_each_time</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">cache</span><span class="o">.</span><span class="n">gold</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </div>
@@ -1310,8 +1310,8 @@
 "Bot" 说：已打开应用 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
-"user" 说：fake_pick
-"Bot" 说：fake +1 / 1
+"user" 说：pick
+"Bot" 说：+1 / 1
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -1321,8 +1321,8 @@
 "Bot" 说：已打开应用 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
-"user" 说：fake_pick
-"Bot" 说：fake +10 / 10
+"user" 说：pick
+"Bot" 说：+10 / 10
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -1368,8 +1368,8 @@
 "Bot" 说：前往 沙城
 "user" 说：change 100
 "Bot" 说：修改每次拾取数量为100
-"user" 说：fake_pick
-"Bot" 说：fake +100 / 100
+"user" 说：pick
+"Bot" 说：+100 / 100
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -1407,7 +1407,7 @@ xing ji lv xing
 [火星]
 - <任意文字> 令人震惊的事实
 [沙城]
-- fake_pick 捡金子
+- pick 捡金子
 - change 修改捡金子配置
 - real_pick 捡金子
 </div>
