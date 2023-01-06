@@ -941,12 +941,20 @@
 </tbody>
 </table>
 <h2 id="_5">数据缓存<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>每个群聊中的每个盒子都有一个字典，可用于保存数据</p>
+<p>每个群聊中的每个盒子都有一个字典（<code>box.cache</code>），可用于保存数据</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
     <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ok&quot;</span>
     <span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
+</code></pre></div>
+<p>不同群聊、不同盒子间的字典是相互独立的，请放心读写数据</p>
+<div class="highlight"><pre><span></span><code>以上段代码为例
+
+群聊a发送指令test，程序输出box.cache
+群聊b发送指令test，程序输出box.cache
+
+这两个box.cache实际上是不同的字典，相互独立
 </code></pre></div>
 <p>你也可以结合<code>pydantic.BaseModel</code>使用</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
