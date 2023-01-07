@@ -17,7 +17,7 @@
 - 移除：不再有复杂的多层状态，现在，任意状态都分布在同一层；不再有唯一状态树，也不再有on_enter、on_exit等设计，也不再有deep和上溯查找
 - 移除：注册定时回答的方法，未来暂无重新添加回来的打算
 - 修复BUG：非命令触发时，box.arg无法正确获取消息
-- 修复BUG: sql无法正确提交数据
+- 修复BUG：sql无法正确提交数据
 
 ## 1.0.1
 
@@ -26,11 +26,11 @@
 - 新特性：新增ayaka.master模块，将帮助、查看状态功能整合进 盒子管理器
 - 新特性：box.matcher_state属性
 - 新特性：box.help属性
-- 新特性: box.send_help方法
-- 新特性: box.get_data方法
-- 新特性: box.get_arbitrary_data方法
-- 新特性: 关闭恼人的duplicated warning提示
-- 新特性: 新增slow_load_config装饰器
+- 新特性：box.send_help方法
+- 新特性：box.get_data方法
+- 新特性：box.get_arbitrary_data方法
+- 新特性：关闭恼人的duplicated warning提示
+- 新特性：新增slow_load_config装饰器
 - 新特性：AyakaFunc，极大提高插件加载速度
 - 新特性：现在box可以设置默认priority；通过box注册的所有matcher都沿用该priority；特别的，on_message matcher使用priority+1
 - 新特性：现在nb能正确显示matcher的module_name了，而不再是ayaka.box
@@ -43,7 +43,7 @@
 - 变更：一些ayaka.extension中的有益方法被迁移至ayaka.helper模块中
 - 移除：移除了box.create_cmd_matcher、box.create_text_matcher、box.reset_state
 - 移除：删除了类型提示不佳的StrOrMsgList类，不影响box.args的使用
-- 修复BUG: cached无法正常使用
+- 修复BUG：cached无法正常使用
 - 优化代码结构，完善注释
 
 ## 1.0.2 
