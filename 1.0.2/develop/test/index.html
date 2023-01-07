@@ -523,13 +523,20 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    通用命令
+    配置（可选，推荐）
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    通用命令
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     自动化脚本
   </a>
   
@@ -537,14 +544,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     额外命令
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     脚本示例
   </a>
   
@@ -570,7 +577,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     下一步
   </a>
   
@@ -880,7 +887,10 @@
 
 <span class="n">nonebot</span><span class="o">.</span><span class="n">load_plugin</span><span class="p">(</span><span class="s2">&quot;ayaka_test&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="_2">通用命令<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="_2">配置（可选，推荐）<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>你可以设置<code>.env.prod</code>或<code>.env.dev</code>中的<code>LOG_LEVEL=27</code></p>
+<p>从而获得纯净的debug日志</p>
+<h2 id="_3">通用命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -907,8 +917,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_3">自动化脚本<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="_4">额外命令<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h2 id="_4">自动化脚本<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">额外命令<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -927,7 +937,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_5">脚本示例<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="_6">脚本示例<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code># 用于区分不同对话段(所有自动化脚本默认具有此条效果，无需专门书写)
 # after d 0.1 
 
@@ -939,6 +949,40 @@ g 100 1 星际旅行
 g 100 1 move 月球
 g 100 1 hi
 </code></pre></div>
+<p><strong>实现效果</strong></p>
+<div class="demo">
+"user" 说：星际旅行
+"Bot" 说：[星际旅行]
+xing ji lv xing
+- 星际旅行/travel 启动盒子
+[*]
+- 退出/exit 关闭盒子
+- move 移动
+- watch/看表演 看表演
+[地球]
+- hi 打招呼
+- drink 喝水
+[月球]
+- hi 打招呼
+- drink 喝水
+[太阳]
+- hi 打招呼
+- drink 喝太阳风
+[售票处]
+- buy/买票 买门票
+[火星]
+- 任意文字 令人震惊的事实
+[沙城]
+- pick 捡金子
+- change 修改捡金子配置
+- 盒子帮助 展示盒子帮助
+- 盒子状态 展示盒子状态
+"user" 说：move 月球
+"Bot" 说：前往 月球
+"user" 说：hi
+"Bot" 说：你好，月球！
+</div>
+
 <h2 id="ayaka_test">如何增强ayaka_test<a class="headerlink" href="#ayaka_test" title="Permanent link">&para;</a></h2>
 <p>虽然名义上是ayaka衍生插件的测试套件，然而其与ayaka没多少关系，可以直接拿去当nonebot插件的测试套件</p>
 <p><del>不过，由于只模仿了几条功能，因此更多的还是适用于文字游戏插件的测试</del></p>
@@ -952,7 +996,7 @@ g 100 1 hi
 <h2 id="win10-fastapi-reload">win10 fastapi reload卡死问题<a class="headerlink" href="#win10-fastapi-reload" title="Permanent link">&para;</a></h2>
 <p>测试套件可能会在特定情况下卡死，无法结束进程，从而占用测试端口</p>
 <p>win10可尝试运行<code>from ayaka_test import clean_port; clean_port()</code>清理卡死的进程</p>
-<h2 id="_6">下一步<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h2 id="_7">下一步<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
