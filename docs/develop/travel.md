@@ -363,14 +363,14 @@
         __config_name__ = box.name
         gold_each_time: int = 1
 
-    m10 = on_command("fake_pick", rule=box.rule(states="沙城"))
+    m10 = on_command("pick", rule=box.rule(states="沙城"))
     @m10.handle()
     async def get_gold():
         '''捡金子'''
         config = Config()
         cache = box.get_data(Cache2)
         cache.gold += config.gold_each_time
-        await m10.send(f"fake +{config.gold_each_time} / {cache.gold}")
+        await m10.send(f"+{config.gold_each_time} / {cache.gold}")
     ```
 
 === "AYAKA"
@@ -387,13 +387,13 @@
         __config_name__ = box.name
         gold_each_time: int = 1
 
-    @box.on_cmd(cmds="fake_pick", states="沙城")
+    @box.on_cmd(cmds="pick", states="沙城")
     async def get_gold():
         '''捡金子'''
         config = Config()
         cache = box.get_data(Cache2)
         cache.gold += config.gold_each_time
-        await box.send(f"fake +{config.gold_each_time} / {cache.gold}")
+        await box.send(f"+{config.gold_each_time} / {cache.gold}")
     ```
 
 查看`data/ayaka/星际旅行.json`
@@ -414,8 +414,8 @@
 "Bot" 说：已打开应用 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
-"user" 说：fake_pick
-"Bot" 说：fake +1 / 1
+"user" 说：pick
+"Bot" 说：+1 / 1
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -425,8 +425,8 @@
 "Bot" 说：已打开应用 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
-"user" 说：fake_pick
-"Bot" 说：fake +10 / 10
+"user" 说：pick
+"Bot" 说：+10 / 10
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -475,8 +475,8 @@
 "Bot" 说：前往 沙城
 "user" 说：change 100
 "Bot" 说：修改每次拾取数量为100
-"user" 说：fake_pick
-"Bot" 说：fake +100 / 100
+"user" 说：pick
+"Bot" 说：+100 / 100
 "user" 说：exit
 "Bot" 说：已关闭应用 [星际旅行]
 
@@ -520,7 +520,7 @@ xing ji lv xing
 [火星]
 - <任意文字> 令人震惊的事实
 [沙城]
-- fake_pick 捡金子
+- pick 捡金子
 - change 修改捡金子配置
 - real_pick 捡金子
 </div>

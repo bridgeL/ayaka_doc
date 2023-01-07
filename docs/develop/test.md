@@ -16,15 +16,25 @@ ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 
 已给出两个[钩子函数](#ayaka_test)供拓展使用
 
-## 使用方法
+## 安装
 
-下载本套件 `git clone https://github.com/bridgeL/nonebot-plugin-ayaka.git`（套件中自带最新版本的ayaka）
+`pip install nonebot_plugin_ayaka_test`
 
-安装依赖 `pip install -r requirements.txt`
+修改`bot.py`
 
-将待测试的ayaka衍生插件放入plugins目录下
+``` py
+# 其他加载插件的代码
+# some code ....
+# some code ....
 
-启动 `python bot.py`
+nonebot.load_plugin("ayaka_test")
+```
+
+## 配置（可选，推荐）
+
+你可以设置`.env.prod`或`.env.dev`中的`LOG_LEVEL=27`
+
+从而获得纯净的debug日志
 
 ## 通用命令
 
@@ -32,9 +42,7 @@ ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 | ------------------------------- | --------------------------------- |
 | g `<group_id> <user_id> <text>` | 伪造一条群聊消息                  |
 | p `<user_id> <text> `           | 伪造一条私聊消息                  |
-| d 1                             | 延时1秒                           |
-| dn 0.1                          | 延时0.1秒后空一行                 |
-| sa on/off                       | 打开/关闭 对nonebot收发消息的采样 |
+| d 0.1                           | 延时0.1秒后空一行                 |
 | s test                          | 执行script/test.ini自动化脚本     |
 
 ## 自动化脚本
@@ -43,26 +51,58 @@ ayaka_test模拟了一个**不需要连接真实qq账号**的假cqhttp
 
 | 命令           | 功能                             |
 | -------------- | -------------------------------- |
-| before `<cmd>` | 每一条命令执行前需额外执行的命令 |
 | after `<cmd>`  | 每一条命令执行后需额外执行的命令 |
-| ;              | 注释（必须放在每一行的开头）     |
 | #              | 注释（必须放在每一行的开头）     |
 
 ### 脚本示例
 
 ```
 # 用于区分不同对话段(所有自动化脚本默认具有此条效果，无需专门书写)
-# after dn 0.1 
+# after d 0.1 
 
 # 你可以使用如下语句关闭默认效果
 # after 
 
 # 开始测试
 g 100 1 星际旅行
+g 100 1 move 月球
 g 100 1 hi
-g 100 1 goto 月球
-g 100 1 jump
 ```
+
+**实现效果**
+
+<div class="demo">
+"user" 说：星际旅行
+"Bot" 说：[星际旅行]
+xing ji lv xing
+- 星际旅行/travel 启动盒子
+[*]
+- 退出/exit 关闭盒子
+- move 移动
+- watch/看表演 看表演
+[地球]
+- hi 打招呼
+- drink 喝水
+[月球]
+- hi 打招呼
+- drink 喝水
+[太阳]
+- hi 打招呼
+- drink 喝太阳风
+[售票处]
+- buy/买票 买门票
+[火星]
+- 任意文字 令人震惊的事实
+[沙城]
+- pick 捡金子
+- change 修改捡金子配置
+- 盒子帮助 展示盒子帮助
+- 盒子状态 展示盒子状态
+"user" 说：move 月球
+"Bot" 说：前往 月球
+"user" 说：hi
+"Bot" 说：你好，月球！
+</div>
 
 ## 如何增强ayaka_test
 
@@ -72,10 +112,10 @@ g 100 1 jump
 
 在ayaka_test中，分别给出了两个钩子函数
 
-- `fake_qq.on_terminal` 编写自定义的终端命令
-- `fake_qq.on_cqhttp` 编写自定义的假cqhttp的api
+- `fake_cq.on_cmd` 编写自定义的终端命令
+- `fake_cq.on_api` 编写自定义的假cqhttp的api
 
-具体编写可分别参考`ayaka_test/terminal.py`和`ayaka_test/cqhttp.py`文件
+具体编写可分别参考`ayaka_test/_cmd.py`和`ayaka_test/api.py`文件
 
 通过它们为假cqhttp拓展更多功能吧
 
@@ -83,7 +123,7 @@ g 100 1 jump
 
 测试套件可能会在特定情况下卡死，无法结束进程，从而占用测试端口
 
-win10可尝试运行`python clean.py`清理卡死的进程
+win10可尝试运行`from ayaka_test import clean_port; clean_port()`清理卡死的进程
 
 ## 下一步
 

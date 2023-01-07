@@ -50,3 +50,22 @@
 - 修复BUG: cached无法正常使用
 - 优化代码结构，完善注释
 
+## 1.0.2 
+
+- 变更：大幅修改了AyakaGroup、box.state、box.cache、box.rule、set_state、start、close的实现原理（不影响使用
+- 变更：AyakaFunc更名为AyakaDelayMatcher
+- 变更：event现在返回消息事件，而非群聊消息事件
+- 变更：担心对logger的过多干涉会对其他插件造成影响，因此不再屏蔽Duplicated prefix rule warning，转而发送提示，告知用户这是正常的
+- 变更：set_start_cmds的指令将自动发送帮助
+- 用语变更：应用 全部替换为 盒子
+- 新增：box.group_event计算属性
+- 新增：safe_open_file方法
+- 新增：WatcherAdapter类，用来监听nb与gocq的对话，为设计下一版ayaka_test做准备
+- 新特性：cached现在可以装饰异步方法
+- 移除：移除了load_cwd_plugins方法
+- 移除：移除了ayaka.log模块
+- 移除：删除box.all_help，现在使用box.help访问曾经box.all_help的内容
+- 修复BUG：box.arg对on_message注册的回调错误删除命令的问题
+- 优化代码注释
+
+

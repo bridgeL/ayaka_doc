@@ -48,7 +48,7 @@
 
 ## 数据缓存
 
-每个群聊中的每个盒子都有一个字典，可用于保存数据
+每个群聊中的每个盒子都有一个字典（`box.cache`），可用于保存数据
 
 ```py
 @box.on_cmd(cmds="test")
@@ -56,6 +56,17 @@ async def func():
     box.cache["data"] = "ok"
     box.cache["yes"] = 12
     print(box.cache)
+```
+
+不同群聊、不同盒子间的字典是相互独立的，请放心读写数据
+
+```
+以上段代码为例
+
+群聊a发送指令test，程序输出box.cache
+群聊b发送指令test，程序输出box.cache
+
+这两个box.cache实际上是不同的字典，相互独立
 ```
 
 你也可以结合`pydantic.BaseModel`使用
