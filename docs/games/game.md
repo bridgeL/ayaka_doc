@@ -1,4 +1,4 @@
-本页为 [ayaka文字小游戏](https://github.com/bridgeL/nonebot-plugin-ayaka-games) 的帮助文档，托管在 ayaka 的帮助文档下
+本页为`ayaka小游戏合集`的帮助文档，托管在`ayaka`的帮助文档下
 
 ## 基础功能
 1. 背包
@@ -18,6 +18,10 @@
 ## 特别感谢
 
 [@灯夜](https://github.com/lunexnocty/Meiri) 大佬的插件蛮好玩的~
+
+## 仓库
+
+[基于ayaka的小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
 ## 下一步
 

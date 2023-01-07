@@ -27,6 +27,7 @@ pip install nonebot-plugin-ayaka
 
 [基于ayaka的小游戏合集](https://github.com/bridgeL/nonebot-plugin-ayaka-games)
 
+[ayaka_test](https://github.com/bridgeL/nonebot-plugin-ayaka-test)
 
 ## 下一步
 

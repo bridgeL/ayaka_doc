@@ -113,7 +113,7 @@ xing ji lv xing
 - `fake_cq.on_cmd` 编写自定义的终端命令
 - `fake_cq.on_api` 编写自定义的假cqhttp的api
 
-具体编写可分别参考[_cmd.py](https://github.com/bridgeL/nonebot-plugin-ayaka-test/blob/master/_cmd.py)和[api.py](https://github.com/bridgeL/nonebot-plugin-ayaka-test/blob/master/api.py)文件
+具体编写可分别参考[_cmd.py](https://github.com/bridgeL/nonebot-plugin-ayaka-test/blob/master/_cmd.py)和[_api.py](https://github.com/bridgeL/nonebot-plugin-ayaka-test/blob/master/_api.py)文件
 
 通过它们为假cqhttp拓展更多功能吧
 
