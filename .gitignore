@@ -1,3 +1,5 @@
 /site
 /data
 /error.log
+*.ps1
+
