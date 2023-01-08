@@ -12,6 +12,13 @@
 
 显然，同一群聊同一时间最多只能运行一个盒子
 
+### 群聊状态
+
+| 状态         | 意义             |
+| ------------ | ---------------- |
+| 闲置状态     | 没有运行任何盒子 |
+| 盒子独占状态 | 正在运行某个盒子 |
+
 ## 状态机
 
 打开盒子后，群聊处于盒子独占状态
@@ -23,13 +30,6 @@
 - 在注册命令时，可以设置该命令在何种盒子状态下生效
 
 例如：hh命令被注册在test状态下，那么当盒子不处于test状态时，盒子将不响应hh命令
-
-### 群聊状态
-
-| 状态         | 意义             |
-| ------------ | ---------------- |
-| 闲置状态     | 没有运行任何盒子 |
-| 盒子独占状态 | 正在运行某个盒子 |
 
 ### 盒子状态
 
@@ -110,7 +110,7 @@ async def func():
     on_command("b", rule=box.rule(states=["menu", "test"]), handlers=[func])
     on_command("c", rule=box.rule(), handlers=[func])
     on_command("d", rule=box.rule(states="*"), handlers=[func])
-    on_command("e", handlers=[func])
+    on_command("e", rule=box.rule(always=True), handlers=[func])
     ```
 
 === "AYAKA"

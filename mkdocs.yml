@@ -44,7 +44,7 @@ nav:
 - 小游戏合集:
   - 介绍: games/game.md
   - 安装与配置: games/install.md
-  - 更多帮助: games/help.md
+  - 帮助: games/help.md
   - 更新日志: games/change-log.md
 - 更新日志:
   - 未来计划: change-log/next.md
