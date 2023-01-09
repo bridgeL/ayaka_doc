@@ -31,7 +31,22 @@
         <h2>API Documentation</h2>
             <ul class="memberlist">
             <li>
-                    <a class="function" href="#startup">startup</a>
+                    <a class="variable" href="#box">box</a>
+            </li>
+            <li>
+                    <a class="function" href="#list_box">list_box</a>
+            </li>
+            <li>
+                    <a class="function" href="#show_help">show_help</a>
+            </li>
+            <li>
+                    <a class="function" href="#show_state">show_state</a>
+            </li>
+            <li>
+                    <a class="function" href="#force_exit">force_exit</a>
+            </li>
+            <li>
+                    <a class="function" href="#block_box">block_box</a>
             </li>
     </ul>
 
@@ -58,231 +73,275 @@
 
                         <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="sd">&#39;&#39;&#39;盒子管理器&#39;&#39;&#39;</span>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="kn">from</span> <span class="nn">.box</span> <span class="kn">import</span> <span class="n">AyakaBox</span><span class="p">,</span> <span class="n">get_box</span><span class="p">,</span> <span class="n">box_list</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a><span class="kn">from</span> <span class="nn">.helpers</span> <span class="kn">import</span> <span class="n">run_in_startup</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a>
-</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="nd">@run_in_startup</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;延迟加载&#39;&#39;&#39;</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>    <span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;盒子管理器&quot;</span><span class="p">)</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;盒子管理器&#39;&#39;&#39;</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>
-</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子列表&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_box</span><span class="p">():</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示所有盒子&#39;&#39;&#39;</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;已加载的盒子列表&quot;</span><span class="p">]</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">:</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;- [</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>                <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot; [已被屏蔽]&quot;</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>            <span class="n">infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>
-</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示盒子帮助&#39;&#39;&#39;</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>        <span class="k">if</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>            <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>            <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>            <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>                <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>                <span class="k">return</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>                <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>
-</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>            <span class="k">return</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>
-</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="k">await</span> <span class="n">list_box</span><span class="p">()</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>            <span class="s2">&quot;如果想获得进一步帮助请使用命令&quot;</span><span class="p">,</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>            <span class="s2">&quot;- 盒子帮助 &lt;盒子名&gt;&quot;</span><span class="p">,</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>            <span class="s2">&quot;- 全部盒子帮助&quot;</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>        <span class="p">]</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>
-</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;全部盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示展示所有盒子的帮助&#39;&#39;&#39;</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">.</span><span class="n">help</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">]</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send_many</span><span class="p">(</span><span class="n">infos</span><span class="p">)</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a><span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;盒子管理器&quot;</span><span class="p">)</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="sd">&#39;&#39;&#39;盒子管理器&#39;&#39;&#39;</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子列表&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">list_box</span><span class="p">():</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示所有盒子&#39;&#39;&#39;</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>    <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;已加载的盒子列表&quot;</span><span class="p">]</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">:</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;- [</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>            <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot; [已被屏蔽]&quot;</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>        <span class="n">infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示盒子帮助&#39;&#39;&#39;</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>    <span class="k">if</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>            <span class="k">return</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">current_box</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="k">return</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>    <span class="k">await</span> <span class="n">list_box</span><span class="p">()</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>    <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="s2">&quot;如果想获得进一步帮助请使用命令&quot;</span><span class="p">,</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>        <span class="s2">&quot;- 盒子帮助 &lt;盒子名&gt;&quot;</span><span class="p">,</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>        <span class="s2">&quot;- 全部盒子帮助&quot;</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>    <span class="p">]</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;全部盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示展示所有盒子的帮助&#39;&#39;&#39;</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>    <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">.</span><span class="n">help</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">]</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send_many</span><span class="p">(</span><span class="n">infos</span><span class="p">)</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>
 </span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">():</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行盒子[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何盒子在运行&quot;</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">():</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">current_box</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行盒子[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何盒子在运行&quot;</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
 </span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>
-</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;强制退出&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">force_exit</span><span class="p">():</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;强制关闭当前盒子&#39;&#39;&#39;</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>            <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>
-</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 屏蔽盒子&#39;&#39;&#39;</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>            <span class="k">return</span>
-</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
-</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>            <span class="k">return</span>
-</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>
-</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>        <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>
-</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;取消屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
-</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 取消屏蔽盒子&#39;&#39;&#39;</span>
-</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 取消屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
-</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>            <span class="k">return</span>
-</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>
-</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;不可屏蔽盒子管理器&quot;</span><span class="p">)</span>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>            <span class="k">return</span>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>            <span class="k">return</span>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>        <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已取消屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;强制退出&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">force_exit</span><span class="p">():</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;强制关闭当前盒子&#39;&#39;&#39;</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">current_box</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>        <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 屏蔽盒子&#39;&#39;&#39;</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>        <span class="k">return</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>        <span class="k">return</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>    <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;取消屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 取消屏蔽盒子&#39;&#39;&#39;</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 取消屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="k">return</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;不可屏蔽盒子管理器&quot;</span><span class="p">)</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="k">return</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>        <span class="k">return</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>    <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已取消屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="startup">
-                            <input id="startup-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="box">
+                    <div class="attr variable">
+            <span class="name">box</span><span class="default_value"> = &lt;<a href="box.html#AyakaBox">ayaka.box.AyakaBox</a> object&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#box"></a>
+    
+            <div class="docstring"><p>盒子管理器</p>
+</div>
+
+
+                </section>
+                <section id="list_box">
+                            <input id="list_box-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-                    <div class="decorator">@run_in_startup</div>
+                    <div class="decorator">@box.on_cmd(cmds=&#39;盒子列表&#39;, always=True)</div>
 
         <span class="def">async def</span>
-        <span class="name">startup</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+        <span class="name">list_box</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="startup-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="list_box-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#startup"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="startup-7"><a href="#startup-7"><span class="linenos">  7</span></a><span class="nd">@run_in_startup</span>
-</span><span id="startup-8"><a href="#startup-8"><span class="linenos">  8</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">startup</span><span class="p">():</span>
-</span><span id="startup-9"><a href="#startup-9"><span class="linenos">  9</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;延迟加载&#39;&#39;&#39;</span>
-</span><span id="startup-10"><a href="#startup-10"><span class="linenos"> 10</span></a>    <span class="n">box</span> <span class="o">=</span> <span class="n">AyakaBox</span><span class="p">(</span><span class="s2">&quot;盒子管理器&quot;</span><span class="p">)</span>
-</span><span id="startup-11"><a href="#startup-11"><span class="linenos"> 11</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;盒子管理器&#39;&#39;&#39;</span>
-</span><span id="startup-12"><a href="#startup-12"><span class="linenos"> 12</span></a>
-</span><span id="startup-13"><a href="#startup-13"><span class="linenos"> 13</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子列表&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-14"><a href="#startup-14"><span class="linenos"> 14</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_box</span><span class="p">():</span>
-</span><span id="startup-15"><a href="#startup-15"><span class="linenos"> 15</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示所有盒子&#39;&#39;&#39;</span>
-</span><span id="startup-16"><a href="#startup-16"><span class="linenos"> 16</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;已加载的盒子列表&quot;</span><span class="p">]</span>
-</span><span id="startup-17"><a href="#startup-17"><span class="linenos"> 17</span></a>        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">:</span>
-</span><span id="startup-18"><a href="#startup-18"><span class="linenos"> 18</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;- [</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="startup-19"><a href="#startup-19"><span class="linenos"> 19</span></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
-</span><span id="startup-20"><a href="#startup-20"><span class="linenos"> 20</span></a>                <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot; [已被屏蔽]&quot;</span>
-</span><span id="startup-21"><a href="#startup-21"><span class="linenos"> 21</span></a>            <span class="n">infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-</span><span id="startup-22"><a href="#startup-22"><span class="linenos"> 22</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
-</span><span id="startup-23"><a href="#startup-23"><span class="linenos"> 23</span></a>
-</span><span id="startup-24"><a href="#startup-24"><span class="linenos"> 24</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-25"><a href="#startup-25"><span class="linenos"> 25</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-</span><span id="startup-26"><a href="#startup-26"><span class="linenos"> 26</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示盒子帮助&#39;&#39;&#39;</span>
-</span><span id="startup-27"><a href="#startup-27"><span class="linenos"> 27</span></a>        <span class="k">if</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="startup-28"><a href="#startup-28"><span class="linenos"> 28</span></a>            <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="startup-29"><a href="#startup-29"><span class="linenos"> 29</span></a>            <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="startup-30"><a href="#startup-30"><span class="linenos"> 30</span></a>            <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-31"><a href="#startup-31"><span class="linenos"> 31</span></a>                <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="startup-32"><a href="#startup-32"><span class="linenos"> 32</span></a>                <span class="k">return</span>
-</span><span id="startup-33"><a href="#startup-33"><span class="linenos"> 33</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="startup-34"><a href="#startup-34"><span class="linenos"> 34</span></a>                <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="startup-35"><a href="#startup-35"><span class="linenos"> 35</span></a>
-</span><span id="startup-36"><a href="#startup-36"><span class="linenos"> 36</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="startup-37"><a href="#startup-37"><span class="linenos"> 37</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-38"><a href="#startup-38"><span class="linenos"> 38</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">help</span><span class="p">)</span>
-</span><span id="startup-39"><a href="#startup-39"><span class="linenos"> 39</span></a>            <span class="k">return</span>
-</span><span id="startup-40"><a href="#startup-40"><span class="linenos"> 40</span></a>
-</span><span id="startup-41"><a href="#startup-41"><span class="linenos"> 41</span></a>        <span class="k">await</span> <span class="n">list_box</span><span class="p">()</span>
-</span><span id="startup-42"><a href="#startup-42"><span class="linenos"> 42</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="startup-43"><a href="#startup-43"><span class="linenos"> 43</span></a>            <span class="s2">&quot;如果想获得进一步帮助请使用命令&quot;</span><span class="p">,</span>
-</span><span id="startup-44"><a href="#startup-44"><span class="linenos"> 44</span></a>            <span class="s2">&quot;- 盒子帮助 &lt;盒子名&gt;&quot;</span><span class="p">,</span>
-</span><span id="startup-45"><a href="#startup-45"><span class="linenos"> 45</span></a>            <span class="s2">&quot;- 全部盒子帮助&quot;</span>
-</span><span id="startup-46"><a href="#startup-46"><span class="linenos"> 46</span></a>        <span class="p">]</span>
-</span><span id="startup-47"><a href="#startup-47"><span class="linenos"> 47</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
-</span><span id="startup-48"><a href="#startup-48"><span class="linenos"> 48</span></a>
-</span><span id="startup-49"><a href="#startup-49"><span class="linenos"> 49</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;全部盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-50"><a href="#startup-50"><span class="linenos"> 50</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
-</span><span id="startup-51"><a href="#startup-51"><span class="linenos"> 51</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示展示所有盒子的帮助&#39;&#39;&#39;</span>
-</span><span id="startup-52"><a href="#startup-52"><span class="linenos"> 52</span></a>        <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">.</span><span class="n">help</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">]</span>
-</span><span id="startup-53"><a href="#startup-53"><span class="linenos"> 53</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send_many</span><span class="p">(</span><span class="n">infos</span><span class="p">)</span>
-</span><span id="startup-54"><a href="#startup-54"><span class="linenos"> 54</span></a>
-</span><span id="startup-55"><a href="#startup-55"><span class="linenos"> 55</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-56"><a href="#startup-56"><span class="linenos"> 56</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">():</span>
-</span><span id="startup-57"><a href="#startup-57"><span class="linenos"> 57</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
-</span><span id="startup-58"><a href="#startup-58"><span class="linenos"> 58</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="startup-59"><a href="#startup-59"><span class="linenos"> 59</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-60"><a href="#startup-60"><span class="linenos"> 60</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行盒子[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
-</span><span id="startup-61"><a href="#startup-61"><span class="linenos"> 61</span></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="startup-62"><a href="#startup-62"><span class="linenos"> 62</span></a>            <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何盒子在运行&quot;</span>
-</span><span id="startup-63"><a href="#startup-63"><span class="linenos"> 63</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-</span><span id="startup-64"><a href="#startup-64"><span class="linenos"> 64</span></a>
-</span><span id="startup-65"><a href="#startup-65"><span class="linenos"> 65</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;强制退出&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-66"><a href="#startup-66"><span class="linenos"> 66</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">force_exit</span><span class="p">():</span>
-</span><span id="startup-67"><a href="#startup-67"><span class="linenos"> 67</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;强制关闭当前盒子&#39;&#39;&#39;</span>
-</span><span id="startup-68"><a href="#startup-68"><span class="linenos"> 68</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">group</span><span class="o">.</span><span class="n">current_box</span>
-</span><span id="startup-69"><a href="#startup-69"><span class="linenos"> 69</span></a>        <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-70"><a href="#startup-70"><span class="linenos"> 70</span></a>            <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="startup-71"><a href="#startup-71"><span class="linenos"> 71</span></a>
-</span><span id="startup-72"><a href="#startup-72"><span class="linenos"> 72</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-73"><a href="#startup-73"><span class="linenos"> 73</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
-</span><span id="startup-74"><a href="#startup-74"><span class="linenos"> 74</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 屏蔽盒子&#39;&#39;&#39;</span>
-</span><span id="startup-75"><a href="#startup-75"><span class="linenos"> 75</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="startup-76"><a href="#startup-76"><span class="linenos"> 76</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
-</span><span id="startup-77"><a href="#startup-77"><span class="linenos"> 77</span></a>            <span class="k">return</span>
-</span><span id="startup-78"><a href="#startup-78"><span class="linenos"> 78</span></a>
-</span><span id="startup-79"><a href="#startup-79"><span class="linenos"> 79</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="startup-80"><a href="#startup-80"><span class="linenos"> 80</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="startup-81"><a href="#startup-81"><span class="linenos"> 81</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-82"><a href="#startup-82"><span class="linenos"> 82</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="startup-83"><a href="#startup-83"><span class="linenos"> 83</span></a>            <span class="k">return</span>
-</span><span id="startup-84"><a href="#startup-84"><span class="linenos"> 84</span></a>
-</span><span id="startup-85"><a href="#startup-85"><span class="linenos"> 85</span></a>        <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="startup-86"><a href="#startup-86"><span class="linenos"> 86</span></a>        <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
-</span><span id="startup-87"><a href="#startup-87"><span class="linenos"> 87</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="startup-88"><a href="#startup-88"><span class="linenos"> 88</span></a>
-</span><span id="startup-89"><a href="#startup-89"><span class="linenos"> 89</span></a>    <span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;取消屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="startup-90"><a href="#startup-90"><span class="linenos"> 90</span></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
-</span><span id="startup-91"><a href="#startup-91"><span class="linenos"> 91</span></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 取消屏蔽盒子&#39;&#39;&#39;</span>
-</span><span id="startup-92"><a href="#startup-92"><span class="linenos"> 92</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
-</span><span id="startup-93"><a href="#startup-93"><span class="linenos"> 93</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 取消屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
-</span><span id="startup-94"><a href="#startup-94"><span class="linenos"> 94</span></a>            <span class="k">return</span>
-</span><span id="startup-95"><a href="#startup-95"><span class="linenos"> 95</span></a>
-</span><span id="startup-96"><a href="#startup-96"><span class="linenos"> 96</span></a>        <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
-</span><span id="startup-97"><a href="#startup-97"><span class="linenos"> 97</span></a>        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-</span><span id="startup-98"><a href="#startup-98"><span class="linenos"> 98</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;不可屏蔽盒子管理器&quot;</span><span class="p">)</span>
-</span><span id="startup-99"><a href="#startup-99"><span class="linenos"> 99</span></a>            <span class="k">return</span>
-</span><span id="startup-100"><a href="#startup-100"><span class="linenos">100</span></a>
-</span><span id="startup-101"><a href="#startup-101"><span class="linenos">101</span></a>        <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-</span><span id="startup-102"><a href="#startup-102"><span class="linenos">102</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
-</span><span id="startup-103"><a href="#startup-103"><span class="linenos">103</span></a>            <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
-</span><span id="startup-104"><a href="#startup-104"><span class="linenos">104</span></a>            <span class="k">return</span>
-</span><span id="startup-105"><a href="#startup-105"><span class="linenos">105</span></a>
-</span><span id="startup-106"><a href="#startup-106"><span class="linenos">106</span></a>        <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
-</span><span id="startup-107"><a href="#startup-107"><span class="linenos">107</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已取消屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <a class="headerlink" href="#list_box"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="list_box-10"><a href="#list_box-10"><span class="linenos">10</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子列表&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="list_box-11"><a href="#list_box-11"><span class="linenos">11</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">list_box</span><span class="p">():</span>
+</span><span id="list_box-12"><a href="#list_box-12"><span class="linenos">12</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示所有盒子&#39;&#39;&#39;</span>
+</span><span id="list_box-13"><a href="#list_box-13"><span class="linenos">13</span></a>    <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;已加载的盒子列表&quot;</span><span class="p">]</span>
+</span><span id="list_box-14"><a href="#list_box-14"><span class="linenos">14</span></a>    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">:</span>
+</span><span id="list_box-15"><a href="#list_box-15"><span class="linenos">15</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;- [</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="list_box-16"><a href="#list_box-16"><span class="linenos">16</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+</span><span id="list_box-17"><a href="#list_box-17"><span class="linenos">17</span></a>            <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot; [已被屏蔽]&quot;</span>
+</span><span id="list_box-18"><a href="#list_box-18"><span class="linenos">18</span></a>        <span class="n">infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span><span id="list_box-19"><a href="#list_box-19"><span class="linenos">19</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">infos</span><span class="p">))</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>延迟加载</p>
+            <div class="docstring"><p>展示所有盒子</p>
+</div>
+
+
+                </section>
+                <section id="show_help">
+                            <input id="show_help-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@box.on_cmd(cmds=&#39;全部盒子帮助&#39;, always=True)</div>
+
+        <span class="def">async def</span>
+        <span class="name">show_help</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="show_help-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#show_help"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="show_help-48"><a href="#show_help-48"><span class="linenos">48</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;全部盒子帮助&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="show_help-49"><a href="#show_help-49"><span class="linenos">49</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_help</span><span class="p">():</span>
+</span><span id="show_help-50"><a href="#show_help-50"><span class="linenos">50</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示展示所有盒子的帮助&#39;&#39;&#39;</span>
+</span><span id="show_help-51"><a href="#show_help-51"><span class="linenos">51</span></a>    <span class="n">infos</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">.</span><span class="n">help</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">box_list</span><span class="p">]</span>
+</span><span id="show_help-52"><a href="#show_help-52"><span class="linenos">52</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send_many</span><span class="p">(</span><span class="n">infos</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>展示展示所有盒子的帮助</p>
+</div>
+
+
+                </section>
+                <section id="show_state">
+                            <input id="show_state-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@box.on_cmd(cmds=&#39;盒子状态&#39;, always=True)</div>
+
+        <span class="def">async def</span>
+        <span class="name">show_state</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="show_state-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#show_state"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="show_state-55"><a href="#show_state-55"><span class="linenos">55</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;盒子状态&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="show_state-56"><a href="#show_state-56"><span class="linenos">56</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">show_state</span><span class="p">():</span>
+</span><span id="show_state-57"><a href="#show_state-57"><span class="linenos">57</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;展示盒子状态&#39;&#39;&#39;</span>
+</span><span id="show_state-58"><a href="#show_state-58"><span class="linenos">58</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">current_box</span>
+</span><span id="show_state-59"><a href="#show_state-59"><span class="linenos">59</span></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="show_state-60"><a href="#show_state-60"><span class="linenos">60</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;正在运行盒子[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">]</span><span class="se">\n</span><span class="s2">当前状态[</span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">state</span><span class="si">}</span><span class="s2">]&quot;</span>
+</span><span id="show_state-61"><a href="#show_state-61"><span class="linenos">61</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="show_state-62"><a href="#show_state-62"><span class="linenos">62</span></a>        <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;当前没有任何盒子在运行&quot;</span>
+</span><span id="show_state-63"><a href="#show_state-63"><span class="linenos">63</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>展示盒子状态</p>
+</div>
+
+
+                </section>
+                <section id="force_exit">
+                            <input id="force_exit-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@box.on_cmd(cmds=&#39;强制退出&#39;, always=True)</div>
+
+        <span class="def">async def</span>
+        <span class="name">force_exit</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="force_exit-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#force_exit"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="force_exit-66"><a href="#force_exit-66"><span class="linenos">66</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;强制退出&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="force_exit-67"><a href="#force_exit-67"><span class="linenos">67</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">force_exit</span><span class="p">():</span>
+</span><span id="force_exit-68"><a href="#force_exit-68"><span class="linenos">68</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;强制关闭当前盒子&#39;&#39;&#39;</span>
+</span><span id="force_exit-69"><a href="#force_exit-69"><span class="linenos">69</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">box</span><span class="o">.</span><span class="n">current_box</span>
+</span><span id="force_exit-70"><a href="#force_exit-70"><span class="linenos">70</span></a>    <span class="k">if</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="force_exit-71"><a href="#force_exit-71"><span class="linenos">71</span></a>        <span class="k">await</span> <span class="n">b</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>强制关闭当前盒子</p>
+</div>
+
+
+                </section>
+                <section id="block_box">
+                            <input id="block_box-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@box.on_cmd(cmds=&#39;取消屏蔽盒子&#39;, always=True)</div>
+
+        <span class="def">async def</span>
+        <span class="name">block_box</span><span class="signature pdoc-code condensed">(<span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="block_box-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#block_box"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="block_box-92"><a href="#block_box-92"><span class="linenos"> 92</span></a><span class="nd">@box</span><span class="o">.</span><span class="n">on_cmd</span><span class="p">(</span><span class="n">cmds</span><span class="o">=</span><span class="s2">&quot;取消屏蔽盒子&quot;</span><span class="p">,</span> <span class="n">always</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="block_box-93"><a href="#block_box-93"><span class="linenos"> 93</span></a><span class="k">async</span> <span class="k">def</span> <span class="nf">block_box</span><span class="p">():</span>
+</span><span id="block_box-94"><a href="#block_box-94"><span class="linenos"> 94</span></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;&lt;盒子名&gt; 取消屏蔽盒子&#39;&#39;&#39;</span>
+</span><span id="block_box-95"><a href="#block_box-95"><span class="linenos"> 95</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">:</span>
+</span><span id="block_box-96"><a href="#block_box-96"><span class="linenos"> 96</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;请使用 取消屏蔽盒子 &lt;盒子名&gt;&quot;</span><span class="p">)</span>
+</span><span id="block_box-97"><a href="#block_box-97"><span class="linenos"> 97</span></a>        <span class="k">return</span>
+</span><span id="block_box-98"><a href="#block_box-98"><span class="linenos"> 98</span></a>
+</span><span id="block_box-99"><a href="#block_box-99"><span class="linenos"> 99</span></a>    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">arg</span><span class="p">)</span>
+</span><span id="block_box-100"><a href="#block_box-100"><span class="linenos">100</span></a>    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">box</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+</span><span id="block_box-101"><a href="#block_box-101"><span class="linenos">101</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;不可屏蔽盒子管理器&quot;</span><span class="p">)</span>
+</span><span id="block_box-102"><a href="#block_box-102"><span class="linenos">102</span></a>        <span class="k">return</span>
+</span><span id="block_box-103"><a href="#block_box-103"><span class="linenos">103</span></a>
+</span><span id="block_box-104"><a href="#block_box-104"><span class="linenos">104</span></a>    <span class="n">b</span> <span class="o">=</span> <span class="n">get_box</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="block_box-105"><a href="#block_box-105"><span class="linenos">105</span></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">b</span><span class="p">:</span>
+</span><span id="block_box-106"><a href="#block_box-106"><span class="linenos">106</span></a>        <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;没有找到对应盒子&quot;</span><span class="p">)</span>
+</span><span id="block_box-107"><a href="#block_box-107"><span class="linenos">107</span></a>        <span class="k">return</span>
+</span><span id="block_box-108"><a href="#block_box-108"><span class="linenos">108</span></a>
+</span><span id="block_box-109"><a href="#block_box-109"><span class="linenos">109</span></a>    <span class="n">b</span><span class="o">.</span><span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="block_box-110"><a href="#block_box-110"><span class="linenos">110</span></a>    <span class="k">await</span> <span class="n">box</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;已取消屏蔽盒子 </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>&lt;盒子名&gt; 取消屏蔽盒子</p>
 </div>
 
 
