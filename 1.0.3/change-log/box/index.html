@@ -891,13 +891,24 @@
 </ul>
 <h2 id="103">1.0.3<a class="headerlink" href="#103" title="Permanent link">&para;</a></h2>
 <ul>
+<li>破坏性变更：set_state变为同步方法</li>
+<li>破坏性变更：删除了on_immediate装饰器，它们令代码复杂难懂</li>
 <li>新特性：盒子管理器新增命令，强制退出</li>
 <li>新特性：box.valid，可以用于控制盒子是否被屏蔽</li>
 <li>新特性：box.rule添加一个新参数always</li>
 <li>新特性：新增is_async_callable方法</li>
 <li>新特性：盒子管理器新增4条指令 盒子列表、全部盒子帮助、屏蔽盒子、取消屏蔽盒子</li>
 <li>新特性：ayaka.patch模块新增方法hack_on_shutdown</li>
+<li>新特性：新增类ResInfo、ResItem，新增方法download_url、resource_download、get_file_hash、resource_download_by_res_info用于下载资源</li>
 <li>变更：修改box.close的实现逻辑，现在不能通过它关闭另一个正在运行的盒子</li>
+<li>变更：ensure_dir_exists方法现在可以对文件路径使用</li>
+<li>变更：修改盒子管理器中盒子帮助的表现，现在没有找到对应盒子的时候将发送提示</li>
+<li>变更：取消盒子屏蔽列表.json，转而保存到根配置中的block_box_dict键下</li>
+<li>变更：删除了AyakaGroup、get_group、group_list，box.group，转而使用group_dict，新增了box.current_box计算属性</li>
+<li>变更：删除了func_list、AyakaDelayMatcher，新增AyakaMatcherCreaterUnit、AyakaMatcherCreater</li>
+<li>移除：删除了safe_open_file方法</li>
+<li>修复BUG：fastapi启动后，无法再通过ayaka.box.on_xxx创建matcher</li>
+<li>修复BUG：load_data_from_file有时无法加载txt文件的最后一行数据（若该数据没有换行符</li>
 <li>优化代码结构</li>
 </ul>
 
