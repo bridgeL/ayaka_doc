@@ -33,7 +33,7 @@ box = AyakaBox("test")
 | box.user_id   | `int` | 当前消息的发送者的qq号                         |
 | box.user_name | `str` | 当前消息的发送者的群名片或昵称（优先为群名片） |
 
-## start、close、send、send_many、set_state
+## start、close、send、send_many
 
 都是异步方法
 
@@ -41,7 +41,6 @@ box = AyakaBox("test")
 | ------------- | ---------------------------------- |
 | box.start     | 运行盒子                           |
 | box.close     | 关闭盒子                           |
-| box.set_state | 令当前群组的状态变为指定的另一状态 |
 | box.send      | 发送消息                           |
 | box.send_many | 发送合并转发消息                   |
 

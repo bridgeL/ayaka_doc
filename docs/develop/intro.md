@@ -156,7 +156,9 @@ await box.start("test")
 ### 设置状态
 
 ```py
-await box.set_state("next")
+box.set_state("next")
+# 或
+box.state = "next"
 ```
 
 ## 下一步

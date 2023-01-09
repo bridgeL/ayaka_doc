@@ -2,12 +2,12 @@
 
 ## 基本使用
 
-打开和关闭应用
+打开和关闭盒子
 
 | 动作             | 效果             |
 | ---------------- | ---------------- |
-| 星际旅行、travel | 打开星际旅行应用 |
-| 退出、exit       | 关闭星际旅行应用 |
+| 星际旅行、travel | 打开星际旅行盒子 |
+| 退出、exit       | 关闭星际旅行盒子 |
 
 === "NONEBOT2"
 
@@ -19,13 +19,13 @@
     box = AyakaBox("星际旅行-nb")
     box.help = "xing ji lv xing"
 
-    # 启动应用
+    # 启动盒子
     m1 = on_command("星际旅行-nb", aliases={"travel-nb"}, rule=box.rule())
     @m1.handle()
     async def start():
         await box.start()
         
-    # 关闭应用
+    # 关闭盒子
     m2 = on_command("退出", aliases={"exit"}, rule=box.rule(states="*"))
     @m2.handle()
     async def close():
@@ -41,9 +41,9 @@
     box = AyakaBox("星际旅行")
     box.help = "xing ji lv xing"
 
-    # 启动应用
+    # 启动盒子
     box.set_start_cmds(cmds=["星际旅行", "travel"])
-    # 关闭应用
+    # 关闭盒子
     box.set_close_cmds(cmds=["退出", "exit"])
     ```
 
@@ -52,9 +52,9 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：退出
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -72,9 +72,8 @@
     @m3.handle()
     async def move():
         '''移动'''
-        arg = str(box.arg)
-        await box.set_state(arg)
-        await m3.send(f"前往 {arg}")
+        box.state = str(box.arg)
+        await m3.send(f"前往 {box.state}")
     ```
 
 === "AYAKA"
@@ -84,9 +83,8 @@
     @box.on_cmd(cmds="move", states="*")
     async def move():
         '''移动'''
-        arg = str(box.arg)
-        await box.set_state(arg)
-        await box.send(f"前往 {arg}")
+        box.state = str(box.arg)
+        await m3.send(f"前往 {box.state}")
     ```
 
 **实现效果**
@@ -94,11 +92,11 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 地球
 "Bot" 说：前往 地球
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -136,13 +134,13 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 地球
 "Bot" 说：前往 地球
 "user" 说：hi
 "Bot" 说：你好，地球
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -193,7 +191,7 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 月球
 "Bot" 说：前往 月球
 "user" 说：drink
@@ -203,7 +201,7 @@
 "user" 说：drink
 "Bot" 说：喝太阳风
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -281,7 +279,7 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：watch
 "Bot" 说：先去售票处买票！
 "user" 说：move 售票处
@@ -293,7 +291,7 @@
 "user" 说：watch
 "Bot" 说：先去售票处买票！
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -335,13 +333,13 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 火星
 "Bot" 说：前往 火星
 "user" 说：嗯？
 "Bot" 说：你火星了
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -411,24 +409,24 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
 "user" 说：pick
 "Bot" 说：+1 / 1
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 "sys" 说：修改配置为10并重启bot后
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
 "user" 说：pick
 "Bot" 说：+10 / 10
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -470,7 +468,7 @@
 <div class="demo">
 
 "user" 说：travel
-"Bot" 说：已打开应用 [星际旅行]
+"Bot" 说：已打开盒子 [星际旅行]
 "user" 说：move 沙城
 "Bot" 说：前往 沙城
 "user" 说：change 100
@@ -478,7 +476,7 @@
 "user" 说：pick
 "Bot" 说：+100 / 100
 "user" 说：exit
-"Bot" 说：已关闭应用 [星际旅行]
+"Bot" 说：已关闭盒子 [星际旅行]
 
 </div>
 
@@ -501,9 +499,9 @@
 - 盒子状态 展示盒子状态
 "Bot" 说：[星际旅行]
 xing ji lv xing
-- 星际旅行/travel 启动应用
+- 星际旅行/travel 启动盒子
 [*]
-- 退出/exit 关闭应用
+- 退出/exit 关闭盒子
 - move 移动
 - watch/看表演 看表演
 [地球]

@@ -42,7 +42,7 @@
     # 换个状态
     @GOTO_WORLD.handle()
     async def goto_world():
-        await box.set_state("world")
+        box.state = "world"
         await GOTO_WORLD.send("已设置状态为world")
     ```
 
@@ -67,7 +67,7 @@
     # 换个状态
     @box.on_cmd(cmds="换个状态", states="idle")
     async def goto_world():
-        await box.set_state("world")
+        box.state = "world"
         await box.send("已设置状态为world")
     ```
 
@@ -77,7 +77,7 @@
 "user" 说：你好
 "user" 说：你好
 "user" 说：打开
-"Bot" 说：已启动应用[测试]
+"Bot" 说：已启动盒子[测试]
 "user" 说：你好
 "Bot" 说：[idle] 你好，世界！
 "user" 说：换个状态
@@ -85,7 +85,7 @@
 "user" 说：你好
 "Bot" 说：[world] 你好，世界！
 "user" 说：关闭
-"Bot" 说：已关闭应用[测试]
+"Bot" 说：已关闭盒子[测试]
 </div>
 
 ## 数据缓存
