@@ -480,8 +480,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#user_nameuser_idgroup_id" class="md-nav__link">
-    user_name、user_id、group_id
+  <a href="#user_nameuser_idgroup_idbot_id" class="md-nav__link">
+    user_name、user_id、group_id、bot_id
   </a>
   
 </li>
@@ -516,13 +516,6 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    其他
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
     下一步
   </a>
   
@@ -868,6 +861,11 @@
 </thead>
 <tbody>
 <tr>
+<td>box.name</td>
+<td><code>str</code></td>
+<td>盒子名称</td>
+</tr>
+<tr>
 <td>box.bot</td>
 <td><code>Bot</code></td>
 <td>当前机器人</td>
@@ -876,6 +874,11 @@
 <td>box.event</td>
 <td><code>MessageEvent</code></td>
 <td>当前消息事件</td>
+</tr>
+<tr>
+<td>box.group_event</td>
+<td><code>GroupMessageEvent</code></td>
+<td>当前群聊消息事件</td>
 </tr>
 <tr>
 <td>box.message</td>
@@ -892,6 +895,11 @@
 <td><code>list[MessageSegment | str]</code></td>
 <td>删除命令后，依照分隔符分割，并移除空数据</td>
 </tr>
+<tr>
+<td>box.cache</td>
+<td><code>dict</code></td>
+<td>为当前缓存数据</td>
+</tr>
 </tbody>
 </table>
 <div class="demo">
@@ -900,7 +908,7 @@
 "sys" 说：box.args = ["水电费","来看看"]
 </div>
 
-<h2 id="user_nameuser_idgroup_id">user_name、user_id、group_id<a class="headerlink" href="#user_nameuser_idgroup_id" title="Permanent link">&para;</a></h2>
+<h2 id="user_nameuser_idgroup_idbot_id">user_name、user_id、group_id、bot_id<a class="headerlink" href="#user_nameuser_idgroup_idbot_id" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -911,11 +919,6 @@
 </thead>
 <tbody>
 <tr>
-<td>box.group_id</td>
-<td><code>int</code></td>
-<td>当前群聊的群号</td>
-</tr>
-<tr>
 <td>box.user_id</td>
 <td><code>int</code></td>
 <td>当前消息的发送者的qq号</td>
@@ -924,6 +927,16 @@
 <td>box.user_name</td>
 <td><code>str</code></td>
 <td>当前消息的发送者的群名片或昵称（优先为群名片）</td>
+</tr>
+<tr>
+<td>box.group_id</td>
+<td><code>int</code></td>
+<td>当前群聊的群号</td>
+</tr>
+<tr>
+<td>box.bot_id</td>
+<td><code>int</code></td>
+<td>当前机器人的qq号</td>
 </tr>
 </tbody>
 </table>
@@ -1013,39 +1026,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_2">其他<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>box.name</td>
-<td><code>str</code></td>
-<td>盒子名称</td>
-</tr>
-<tr>
-<td>box.bot_id</td>
-<td><code>int</code></td>
-<td>当前机器人的qq号</td>
-</tr>
-<tr>
-<td>box.group</td>
-<td><code>AyakaGroup</code></td>
-<td>当前群组</td>
-</tr>
-<tr>
-<td>box.cache</td>
-<td><code>dict</code></td>
-<td>为当前群组当前盒子提供的独立缓存数据空间</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_3">下一步<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">下一步<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <div align="right">
     在这里~ ↘
 </div>
